@@ -1,9 +1,13 @@
 import React from 'react'
+import LockIcon from '../../../components/LockIcon';
 
 const VerificationCode = () => {
   return (
-    <div>VerificationCode</div>
-  )
+    <div>
+      <LockIcon/>
+      Verification Code
+    </div>
+  );
 }
 
 export default VerificationCode

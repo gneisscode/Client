@@ -1,9 +1,13 @@
 import React from 'react'
+import LockIcon from '../../../components/LockIcon';
 
 const ChangePassword = () => {
   return (
-    <div>ChangePassword</div>
-  )
+    <div>
+      <LockIcon/>
+      ChangePassword
+    </div>
+  );
 }
 
 export default ChangePassword
