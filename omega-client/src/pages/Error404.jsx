@@ -6,7 +6,7 @@ const Error404 = () => {
     <div>
       <HomeNav/>
       <div className='flex justify-center mt-8'>
-        <img src="assets/error/error.png" alt='error' className='w-1/3'/>
+        <img src="assets/error/error.png" alt='error-img' className='w-1/3'/>
       </div>
       <div className=' flex flex-col gap-4 items-center text-center mt-10 leading-4 text-base'>
         <p>We are sorry, the page you are looking for is not available.</p>
