@@ -1,13 +1,11 @@
 import React from 'react'
-import PrimaryButton from './PrimaryButton';
-import SecondaryButton from './SecondaryButton';
-
+import Button from './Button'
 
 const HomeNav = () => {
   return (
-    <div className='flex justify-around h-[112px] w-[full] text-gray-400 border border-gray-100 items-end px-[80.11px] py-8'>
+    <div className='flex justify-around h-[112px] w-full text-gray-400 border border-gray-100 items-end px-[80.11px] py-8'>
       <div className='flex justify-center items-center'>
-        <img src="/assets/omega-logo.png" alt="" />
+        <img src='/assets/omega-logo.png' alt='' />
       </div>
 
       <ul className='flex gap-[64px] text-xl font-medium justify-center items-center'>
@@ -18,11 +16,14 @@ const HomeNav = () => {
       </ul>
 
       <div className='flex gap-4 justify-center items-center'>
-        <SecondaryButton text="Log In" />
-        <PrimaryButton text="Sign Up" />
+        <Button
+          className=' border border-[#0267FF] text-[#0267FF]'
+          label='Log In'
+        />
+        <Button className='bg-[#0267FF] text-white' label='Sign Up' />
       </div>
     </div>
-  );
+  )
 }
 
 export default HomeNav
