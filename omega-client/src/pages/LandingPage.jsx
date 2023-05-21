@@ -283,8 +283,66 @@ const LandingPage = () => {
         </div>
       </div>
 
-      <div>
-        
+      <div className="flex flex-col w-[100%] h-[1273px] bg-[#0267FF] text-white">
+        <img src="assets/landingPage/ellipse.png" alt="" className="self-end" />
+        <div className="flex flex-col gap-[80px] border-b border-b-white px-4 lg:px-0  lg:pl-[80px] pb-[135px]">
+          <div className="flex flex-col gap-[32px]">
+            <div className=" text-[32px] font-[600]">Join Our Newsletter</div>
+            <div className=" text-[24px] font-[600]">
+              Subsribe to join our newsletter, where you get weekly emails from
+              our teams
+            </div>
+          </div>
+
+          <div className="flex lg:w-[1198px] w-[400px] self-center lg:self-start ">
+            <input
+              type="text"
+              className="bg-[#9AC2FF] outline-none text-black p-4 lg:w-[794px] w-[60%] lg:h-[72px]"
+            />
+            <button className="bg-white text-[20px] font-[600] lg:w-[404px] w-[40%] lg:h-[72px] text-[#0267FF]">
+              Subscribe
+            </button>
+          </div>
+        </div>
+
+        <div className="flex flex-col lg:flex-row lg:gap-[254px] lg:pl-[80px] mb-[214.44px]">
+          <img
+            src="assets/landingPage/omega-logo-white.png"
+            alt=""
+            className="w-[55px] h-[55px] self-center lg:self-end mt-12 lg:mt-0"
+          />
+          <div className="flex  lg:gap-[233px] gap-12 justify-center items-center pt-[66.5px]">
+            <div className="flex flex-col justify-center items-center gap-[24px]">
+              <div className="cursor-pointer">Products</div>
+              <div className="cursor-pointer">No Debt</div>
+              <div className="cursor-pointer">Loan</div>
+              <div className="cursor-pointer">Loan default</div>
+            </div>
+            <div className="flex flex-col justify-center items-center gap-[24px] self-start">
+              <div className="cursor-pointer">About</div>
+              <div className="cursor-pointer">FAQS </div>
+              <div className="cursor-pointer">Blog</div>
+            </div>
+            <div className="flex flex-col justify-center items-center gap-[24px]">
+              <div className="cursor-pointer">Legal</div>
+              <div className="cursor-pointer">Terms</div>
+              <div className="cursor-pointer">Privacy</div>
+              <div className="cursor-pointer">Security</div>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex flex-col justify-center items-center gap-[32px] px-4 lg:px-0">
+          <div className="text-[16px] font-[500] lg:w-[876.41px] text-center">
+            No Debt unlock the potential of predictive modeling and credit risk
+            management to optimize your loan portfolio and drives businesses
+            growth
+          </div>
+
+          <div className="text-[14px] font-[500] lg:w-[488px] text-center">
+            2020-2023 No Debt Global Limited - RC 1222200
+          </div>
+        </div>
       </div>
     </div>
   );
