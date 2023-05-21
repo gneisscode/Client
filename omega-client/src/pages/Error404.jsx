@@ -1,10 +1,12 @@
 import React from 'react'
 import HomeNav from '../components/HomeNav'
+import Hamburger from '../components/Hamburger';
 
 const Error404 = () => {
   return (
     <div>
       <HomeNav/>
+      <Hamburger/>
       <div className='flex justify-center mt-8'>
         <img src="assets/error/error.png" alt='error-img' className='w-1/3'/>
       </div>
