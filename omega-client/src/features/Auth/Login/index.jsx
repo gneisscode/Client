@@ -40,7 +40,7 @@ const Login = () => {
             </div>
             <div className='flex justify-between items-center'>
             <div></div>
-            <div>Forgot Password.</div>
+            <div>Forgot Password</div>
             </div>
 
             <div className='flex items-center gap-2'>
