@@ -52,7 +52,7 @@ const SignUp = () => {
               label='Sign Up'
             />
             <Modal isOpen={isModalOpen} onClose={closeModal}>
-              <section className='w-[500px] bg-white p-16 flex flex-col items-center justify-center'>
+              <section className='w-[500px] bg-slate-200 p-16 flex flex-col items-center justify-center'>
                 <div className='mb-5'>
                   <img src='/assets/auth/modalImage.svg' alt='' />
                 </div>
