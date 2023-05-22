@@ -8,11 +8,16 @@ import ForgotPasswordPage from './pages/ForgotPasswordPage'
 import VerificationCodePage from './pages/VerificationCodePage'
 import Error404 from './pages/Error404';
 import './App.css';
+import ContactUs from './pages/ContactUs';
+import About from './pages/About';
 
 function App() {
   return (
     <Routes>
       <Route element={<LandingPage />} path="/" />
+      <Route element={<About />} path="/about" />
+      <Route element={<LandingPage />} path="/services" />
+      <Route element={<ContactUs />} path="/contact" />
       <Route element={<LoginPage />} path="/login" />
       <Route element={<SignUpPage />} path="/signup" />
       <Route element={<ChangePasswordPage />} path="/change-password" />
