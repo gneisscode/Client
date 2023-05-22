@@ -33,7 +33,7 @@ const Hamburger = () => {
       ) : (
         <div className="flex w-[100%] justify-between items-center px-4 ">
           <div className="flex justify-center items-center self-center w-[100%] mt-2 gap-4">
-            <div className="text-[40px] font-[600] text-blue-700">Omega</div>
+            <div className="text-[40px] font-[600] text-[#0252cc]">Omega</div>
             <img src="/assets/omega-logo.png" alt="" />
           </div>
           <i class="fa-solid fa-bars" onClick={handleMenu}></i>
