@@ -31,7 +31,7 @@ const LandingPage = () => {
       </div>
 
       <div className=" flex flex-col w-[100%] bg-[#FAFCFF] pt-8 lg:pt-[100px] mt-[32px]">
-        <div className="mb-8 lg:mb-0 underline lg:text-[32px] text-[24px] lg:ml-[80px] text-[#0267FF] self-center lg:self-start">
+        <div className="mb-8 lg:mb-0 underline lg:text-[32px] text-[24px] lg:ml-[80px] text-[#0267FF] self-center lg:self-start" id='services'>
           Our Services
         </div>
         <div className="flex flex-col-reverse lg:flex-row items-center justify-center px-8 lg:px-[80px] gap-[63px] lg:mb-6 mb-10">
