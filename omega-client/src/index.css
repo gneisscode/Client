@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+
 .sectionBg {
   background-image: url('/public/assets/auth/person.png');
+<<<<<<< HEAD
 }
+=======
+}
+
+.link{
+    text-decoration: none;
+}
+
+>>>>>>> f2f64f9b8ffba9332a13568d47519d86f736a07c
