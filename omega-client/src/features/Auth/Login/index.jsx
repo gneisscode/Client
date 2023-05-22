@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import AuthLayout from '../../../components/AuthLayout'
 import Button from '../../../components/Button'
 import TextField from '../../../components/TextField'
-import Modal from '../../../components/Modal/modal'
 import { Link } from 'react-router-dom'
 
 const Login = () => {
@@ -10,6 +9,7 @@ const Login = () => {
   const openModal = () => setIsModalOpen(true)
   const closeModal = () => setIsModalOpen(false)
  
+  
   return (
     <AuthLayout>
       <section className='mt-8  justify-center items-center px-28'>
@@ -31,42 +31,34 @@ const Login = () => {
           </p>
 
           <div className='text-white'>
-            {/* <div className='mb-6'>
-              <TextField placeholder='Name:' />
-            </div> */}
+      
             <div className='mb-6'>
               <TextField placeholder='Email Address:' />
             </div>
-            <div className='mb-6'>
+            <div className='mb-2'>
               <TextField placeholder='Password:' />
             </div>
-            {/* <div className='mb-6'>
-              <TextField placeholder='Confirm Password:' />
-            </div> */}
+            <div className='flex justify-between items-center'>
+            <div></div>
+            <div>Forgot Password</div>
+            </div>
+
+            <div className='flex items-center gap-2'>
+            <div className='bg-[#013E99] '>
+            <input className='border border-colour-[#013E99]' type='checkbox'></input>
+            </div>
+            <div>Always keep me logged in</div>
+            </div>
+            
+            
           </div>
 
           <div>
             <Button
-              className='text-[#012966] mt-5 bg-white'
+              className='text-[#012966] mt-20 bg-white'
               onClick={() => console.log('clicked')}
-              label='Sign Up'
+              label='Log In'
             />
-            {/* <Modal isOpen={isModalOpen} onClose={closeModal}>
-              <section className='w-[500px] bg-white p-16 flex flex-col items-center justify-center'>
-                <div className='mb-5'>
-                  <img src='/assets/auth/modalImage.svg' alt='' />
-                </div>
-                <p className='text-black text-center mb-5'>
-                  You now have an account, please go ahead to Log into your
-                  account
-                </p>
-                <Button
-                  className='text-white bg-[#0267FF] w-64'
-                  label='Log In'
-                  onClick={() => console.log('clicked')}
-                />
-              </section>
-            </Modal> */}
           </div>
 
           <div className='grid grid-cols-3 mt-7 items-center'>
