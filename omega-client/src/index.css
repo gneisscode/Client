@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 
+.sectionBg {
+  background-image: url('/public/assets/auth/person.png');
+}
+
 .link{
     text-decoration: none;
 }
+
