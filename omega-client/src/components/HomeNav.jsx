@@ -1,12 +1,10 @@
-import React from 'react'
-import {  Link, useLocation } from "react-router-dom";
-import { useEffect } from 'react';
-import PrimaryButton from './PrimaryButton';
-import SecondaryButton from './SecondaryButton';
-
+import React from "react";
+import { Link, useLocation } from "react-router-dom";
+import { useEffect } from "react";
+import PrimaryButton from "./PrimaryButton";
+import SecondaryButton from "./SecondaryButton";
 
 const HomeNav = () => {
-
   const location = useLocation();
 
   useEffect(() => {
@@ -44,10 +42,12 @@ const HomeNav = () => {
 
       <div className="flex gap-4 justify-center items-center">
         <SecondaryButton text="Log In" />
-        <PrimaryButton text="Sign Up" />
+        <Link to="/signup" className="link">
+          <PrimaryButton text="Sign Up" />
+        </Link>
       </div>
     </div>
   );
-}
+};
 
-export default HomeNav
+export default HomeNav;
