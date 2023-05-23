@@ -7,6 +7,7 @@ import ChangePasswordPage from './pages/ChangePasswordPage'
 import ForgotPasswordPage from './pages/ForgotPasswordPage'
 import VerificationCodePage from './pages/VerificationCodePage'
 import Error404 from './pages/Error404';
+import ChangeSuccess from './features/Auth/ChangePassword/ChangeSuccess';
 import './App.css';
 import ContactUs from './pages/ContactUs';
 import About from './pages/About';
@@ -42,6 +43,7 @@ function App() {
       <Route element={<ForgotPasswordPage />} path="/forgot-password" />
       <Route element={<VerificationCodePage />} path="/verify" />
       <Route element={<Error404 />} path="/error" />
+      <Route element={<ChangeSuccess />} path="/success"/>
     </Routes>
   );
 }
