@@ -1,28 +1,53 @@
-import React from 'react'
-import PrimaryButton from './PrimaryButton';
-import SecondaryButton from './SecondaryButton';
-
+import React from "react";
+import { Link, useLocation } from "react-router-dom";
+import { useEffect } from "react";
+import PrimaryButton from "./PrimaryButton";
+import SecondaryButton from "./SecondaryButton";
 
 const HomeNav = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname === "/services") {
+      const servicesSection = document.getElementById("services");
+      if (servicesSection) {
+        servicesSection.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [location]);
+
   return (
-    <div className='flex justify-around h-[112px] w-[full] text-gray-400 border border-gray-100 items-end px-[80.11px] py-8'>
-      <div className='flex justify-center items-center'>
+    <div className="hidden lg:flex justify-between h-[112px] w-[100%] text-gray-400 border border-gray-100 items-end px-[80.11px] py-8">
+      <div className="flex justify-center items-center">
         <img src="/assets/omega-logo.png" alt="" />
       </div>
 
-      <ul className='flex gap-[64px] text-xl font-medium justify-center items-center'>
-        <li>Home</li>
-        <li>About Us</li>
-        <li>Service</li>
-        <li>Contact Us</li>
+      <ul className="flex gap-[64px] text-xl font-medium justify-center items-center self-center">
+        <Link to="/" className="link">
+          <li>Home</li>
+        </Link>
+
+        <Link to="/about" className="link">
+          <li>About Us</li>
+        </Link>
+
+        <a href="/services" className="link">
+          Services
+        </a>
+
+        <Link to="/contact" className="link">
+          <li>Contact Us</li>
+        </Link>
       </ul>
 
-      <div className='flex gap-4 justify-center items-center'>
+      <div className="flex gap-4 justify-center items-center">
         <SecondaryButton text="Log In" />
-        <PrimaryButton text="Sign Up" />
+        <Link to="/signup" className="link">
+          <PrimaryButton text="Sign Up" />
+        </Link>
       </div>
     </div>
   );
-}
+};
 
-export default HomeNav
+export default HomeNav;
