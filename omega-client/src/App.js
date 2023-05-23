@@ -18,6 +18,7 @@ import Pending from './features/Dashboard/Dashboard/loans/Pending';
 import BorrowersData from './features/Dashboard/BorrowersData/InputData/BorrowersData';
 import BorrowerEligibility from './features/Dashboard/BorrowersData/Eligibility/BorrowerEligibility';
 import SendStatus from './features/Dashboard/BorrowersData/Eligibility/SendStatus';
+import LoanApplications from './features/Dashboard/Dashboard/LoanApplications';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
       <Route element={<BorrowersData />} path="/borrower-data" />
       <Route element={<BorrowerEligibility />} path="/borrower-eligibility" />
       <Route element={<SendStatus />} path="/send-status" />
+      <Route element={<LoanApplications/>} path="/loan-applications" />
       <Route element={<ChangePasswordPage />} path="/change-password" />
       <Route element={<ForgotPasswordPage />} path="/forgot-password" />
       <Route element={<VerificationCodePage />} path="/verify" />

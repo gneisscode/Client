@@ -5,6 +5,7 @@
 
 .sectionBg {
   background-image: url('/public/assets/auth/person.png');
+  height: 100%;
 }
 
 .link{
