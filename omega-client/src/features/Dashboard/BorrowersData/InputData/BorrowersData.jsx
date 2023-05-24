@@ -88,7 +88,7 @@ const BorrowersData = () => {
                 </div>
               </Card>
             </div>
-            <div className='flex justify-between items-center gap-20 mt-16'>
+            <div className='grid grid-cols-2 justify-between items-center gap-20 mt-16'>
               {activeIndex !== 0 ? (
                 <Button
                   className='bg-white text-[#0267FF] border border-[#0267FF] w-4/12'
@@ -96,10 +96,12 @@ const BorrowersData = () => {
                   onClick={() => setActiveIndex((prev) => prev - 1)}
                 />
               ) : (
-                <div></div>
+                <div className='w-4/12'></div>
               )}
               <Button
-                className='text-white bg-[#0267FF] w-4/12'
+                className={`text-white bg-[#0267FF] ${
+                  activeIndex === 0 ? 'w-4/12' : 'w-4/12'
+                }`}
                 label={activeIndex === 3 ? 'Save Data' : 'Next'}
                 onClick={() =>
                   activeIndex === 3
