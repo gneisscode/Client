@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
   return (
-    <div className="flex flex-col lg:h-[100%] lg:w-[323px] bg-[#FAFCFF]">
-      <div className="flex flex-col justify-center pl-[80px] pt-[80px] gap-[80px]">
+    <div className="flex flex-col lg:h-[100%] lg:min-w-[300px] bg-[#FAFCFF]">
+      <div className="flex flex-col justify-center pl-[40px] pt-[80px] gap-[80px]">
         <Link to="/dashboard">
           <div className="flex gap-[10px]">
             <img src="assets/dashboard/dash.svg" alt="" />
@@ -30,10 +30,12 @@ const Sidebar = () => {
           </div>
         </Link>
 
-        <div className="flex gap-[10px]">
-          <img src="assets/dashboard/history.svg" alt="" />
-          <div className="text-[#999999] text-[20px] font-600">History</div>
-        </div>
+        <Link to="/history">
+          <div className="flex gap-[10px]">
+            <img src="assets/dashboard/history.svg" alt="" />
+            <div className="text-[#999999] text-[20px] font-600">History</div>
+          </div>
+        </Link>
 
         <div className="flex gap-[10px]">
           <img src="assets/dashboard/admin.svg" alt="" />
