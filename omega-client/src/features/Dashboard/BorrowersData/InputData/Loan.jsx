@@ -17,8 +17,6 @@ const Loan = () => {
     { id: 3, label: 'Repay 3', value: 'Repay 3' },
   ]
 
-  console.log({ repayType, loanType })
-
   return (
     <>
       <div className='grid grid-cols-2 w-full gap-7 px-8'>
