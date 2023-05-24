@@ -16,20 +16,20 @@ export const selectCustomStyles = {
 
   control: (provided, state) => ({
     ...provided,
-    minHeight: '55px',
+    minHeight: '50px',
     fontSize: '14px',
-    border: `1px solid ${state.isFocused ? '#28A745' : '#E7EDF2'}`,
+    border: `1px solid #0252CC`,
     color: '#E7EDF2',
-    borderRadius: '2px',
+    borderRadius: '4px',
     textTransform: 'capitalize',
   }),
 
   option: (provided, state) => ({
     ...provided,
     backgroundColor: state.isSelected
-      ? '#28A745'
+      ? '#3e8bff'
       : state.isFocused
-      ? 'rgba(76, 175, 80, 0.1)'
+      ? '#CCE1FF'
       : '',
   }),
 
@@ -41,10 +41,15 @@ export const selectCustomStyles = {
   },
 }
 
-const SelectDropdown = React.forwardRef(function SelectDropdown(
-  { defaultValue, onChange, styles, disabled, options, multiSelect, ...rest },
-  ref
-) {
+const SelectDropdown = ({
+  defaultValue,
+  onChange,
+  styles,
+  disabled,
+  options,
+  multiSelect,
+  ...rest
+}) => {
   return (
     <>
       {multiSelect ? (
@@ -69,6 +74,6 @@ const SelectDropdown = React.forwardRef(function SelectDropdown(
       )}
     </>
   )
-})
+}
 
 export default SelectDropdown

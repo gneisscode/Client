@@ -3,19 +3,36 @@ import TextField from '../../../../components/TextField'
 import SelectDropdown from '../../../../components/SelectDropDown/SelectDropDown'
 
 const Loan = () => {
-  const [loanType, setLoanType] = useState('')
+  const [loanType, setLoanType] = useState(undefined)
+  const [repayType, setRepayType] = useState(undefined)
+
+  const loansType = [
+    { id: 1, label: 'Loan 1', value: 'Loan 1' },
+    { id: 2, label: 'Loan 2', value: 'Loan 2' },
+    { id: 3, label: 'Loan 3', value: 'Loan 3' },
+  ]
+  const repayTypeList = [
+    { id: 1, label: 'Repay 1', value: 'Repay 1' },
+    { id: 2, label: 'Repay 2', value: 'Repay 2' },
+    { id: 3, label: 'Repay 3', value: 'Repay 3' },
+  ]
+
+  console.log({ repayType, loanType })
+
   return (
     <>
       <div className='grid grid-cols-2 w-full gap-7 px-8'>
-        <SelectDropdown options={[]} value={loanType} />
-        {/* <TextField
-          className='bg-white border-[#0252CC] '
+        <SelectDropdown
+          options={loansType}
           placeholder='Loan Type'
-        /> */}
-        <TextField
-          className='bg-white border-[#0252CC]'
-          placeholder='Repayment Type'
+          onChange={(val) => setLoanType(val.value)}
         />
+        <SelectDropdown
+          options={repayTypeList}
+          placeholder='Repayment Type'
+          onChange={(val) => setRepayType(val.value)}
+        />
+
         <TextField
           className='bg-white border-[#0252CC]'
           placeholder='Upload Credit Report'
