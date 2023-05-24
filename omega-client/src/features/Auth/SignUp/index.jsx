@@ -12,12 +12,12 @@ const SignUp = () => {
 
   return (
     <AuthLayout>
-      <section className='mt-8  justify-center items-center px-28'>
+      <section className='lg:mt-8 mt-24 justify-center items-center lg:px-28 px-4'>
         <div className='cursor-pointer' onClick={() => console.log('clicked')}>
           <img src='/assets/auth/backIcon.svg' alt='' />
         </div>
         <div>
-          <h3 className=' mt-2 lg:text-4xl text-white text-center text-[1.5rem] leading-4'>
+          <h3 className=' mt-2  lg:text-4xl text-white text-center text-[1.5rem] leading-4'>
             Create an account
           </h3>
           <p className='my-2 text-center text-[#e5e5e5df] text-base font-normal'>
@@ -52,7 +52,7 @@ const SignUp = () => {
               label='Sign Up'
             />
             <Modal isOpen={isModalOpen} onClose={closeModal}>
-              <section className='w-[500px] bg-white p-16 flex flex-col items-center justify-center'>
+              <section className='w-[500px] bg-slate-200 p-16 flex flex-col items-center justify-center'>
                 <div className='mb-5'>
                   <img src='/assets/auth/modalImage.svg' alt='' />
                 </div>
