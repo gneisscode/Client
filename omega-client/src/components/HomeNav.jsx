@@ -41,7 +41,9 @@ const HomeNav = () => {
       </ul>
 
       <div className="flex gap-4 justify-center items-center">
-        <SecondaryButton text="Log In" />
+        <Link to="/login" className="link">
+          <SecondaryButton text="Log In" />
+        </Link>
         <Link to="/signup" className="link">
           <PrimaryButton text="Sign Up" />
         </Link>

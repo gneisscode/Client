@@ -37,22 +37,28 @@ const Sidebar = () => {
           </div>
         </Link>
 
-        <div className="flex gap-[10px]">
-          <img src="assets/dashboard/admin.svg" alt="" />
-          <div className="text-[#999999] text-[20px] font-600">Admin</div>
-        </div>
-
-        <div className="flex gap-[10px]">
-          <img src="assets/dashboard/settings.svg" alt="" />
-          <div className="text-[#999999] text-[20px] font-600">Settings</div>
-        </div>
-
-        <div className="flex gap-[10px]">
-          <img src="assets/dashboard/help.svg" alt="" />
-          <div className="text-[#999999] text-[20px] font-600">
-            Help & Support
+        <Link to="/admin">
+          <div className="flex gap-[10px]">
+            <img src="assets/dashboard/admin.svg" alt="" />
+            <div className="text-[#999999] text-[20px] font-600">Admin</div>
           </div>
-        </div>
+        </Link>
+
+        <Link to="/Settings">
+          <div className="flex gap-[10px]">
+            <img src="assets/dashboard/settings.svg" alt="" />
+            <div className="text-[#999999] text-[20px] font-600">Settings</div>
+          </div>
+        </Link>
+
+        <Link to="/help">
+          <div className="flex gap-[10px]">
+            <img src="assets/dashboard/help.svg" alt="" />
+            <div className="text-[#999999] text-[20px] font-600">
+              Help & Support
+            </div>
+          </div>
+        </Link>
 
         <div className="flex gap-[10px] mt-[175px] mb-16">
           <img src="assets/dashboard/logout.svg" alt="" />
