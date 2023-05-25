@@ -33,15 +33,18 @@ const Faq = () => {
   }
 
   return (
-    <div>
-      {expandedItems.map((item, index) => (
-        <div key={index}>
-          <div onClick={() => toggleItem(index)} className='cursor-pointer'>
-            {item.question}
+    <div className='mt-8 px-8'>
+      <div>
+        {expandedItems.map((item, index) => (
+          <div key={index} className='bg-white px-4 border border-inherit'>
+            <div onClick={() => toggleItem(index)} className='cursor-pointer'>
+              {item.question}
+            </div>
+
+            <div>{item.answer}</div>
           </div>
-          {<div>{item.answer}</div>}
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   )
 }

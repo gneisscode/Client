@@ -65,7 +65,7 @@ const Help = () => {
             </div>
 
             <Card>
-              <div className='mt-12 px-8'>
+              <div className='mt-12 px-8 font-semibold text-base text-[#666666]'>
                 <h2>Frequently Asked Questions</h2>
               </div>
               <Faq />
