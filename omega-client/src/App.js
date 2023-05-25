@@ -7,6 +7,7 @@ import ChangePasswordPage from './pages/ChangePasswordPage'
 import ForgotPasswordPage from './pages/ForgotPasswordPage'
 import VerificationCodePage from './pages/VerificationCodePage'
 import Error404 from './pages/Error404';
+import ChangeSuccess from './features/Auth/ChangePassword/ChangeSuccess';
 import './App.css';
 import ContactUs from './pages/ContactUs';
 import About from './pages/About';
@@ -18,6 +19,11 @@ import Pending from './features/Dashboard/Dashboard/loans/Pending';
 import BorrowersData from './features/Dashboard/BorrowersData/InputData/BorrowersData';
 import BorrowerEligibility from './features/Dashboard/BorrowersData/Eligibility/BorrowerEligibility';
 import SendStatus from './features/Dashboard/BorrowersData/Eligibility/SendStatus';
+import LoanApplications from './features/Dashboard/Dashboard/LoanApplications';
+import History from './features/Dashboard/History';
+import Admin from './features/Dashboard/Admin/Admin';
+import AddAdmin from './features/Dashboard/Admin/AddAdmin';
+import Help from './features/Dashboard/Help';
 
 function App() {
   return (
@@ -36,10 +42,16 @@ function App() {
       <Route element={<BorrowersData />} path="/borrower-data" />
       <Route element={<BorrowerEligibility />} path="/borrower-eligibility" />
       <Route element={<SendStatus />} path="/send-status" />
+      <Route element={<LoanApplications />} path="/loan-applications" />
+      <Route element={<History />} path="/history" />
+      <Route element={<Admin />} path="/admin" />
+      <Route element={<AddAdmin />} path="/add-admin" />
+      <Route element={<Help/>} path="/help" />
       <Route element={<ChangePasswordPage />} path="/change-password" />
       <Route element={<ForgotPasswordPage />} path="/forgot-password" />
       <Route element={<VerificationCodePage />} path="/verify" />
       <Route element={<Error404 />} path="/error" />
+      <Route element={<ChangeSuccess />} path="/success" />
     </Routes>
   );
 }

@@ -2,12 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-
 .sectionBg {
   background-image: url('/public/assets/auth/person.png');
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  height: 100%;
 }
 
-.link{
-    text-decoration: none;
+.link {
+  text-decoration: none;
 }
-
