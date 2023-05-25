@@ -9,7 +9,7 @@ const Dashboard = () => {
       <div className="flex ">
         <Sidebar />
 
-        <div className="">Dashboard</div>
+        <div className="">Dashboard.</div>
       </div>
     </div>
   );
