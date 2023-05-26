@@ -33,35 +33,36 @@ const Help = () => {
                 </em>
               </p>
 
-              <div className='flex justify-items-center w-full rounded-sm'>
-                <table class='border-collapse  bg-[#FAFCFF] text-gray-500 text-base'>
-                  <tbody>
-                    <tr>
-                      <td class='border border-sky-100 border-b-2 px-8 '>
-                        Getting Started
-                      </td>
-
-                      <td class='border border-sky-100 px-8 '>User Account</td>
-                    </tr>
-                    <tr>
-                      <td class='border border-sky-100 px-8'>Loan Type</td>
-                      <td class='border border-sky-100 px-8'>Loan Agreement</td>
-                    </tr>
-                    <tr>
-                      <td class='border border-sky-100 px-8'>Interest</td>
-                      <td class='border border-sky-100 px-8'>
-                        Guarantor details
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class='border border-sky-100 px-8'>
-                        Special Loan Offer
-                      </td>
-                      <td class='border border-sky-100 px-8'>Collateral</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+              <table class='table-auto border-collapse  bg-[#FAFCFF] text-gray-500 text-base'>
+                <tbody>
+                  <tr>
+                    <td class='border-sky-100  border px-4 py-4'>
+                      Getting Started
+                    </td>
+                    <td class='border border-sky-100 px-4 py-4'>
+                      User Account
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class='border-sky-100 border px-4 py-4'>Loan Type</td>
+                    <td class=' border-sky-100 border px-4 py-4'>
+                      Loan Agreement
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class='border-sky-100 border px-4 py-4'>Interest</td>
+                    <td class='border-sky-100 border px-4 py-4'>
+                      Guarantor details
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class='border-sky-100 border px-4 py-4'>
+                      Special Loan Offer
+                    </td>
+                    <td class='border-sky-100 border px-4 py-4'>Collateral</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
 
             <Card>
