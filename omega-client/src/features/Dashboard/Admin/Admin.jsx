@@ -25,7 +25,7 @@ const Admin = () => {
                   <p className='text-[13px] mt-3'><span className=''>Active</span><span className='text-lg ml-2 text-green-500'>{'\u25CF'}</span></p>
                 </div>
               </div>
-              <button className='flex mt-4 bg-blue-200 py-3 px-14 text-xs'>Send a message <span className='text-[20px] ml-1'>{'\u27A3'}</span></button>
+              <button className='flex mt-4 bg-blue-200 py-3 px-14 text-xs'>Send a message<img className='w-[15px] ml-2 mt-1' src='assets/dashboard/Vector.png' alt='button-img'/></button>
             </div>
             <div className='px-8 py-6 border-green-500 border rounded-md bg-[#f4f7fc]'>
               <div className='flex flex-row gap-10'>
@@ -36,7 +36,7 @@ const Admin = () => {
                   <p className='text-[13px] mt-3'><span className=''>Active</span><span className='text-lg ml-2 text-green-500'>{'\u25CF'}</span></p>
                 </div>
               </div>
-              <button className='flex mt-4 bg-blue-200 py-3 px-14 text-xs'>Send a message <span className='text-[20px] ml-1'>{'\u27A3'}</span></button>
+              <button className='flex mt-4 bg-blue-200 py-3 px-14 text-xs'>Send a message<img className='w-[15px] ml-2 mt-1' src='assets/dashboard/Vector.png' alt='button-img'/></button>
             </div>
             <div className='px-8 py-6 border-red-400 border rounded-md bg-[#f4f7fc]'>
               <div className='flex flex-row gap-10'>
@@ -47,7 +47,7 @@ const Admin = () => {
                   <p className='text-[13px] mt-3'><span className=''>Active</span><span className='text-lg ml-2 text-green-500'>{'\u25CF'}</span></p>
                 </div>
               </div>
-              <button className='flex mt-4 bg-blue-200 py-3 px-14 text-xs'>Send a message <span className='text-[20px] ml-1'>{'\u27A3'}</span></button>
+              <button className='flex mt-4 bg-blue-200 py-3 px-14 text-xs'>Send a message<img className='w-[15px] ml-2 mt-1' src='assets/dashboard/Vector.png' alt='button-img'/></button>
             </div>
             <div className='px-8 py-6 border-red-400 border rounded-md bg-[#f4f7fc]'>
               <div className='flex flex-row gap-10'>
@@ -58,7 +58,7 @@ const Admin = () => {
                   <p className='text-[13px] mt-3'><span className=''>Active</span><span className='text-lg ml-2 text-green-500'>{'\u25CF'}</span></p>
                 </div>
               </div>
-              <button className='flex mt-4 bg-blue-200 py-3 px-14 text-xs'>Send a message <span className='text-[20px] ml-1'>{'\u27A3'}</span></button>
+              <button className='flex mt-4 bg-blue-200 py-3 px-14 text-xs'>Send a message<img className='w-[15px] ml-2 mt-1' src='assets/dashboard/Vector.png' alt='button-img'/></button>
             </div>
             <div className='px-8 py-6 border-blue-500 border rounded-md bg-[#f4f7fc]'>
               <div className='flex flex-row gap-10'>
@@ -69,7 +69,7 @@ const Admin = () => {
                   <p className='text-[13px] mt-3'><span className=''>Active</span><span className='text-lg ml-2 text-green-500'>{'\u25CF'}</span></p>
                 </div>
               </div>
-              <button className='flex mt-4 bg-blue-200 py-3 px-14 text-xs'>Send a message <span className='text-[20px] ml-1'>{'\u27A3'}</span></button>
+              <button className='flex mt-4 bg-blue-200 py-3 px-14 text-xs'>Send a message<img className='w-[15px] ml-2 mt-1' src='assets/dashboard/Vector.png' alt='button-img'/></button>
             </div>
             <div className='px-8 py-6 border-green-500 border rounded-md bg-[#f4f7fc]'>
               <div className='flex flex-row gap-10'>
@@ -80,7 +80,7 @@ const Admin = () => {
                   <p className='text-[13px] mt-3'><span className=''>Active</span><span className='text-lg ml-2 text-green-500'>{'\u25CF'}</span></p>
                 </div>
               </div>
-              <button className='flex mt-4 bg-blue-200 py-3 px-14 text-xs'>Send a message <span className='text-[20px] ml-1'>{'\u27A3'}</span></button>
+              <button className='flex mt-4 bg-blue-200 py-3 px-14 text-xs'>Send a message<img className='w-[15px] ml-2 mt-1' src='assets/dashboard/Vector.png' alt='button-img'/></button>
             </div>
           </div>
         </div>
