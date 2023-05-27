@@ -24,6 +24,7 @@ import History from './features/Dashboard/History';
 import Admin from './features/Dashboard/Admin/Admin';
 import AddAdmin from './features/Dashboard/Admin/AddAdmin';
 import Help from './features/Dashboard/Help';
+import Settings from './features/Dashboard/Settings/Settings';
 
 function App() {
   return (
@@ -46,7 +47,8 @@ function App() {
       <Route element={<History />} path="/history" />
       <Route element={<Admin />} path="/admin" />
       <Route element={<AddAdmin />} path="/add-admin" />
-      <Route element={<Help/>} path="/help" />
+      <Route element={<Settings />} path="/settings" />
+      <Route element={<Help />} path="/help" />
       <Route element={<ChangePasswordPage />} path="/change-password" />
       <Route element={<ForgotPasswordPage />} path="/forgot-password" />
       <Route element={<VerificationCodePage />} path="/verify" />
