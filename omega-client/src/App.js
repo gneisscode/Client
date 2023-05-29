@@ -25,6 +25,8 @@ import Admin from './features/Dashboard/Admin/Admin';
 import AddAdmin from './features/Dashboard/Admin/AddAdmin';
 import Help from './features/Dashboard/HelpSupport/Help'
 import Settings from './features/Dashboard/Settings/Settings';
+import Profile from './features/Dashboard/Dashboard/BorrowersProfile/Profile'
+import SavedData from './features/Dashboard/SavedData/SavedData'
 
 function App() {
   return (
@@ -41,6 +43,8 @@ function App() {
       <Route element={<Refunded />} path="/loans-refunded" />
       <Route element={<Pending />} path="/loans-pending" />
       <Route element={<BorrowersData />} path="/borrower-data" />
+      <Route element={<Profile />} path="/borrower-profile" />
+      <Route element={<SavedData/>} path="/borrower-saved-data" />
       <Route element={<BorrowerEligibility />} path="/borrower-eligibility" />
       <Route element={<SendStatus />} path="/send-status" />
       <Route element={<LoanApplications />} path="/loan-applications" />
@@ -55,7 +59,7 @@ function App() {
       <Route element={<Error404 />} path="/error" />
       <Route element={<ChangeSuccess />} path="/success" />
     </Routes>
-  )
+  );
 }
 
 export default App
