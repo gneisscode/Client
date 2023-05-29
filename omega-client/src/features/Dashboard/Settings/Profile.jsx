@@ -101,7 +101,7 @@ const Profile = () => {
         </button>
       </div>
 
-      <div className="flex gap-4 justify-end items-center mt-[77px] mb-[47px]">
+      <div className="flex gap-4 justify-end items-center mt-[77px] mb-[47px] mr-[80px]">
         <button className="w-[195px] h-[61px] border border-[#FF2727] text-[#FF2727] text-[24px] font-[600] rounded">
           Cancel
         </button>
