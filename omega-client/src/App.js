@@ -1,7 +1,7 @@
-import React from 'react';
-import { Route, Routes } from "react-router-dom";
-import LandingPage from './pages/LandingPage';
-import LoginPage from './pages/LoginPage';
+import React from 'react'
+import { Route, Routes } from 'react-router-dom'
+import LandingPage from './pages/LandingPage'
+import LoginPage from './pages/LoginPage'
 import SignUpPage from './pages/SignUpPage'
 import ChangePasswordPage from './pages/ChangePasswordPage'
 import ForgotPasswordPage from './pages/ForgotPasswordPage'
@@ -55,7 +55,7 @@ function App() {
       <Route element={<Error404 />} path="/error" />
       <Route element={<ChangeSuccess />} path="/success" />
     </Routes>
-  );
+  )
 }
 
-export default App;
+export default App

@@ -59,7 +59,7 @@ const BorrowersData = () => {
               <Button
                 className='text-red-600 w-64 mt-5'
                 label='Cancel'
-                onClick={() => console.log('clicked')}
+                onClick={() => setModal(false)}
               />
             </div>
           </section>
