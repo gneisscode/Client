@@ -23,7 +23,7 @@ import LoanApplications from './features/Dashboard/Dashboard/LoanApplications';
 import History from './features/Dashboard/History';
 import Admin from './features/Dashboard/Admin/Admin';
 import AddAdmin from './features/Dashboard/Admin/AddAdmin';
-import Help from './features/Dashboard/Help';
+import Help from './features/Dashboard/HelpSupport/Help'
 import Settings from './features/Dashboard/Settings/Settings';
 
 function App() {
