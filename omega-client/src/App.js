@@ -1,34 +1,36 @@
-import React from 'react'
-import { Route, Routes } from 'react-router-dom'
-import LandingPage from './pages/LandingPage'
-import LoginPage from './pages/LoginPage'
-import SignUpPage from './pages/SignUpPage'
-import ChangePasswordPage from './pages/ChangePasswordPage'
-import ForgotPasswordPage from './pages/ForgotPasswordPage'
-import VerificationCodePage from './pages/VerificationCodePage'
-import Error404 from './pages/Error404';
-import ChangeSuccess from './features/Auth/ChangePassword/ChangeSuccess';
-import './App.css';
-import ContactUs from './pages/ContactUs';
-import About from './pages/About';
-import DashboardPage from './pages/DashboardPage';
-import Declined from './features/Dashboard/Dashboard/loans/Declined';
-import Generated from './features/Dashboard/Dashboard/loans/Generated';
-import Refunded from './features/Dashboard/Dashboard/loans/Refunded';
-import Pending from './features/Dashboard/Dashboard/loans/Pending';
-import BorrowersData from './features/Dashboard/BorrowersData/InputData/BorrowersData';
-import BorrowerEligibility from './features/Dashboard/BorrowersData/Eligibility/BorrowerEligibility';
-import SendStatus from './features/Dashboard/BorrowersData/Eligibility/SendStatus';
-import LoanApplications from './features/Dashboard/Dashboard/LoanApplications';
-import History from './features/Dashboard/History';
-import Admin from './features/Dashboard/Admin/Admin';
-import AddAdmin from './features/Dashboard/Admin/AddAdmin';
-import Help from './features/Dashboard/HelpSupport/Help'
-import Settings from './features/Dashboard/Settings/Settings';
-import Profile from './features/Dashboard/Dashboard/BorrowersProfile/Profile'
-import SavedData from './features/Dashboard/SavedData/SavedData'
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import LandingPage from "./pages/LandingPage";
+import LoginPage from "./pages/LoginPage";
+import SignUpPage from "./pages/SignUpPage";
+import ChangePasswordPage from "./pages/ChangePasswordPage";
+import ForgotPasswordPage from "./pages/ForgotPasswordPage";
+import VerificationCodePage from "./pages/VerificationCodePage";
+import Error404 from "./pages/Error404";
+import ChangeSuccess from "./features/Auth/ChangePassword/ChangeSuccess";
+import "./App.css";
+import ContactUs from "./pages/ContactUs";
+import About from "./pages/About";
+import DashboardPage from "./pages/DashboardPage";
+import Declined from "./features/Dashboard/Dashboard/loans/Declined";
+import Generated from "./features/Dashboard/Dashboard/loans/Generated";
+import Refunded from "./features/Dashboard/Dashboard/loans/Refunded";
+import Pending from "./features/Dashboard/Dashboard/loans/Pending";
+import BorrowersData from "./features/Dashboard/BorrowersData/InputData/BorrowersData";
+import BorrowerEligibility from "./features/Dashboard/BorrowersData/Eligibility/BorrowerEligibility";
+import SendStatus from "./features/Dashboard/BorrowersData/Eligibility/SendStatus";
+import LoanApplications from "./features/Dashboard/Dashboard/LoanApplications";
+import History from "./features/Dashboard/History";
+import Admin from "./features/Dashboard/Admin/Admin";
+import AddAdmin from "./features/Dashboard/Admin/AddAdmin";
+import Help from "./features/Dashboard/HelpSupport/Help";
+import Settings from "./features/Dashboard/Settings/Settings";
+import Profile from "./features/Dashboard/Dashboard/BorrowersProfile/Profile";
+import SavedData from "./features/Dashboard/SavedData/SavedData";
+import axios from "axios";
 
 function App() {
+  axios.defaults.baseURL = `https://nodebt-application.onrender.com/api`;
   return (
     <Routes>
       <Route element={<LandingPage />} path="/" />
@@ -44,7 +46,7 @@ function App() {
       <Route element={<Pending />} path="/loans-pending" />
       <Route element={<BorrowersData />} path="/borrower-data" />
       <Route element={<Profile />} path="/borrower-profile" />
-      <Route element={<SavedData/>} path="/borrower-saved-data" />
+      <Route element={<SavedData />} path="/borrower-saved-data" />
       <Route element={<BorrowerEligibility />} path="/borrower-eligibility" />
       <Route element={<SendStatus />} path="/send-status" />
       <Route element={<LoanApplications />} path="/loan-applications" />
@@ -62,4 +64,4 @@ function App() {
   );
 }
 
-export default App
+export default App;
