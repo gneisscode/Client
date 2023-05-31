@@ -10,7 +10,7 @@ const ForgotPassword = () => {
       <LockIcon />
       <h1 className="ml-[2em] mt-[2em]">Forgot Password</h1>
       <p className="text-xl pb-4">kindly insert your email below, a verification code will be sent to you
-        , make sure you enter the corect email </p>
+       , make sure you enter the corect email </p>
       <Card>
         <input className="border border-blue-600 w-[589px] h-[61px] p-6" placeholder="Email Address:"/>
         <PasswordBtn text="Send" className="ml-[2em] mt-[2em]" />
