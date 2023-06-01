@@ -16,7 +16,7 @@ const TextField = ({
   inputClass,
   props,
   disabled,
-  icon,
+  icon
 }) => {
   return (
     <div className='w-full'>

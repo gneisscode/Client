@@ -14,33 +14,74 @@ const Login = () => {
     password: "",
   });
 
+  const [formErrors, setFormErrors] = useState({
+    email: "",
+    password: "",
+  });
+  const [serverError, setServerError] = useState("")
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    validateField(name, value);
+     setServerError("");
+  };
+
+  const validateField = (fieldName, value) => {
+    let errorMessage = "";
+
+    if (fieldName === "email" && !value) {
+      errorMessage = "Email is required";
+    } else if (fieldName === "email" && !/\S+@\S+\.\S+/.test(value)) {
+      errorMessage = "Email is invalid";
+    } else if (fieldName === "password" && !value) {
+      errorMessage = "Password is required";
+    }
+
+    setFormErrors((prevErrors) => ({
+      ...prevErrors,
+      [fieldName]: errorMessage,
+    }));
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(formData);
+    const errors = {};
 
-    try {
-      const response = await axios.post("/users/login", formData);
-      console.log(response.data.data);
-      const data = response.data.data;
-      const token = data.access_token;
-      localStorage.setItem("token", token);
-      window.location.replace("/");
-    } catch (error) {
-      console.log(error);
+    Object.keys(formData).forEach((fieldName) => {
+      validateField(fieldName, formData[fieldName]);
+      if (formErrors[fieldName]) {
+        errors[fieldName] = formErrors[fieldName];
+      }
+    });
+
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors);
+    } else {
+      try {
+        const response = await axios.post("/users/login", formData);
+        console.log(response.data.data);
+        const data = response.data.data;
+        const token = data.access_token;
+        localStorage.setItem("token", token);
+        window.location.replace("/");
+      } catch (error) {
+        console.log(error);
+        const errorMessage = error.response.data.message;
+        setServerError(errorMessage)
+      }
     }
   };
 
   return (
     <AuthLayout>
       <section className="mt-8  justify-center items-center px-28">
-        <div className="cursor-pointer" onClick={() => console.log("clicked")}>
-          <img src="/assets/auth/backIcon.svg" alt="" />
-        </div>
+        <Link to="/">
+          <div className="cursor-pointer">
+            <img src="/assets/auth/backIcon.svg" alt="" />
+          </div>
+        </Link>
         <div>
           <h3 className=" mt-2 lg:text-4xl text-white text-center text-[1.5rem] leading-4">
             Welcome back
@@ -51,9 +92,11 @@ const Login = () => {
           <p className="my-5 mb-10 text-center text-[#e5e5e5df] text-base font-normal">
             Don't have an account?
             <span className="font-bold text-white ml-2">
-              <Link to="/login">Sign up</Link>
+              <Link to="/signup">Sign up</Link>
             </span>
           </p>
+
+          {serverError && <p className="text-red-500">{serverError}</p>}
 
           <form className="text-white" onSubmit={handleSubmit}>
             <div className="mb-6">
@@ -63,8 +106,11 @@ const Login = () => {
                 value={formData.email}
                 onChange={handleInputChange}
                 type="email"
-                autoComplete="email"
+                className={formErrors.email ? "border-red-700" : ""}
               />
+              {formErrors.email && (
+                <p className="text-red-500">{formErrors.email}</p>
+              )}
             </div>
             <div className="mb-2">
               <TextField
@@ -73,8 +119,11 @@ const Login = () => {
                 value={formData.password}
                 onChange={handleInputChange}
                 type="password"
-                autoComplete="password"
+                className={formErrors.password ? "border-red-700" : ""}
               />
+              {formErrors.password && (
+                <p className="text-red-500">{formErrors.password}</p>
+              )}
             </div>
             <div className="flex justify-between items-center">
               <div></div>
@@ -82,9 +131,9 @@ const Login = () => {
             </div>
 
             <div className="flex items-center gap-2">
-              <div className="bg-[#013E99] ">
+              <div>
                 <input
-                  className="border border-colour-[#013E99]"
+                  className="border border-[#013E99]"
                   type="checkbox"
                 ></input>
               </div>
