@@ -5,9 +5,10 @@ import TextField from "../../../components/TextField";
 import Modal from "../../../components/Modal/modal";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useEffect } from "react";
 
 const SignUp = () => {
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
   const [formData, setFormData] = useState({
@@ -17,30 +18,91 @@ const SignUp = () => {
     confirmPassword: "",
   });
 
+  const [formErrors, setFormErrors] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+  const [serverError, setServerError] = useState("");
+
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [success, setSuccess] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    validateField(name, value);
+    setServerError("")
+  };
+
+  const validateField = (fieldName, value) => {
+    let errorMessage = "";
+
+    if (fieldName === "name" && !value) {
+      errorMessage = "Name is required";
+    } else if (fieldName === "email" && !value) {
+      errorMessage = "Email is required";
+    } else if (fieldName === "email" && !/\S+@\S+\.\S+/.test(value)) {
+      errorMessage = "Email is invalid";
+    } else if (fieldName === "password" && !value) {
+      errorMessage = "Password is required";
+    } else if (
+      fieldName === "password" &&
+      !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(
+        value
+      )
+    ) {
+      errorMessage =
+        "Password must be at least eight characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character (@$!%*?&)!";
+    } else if (fieldName === "confirmPassword" && value !== formData.password) {
+      errorMessage = "Passwords do not match!";
+    }
+
+    setFormErrors((prevErrors) => ({
+      ...prevErrors,
+      [fieldName]: errorMessage,
+    }));
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(formData);
+    const errors = {};
 
-    try {
-      const response = await axios.post("/users/create", formData);
-      console.log(response.data.data);
-      window.location.replace("/login");
-    } catch (error) {
-      console.log(error);
+    Object.keys(formData).forEach((fieldName) => {
+      validateField(fieldName, formData[fieldName]);
+      if (formErrors[fieldName]) {
+        errors[fieldName] = formErrors[fieldName];
+      }
+    });
+
+    if (Object.keys(errors).length > 0 ) {
+      setFormErrors(errors);
+    } else {
+      try {
+        const response = await axios.post("/users/create", formData);
+        console.log(response.data.data);
+        setSuccess(true);
+        openModal();
+      } catch (error) {
+        console.log(error);
+        setSuccess(false);
+        const errorMessage = error.response.data.message;
+        setServerError(errorMessage);
+      }
     }
   };
 
   return (
     <AuthLayout>
       <section className="lg:mt-8 mt-24 justify-center items-center lg:px-28 px-4">
-        <div className="cursor-pointer" onClick={() => console.log("clicked")}>
-          <img src="/assets/auth/backIcon.svg" alt="" />
-        </div>
+        <Link to="/">
+          <div className="cursor-pointer">
+            <img src="/assets/auth/backIcon.svg" alt="" />
+          </div>
+        </Link>
         <div>
           <h3 className=" mt-2  lg:text-4xl text-white text-center text-[1.5rem] leading-4">
             Create an account
@@ -55,6 +117,8 @@ const SignUp = () => {
             </span>
           </p>
 
+          {serverError && <p className="text-red-500">{serverError}</p>}
+
           <form className="text-white" onSubmit={handleSubmit}>
             <div className="mb-6">
               <TextField
@@ -64,7 +128,11 @@ const SignUp = () => {
                 onChange={handleInputChange}
                 type="text"
                 autoComplete="name"
+                className={formErrors.name ? "border-red-700" : ""}
               />
+              {formErrors.name && (
+                <p className="text-red-500">{formErrors.name}</p>
+              )}
             </div>
             <div className="mb-6">
               <TextField
@@ -74,7 +142,11 @@ const SignUp = () => {
                 onChange={handleInputChange}
                 type="email"
                 autoComplete="email"
+                className={formErrors.email ? "border-red-700" : ""}
               />
+              {formErrors.email && (
+                <p className="text-red-500">{formErrors.email}</p>
+              )}
             </div>
             <div className="mb-6">
               <TextField
@@ -84,7 +156,11 @@ const SignUp = () => {
                 onChange={handleInputChange}
                 type="password"
                 autoComplete="password"
+                className={formErrors.password ? "border-red-700" : ""}
               />
+              {formErrors.password && (
+                <p className="text-red-500">{formErrors.password}</p>
+              )}
             </div>
             <div className="mb-6">
               <TextField
@@ -94,7 +170,11 @@ const SignUp = () => {
                 onChange={handleInputChange}
                 type="password"
                 autoComplete="confirmPassword"
+                className={formErrors.confirmPassword ? "border-red-700" : ""}
               />
+              {formErrors.confirmPassword && (
+                <p className="text-red-500">{formErrors.confirmPassword}</p>
+              )}
             </div>
             <Button
               className="text-[#012966] mt-5 bg-white"
@@ -113,11 +193,13 @@ const SignUp = () => {
                   You now have an account, please go ahead to Log into your
                   account
                 </p>
-                <Button
-                  className="text-white bg-[#0267FF] w-64"
-                  label="Log In"
-                  onClick={() => console.log("clicked")}
-                />
+                <Link to="/login" className="link w-64">
+                  <Button
+                    className="text-white bg-[#0267FF] w-64"
+                    label="Log In"
+                    onClick={() => console.log("clicked")}
+                  />
+                </Link>
               </section>
             </Modal>
           </div>
