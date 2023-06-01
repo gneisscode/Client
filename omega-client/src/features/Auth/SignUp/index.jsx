@@ -6,6 +6,8 @@ import Modal from "../../../components/Modal/modal";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SignUp = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -66,6 +68,12 @@ const SignUp = () => {
     }));
   };
 
+    const showToastError = () => {
+      toast.error("Something went wrong!", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(formData);
@@ -89,14 +97,26 @@ const SignUp = () => {
       } catch (error) {
         console.log(error);
         setSuccess(false);
-        const errorMessage = error.response.data.message;
-        setServerError(errorMessage);
+         if (
+           error.response &&
+           error.response.data &&
+           error.response.data.message
+         ) {
+           const errorMessage = error.response.data.message;
+           setServerError(errorMessage);
+         } else {
+           setServerError(
+             "Network error: Please check your internet connection"
+           );
+         }
+         showToastError();
       }
     }
   };
 
   return (
     <AuthLayout>
+      <ToastContainer />
       <section className="lg:mt-8 mt-24 justify-center items-center lg:px-28 px-4">
         <Link to="/">
           <div className="cursor-pointer">

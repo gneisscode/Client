@@ -82,9 +82,13 @@ const Login = () => {
         window.location.replace("/dashboard");
       } catch (error) {
         console.log(error);
-        const errorMessage = error.response.data.message;
-        setServerError(errorMessage)
-        showToastError()
+        if (error.response && error.response.data && error.response.data.message) {
+          const errorMessage = error.response.data.message;
+          setServerError(errorMessage);
+        } else {
+          setServerError("Network error: Please check your internet connection");
+        }
+        showToastError();
       }
     }
   };
