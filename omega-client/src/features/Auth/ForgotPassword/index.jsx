@@ -2,6 +2,7 @@ import React from 'react'
 import LockIcon from '../../../components/LockIcon'
 import Card from '../../../components/Card';
 import PasswordBtn from '../../../components/PasswordBtn';
+import { Link } from "react-router-dom";
 
 
 const ForgotPassword = () => {
@@ -19,9 +20,11 @@ const ForgotPassword = () => {
             className="border border-blue-600 w-[589px] h-[61px] p-6"
             placeholder="Email address:"
           />
-          <PasswordBtn text="Send" />
+          <Link to="/verify">
+            <PasswordBtn text="Send" />
+          </Link>
           <p className="text-blue-600 p-12 flex flex-col items-centre">
-            Back to sign in
+            <Link to="/login">Back to sign in</Link>
           </p>
         </Card>
       </div>
