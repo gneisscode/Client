@@ -4,7 +4,8 @@ import Button from "../../../components/Button";
 import TextField from "../../../components/TextField";
 import { Link } from "react-router-dom";
 import axios from "axios";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Login = () => {
   const [isModalOpen, setIsModalOpen] = useState(true);
   const openModal = () => setIsModalOpen(true);
@@ -44,6 +45,18 @@ const Login = () => {
     }));
   };
 
+  const showToastSuccess = () => {
+    toast.success("Successfully logged in!", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
+  };
+
+    const showToastError = () => {
+      toast.error("Something went wrong!", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(formData);
@@ -64,18 +77,21 @@ const Login = () => {
         console.log(response.data.data);
         const data = response.data.data;
         const token = data.access_token;
-        localStorage.setItem("token", token);
-        window.location.replace("/");
+        localStorage.setItem("token", token)
+        showToastSuccess();
+        window.location.replace("/dashboard");
       } catch (error) {
         console.log(error);
         const errorMessage = error.response.data.message;
         setServerError(errorMessage)
+        showToastError()
       }
     }
   };
 
   return (
     <AuthLayout>
+      <ToastContainer />
       <section className="mt-8  justify-center items-center px-28">
         <Link to="/">
           <div className="cursor-pointer">
