@@ -32,7 +32,7 @@ const VerificationCode = () => {
         />
       ))}
     </div>
-         <p className='p-6 mb-10'>Didn't get the code? <a href='#'className='text-blue-700'>Resend</a></p>
+         <p className='p-6 mb-10'>Didn't get the code? <a href='#'className='text-blue-600'>Resend</a></p>
           <PasswordBtn text="Verify"/>
 
         </Card>
