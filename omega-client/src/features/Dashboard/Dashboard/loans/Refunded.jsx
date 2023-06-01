@@ -30,8 +30,8 @@ const Refunded = () => {
         <div className="lg:w-[938px] lg:h-[fit] bg-[#FAFCFF] border border-[#CCE1FF] ml-[44px] mt-[128px] mb-16">
           <div className="flex justify-between">
           <div className="mt-5 p-5">
-            <p className="font-semibold text-xl text-blue-800 ">Loans Generated</p>
-            <p className="font-medium text-base text-blue-500 mt-5">Total Amount: 4,587,541.28</p>
+            <p className="font-semibold text-xl text-blue-800 ">Loans Refunded</p>
+            <p className="font-medium text-base text-green-500 mt-5">Total Amount: 4,587,541.28</p>
             <p className="font-semibold text-base text-blue-700 mt-5">Last Month</p>
           </div>
           <div className="flex mt-10 p-10 mr-10 gap-2 items-center">
