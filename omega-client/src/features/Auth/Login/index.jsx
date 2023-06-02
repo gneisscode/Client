@@ -8,9 +8,7 @@ import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 const Login = () => {
-  const [isModalOpen, setIsModalOpen] = useState(true)
-  // const openModal = () => setIsModalOpen(true)
-  // const closeModal = () => setIsModalOpen(false)
+  const [isLoading, setIsLoading] = useState(false)
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -62,6 +60,7 @@ const Login = () => {
     event.preventDefault()
     console.log(formData)
     const errors = {}
+    setIsLoading(true)
 
     Object.keys(formData).forEach((fieldName) => {
       validateField(fieldName, formData[fieldName])
@@ -72,6 +71,7 @@ const Login = () => {
 
     if (Object.keys(errors).length > 0) {
       setFormErrors(errors)
+      setIsLoading(false)
     } else {
       try {
         const response = await axios.post('/users/login', formData)
@@ -80,6 +80,7 @@ const Login = () => {
         const token = data.access_token
         localStorage.setItem('token', token)
         showToastSuccess()
+        setIsLoading(false)
         window.location.replace('/dashboard')
       } catch (error) {
         console.log(error)
@@ -94,6 +95,7 @@ const Login = () => {
           setServerError('Network error: Please check your internet connection')
         }
         showToastError()
+        setIsLoading(false)
       }
     }
   }
@@ -172,6 +174,7 @@ const Login = () => {
                 className='text-[#012966] mt-20 bg-white'
                 type='submit'
                 label='Log In'
+                loading={isLoading}
               />
             </div>
           </form>

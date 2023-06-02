@@ -19,21 +19,15 @@ const DashHeader = () => {
       </div>
 
       <div className='flex gap-[52px] justify-center items-center self-center'>
-        <img
-          src='assets/dashboard/msg.svg'
-          alt=''
-          className='w-[27px] h-[21px]'
-        />
-        <img
-          src='assets/dashboard/notification.svg'
-          alt=''
-          className='w-[26px] h-[26px]'
-        />
-        <img
-          src='assets/dashboard/dp.png'
-          className='w-[50px] h-[50px]'
-          alt=''
-        />
+        <div>Hello, Admin</div>
+
+        <Link to='/settings'>
+          <img
+            src='assets/dashboard/dp.png'
+            className='w-[50px] h-[50px]'
+            alt=''
+          />
+        </Link>
       </div>
     </div>
   )
