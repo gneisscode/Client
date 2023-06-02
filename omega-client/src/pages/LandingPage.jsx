@@ -94,7 +94,7 @@ const LandingPage = () => {
           </div>
         </div>
 
-        <button className="bg-[#3585FF] mt-[32px] w-[300px] h-[61px] lg:w-[419px] lg:h-[61px] text-white rounded-[6px] self-center mb-[134px] mt-[65px]">
+        <button className="bg-[#3585FF] mt-[32px] w-[300px] h-[61px] lg:w-[419px] lg:h-[61px] text-white rounded-[6px] self-center mb-[134px] lg:mt-[65px]">
           View All Services
         </button>
       </div>
@@ -216,7 +216,7 @@ const LandingPage = () => {
               predictions and enabling responsible loan allocation.
             </div>
 
-            <button className="self-start lg:w-[296px] w-[196px] h-[56px] bg-[#013E99] text-white text-[20px] mt-4 mb-[60px] self-center lg:self-start  ">
+            <button className="lg:w-[296px] w-[196px] h-[56px] bg-[#013E99] text-white text-[20px] mt-4 mb-[60px] self-center lg:self-start  ">
               Create free account
             </button>
           </div>
