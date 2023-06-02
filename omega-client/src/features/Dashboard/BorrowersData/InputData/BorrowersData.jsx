@@ -14,7 +14,7 @@ const BorrowersData = () => {
   const slides = [0, 1, 2, 3]
 
   const [activeIndex, setActiveIndex] = useState(0)
-  const [modal, setModal] = useState(true)
+  const [modal, setModal] = useState(false)
 
   const steps = {
     0: {
