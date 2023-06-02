@@ -11,13 +11,24 @@ const Sidebar = () => {
   }, [location.pathname]);
 
   return (
-    <div className="lg:flex flex-col lg:min-h-[100%] hidden lg:min-w-[300px] bg-[#FAFCFF]">
-      <div className="flex flex-col justify-center pl-[40px] pt-[80px] gap-[80px]">
+    <div className="lg:flex flex-col lg:min-h-[100%] hidden lg:min-w-[300px] bg-[#FAFCFF] fixed top-[112px] left-0">
+      <div className="flex flex-col justify-center pl-[40px] pt-[40px] gap-[40px]">
         <Link to="/dashboard">
           <div className="flex gap-[10px]">
-            <img src="assets/dashboard/dash.svg" alt="" />
+            <img
+              src={
+                active === "dashboard" ||
+                active === "loans-refunded" ||
+                active === "loans-generated" ||
+                active === "loans-pending" ||
+                active === "loans-declined"
+                  ? "assets/dashboard/dash.svg"
+                  : "assets/dashboard/dashgrey.svg"
+              }
+              alt=""
+            />
             <div
-              className={` text-[20px] font-600 ${
+              className={` text-[18px] font-600 ${
                 active === "dashboard" ||
                 active === "loans-refunded" ||
                 active === "loans-generated" ||
@@ -34,9 +45,19 @@ const Sidebar = () => {
 
         <Link to="/borrower-data">
           <div className="flex gap-[10px]">
-            <img src="assets/dashboard/borrow.svg" alt="" />
+            <img
+              src={
+                active === "borrower-data" ||
+                active === "borrower-profile" ||
+                active === "borrower-eligibility" ||
+                active === "send-status"
+                  ? "assets/dashboard/datablue.svg"
+                  : "assets/dashboard/borrow.svg"
+              }
+              alt=""
+            />
             <div
-              className={` text-[20px] font-600 ${
+              className={` text-[18px] font-600 ${
                 active === "borrower-data" ||
                 active === "borrower-profile" ||
                 active === "borrower-eligibility" ||
@@ -52,9 +73,16 @@ const Sidebar = () => {
 
         <Link to="/loan-applications">
           <div className="flex gap-[10px]">
-            <img src="assets/dashboard/loans.svg" alt="" />
+            <img
+              src={
+                active === "loan-applications"
+                  ? "assets/dashboard/loanblue.svg"
+                  : "assets/dashboard/loans.svg"
+              }
+              alt=""
+            />
             <div
-              className={` text-[20px] font-600 ${
+              className={` text-[18px] font-600 ${
                 active === "loan-applications"
                   ? "text-[#0267FF]"
                   : "text-[#999999]"
@@ -67,9 +95,16 @@ const Sidebar = () => {
 
         <Link to="/history">
           <div className="flex gap-[10px]">
-            <img src="assets/dashboard/history.svg" alt="" />
+            <img
+              src={
+                active === "history"
+                  ? "assets/dashboard/hisblue.svg"
+                  : "assets/dashboard/history.svg"
+              }
+              alt=""
+            />
             <div
-              className={` text-[20px] font-600 ${
+              className={` text-[18px] font-600 ${
                 active === "history" ? "text-[#0267FF]" : "text-[#999999]"
               } `}
             >
@@ -80,9 +115,16 @@ const Sidebar = () => {
 
         <Link to="/admin">
           <div className="flex gap-[10px]">
-            <img src="assets/dashboard/admin.svg" alt="" />
+            <img
+              src={
+                active === "admin" || active === "add-admin"
+                  ? "assets/dashboard/adminblue.svg"
+                  : "assets/dashboard/admin.svg"
+              }
+              alt=""
+            />
             <div
-              className={` text-[20px] font-600 ${
+              className={` text-[18px] font-600 ${
                 active === "admin" || active === "add-admin"
                   ? "text-[#0267FF]"
                   : "text-[#999999]"
@@ -95,9 +137,16 @@ const Sidebar = () => {
 
         <Link to="/settings">
           <div className="flex gap-[10px]">
-            <img src="assets/dashboard/settings.svg" alt="" />
+            <img
+              src={
+                active === "settings"
+                  ? "assets/dashboard/setblue.svg"
+                  : "assets/dashboard/settings.svg"
+              }
+              alt=""
+            />
             <div
-              className={` text-[20px] font-600 ${
+              className={` text-[18px] font-600 ${
                 active === "settings" ? "text-[#0267FF]" : "text-[#999999]"
               } `}
             >
@@ -108,12 +157,17 @@ const Sidebar = () => {
 
         <Link to="/help">
           <div className="flex gap-[10px]">
-            <img src="assets/dashboard/help.svg" alt="" />
-            <div
-              className={` text-[20px] font-600 ${
+            <img
+              src={
                 active === "help"
-                  ? "text-[#0267FF]"
-                  : "text-[#999999]"
+                  ? "assets/dashboard/helpblue.svg"
+                  : "assets/dashboard/help.svg"
+              }
+              alt=""
+            />
+            <div
+              className={` text-[18px] font-600 ${
+                active === "help" ? "text-[#0267FF]" : "text-[#999999]"
               } `}
             >
               Help & Support
@@ -121,9 +175,9 @@ const Sidebar = () => {
           </div>
         </Link>
 
-        <div className="flex gap-[10px] mt-[175px] mb-16">
+        <div className="flex gap-[10px] mt-[-10px] mb-16 cursor-pointer">
           <img src="assets/dashboard/logout.svg" alt="" />
-          <div className="text-[#999999] text-[20px] font-600">Log out</div>
+          <div className="text-[#999999] text-[18px] font-600">Log out</div>
         </div>
       </div>
     </div>
