@@ -10,7 +10,18 @@ const Profile = () => {
       <DashHeader />
       <div className="flex relative">
         <Sidebar />
-        <div className="w-[982px] pl-[52px] pt-16 absolute top-[112px] left-[300px]">
+        <div className="w-[982px] pl-[52px] pt-[40px] absolute top-[112px] left-[300px]">
+            <div className="flex gap-4 mb-[40px]">
+            <Link to="/dashboard">
+              <div className="text-[20px] font-[400] text-[#808080]">
+                Dashboard
+              </div>
+            </Link>
+            <img src="assets/dashboard/arrowdark.svg" alt="" />
+            <div className="text-[20px] font-[400] text-[#0267FF]">
+              Borrower's Profile
+            </div>
+            </div>
           <div className="flex bg-blue-100 p-16 justify-between align-middle">
             <div className="flex flex-col">
               <h2 className="font-semibold mb-8">Blessing Effiong</h2>
