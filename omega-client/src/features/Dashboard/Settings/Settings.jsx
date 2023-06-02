@@ -17,7 +17,7 @@ const Settings = () => {
       <DashHeader />
       <div className="flex relative">
         <Sidebar />
-        <div className="flex flex-col pl-[54px] pt-[80px] w-[982px] absolute top-[112px] left-[300px]">
+        <div className="flex flex-col pl-[54px] pt-[40px] w-[982px] absolute top-[112px] left-[300px]">
           <div className="text-[24px] text-[#0267FF] font-[600]">Settings</div>
 
           <div className="flex gap-[56px] mt-[24px]">

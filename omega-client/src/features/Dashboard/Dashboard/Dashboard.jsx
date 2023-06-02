@@ -10,7 +10,7 @@ const Dashboard = () => {
       <DashHeader />
       <div className='flex gap-8 relative'>
         <Sidebar />
-        <div className=' max-w-[calc(100% - 323px)] lg:pt-[80px] lg:pl-[49px] absolute top-[112px] left-[300px]'>
+        <div className=' max-w-[calc(100% - 323px)] lg:pt-[40px] lg:pl-[49px] absolute top-[112px] left-[300px]'>
           <div className='mb-[24px] text-[24px] font-[600] text-[#0267FF]'>
             Dashboard
           </div>

@@ -10,7 +10,7 @@ const Admin = () => {
       <DashHeader />
       <div className="flex relative ">
         <Sidebar />
-        <div className="py-10 px-10  absolute top-[112px] left-[300px]">
+        <div className="py-[40px] pl-[52px] absolute top-[112px] left-[300px]">
           <h4 className="text-blue-500 font-semibold text-xl">
             Admin Dashboard
           </h4>
