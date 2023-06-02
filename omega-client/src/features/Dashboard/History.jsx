@@ -23,10 +23,10 @@ const History = () => {
   return (
     <div className="flex flex-col">
       <DashHeader />
-      <div className="flex ">
+      <div className="flex relative ">
         <Sidebar />
 
-        <div className="flex flex-col max-w-[calc(100% - 323px)] lg:pt-[40px] lg:pl-[49px]">
+        <div className="flex flex-col max-w-[calc(100% - 323px)] lg:pt-[40px] lg:pl-[49px] absolute top-[112px] left-[300px]">
           <div className="flex  justify-between items-center mb-[34px]">
             <div className="flex justify-center items-center text-[24px] font-[600] text-[#0267FF]">
               History
