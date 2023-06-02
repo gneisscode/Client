@@ -1,6 +1,7 @@
 import React from 'react'
 import DashHeader from '../../../components/Dashboard/DashHeader';
 import Sidebar from '../../../components/Dashboard/Sidebar';
+import { Link } from 'react-router-dom';
 
 
 const AddAdmin = () => {
@@ -10,7 +11,19 @@ const AddAdmin = () => {
       <div className="flex relative ">
         <Sidebar />
         <div className="px-6 py-10 w-[982px] absolute top-[112px] left-[300px]">
-          <p className="text-blue-500 text-lg font-semibold">Add Admin</p>
+          <div className="flex gap-4">
+            <Link to="/admin">
+              <div className="text-[20px] font-[400] text-[#808080]">
+                Admin dashboard
+              </div>
+            </Link>
+
+            <img src="assets/dashboard/arrowdark.svg" alt="" />
+            <div className="text-[20px] font-[400] text-[#0267FF]">
+              Add admin
+            </div>
+          </div>
+          <p className="text-blue-500 text-lg font-semibold pt-[40px]">Add Admin</p>
           <div>
             <p className="my-6 text-lg ">Admin Information</p>
             <form className="grid grid-cols-2 gap-8 mb-16">
