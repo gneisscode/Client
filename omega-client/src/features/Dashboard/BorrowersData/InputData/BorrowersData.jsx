@@ -73,7 +73,7 @@ const BorrowersData = () => {
               <p>Carefully input the borrowers details</p>
             </div>
             <div className='flex w-full mt-16'>
-              <Card className='min-h-[700px] relative'>
+              <Card className='min-h-[700px] max-w-[800px] relative'>
                 <div className='mt-12 mb-16 px-8'>
                   <h2>{step.title}</h2>
                 </div>
