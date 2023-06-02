@@ -7,9 +7,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const Login = () => {
-  const [isModalOpen, setIsModalOpen] = useState(true);
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -19,13 +17,13 @@ const Login = () => {
     email: "",
     password: "",
   });
-  const [serverError, setServerError] = useState("")
+  const [serverError, setServerError] = useState("");
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
     validateField(name, value);
-     setServerError("");
+    setServerError("");
   };
 
   const validateField = (fieldName, value) => {
@@ -51,16 +49,17 @@ const Login = () => {
     });
   };
 
-    const showToastError = () => {
-      toast.error("Something went wrong!", {
-        position: toast.POSITION.TOP_RIGHT,
-      });
-    };
+  const showToastError = () => {
+    toast.error("Something went wrong!", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(formData);
     const errors = {};
+    setIsLoading(true);
 
     Object.keys(formData).forEach((fieldName) => {
       validateField(fieldName, formData[fieldName]);
@@ -71,24 +70,33 @@ const Login = () => {
 
     if (Object.keys(errors).length > 0) {
       setFormErrors(errors);
+      setIsLoading(false);
     } else {
       try {
         const response = await axios.post("/users/login", formData);
         console.log(response.data.data);
         const data = response.data.data;
         const token = data.access_token;
-        localStorage.setItem("token", token)
+        localStorage.setItem("token", token);
         showToastSuccess();
+        setIsLoading(false);
         window.location.replace("/dashboard");
       } catch (error) {
         console.log(error);
-        if (error.response && error.response.data && error.response.data.message) {
+        if (
+          error.response &&
+          error.response.data &&
+          error.response.data.message
+        ) {
           const errorMessage = error.response.data.message;
           setServerError(errorMessage);
         } else {
-          setServerError("Network error: Please check your internet connection");
+          setServerError(
+            "Network error: Please check your internet connection"
+          );
         }
         showToastError();
+        setIsLoading(false);
       }
     }
   };
@@ -167,6 +175,7 @@ const Login = () => {
                 className="text-[#012966] mt-20 bg-white"
                 type="submit"
                 label="Log In"
+                loading={isLoading}
               />
             </div>
           </form>
