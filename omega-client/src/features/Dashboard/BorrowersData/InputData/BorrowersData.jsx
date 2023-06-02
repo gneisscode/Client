@@ -64,9 +64,9 @@ const BorrowersData = () => {
             </div>
           </section>
         </Modal>
-        <section className="flex justify-center ml-[52px]  absolute top-[112px] left-[300px] pb-16">
+        <section className="flex justify-center ml-[52px]  absolute top-[112px] left-[300px] my-[40px]">
           <div>
-            <div className="my-14">
+            <div>
               <h3 className="text-[#0267FF] text-[24px] font-[600]">
                 Input Borrower's Data
               </h3>
@@ -99,7 +99,7 @@ const BorrowersData = () => {
                 <div className="w-4/12"></div>
               )}
               <Button
-                className={`text-white bg-[#0267FF] ${
+                className={`text-white bg-[#0267FF] mb-[147px] ${
                   activeIndex === 0 ? "w-4/12" : "w-4/12"
                 }`}
                 label={activeIndex === 3 ? "Save Data" : "Next"}

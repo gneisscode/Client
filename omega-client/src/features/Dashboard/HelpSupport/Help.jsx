@@ -10,8 +10,8 @@ const Help = () => {
       <DashHeader />
       <div className="flex relative">
         <Sidebar />
-        <section className="flex justify-center w-[982px] absolute top-[112px] left-[300px]">
-          <section className="grid grid-cols-2 gap-7 px-16 my-14 ">
+        <section className="flex w-[982px] absolute top-[112px] left-[300px]">
+          <section className="grid grid-cols-2 gap-7 pl-[52px] my-[40px] ">
             <div>
               <h3 className="text-[#0267FF] text-base font-semibold pl-8">
                 Help & Support

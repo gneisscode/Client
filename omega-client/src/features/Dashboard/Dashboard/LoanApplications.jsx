@@ -35,7 +35,7 @@ const LoanApplications = () => {
       <DashHeader />
       <div className="flex relative">
         <Sidebar />
-        <div className="pl-10 pr-20 py-12 w-[982px] font-semibold text-gray-600 absolute top-[112px] left-[300px]">
+        <div className="pl-[52px] py-[40px] w-[982px] font-semibold text-gray-600 absolute top-[112px] left-[300px]">
           <div className="grid grid-cols-2 w-[982px]">
             <h4 className="text-blue-600 font-bold text-2xl hover:underline">
               Loan Applications
