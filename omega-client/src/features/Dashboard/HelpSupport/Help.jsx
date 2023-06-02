@@ -13,7 +13,7 @@ const Help = () => {
         <section className="flex w-[982px] absolute top-[112px] left-[300px]">
           <section className="grid grid-cols-2 gap-7 pl-[52px] my-[40px] ">
             <div>
-              <h3 className="text-[#0267FF] text-base font-semibold pl-8">
+              <h3 className="text-[#0267FF] font-semibold text-[24px]">
                 Help & Support
               </h3>
               <div className="mt-14">
@@ -65,7 +65,7 @@ const Help = () => {
               </table>
             </div>
 
-            <Card>
+            <Card className="pb-12">
               <div className="mt-12 px-8 font-semibold text-base text-[#666666]">
                 <h2>Frequently Asked Questions</h2>
               </div>

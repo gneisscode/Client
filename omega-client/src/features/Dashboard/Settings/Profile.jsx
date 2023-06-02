@@ -1,6 +1,27 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 const Profile = () => {
+   const [profilePic, setProfilePic] = useState("assets/dashboard/pp.png");
+   const [selectedFile, setSelectedFile] = useState(null);
+
+   const handleFileChange = (event) => {
+     const file = event.target.files[0];
+     const reader = new FileReader();
+
+     reader.onloadend = () => {
+       setProfilePic(reader.result);
+     };
+
+     if (file) {
+       reader.readAsDataURL(file);
+       setSelectedFile(file);
+     }
+   };
+
+   const removeProfilePic = () => {
+     setProfilePic("assets/dashboard/dummy.png");
+     setSelectedFile(null);
+   };
   return (
     <div>
       <div className="flex flex-col">
@@ -88,15 +109,24 @@ const Profile = () => {
         </div>
 
         <img
-          src="assets/dashboard/pp.png"
+          src={profilePic}
           alt=""
           className="mt-[59px] mb-[43px] w-[184px] h-[184px] rounded-full"
         />
-
         <button className="self-start text-[#0267FF] text-[20px] font-[500] mb-[12px]">
-          Change Profile Picture
+          <label htmlFor="profilePicInput" className='cursor-pointer'>Change Profile Picture</label>
         </button>
-        <button className="self-start text-[#0267FF] text-[20px] font-[500]">
+        <input
+          type="file"
+          id="profilePicInput"
+          accept="image/*"
+          onChange={handleFileChange}
+          style={{ display: "none" }}
+        />
+        <button
+          className="self-start text-[#0267FF] text-[20px] font-[500]"
+          onClick={removeProfilePic}
+        >
           Remove Profile Picture
         </button>
       </div>
