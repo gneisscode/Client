@@ -1,21 +1,50 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 const Sidebar = () => {
+  const location = useLocation();
+  const [active, setActive] = useState("");
+  console.log(active);
+
+  useEffect(() => {
+    setActive(location.pathname.split("/")[1]);
+  }, [location.pathname]);
+
   return (
-    <div className="flex flex-col lg:min-h-[100%] lg:min-w-[300px] bg-[#FAFCFF]">
+    <div className="lg:flex flex-col lg:min-h-[100%] hidden lg:min-w-[300px] bg-[#FAFCFF]">
       <div className="flex flex-col justify-center pl-[40px] pt-[80px] gap-[80px]">
         <Link to="/dashboard">
           <div className="flex gap-[10px]">
             <img src="assets/dashboard/dash.svg" alt="" />
-            <div className="text-[#0267FF] text-[20px] font-600">Dashboard</div>
+            <div
+              className={` text-[20px] font-600 ${
+                active === "dashboard" ||
+                active === "loans-refunded" ||
+                active === "loans-generated" ||
+                active === "loans-pending" ||
+                active === "loans-declined"
+                  ? "text-[#0267FF]"
+                  : "text-[#999999]"
+              } `}
+            >
+              Dashboard
+            </div>
           </div>
         </Link>
 
         <Link to="/borrower-data">
           <div className="flex gap-[10px]">
             <img src="assets/dashboard/borrow.svg" alt="" />
-            <div className="text-[#999999] text-[20px] font-600">
+            <div
+              className={` text-[20px] font-600 ${
+                active === "borrower-data" ||
+                active === "borrower-profile" ||
+                active === "borrower-eligibility" ||
+                active === "send-status"
+                  ? "text-[#0267FF]"
+                  : "text-[#999999]"
+              } `}
+            >
               Borrower's Data
             </div>
           </div>
@@ -24,7 +53,13 @@ const Sidebar = () => {
         <Link to="/loan-applications">
           <div className="flex gap-[10px]">
             <img src="assets/dashboard/loans.svg" alt="" />
-            <div className="text-[#999999] text-[20px] font-600">
+            <div
+              className={` text-[20px] font-600 ${
+                active === "loan-applications"
+                  ? "text-[#0267FF]"
+                  : "text-[#999999]"
+              } `}
+            >
               Loan Applications
             </div>
           </div>
@@ -33,28 +68,54 @@ const Sidebar = () => {
         <Link to="/history">
           <div className="flex gap-[10px]">
             <img src="assets/dashboard/history.svg" alt="" />
-            <div className="text-[#999999] text-[20px] font-600">History</div>
+            <div
+              className={` text-[20px] font-600 ${
+                active === "history" ? "text-[#0267FF]" : "text-[#999999]"
+              } `}
+            >
+              History
+            </div>
           </div>
         </Link>
 
         <Link to="/admin">
           <div className="flex gap-[10px]">
             <img src="assets/dashboard/admin.svg" alt="" />
-            <div className="text-[#999999] text-[20px] font-600">Admin</div>
+            <div
+              className={` text-[20px] font-600 ${
+                active === "admin" || active === "add-admin"
+                  ? "text-[#0267FF]"
+                  : "text-[#999999]"
+              } `}
+            >
+              Admin
+            </div>
           </div>
         </Link>
 
-        <Link to="/Settings">
+        <Link to="/settings">
           <div className="flex gap-[10px]">
             <img src="assets/dashboard/settings.svg" alt="" />
-            <div className="text-[#999999] text-[20px] font-600">Settings</div>
+            <div
+              className={` text-[20px] font-600 ${
+                active === "settings" ? "text-[#0267FF]" : "text-[#999999]"
+              } `}
+            >
+              Settings
+            </div>
           </div>
         </Link>
 
         <Link to="/help">
           <div className="flex gap-[10px]">
             <img src="assets/dashboard/help.svg" alt="" />
-            <div className="text-[#999999] text-[20px] font-600">
+            <div
+              className={` text-[20px] font-600 ${
+                active === "help"
+                  ? "text-[#0267FF]"
+                  : "text-[#999999]"
+              } `}
+            >
               Help & Support
             </div>
           </div>
@@ -67,6 +128,6 @@ const Sidebar = () => {
       </div>
     </div>
   );
-}
+};
 
-export default Sidebar
+export default Sidebar;

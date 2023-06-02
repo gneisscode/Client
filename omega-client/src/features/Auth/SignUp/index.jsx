@@ -78,6 +78,7 @@ const SignUp = () => {
     event.preventDefault();
     console.log(formData);
     const errors = {};
+     setIsLoading(true);
 
     Object.keys(formData).forEach((fieldName) => {
       validateField(fieldName, formData[fieldName]);
@@ -88,11 +89,13 @@ const SignUp = () => {
 
     if (Object.keys(errors).length > 0 ) {
       setFormErrors(errors);
+       setIsLoading(false);
     } else {
       try {
         const response = await axios.post("/users/create", formData);
         console.log(response.data.data);
         setSuccess(true);
+        setIsLoading(false);
         openModal();
       } catch (error) {
         console.log(error);
@@ -110,6 +113,7 @@ const SignUp = () => {
            );
          }
          showToastError();
+          setIsLoading(false);
       }
     }
   };
@@ -200,6 +204,8 @@ const SignUp = () => {
               className="text-[#012966] mt-5 bg-white"
               label="Sign Up"
               type="submit"
+              loading={isLoading}
+            
             />
           </form>
 
@@ -217,7 +223,6 @@ const SignUp = () => {
                   <Button
                     className="text-white bg-[#0267FF] w-64"
                     label="Log In"
-                    onClick={() => console.log("clicked")}
                   />
                 </Link>
               </section>
