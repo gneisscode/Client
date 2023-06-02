@@ -1,57 +1,154 @@
-import React from 'react'
-import DashHeader from '../../../components/Dashboard/DashHeader'
-import Sidebar from '../../../components/Dashboard/Sidebar'
-import LoanCard from '../../../components/Dashboard/LoanCard'
-import { Link } from 'react-router-dom'
+import React from "react";
+import DashHeader from "../../../components/Dashboard/DashHeader";
+import Sidebar from "../../../components/Dashboard/Sidebar";
+import LoanCard from "../../../components/Dashboard/LoanCard";
+import { Link } from "react-router-dom";
+import { Bar } from "react-chartjs-2";
+import Chart from "chart.js/auto";
+import { CategoryScale } from "chart.js";
+Chart.register(CategoryScale);
 
 const Dashboard = () => {
+  const status =[
+    "Loans given out",
+    "Loans paid",
+    "Loans declined"
+  ]
+
+ 
+  const labels = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "Aug",
+    "Sept",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+  const datasets = status.map((status) => {
+    return {
+      label: `${status}`,
+      data: Array.from({ length: 12 }, () => Math.random() * 100),
+      backgroundColor: `${
+        status === "Loans given out"
+          ? ["#3585FF"]
+          : status === "Loans paid"
+          ? ["#4ED273"]
+          : ["#FF2727"]
+      }`,
+      borderWidth: 1,
+      borderRadius: 6,
+    };
+  });
+
+  const data = {
+    labels: labels,
+    datasets: datasets,
+  };
+
+  const options = {
+    plugins: {
+      title: {
+        display: true,
+        text: "Loan Monthly Frequency",
+        align: "start",
+        color: "#1A1A1A",
+        font: {
+          size: 20,
+          weight: 500,
+        },
+        padding:30,
+      },
+      legend: {
+        display: true,
+        position: "bottom",
+        labels: {
+          usePointStyle: true,
+          padding: 50,
+        },
+        align: "end",
+      },
+    },
+    indexAxis: "x",
+    barPercentage: 1.2,
+    categoryPercentage: 0.6,
+    scales: {
+      x: {
+        grid: {
+          display: false,
+        },
+      },
+      y: {
+        display: false,
+        beginAtZero: true,
+        ticks: {
+          precision: 0,
+        },
+        grid: {
+          display: false,
+        },
+      },
+    },
+  };
+
   return (
-    <div className='flex flex-col'>
+    <div className="flex flex-col">
       <DashHeader />
-      <div className='flex gap-8 relative'>
+      <div className="flex gap-8 relative">
         <Sidebar />
-        <div className=' max-w-[calc(100% - 323px)] lg:pt-[40px] lg:pl-[49px] absolute top-[112px] left-[300px]'>
-          <div className='mb-[24px] text-[24px] font-[600] text-[#0267FF]'>
+        <div className=" max-w-[calc(100% - 323px)] lg:pt-[40px] lg:pl-[49px] absolute top-[112px] left-[300px]">
+          <div className="mb-[24px] text-[24px] font-[600] text-[#0267FF]">
             Dashboard
           </div>
-          <div className='text-[#4D4D4D] text-[20px] font-[500]'>Analysis</div>
-          <div className='flex flex-wrap gap-[17px]'>
-            <Link to='/loans-generated'>
-              {' '}
+          <div className="text-[#4D4D4D] text-[20px] font-[500]">Analysis</div>
+          <div className="flex flex-wrap gap-[17px]">
+            <Link to="/loans-generated">
+              {" "}
               <LoanCard
-                status='generated'
-                amount='4,587,541.28'
-                percent='2.15%'
+                status="generated"
+                amount="4,587,541.28"
+                percent="2.15%"
               />
             </Link>
-            <Link to='/loans-refunded'>
-              {' '}
+            <Link to="/loans-refunded">
+              {" "}
               <LoanCard
-                status='refunded'
-                amount='4,587,541.28'
-                percent='2.15%'
+                status="refunded"
+                amount="4,587,541.28"
+                percent="2.15%"
               />
             </Link>
-            <Link to='/loans-declined'>
-              {' '}
+            <Link to="/loans-declined">
+              {" "}
               <LoanCard
-                status='declined'
-                amount='4,587,541.28'
-                percent='2.15%'
+                status="declined"
+                amount="4,587,541.28"
+                percent="2.15%"
               />
             </Link>
-            <Link to='/loans-pending'>
+            <Link to="/loans-pending">
               <LoanCard
-                status='pending'
-                amount='4,587,541.28'
-                percent='2.15%'
+                status="pending"
+                amount="4,587,541.28"
+                percent="2.15%"
               />
             </Link>
+          </div>
+          <div className="flex items-center w-[890px] bg-[#F9F9F96B] border border-[#E6F0FF] pl-[55px] mt-[91px]  pt-[12px] mb-[92px]">
+            <div className="w-[790px]">
+              <Bar options={options} data={data} />
+            </div>
           </div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;
