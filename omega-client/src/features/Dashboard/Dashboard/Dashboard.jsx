@@ -10,9 +10,9 @@ Chart.register(CategoryScale);
 
 const Dashboard = () => {
   const status =[
-    "Loan given out",
-    "Loan paid",
-    "Loan declined"
+    "Loans given out",
+    "Loans paid",
+    "Loans declined"
   ]
 
  
@@ -34,11 +34,11 @@ const Dashboard = () => {
   const datasets = status.map((status) => {
     return {
       label: `${status}`,
-      data: Array.from({ length: 12 }, () => Math.random() * 100), // Generate three random data points for each month
+      data: Array.from({ length: 12 }, () => Math.random() * 100),
       backgroundColor: `${
-        status === "Loan given out"
+        status === "Loans given out"
           ? ["#3585FF"]
-          : status === "Loan paid"
+          : status === "Loans paid"
           ? ["#4ED273"]
           : ["#FF2727"]
       }`,
@@ -56,17 +56,43 @@ const Dashboard = () => {
     plugins: {
       title: {
         display: true,
-        text: "Users Gained between 2016-2020",
+        text: "Loan Monthly Frequency",
+        align: "start",
+        color: "#1A1A1A",
+        font: {
+          size: 20,
+          weight: 500,
+        },
+        padding:30,
       },
       legend: {
         display: true,
+        position: "bottom",
+        labels: {
+          usePointStyle: true,
+          padding: 50,
+        },
+        align: "end",
       },
     },
-    indexAxis: "x", // Group bars horizontally
-    barPercentage: 1.1, // Set the width of each bar
+    indexAxis: "x",
+    barPercentage: 1.2,
+    categoryPercentage: 0.6,
     scales: {
       x: {
-        categoryPercentage: 0, // Reduce the space taken up by each category
+        grid: {
+          display: false,
+        },
+      },
+      y: {
+        display: false,
+        beginAtZero: true,
+        ticks: {
+          precision: 0,
+        },
+        grid: {
+          display: false,
+        },
       },
     },
   };
@@ -114,7 +140,11 @@ const Dashboard = () => {
               />
             </Link>
           </div>
-          <Bar options={options} data={data} />
+          <div className="flex items-center w-[890px] bg-[#F9F9F96B] border border-[#E6F0FF] pl-[55px] mt-[91px]  pt-[12px] mb-[92px]">
+            <div className="w-[790px]">
+              <Bar options={options} data={data} />
+            </div>
+          </div>
         </div>
       </div>
     </div>
