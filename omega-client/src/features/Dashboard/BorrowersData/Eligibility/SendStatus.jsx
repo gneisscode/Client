@@ -1,6 +1,7 @@
 import React from 'react'
 import DashHeader from "../../../../components/Dashboard/DashHeader";
 import Sidebar from "../../../../components/Dashboard/Sidebar";
+import { Link } from 'react-router-dom';
 
 
 const SendStatus = () => {
@@ -9,8 +10,29 @@ const SendStatus = () => {
       <DashHeader />
       <div className="flex relative">
         <Sidebar />
-        <div className="flex flex-col pl-8 pt-[160px]  w-[982px] gap-4 absolute top-[112px] left-[300px]">
-          <h3 className="text-blue-600">
+        <div className="flex flex-col pl-8 pt-[40px]  w-[982px] gap-4 absolute top-[112px] left-[300px]">
+          <div className="flex gap-4">
+            <Link to="/borrower-data">
+              <div className="text-[20px] font-[400] text-[#808080]">
+                Input borrower's data{" "}
+              </div>
+            </Link>
+            <img src="assets/dashboard/arrowdark.svg" alt="" />
+            <div className="text-[20px] font-[400] text-[#808080]">
+              Borrower's data preview
+            </div>
+            <img src="assets/dashboard/arrowdark.svg" alt="" />
+            <Link to="/borrower-eligibility">
+              <div className="text-[20px] font-[400] text-[#808080]">
+                Loan Eligibility Status
+              </div>
+            </Link>
+            <img src="assets/dashboard/arrowdark.svg" alt="" />
+            <div className="text-[20px] font-[400] text-[#0267FF]">
+              Send Message
+            </div>
+          </div>
+          <h3 className="text-[#0267FF] font-[600] text-[24px] mt-4">
             Send Loan Eligibility Status To Borrower
           </h3>
           <p>

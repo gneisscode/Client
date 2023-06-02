@@ -57,9 +57,11 @@ const BorrowerEligibility = () => {
             <button className="border-blue-600 border-solid text-white border text-[24px] font-[500] rounded w-[408px] h-[61px] py-2 bg-[#0267FF]">
               Cancel Loan Generation
             </button>
-            <button className=" text-[#0267FF] text-[20px] font-[500] w-[395px] py-2 mb-8">
-              Send Eligibility Status To Borrower
-            </button>
+            <Link to="/send-status">
+              <button className=" text-[#0267FF] text-[20px] font-[500] w-[395px] py-2 mb-8">
+                Send Eligibility Status To Borrower
+              </button>
+            </Link>
           </div>
         </div>
       </div>
