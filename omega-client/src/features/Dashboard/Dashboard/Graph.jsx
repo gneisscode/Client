@@ -27,6 +27,13 @@ const Graph = () => {
     return {
       label: `${status}`,
       data: Array.from({ length: 12 }, () => Math.random() * 100),
+      backgroundColor: `${
+        status === "Loans given out"
+          ? ["#3585FF"]
+          : status === "Loans paid"
+          ? ["#4ED273"]
+          : ["#FF2727"]
+      }`,
       borderColor: `${
         status === "Loans given out"
           ? ["#3585FF"]
@@ -34,7 +41,7 @@ const Graph = () => {
           ? ["#4ED273"]
           : ["#FF2727"]
       }`,
-      tension: 0.3,
+      tension: 0.2,
     };
   });
   const data = {
@@ -43,6 +50,29 @@ const Graph = () => {
   };
 
   const options = {
+    plugins: {
+      title: {
+        display: true,
+        text: "Total Loans Per Month",
+        align: "center",
+        color: "#1A1A1A",
+        font: {
+          size: 20,
+          weight: 500,
+        },
+        padding: 20,
+      },
+      legend: {
+        display: true,
+        position: "bottom",
+        labels: {
+          usePointStyle: true,
+          padding: 20,
+        },
+        align: "center",
+      },
+    },
+    pointStyle: "line",
     scales: {
       maintainAspectRatio: false,
       x: {
@@ -60,7 +90,7 @@ const Graph = () => {
     },
   };
   return (
-    <div className="h-[368px]">
+    <div className="h-[310px]">
       <Line data={data} options={options} />
     </div>
   );

@@ -147,11 +147,17 @@ const Dashboard = () => {
               <Bar options={options} data={data} />
             </div>
           </div>
-          <div className="flex gap-[31px] mb-12">
-            <div className="w-[595px] h-[468px]">
+          <div className="flex gap-[31px] mb-12 w-[890px]">
+            <div className="w-[575px] h-[318px] border py-[20px] border-[#E6F0FF]">
               <Graph />
             </div>
-            <div className=" flex border border-[#E6F0FF] py-[40px] items-center justify-center w-[300px] h-[318px] ">
+            <div className=" flex border border-[#E6F0FF] py-[40px] items-center justify-center w-[300px] h-[318px] bg-[#FAFCFF] relative">
+              <div className="flex flex-col items-center justify-center absolute top-[100px] left-[122px]">
+                <div className="font-[600] text-[24px] text-[#0267FF]">85%</div>
+                <div className="font-[400] text-[16px] text-[#808080]">
+                  Positive
+                </div>
+              </div>
               <Donut />
             </div>
           </div>
