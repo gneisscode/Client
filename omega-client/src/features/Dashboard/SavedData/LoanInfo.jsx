@@ -1,4 +1,6 @@
 import React from 'react'
+import DashHeader from '../../../components/Dashboard/DashHeader'
+import Sidebar from '../../../components/Dashboard/Sidebar'
 
 const LoanInfo = () => {
   return (
