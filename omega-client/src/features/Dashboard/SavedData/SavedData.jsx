@@ -5,9 +5,9 @@ const SavedData = () => {
   return (
     <div className="flex flex-col">
       <DashHeader />
-      <div className="flex ">
+      <div className="flex relative ">
         <Sidebar />
-        <div className='flex flex-col ml-[80px]'>
+        <div className="flex flex-col ml-[80px] absolute top-[112px] left-[300px]">
           <div className="mt-[50px] text-[24px] font-[600] text-[#0267FF]">
             Borrower’s Saved Data{" "}
           </div>
@@ -60,7 +60,7 @@ const SavedData = () => {
               />
             </div>
           </div>
-         <button>Next</button>
+          <button>Next</button>
         </div>
       </div>
     </div>
