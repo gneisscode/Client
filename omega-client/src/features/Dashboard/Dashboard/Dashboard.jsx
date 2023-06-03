@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import { Bar } from "react-chartjs-2";
 import Chart from "chart.js/auto";
 import { CategoryScale } from "chart.js";
+import Donut from "./Donut";
+import Graph from "./Graph";
 Chart.register(CategoryScale);
 
 const Dashboard = () => {
@@ -140,9 +142,17 @@ const Dashboard = () => {
               />
             </Link>
           </div>
-          <div className="flex items-center w-[890px] bg-[#F9F9F96B] border border-[#E6F0FF] pl-[55px] mt-[91px]  pt-[12px] mb-[92px]">
+          <div className="flex items-center w-[890px] bg-[#F9F9F96B] border border-[#E6F0FF] pl-[55px] mt-[91px]  pt-[12px] pb-[35px] mb-[92px]">
             <div className="w-[790px]">
               <Bar options={options} data={data} />
+            </div>
+          </div>
+          <div className="flex gap-[31px] mb-12">
+            <div className="w-[595px] h-[468px]">
+              <Graph />
+            </div>
+            <div className=" flex border border-[#E6F0FF] py-[40px] items-center justify-center w-[300px] h-[318px] ">
+              <Donut />
             </div>
           </div>
         </div>
