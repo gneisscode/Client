@@ -4,7 +4,10 @@ import TextField from '../../../../components/TextField'
 const PersonalInfo = () => {
   return (
     <div className='grid grid-cols-2 w-full gap-7 px-8 max-md:grid-cols-1'>
-      <TextField className='bg-white border-[#0252CC] ' placeholder='Name' />
+      <TextField
+        className='bg-white border-[#0252CC] '
+        placeholder='Full Name'
+      />
       <TextField
         className='bg-white border-[#0252CC]'
         placeholder='Phone Number'
