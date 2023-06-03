@@ -9,7 +9,7 @@ const Donut = () => {
     labels: ["Given", "Paid", "Declined"],
     datasets: [
       {
-        label: "My First Dataset",
+        label: "Total Number of Loans",
         data: [300, 50, 100],
         backgroundColor: ["#3585FF", "#4ED273", "#FF2727"],
         hoverOffset: 4,
@@ -25,6 +25,7 @@ const Donut = () => {
          labels: {
            usePointStyle: true,
            padding: 20,
+           pointStyle: "rectRounded",
          },
          align: "center",
        },
