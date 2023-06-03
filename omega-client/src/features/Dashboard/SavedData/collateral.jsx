@@ -1,25 +1,20 @@
 import React from 'react'
 
-const LoanInfo = () => {
+const collateral = () => {
   return (
     <div className='flex flex-col ml-[80px]'>
         <div className="mt-[50px] text-[24px] font-[600] text-[#0267FF]">
-           Borrower’s Saved Data{" "}
+           Borrower’s Saved Data
         </div>
         <div className="mt-[19px] text-[18px] font-[600] text-[#4D4D4D]">
-           Loan Information
+           collateral Information
         </div>
         <div className="flex gap-[153px] mt-[58px]">
             <div className="flex flex-col gap-[24px]">
               <input
                 type="text"
                 className="border border-[#0252CC] rounded w-[400px] h-[60px] p-4"
-                placeholder="Student's Loan."
-              />
-              <input
-                type="text"
-                className="border border-[#0252CC] rounded w-[400px] h-[60px] p-4"
-                placeholder="Input Credit report"
+                placeholder="Type of Asset"
               />
             </div>
             <div className="flex flex-col gap-[24px] ">
@@ -46,4 +41,4 @@ const LoanInfo = () => {
   )
 }
 
-export default LoanInfo
+export default collateral
