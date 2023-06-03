@@ -19,44 +19,44 @@ const SavedData = () => {
               <input
                 type="text"
                 className="border border-[#0252CC] rounded w-[400px] h-[60px] p-4"
-                placeholder="Full Name"
+                placeholder="Mr. Karim Tunde"
               />
               <input
                 type="text"
                 className="border border-[#0252CC] rounded w-[400px] h-[60px] p-4"
-                placeholder="Email"
+                placeholder="kartun@gmail.com"
               />
               <input
                 type="text"
                 className="border border-[#0252CC] rounded w-[400px] h-[60px] p-4"
-                placeholder="Address"
+                placeholder="45 cresent Ikeja"
               />
               <input
                 type="text"
                 className="border border-[#0252CC] rounded w-[400px] h-[60px] p-4"
-                placeholder="Employment Status"
+                placeholder="Unemployed"
               />
             </div>
             <div className="flex flex-col gap-[24px] ">
               <input
                 type="text"
                 className="border border-[#0252CC] rounded w-[400px] h-[60px] p-4"
-                placeholder="Phone Number"
+                placeholder="+234658767520"
               />
               <input
                 type="text"
                 className="border border-[#0252CC] rounded w-[400px] h-[60px] p-4"
-                placeholder="Date Of Birth"
+                placeholder="13th August 1990"
               />
               <input
                 type="text"
                 className="border border-[#0252CC] rounded w-[400px] h-[60px] p-4"
-                placeholder="Password"
+                placeholder="********"
               />
               <input
                 type="text"
                 className="border border-[#0252CC] rounded w-[400px] h-[60px] p-4"
-                placeholder="Loan Amount"
+                placeholder="10,000 Naira"
               />
             </div>
           </div>
