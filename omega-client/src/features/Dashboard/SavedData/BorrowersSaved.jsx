@@ -14,19 +14,22 @@ const BorrowersSaved = () => {
     const steps = {
         0: {
           id: 0,
+          title: 'Personal and contact Information',
           form: <SavedData />,
         },
         1: {
           id: 1,
+          title: 'Loan Information',
           form: <LoanInfo />,
         },
         2: {
           id: 2,
-          
+          title: 'Collateral Information',
           form: <Collateral />,
         },
         3: {
           id: 3,
+          title: 'Guarantor’s Information',
           form: <Guarantors />,
         },
       }
@@ -64,9 +67,10 @@ const BorrowersSaved = () => {
                         className={`text-white bg-[#0267FF] ${
                         activeIndex === 0 ? "w-4/12" : "w-4/12"
                         }`}
-                        label={activeIndex === 3 ? "Ok" : "Next"}
+                        label={activeIndex === 2 ? "Previous" : "Next"}
                         onClick={() =>
-                        activeIndex === 3 
+                        activeIndex === 2
+                            ? setActiveIndex((prev) => prev - 1)
                             : setActiveIndex((prev) => prev + 1)
                         }
                   />
