@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import DashHeader from "../../../components/Dashboard/DashHeader";
 import Sidebar from "../../../components/Dashboard/Sidebar";
+import { Link } from 'react-router-dom';
 
 
 const LoanApplications = () => {
@@ -50,23 +51,25 @@ const LoanApplications = () => {
           </div>
           {data.map((dt) => {
             return (
-              <div className=" justify-center items-center mt-6 grid grid-cols-5 p-2 gap-10 bg-[#FAFCFF] px-12 text-[16px] w-[982px] h-[50px] text-[#666666]">
-                <p>{dt["Borrowers Name"]}</p>
-                <p>{dt.Date}</p>
-                <p
-                  className={
-                    dt.Status === "Successful"
-                      ? "text-[#4ED273]"
-                      : dt.Status === "Pending"
-                      ? "text-[#E48900]"
-                      : "text-[#FF2727]"
-                  }
-                >
-                  {dt.Status}
-                </p>
-                <p>{dt["Credit Score"]}</p>
-                <p>{dt.Amount}</p>
-              </div>
+              <Link to="/borrower-profile">
+                <div className=" justify-center items-center mt-6 grid grid-cols-5 p-2 gap-10 bg-[#FAFCFF] px-12 text-[16px] w-[982px] h-[50px] text-[#666666]">
+                  <p>{dt["Borrowers Name"]}</p>
+                  <p>{dt.Date}</p>
+                  <p
+                    className={
+                      dt.Status === "Successful"
+                        ? "text-[#4ED273]"
+                        : dt.Status === "Pending"
+                        ? "text-[#E48900]"
+                        : "text-[#FF2727]"
+                    }
+                  >
+                    {dt.Status}
+                  </p>
+                  <p>{dt["Credit Score"]}</p>
+                  <p>{dt.Amount}</p>
+                </div>
+              </Link>
             );
           })}
         </div>
