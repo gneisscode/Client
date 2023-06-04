@@ -40,7 +40,7 @@ const ContactUs = () => {
             </div>
           </div>
 
-          <button className=" w-[150px] lg:w-[308px] h-[61px] bg-[#0267FF] text-white rounded-[4px] text-white text-[24px] font-600">
+          <button className=" w-[150px] lg:w-[308px] h-[61px] bg-[#0267FF] text-white rounded-[4px] text-[24px] font-600">
             Send
           </button>
         </div>
@@ -54,7 +54,7 @@ const ContactUs = () => {
             <div className="flex flex-col gap-[58px]">
               <div className="flex text-[20px] font-600 text-[#4D4D4D] gap-[19.3px]">
                 <img src="assets/contact/mail.svg" alt="" />
-                <div>info@nodebt.co.uk</div>
+                <div>info@omega.ng</div>
               </div>
               <div className="flex text-[20px] font-600 text-[#4D4D4D] gap-[19.3px]">
                 <img src="assets/contact/phone.svg" alt="" />
@@ -63,7 +63,8 @@ const ContactUs = () => {
               <div className="flex text-[20px] font-600 text-[#4D4D4D] gap-[19.3px]">
                 <img src="assets/contact/address.svg" alt="" />
                 <div>
-                  12, Adewale Akinwumi Street,Grace Avenue, Ogudu, Lagos
+                  Badmus house, Tijaniki Upkpene Close, Victoria Island,
+                  Lagos,Nigeria.
                 </div>
               </div>
               <div className="flex text-[20px] font-600 text-[#4D4D4D] gap-[19.3px]">
@@ -110,14 +111,14 @@ const ContactUs = () => {
 
         <div className="flex justify-center items-center  w-[100%] pl-[80px]">
           <div className="flex flex-col justify-center items-center gap-[32px] px-4 lg:px-0 m-auto">
-            <div className="text-[16px] font-[400] lg:w-[876.41px] text-center">
-              No Debt unlock the potential of predictive modeling and credit
-              risk management to optimize your loan portfolio and drives
-              businesses growth
+            <div className="text-[16px] font-[500] lg:w-[876.41px] text-center">
+              Omega- unlock the potential of predictive modeling and credit risk
+              management to optimize your loan portfolio and drives businesses
+              growth
             </div>
 
-            <div className="text-[14px] font-[400] lg:w-[488px] text-center">
-              2020-2023 No Debt Global Limited - RC 1222200
+            <div className="text-[14px] font-[500] lg:w-[488px] text-center">
+              2020-2023 Omega Global Limited - RC 1222200
             </div>
           </div>
 

@@ -68,8 +68,8 @@ function App() {
       <Route element={<ChangePasswordPage />} path="/change-password" />
       <Route element={<ForgotPasswordPage />} path="/forgot-password" />
       <Route element={<VerificationCodePage />} path="/verify" />
-      <Route element={<Error404 />} path="/error" />
       <Route element={<ChangeSuccess />} path="/success" />
+      <Route element={<Error404 />} path= "*"/>
     </Routes>
   );
 }
