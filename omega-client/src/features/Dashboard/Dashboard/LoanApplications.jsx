@@ -35,14 +35,13 @@ const LoanApplications = () => {
       <DashHeader />
       <div className="flex relative">
         <Sidebar />
-        <div className="pl-[52px] py-[40px] w-[982px] font-semibold text-gray-600 absolute top-[112px] left-[300px]">
-          <div className="grid grid-cols-2 w-[982px]">
-            <h4 className="text-blue-600 font-bold text-2xl hover:underline">
+        <div className="pl-[52px] py-[40px] w-[982px] font-semibold text-[#666666] absolute top-[112px] left-[300px]">
+          <div className="w-[982px]">
+            <h4 className="text-[#0267FF] font-[600] text-[24px] w-[208px]">
               Loan Applications
             </h4>
-            <p className="text-2xl justify-self-end mr-20">{"\u2630"} Filter</p>
           </div>
-          <div className="mt-10 grid grid-cols-5 p-2 gap-10 bg-blue-100 px-12 hover:border-blue-500 hover:border-2 text-sm w-[982px]">
+          <div className="mt-10 grid grid-cols-5 p-2 gap-10 bg-[#E6F0FF] px-12 text-[16px] w-[982px]">
             <h6>Borrowers Name</h6>
             <h6>Date</h6>
             <h6>Status</h6>
@@ -51,16 +50,16 @@ const LoanApplications = () => {
           </div>
           {data.map((dt) => {
             return (
-              <div className="mt-6 grid grid-cols-5 p-2 gap-10 bg-[#FAFCFF] px-12 hover:border-blue-500 hover:border-2 text-sm w-[982px]">
+              <div className="mt-6 grid grid-cols-5 p-2 gap-10 bg-[#FAFCFF] px-12 text-[16px] w-[982px] text-[#666666]">
                 <p>{dt["Borrowers Name"]}</p>
                 <p>{dt.Date}</p>
                 <p
                   className={
                     dt.Status === "Successful"
-                      ? "text-green-600"
+                      ? "text-[#4ED273]"
                       : dt.Status === "Pending"
-                      ? "text-orange-300"
-                      : "text-red-600"
+                      ? "text-[#E48900]"
+                      : "text-[#FF2727]"
                   }
                 >
                   {dt.Status}
