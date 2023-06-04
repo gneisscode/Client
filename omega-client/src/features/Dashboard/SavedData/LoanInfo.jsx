@@ -37,7 +37,7 @@ const LoanInfo = () => {
                   <input
                     type="text"
                     className="border border-[#0252CC] rounded w-[400px] h-[60px] p-4"
-                    placeholder="350"
+                    placeholder="450"
                   />
                 </div>
             </div>
