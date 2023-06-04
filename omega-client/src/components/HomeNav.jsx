@@ -8,6 +8,10 @@ import { Context } from "../context/Context";
 const HomeNav = () => {
   const location = useLocation();
   const { user } = useContext(Context);
+   const { dispatch, isFetching } = useContext(Context);
+      const handleLogout = () => {
+        dispatch({ type: "LOGOUT" });
+      };
 
   useEffect(() => {
     if (location.pathname === "/services") {
@@ -54,11 +58,12 @@ const HomeNav = () => {
           <Link to="/dashboard" className="link">
             <PrimaryButton text="Dashboard" />
           </Link>
+            <SecondaryButton text="Log Out" onClick={handleLogout}/>
         </div>
       ) : (
         <div className="flex gap-4 justify-center items-center">
           <Link to="/login" className="link">
-            <SecondaryButton text="Log In" />
+            <SecondaryButton text="Log In"/>
           </Link>
           <Link to="/signup" className="link">
             <PrimaryButton text="Sign Up" />
