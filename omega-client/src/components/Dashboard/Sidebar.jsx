@@ -1,14 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { Context } from "../../context/Context";
 
 const Sidebar = () => {
   const location = useLocation();
   const [active, setActive] = useState("");
-  console.log(active);
+  const { dispatch, isFetching } = useContext(Context);
+
 
   useEffect(() => {
     setActive(location.pathname.split("/")[1]);
   }, [location.pathname]);
+
+   const handleLogout = () => {
+     dispatch({ type: "LOGOUT" });
+   };
+
 
   return (
     <div className="lg:flex flex-col lg:min-h-[100%] hidden lg:min-w-[300px] bg-[#FAFCFF] fixed top-[112px] left-0">
@@ -177,7 +184,7 @@ const Sidebar = () => {
 
         <div className="flex gap-[10px] mt-[-10px] mb-16 cursor-pointer">
           <img src="assets/dashboard/logout.svg" alt="" />
-          <div className="text-[#999999] text-[18px] font-600">Log out</div>
+          <div className="text-[#999999] text-[18px] font-600" onClick={handleLogout}>Log out</div>
         </div>
       </div>
     </div>
