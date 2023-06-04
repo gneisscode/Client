@@ -3,6 +3,7 @@ import Collateral from './Collateral'
 import Guarantors from './Guarantors'
 import LoanInfo from './LoanInfo'
 import SavedData from './SavedData'
+import Button from '../../../../components/Button'
 import DashHeader from '../../../components/Dashboard/DashHeader'
 import Sidebar from '../../../components/Dashboard/Sidebar'
 
