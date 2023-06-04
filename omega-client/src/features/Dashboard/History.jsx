@@ -31,9 +31,6 @@ const History = () => {
             <div className="flex justify-center items-center text-[24px] font-[600] text-[#0267FF]">
               History
             </div>
-            <div className=" flex text-2xl  mr-20  text-[#666666] items-center justify-center ">
-              {"\u2630"} Filter
-            </div>
           </div>
 
           <div className="grid grid-cols-7 gap-[56px] bg-blue-100  w-[983px] h-[51px] text-[16px] font-[600] mb-[24px] items-center pl-4">

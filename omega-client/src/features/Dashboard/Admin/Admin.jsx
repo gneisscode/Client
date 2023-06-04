@@ -45,14 +45,6 @@ const Admin = () => {
                   </p>
                 </div>
               </div>
-              <button className="flex mt-4 ml-[10px] bg-[#CCE1FF] py-3 px-14 text-[12px]">
-                Send a message
-                <img
-                  className="w-[16px] h-[16px] ml-2 mt-1"
-                  src="assets/dashboard/Vector.png"
-                  alt="button-img"
-                />
-              </button>
             </div>
             <div className="px-8 py-6 border-[#04AB33] border rounded-md bg-[#f4f7fc]">
               <div className="flex flex-row gap-10">
@@ -74,14 +66,6 @@ const Admin = () => {
                   </p>
                 </div>
               </div>
-              <button className="flex mt-4 ml-[10px] bg-[#CCE1FF] py-3 px-14 text-[12px]">
-                Send a message
-                <img
-                  className="w-[16px] h-[16px] ml-2 mt-1"
-                  src="assets/dashboard/Vector.png"
-                  alt="button-img"
-                />
-              </button>
             </div>
             <div className="px-8 py-6 border-[#F29509] border rounded-md bg-[#f4f7fc]">
               <div className="flex flex-row gap-10">
@@ -103,14 +87,6 @@ const Admin = () => {
                   </p>
                 </div>
               </div>
-              <button className="flex mt-4 ml-[10px] bg-[#CCE1FF] py-3 px-14 text-[12px]">
-                Send a message
-                <img
-                  className="w-[16px] h-[16px] ml-2 mt-1"
-                  src="assets/dashboard/Vector.png"
-                  alt="button-img"
-                />
-              </button>
             </div>
             <div className="px-8 py-6 border-[#F29509] border rounded-md bg-[#f4f7fc]">
               <div className="flex flex-row gap-10">
@@ -132,14 +108,6 @@ const Admin = () => {
                   </p>
                 </div>
               </div>
-              <button className="flex mt-4 ml-[10px] bg-[#CCE1FF] py-3 px-14 text-[12px]">
-                Send a message
-                <img
-                  className="w-[16px] h-[16px] ml-2 mt-1"
-                  src="assets/dashboard/Vector.png"
-                  alt="button-img"
-                />
-              </button>
             </div>
             <div className="px-8 py-6 border-[#0267FF] border rounded-md bg-[#f4f7fc]">
               <div className="flex flex-row gap-10">
@@ -161,14 +129,6 @@ const Admin = () => {
                   </p>
                 </div>
               </div>
-              <button className="flex mt-4 ml-[10px] bg-[#CCE1FF] py-3 px-14 text-[12px]">
-                Send a message
-                <img
-                  className="w-[16px] h-[16px] ml-2 mt-1"
-                  src="assets/dashboard/Vector.png"
-                  alt="button-img"
-                />
-              </button>
             </div>
             <div className="px-8 py-6 border-[#04AB33] border rounded-md bg-[#f4f7fc]">
               <div className="flex flex-row gap-10">
@@ -190,14 +150,6 @@ const Admin = () => {
                   </p>
                 </div>
               </div>
-              <button className="flex mt-4 ml-[10px] bg-[#CCE1FF] py-3 px-14 text-[12px]">
-                Send a message
-                <img
-                  className="w-[16px] h-[16px] ml-2 mt-1"
-                  src="assets/dashboard/Vector.png"
-                  alt="button-img"
-                />
-              </button>
             </div>
           </div>
         </div>
