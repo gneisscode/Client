@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import collateral from './collateral'
+import Collateral from './Collateral'
 import Guarantors from './Guarantors'
 import LoanInfo from './LoanInfo'
 import SavedData from './SavedData'
@@ -22,7 +22,7 @@ const BorrowersSaved = () => {
         2: {
           id: 2,
           
-          form: <collateral />,
+          form: <Collateral />,
         },
         3: {
           id: 3,
