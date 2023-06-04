@@ -14,7 +14,7 @@ const BorrowersData = () => {
   const slides = [0, 1, 2, 3]
 
   const [activeIndex, setActiveIndex] = useState(0)
-  const [modal, setModal] = useState(true)
+  const [modal, setModal] = useState(false)
 
   const steps = {
     0: {
@@ -41,45 +41,49 @@ const BorrowersData = () => {
 
   const step = steps[activeIndex]
   return (
-    <div className='flex flex-col'>
+    <div className="flex flex-col">
       <DashHeader />
-      <div className='flex '>
+      <div className="flex relative">
         <Sidebar />
         <Modal isOpen={modal} onClose={() => setModal(false)}>
-          <section className='w-[500px] bg-slate-200 p-12 flex flex-col items-center justify-center'>
-            <p className='text-black text-center mb-10 font-md text-xl'>
+          <section className="w-[500px] bg-slate-200 p-12 flex flex-col items-center justify-center">
+            <p className="text-black text-center mb-10 font-md text-xl">
               Borrower's data has been saved. Kindly preview data
             </p>
             <Button
-              className='text-white bg-[#0267FF] w-64'
-              label='Preview'
-              onClick={() => console.log('clicked')}
+              className="text-white bg-[#0267FF] w-64"
+              label="Preview"
+              onClick={() => console.log("clicked")}
             />
             <div>
               <Button
-                className='text-red-600 w-64 mt-5'
-                label='Cancel'
+                className="text-red-600 w-64 mt-5"
+                label="Cancel"
                 onClick={() => setModal(false)}
               />
             </div>
           </section>
         </Modal>
-        <section className='flex justify-center w-full'>
+        <section className="flex justify-center ml-[52px]  absolute top-[112px] left-[300px] my-[40px]">
           <div>
-            <div className='my-14'>
-              <h3 className='text-[#0267FF] text-base font-semibold'>
+            <div className="flex flex-col gap-[16px]">
+              <h3 className="text-[#0267FF] text-[24px] font-[600]">
                 Input Borrower's Data
               </h3>
-              <p>Carefully input the borrowers details</p>
+              <p className="text-[20px] font-[500] text-[#4D4D4D]">
+                Carefully input the borrowers details
+              </p>
             </div>
-            <div className='flex w-full mt-16'>
-              <Card className='min-h-[700px] relative'>
-                <div className='mt-12 mb-16 px-8'>
-                  <h2>{step.title}</h2>
+            <div className="flex w-full mt-16">
+              <Card className="min-h-[700px] relative">
+                <div className="mt-12 mb-16 px-8">
+                  <h2 className="text-[#4D4D4D] text-[20px] font-[600]">
+                    {step.title}
+                  </h2>
                 </div>
                 {step.form}
-                <div className='mt-8'></div>
-                <div className='bottom-10 absolute flex items-center justify-center w-full'>
+                <div className="mt-8"></div>
+                <div className="bottom-10 absolute flex items-center justify-center w-full">
                   <Circle
                     slides={slides}
                     activeIndex={activeIndex}
@@ -88,21 +92,21 @@ const BorrowersData = () => {
                 </div>
               </Card>
             </div>
-            <div className='grid grid-cols-2 justify-between items-center gap-20 mt-16'>
+            <div className="grid grid-cols-2 justify-between items-center gap-20 mt-16 pb-[147px]">
               {activeIndex !== 0 ? (
                 <Button
-                  className='bg-white text-[#0267FF] border border-[#0267FF] w-4/12'
-                  label='Previous'
+                  className="bg-white text-[#0267FF] border border-[#0267FF] w-4/12"
+                  label="Previous"
                   onClick={() => setActiveIndex((prev) => prev - 1)}
                 />
               ) : (
-                <div className='w-4/12'></div>
+                <div className="w-4/12"></div>
               )}
               <Button
                 className={`text-white bg-[#0267FF] ${
-                  activeIndex === 0 ? 'w-4/12' : 'w-4/12'
+                  activeIndex === 0 ? "w-4/12" : "w-4/12"
                 }`}
-                label={activeIndex === 3 ? 'Save Data' : 'Next'}
+                label={activeIndex === 3 ? "Save Data" : "Next"}
                 onClick={() =>
                   activeIndex === 3
                     ? setModal(true)
@@ -114,7 +118,7 @@ const BorrowersData = () => {
         </section>
       </div>
     </div>
-  )
+  );
 }
 
 export default BorrowersData

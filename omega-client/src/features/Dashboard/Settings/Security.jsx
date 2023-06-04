@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 const Security = () => {
   return (
@@ -27,10 +28,11 @@ const Security = () => {
           placeholder="Confirm New Password"
         />
       </div>
-
-      <button className="w-[462px] h-[61px] bg-[#0267FF] text-[24px] font-[600] text-white rounded ">
-        Change Password
-      </button>
+      <Link to="/success">
+        <button className="w-[462px] h-[61px] bg-[#0267FF] text-[24px] font-[600] text-white rounded mb-8 ">
+          Change Password
+        </button>
+      </Link>
     </div>
   );
 }

@@ -1,15 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
 const Notifications = () => {
-    const [active, setActive] = useState(false)
-    const [activel, setActivel] = useState(false);
+  const [messageSent, setMessageSent] = useState(false);
+  const [messageReceived, setMessageReceived] = useState(false);
+  const [defaulterDetected, setDefaulterDetected] = useState(false);
+  const [loanGenerated, setLoanGenerated] = useState(false);
 
   return (
     <div className="flex flex-col w-[100%]">
       <div className="text-[24px] font-[500] text-[#4D4D4D] mt-[56px] mb-[56px]">
         Notifications Settings
       </div>
-      <ul className='flex flex-col gap-[60px]'>
+      <ul className="flex flex-col gap-[60px]">
         <li>
           <div className="flex items-center gap-[40px]">
             <div className="text-[24px] font-[400] text-[#4D4D4D] w-[529px]">
@@ -18,23 +20,19 @@ const Notifications = () => {
             <div className="flex items-center justify-center border border-[#CCE1FF] rounded-[60px] w-[107px] h-[35px]">
               <button
                 className={`text-[24px] font-[400] text-[#4D4D4D] w-[50%] border-r border-[#CCE1FF] ${
-                  activel ? "bg-blue-600 text-white rounded-l-full" : ""
+                  messageSent ? "bg-blue-600 text-white rounded-l-full" : ""
                 }`}
                 onClick={() => {
-                  setActivel(!activel);
-                  setActive(false);
+                  setMessageSent(true);
                 }}
               >
                 Yes
               </button>
               <button
                 className={`text-[24px] font-[400] text-[#4D4D4D] w-[50%]  border-[#CCE1FF] ${
-                  active ? "bg-blue-600 text-white rounded-r-full" : ""
+                  messageSent===false ? "bg-blue-600 text-white rounded-r-full" : ""
                 }`}
-                onClick={() => {
-                  setActive(!active);
-                  setActivel(false);
-                }}
+                onClick={() => setMessageSent(false)}
               >
                 No
               </button>
@@ -50,23 +48,21 @@ const Notifications = () => {
             <div className="flex items-center justify-center border border-[#CCE1FF] rounded-[60px] w-[107px] h-[35px]">
               <button
                 className={`text-[24px] font-[400] text-[#4D4D4D] w-[50%] border-r border-[#CCE1FF] ${
-                  activel ? "bg-blue-600 text-white rounded-l-full" : ""
+                  messageReceived ? "bg-blue-600 text-white rounded-l-full" : ""
                 }`}
                 onClick={() => {
-                  setActivel(!activel);
-                  setActive(false);
+                  setMessageReceived(true);
                 }}
               >
                 Yes
               </button>
               <button
                 className={`text-[24px] font-[400] text-[#4D4D4D] w-[50%]  border-[#CCE1FF] ${
-                  active ? "bg-blue-600 text-white rounded-r-full" : ""
+                  messageReceived===false
+                    ? "bg-blue-600 text-white rounded-r-full"
+                    : ""
                 }`}
-                onClick={() => {
-                  setActive(!active);
-                  setActivel(false);
-                }}
+                onClick={() => setMessageReceived(false)}
               >
                 No
               </button>
@@ -82,23 +78,23 @@ const Notifications = () => {
             <div className="flex items-center justify-center border border-[#CCE1FF] rounded-[60px] w-[107px] h-[35px]">
               <button
                 className={`text-[24px] font-[400] text-[#4D4D4D] w-[50%] border-r border-[#CCE1FF] ${
-                  activel ? "bg-blue-600 text-white rounded-l-full" : ""
+                  defaulterDetected
+                    ? "bg-blue-600 text-white rounded-l-full"
+                    : ""
                 }`}
                 onClick={() => {
-                  setActivel(!activel);
-                  setActive(false);
+                  setDefaulterDetected(true);
                 }}
               >
                 Yes
               </button>
               <button
                 className={`text-[24px] font-[400] text-[#4D4D4D] w-[50%]  border-[#CCE1FF] ${
-                  active ? "bg-blue-600 text-white rounded-r-full" : ""
+                  defaulterDetected===false
+                    ? "bg-blue-600 text-white rounded-r-full"
+                    : ""
                 }`}
-                onClick={() => {
-                  setActive(!active);
-                  setActivel(false);
-                }}
+                onClick={() => setDefaulterDetected(false)}
               >
                 No
               </button>
@@ -114,23 +110,19 @@ const Notifications = () => {
             <div className="flex items-center justify-center border border-[#CCE1FF] rounded-[60px] w-[107px] h-[35px]">
               <button
                 className={`text-[24px] font-[400] text-[#4D4D4D] w-[50%] border-r border-[#CCE1FF] ${
-                  activel ? "bg-blue-600 text-white rounded-l-full" : ""
+                  loanGenerated ? "bg-blue-600 text-white rounded-l-full" : ""
                 }`}
                 onClick={() => {
-                  setActivel(!activel);
-                  setActive(false);
+                  setLoanGenerated(true);
                 }}
               >
                 Yes
               </button>
               <button
                 className={`text-[24px] font-[400] text-[#4D4D4D] w-[50%]  border-[#CCE1FF] ${
-                  active ? "bg-blue-600 text-white rounded-r-full" : ""
+                  loanGenerated===false ? "bg-blue-600 text-white rounded-r-full" : ""
                 }`}
-                onClick={() => {
-                  setActive(!active);
-                  setActivel(false);
-                }}
+                onClick={() => setLoanGenerated(false)}
               >
                 No
               </button>
@@ -149,6 +141,6 @@ const Notifications = () => {
       </div>
     </div>
   );
-}
+};
 
-export default Notifications
+export default Notifications;
