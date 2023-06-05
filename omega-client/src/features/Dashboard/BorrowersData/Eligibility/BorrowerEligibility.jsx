@@ -23,7 +23,7 @@ const BorrowerEligibility = () => {
             </div>
             <img src="assets/dashboard/arrowdark.svg" alt="" />
             <div className="text-[20px] font-[400] text-[#0267FF]">
-              Loan Eligibility Status
+              Loan eligibility status
             </div>
           </div>
           <h3 className="text-[#0267FF] text-[24px] font-[600]">
