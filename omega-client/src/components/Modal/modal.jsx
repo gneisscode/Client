@@ -4,7 +4,7 @@ const Modal = ({ isOpen, onClose, children }) => {
   if (!isOpen) return null
 
   return (
-    <section className='h-full w-screen z-50 bg-black/40 flex items-center justify-center fixed top-0 left-0 bg-opacity-40 '>
+    <section className='h-full w-screen z-[1000] bg-black/40 flex items-center justify-center fixed top-0 left-0 bg-opacity-40 '>
       <div className='modal-content'>
         <div className='flex items-center justify-between'>
           <div></div>
