@@ -29,24 +29,24 @@ const BorrowerEligibility = () => {
           <h3 className="text-[#0267FF] text-[24px] font-[600]">
             Borrower's Loan Eligibility Status
           </h3>
-          <p className="text-[24px]">
+          <p className="text-[20px]">
             <i>This borrower is not eligible to this loan type</i>
           </p>
-          <p className="text-[24px]">
+          <p className="text-[20px]">
             <i>
               After thorough analysis by the system, it has been predicted that
               this borrower is lilely to default loan. It is hereby advised to
               reject the loan application of this borrower.
             </i>
           </p>
-          <p className="text-[24px]">
+          <p className="text-[20px]">
             <b>Reason:</b>{" "}
             <i>
               This borrower has inefficient income and there is a fault in
               collateral data.
             </i>
           </p>
-          <p className="text-[24px]">
+          <p className="text-[20px]">
             <b>Financial advice:</b>{" "}
             <i>
               Application for a lower amount of loan is adviced. Possible amount
@@ -54,7 +54,7 @@ const BorrowerEligibility = () => {
             </i>
           </p>
           <div className="flex flex-col mt-10 gap-[32px]">
-            <button className="border-blue-600 border-solid text-white border text-[24px] font-[500] rounded w-[408px] h-[61px] py-2 bg-[#0267FF]">
+            <button className="border-blue-600 border-solid text-white border text-[20px] font-[500] rounded w-[408px] h-[61px] py-2 bg-[#0267FF]">
               Cancel Loan Generation
             </button>
             <Link to="/send-status">
