@@ -16,22 +16,18 @@ const SavedData = () => {
   const steps = {
     0: {
       id: 0,
-      title: "Personal and contact Information",
       form: <PersonalInfo />,
     },
     1: {
       id: 1,
-      title: "Loan Information",
       form: <LoanInfo />,
     },
     2: {
       id: 2,
-      title: "Collateral Information",
       form: <Collateral />,
     },
     3: {
       id: 3,
-      title: "Guarantor’s Information",
       form: <Guarantors />,
     },
   };
@@ -44,29 +40,20 @@ const SavedData = () => {
         <Sidebar />
         <section>
           <div>
-            <div className="flex flex-col gap-[16px]">
-              <h3 className="text-[#0267FF] text-[24px] font-[600]">
-                Borrower's Saved Data
-              </h3>
-              <h4 className="text-[#4D4D4D] text-[20px] font-[600]">
-                {step.title}
-              </h4>
-            </div>
             <div className="flex w-full mt-16">
-              <Card className="min-h-[400px] absolute ml-[350px] pb-[30px]">
+              <Card className="min-h-[350px] absolute mt-[180px] ml-[350px] pb-[20px]">
                 {step.form}
                 <div className="mt-8"></div>
                 <div className=" flex items-center justify-center w-full ">
                   <Circle
                     slides={slides}
                     activeIndex={activeIndex}
-                    setActiveIndex={setActiveIndex}
-                    
+                    setActiveIndex={setActiveIndex}    
                   />
                 </div>
               </Card>
             </div>
-            <div className="grid grid-cols-2 justify-between items-center gap-10 mt-[550px] ml-[850px] pb-[147px]">
+            <div className="grid grid-cols-2 justify-between items-center gap-10 mt-[750px] ml-[840px] pb-[90px]">
               {activeIndex !== 0 ? (
                 <Button
                   className="bg-white text-[#0267FF] border border-[#0267FF] w-4/12"
