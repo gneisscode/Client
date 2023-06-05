@@ -2,7 +2,7 @@ import React from 'react'
 import TextField from '../../../../components/TextField'
 import Button from '../../../../components/Button'
 
-const PreviewForm = () => {
+const PreviewForm = ({ handleModal }) => {
   return (
     <div className='border border-gray-200 absolute z-[100] top-0 left-0 right-0 w-full bg-black bg-opacity-30 pt-[110px]'>
       <div className='max-w-[80%] bg-white ml-auto py-4'>
@@ -126,6 +126,7 @@ const PreviewForm = () => {
           <Button
             className='text-white bg-[#0267FF] rounded'
             label='Upload Data'
+            onClick={handleModal}
           />
         </div>
       </div>
