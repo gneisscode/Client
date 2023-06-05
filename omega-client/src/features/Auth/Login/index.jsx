@@ -1,14 +1,15 @@
-import React, { useState } from 'react'
-import AuthLayout from '../../../components/AuthLayout'
-import Button from '../../../components/Button'
-import TextField from '../../../components/TextField'
-import { Link } from 'react-router-dom'
-import axios from 'axios'
-import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
-
+import React, { useState, useContext } from "react";
+import AuthLayout from "../../../components/AuthLayout";
+import Button from "../../../components/Button";
+import TextField from "../../../components/TextField";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Context } from "../../../context/Context";
 const Login = () => {
-  const [isLoading, setIsLoading] = useState(false)
+  const { dispatch, isFetching } = useContext(Context);
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -74,14 +75,15 @@ const Login = () => {
       setIsLoading(false)
     } else {
       try {
-        const response = await axios.post('/users/login', formData)
-        console.log(response.data.data)
-        const data = response.data.data
-        const token = data.access_token
-        localStorage.setItem('token', token)
-        showToastSuccess()
-        setIsLoading(false)
-        window.location.replace('/dashboard')
+        const response = await axios.post("/users/login", formData);
+        console.log(response.data.data);
+        const data = response.data.data;
+        const token = data.access_token;
+        localStorage.setItem("token", token);
+        dispatch({ type: "LOGIN_SUCCESS", payload: data });
+        showToastSuccess();
+        setIsLoading(false);
+        window.location.replace("/dashboard");
       } catch (error) {
         console.log(error)
         if (
@@ -94,8 +96,9 @@ const Login = () => {
         } else {
           setServerError('Network error: Please check your internet connection')
         }
-        showToastError()
-        setIsLoading(false)
+        showToastError();
+        setIsLoading(false);
+        dispatch({ type: "LOGIN_FAILURE" });
       }
     }
   }

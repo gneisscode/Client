@@ -84,14 +84,14 @@ const About = () => {
 
         <div className="flex justify-center items-center  w-[100%] pl-[80px]">
           <div className="flex flex-col justify-center items-center gap-[32px] px-4 lg:px-0 m-auto">
-            <div className="text-[16px] font-[400] lg:w-[876.41px] text-center">
-              No Debt unlock the potential of predictive modeling and credit
-              risk management to optimize your loan portfolio and drives
-              businesses growth
+            <div className="text-[16px] font-[500] lg:w-[876.41px] text-center">
+              Omega- unlock the potential of predictive modeling and credit risk
+              management to optimize your loan portfolio and drives businesses
+              growth
             </div>
 
-            <div className="text-[14px] font-[400] lg:w-[488px] text-center">
-              2020-2023 No Debt Global Limited - RC 1222200
+            <div className="text-[14px] font-[500] lg:w-[488px] text-center">
+              2020-2023 Omega Global Limited - RC 1222200
             </div>
           </div>
 

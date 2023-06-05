@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 const Faq = () => {
   const faqItems = [
     {
-      question: 'How can i determine a loan default?',
+      question: 'How can I determine a loan default?',
       answer:
         'Loan default can be determined when the borrowers is  financially incapable to pay back the loan. This can be because of his/her loan credit score or past history of loan defaulting. If you need further assistance ask a team member.',
     },
