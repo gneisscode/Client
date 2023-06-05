@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom'
 const Sidebar = () => {
   const location = useLocation()
   const [active, setActive] = useState('')
-  console.log(active)
+  // console.log(active)
 
   useEffect(() => {
     setActive(location.pathname.split('/')[1])
