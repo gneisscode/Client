@@ -53,7 +53,7 @@ const ContactUs = () => {
                 className="border border-[#0252CC] lg:w-[589px] h-[195px] p-6 mb-8 rounded-[4px] outline-none bg-[#E6F0FF]"
                 placeholder="Message"
               />
-              {errors.message?.type === "required" && <p className='text-[#ff4141] font-[500]'>Please enter a message.</p>}
+              {errors.message?.type === "required" && <p className='text-[#ff4141] font-[500] mb-[2em]'>Please enter a message.</p>}
             </div>
           </div>
 
