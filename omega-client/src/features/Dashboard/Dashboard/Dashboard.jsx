@@ -152,7 +152,7 @@ const Dashboard = () => {
               <Graph />
             </div>
             <div className=" flex border border-[#E6F0FF] py-[40px] items-center justify-center w-[300px] h-[318px] bg-[#FAFCFF] relative">
-              <div className="flex flex-col items-center justify-center absolute top-[100px] left-[122px]">
+              <div className="flex flex-col items-center justify-center absolute top-[100px] left-[118px]">
                 <div className="font-[600] text-[24px] text-[#0267FF]">85%</div>
                 <div className="font-[400] text-[16px] text-[#808080]">
                   Positive
