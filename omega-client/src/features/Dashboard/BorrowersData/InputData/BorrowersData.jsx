@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import DashHeader from '../../../../components/Dashboard/DashHeader'
 import Sidebar from '../../../../components/Dashboard/Sidebar'
 import Card from '../../../../components/Card'
@@ -44,6 +44,10 @@ const BorrowersData = () => {
       form: <Gurarantors />,
     },
   }
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [activeIndex]);
+
 
   const step = steps[activeIndex]
   return (

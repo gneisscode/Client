@@ -7,7 +7,7 @@ const Security = () => {
       <div className="text-[24px] font-[500] text-[#4D4D4D] mt-[40px] mb-[20px]">
         Password Settings
       </div>
-      <div className="font-[400] text-[24px] italic text-[#999999]">
+      <div className="font-[400] text-[20px] italic text-[#999999]">
         Make sure a strong password is used, this is to ensure maximum security
         of your data
       </div>
