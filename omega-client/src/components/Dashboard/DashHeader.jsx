@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const DashHeader = () => {
   return (
-    <div className='hidden lg:flex justify-between h-[112px] w-[100%] bg-[#FAFCFF] text-gray-400 border border-gray-100 items-end px-[80.11px] py-8 fixed top-0 left-0 z-10'>
+    <div className='hidden lg:flex justify-between h-[112px] w-[100%] bg-[#FAFCFF] text-gray-400 border border-gray-100 items-end px-[80.11px] py-8 fixed top-0 left-0 z-[1000]'>
       <Link to='/'>
         <div className='flex justify-center items-center'>
           <img src='/assets/omega-logo.png' alt='' />

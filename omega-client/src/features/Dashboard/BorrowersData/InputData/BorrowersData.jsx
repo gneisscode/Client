@@ -9,12 +9,18 @@ import Gurarantors from './Gurarantors'
 import Loan from './Loan'
 import Collateral from './Collateral'
 import Modal from '../../../../components/Modal/modal'
+import PreviewForm from '../Preview/PreviewForm'
+import { useNavigate } from 'react-router-dom'
 
 const BorrowersData = () => {
+  const navigate = useNavigate()
   const slides = [0, 1, 2, 3]
 
   const [activeIndex, setActiveIndex] = useState(0)
-  const [modal, setModal] = useState(false)
+  const [modalOne, setModalOne] = useState(false)
+  const [modalTwo, setModalTwo] = useState(false)
+  // const [logOutModal, setLogOutModal] = useState(false)
+  const [showPreviewForm, setShowPreviewForm] = useState(false)
 
   const steps = {
     0: {
@@ -45,7 +51,8 @@ const BorrowersData = () => {
       <DashHeader />
       <div className='flex relative'>
         <Sidebar />
-        <Modal isOpen={modal} onClose={() => setModal(false)}>
+        {showPreviewForm && <PreviewForm handleModal={setModalTwo} />}
+        <Modal isOpen={modalOne} onClose={() => setModalOne(false)}>
           <section className='w-[500px] bg-slate-200 p-12 flex flex-col items-center justify-center'>
             <p className='text-black text-center mb-10 font-md text-xl'>
               Borrower's data has been saved. Kindly preview data
@@ -53,17 +60,59 @@ const BorrowersData = () => {
             <Button
               className='text-white bg-[#0267FF] w-64'
               label='Preview'
-              onClick={() => console.log('clicked')}
+              onClick={() => {
+                setModalOne(false)
+                setShowPreviewForm(true)
+              }}
             />
             <div>
               <Button
                 className='text-red-600 w-64 mt-5'
                 label='Cancel'
-                onClick={() => setModal(false)}
+                onClick={() => setModalOne(false)}
               />
             </div>
           </section>
         </Modal>
+
+        <Modal isOpen={modalTwo} onClose={() => setModalTwo(false)}>
+          <section className='w-[500px] bg-slate-200 p-12 flex flex-col items-center justify-center'>
+            <p className='text-black text-center mb-10 font-md text-xl'>
+              Borrower's data has been uploaded successfully!
+            </p>
+            <Button
+              className='text-white bg-[#0267FF] w-64'
+              label='Check Eligibility Status'
+              onClick={() => {
+                setModalTwo(false)
+                navigate('/borrower-eligibility')
+              }}
+            />
+          </section>
+        </Modal>
+
+        {/* <Modal isOpen={logOutModal} onClose={() => setLogOutModal(false)}>
+          <section className='w-[500px] bg-slate-200 p-12 flex flex-col items-center justify-center'>
+            <p className='text-black text-center mb-10 font-md text-xl'>
+              Are you sure you want to Log out?
+            </p>
+            <div className='flex flex-col-2 font-medium text-xl'>
+              <Button
+                className='text-[#FF2727] '
+                label='Yes'
+                onClick={() => {
+                  navigate('/login')
+                }}
+              />
+              <Button
+                className='text-[#0267FF] font-medium text-xl'
+                label='No'
+                onClick={() => setLogOutModal(false)}
+              />
+            </div>
+          </section>
+        </Modal> */}
+
         <section className='flex justify-center ml-[52px]  absolute top-[112px] left-[300px] my-[40px]'>
           <div>
             <div className='flex flex-col gap-[16px]'>
@@ -109,7 +158,7 @@ const BorrowersData = () => {
                 label={activeIndex === 3 ? 'Save Data' : 'Next'}
                 onClick={() =>
                   activeIndex === 3
-                    ? setModal(true)
+                    ? setModalOne(true)
                     : setActiveIndex((prev) => prev + 1)
                 }
               />
