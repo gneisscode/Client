@@ -9,8 +9,8 @@ import VerificationCodePage from './pages/VerificationCodePage'
 import Error404 from './pages/Error404'
 import ChangeSuccess from './features/Auth/ChangePassword/ChangeSuccess'
 import './App.css'
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import ContactUs from './pages/ContactUs'
 import About from './pages/About'
 import DashboardPage from './pages/DashboardPage'

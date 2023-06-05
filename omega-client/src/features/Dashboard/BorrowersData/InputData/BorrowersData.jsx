@@ -9,12 +9,14 @@ import Gurarantors from './Gurarantors'
 import Loan from './Loan'
 import Collateral from './Collateral'
 import Modal from '../../../../components/Modal/modal'
+import PreviewForm from '../Preview/PreviewForm'
 
 const BorrowersData = () => {
   const slides = [0, 1, 2, 3]
 
   const [activeIndex, setActiveIndex] = useState(0)
   const [modal, setModal] = useState(false)
+  const [showPreviewForm, setShowPreviewForm] = useState(false)
 
   const steps = {
     0: {
@@ -45,6 +47,7 @@ const BorrowersData = () => {
       <DashHeader />
       <div className='flex relative'>
         <Sidebar />
+        {showPreviewForm && <PreviewForm />}
         <Modal isOpen={modal} onClose={() => setModal(false)}>
           <section className='w-[500px] bg-slate-200 p-12 flex flex-col items-center justify-center'>
             <p className='text-black text-center mb-10 font-md text-xl'>
@@ -53,7 +56,10 @@ const BorrowersData = () => {
             <Button
               className='text-white bg-[#0267FF] w-64'
               label='Preview'
-              onClick={() => console.log('clicked')}
+              onClick={() => {
+                setModal(false)
+                setShowPreviewForm(true)
+              }}
             />
             <div>
               <Button
