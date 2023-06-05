@@ -1,70 +1,85 @@
-import React from 'react'
-import DashHeader from '../../../components/Dashboard/DashHeader'
-import Sidebar from '../../../components/Dashboard/Sidebar'
+import React, { useState } from "react";
+import DashHeader from "../../../components/Dashboard/DashHeader";
+import Sidebar from "../../../components/Dashboard/Sidebar";
+import Card from "../../../components/Card";
+import Circle from "../../../components/Circle/circle";
+import Button from "../../../components/Button";
+import PersonalInfo from "./PersonalInfo";
+import LoanInfo from "./LoanInfo";
+import Collateral from "./Collateral";
+import Guarantors from "./Guarantors";
+
 const SavedData = () => {
+  const slides = [0, 1, 2, 3];
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const steps = {
+    0: {
+      id: 0,
+      form: <PersonalInfo />,
+    },
+    1: {
+      id: 1,
+      form: <LoanInfo />,
+    },
+    2: {
+      id: 2,
+      form: <Collateral />,
+    },
+    3: {
+      id: 3,
+      form: <Guarantors />,
+    },
+  };
+
+  const step = steps[activeIndex];
   return (
     <div className="flex flex-col">
       <DashHeader />
-      <div className="flex ">
+      <div className="flex relative">
         <Sidebar />
-        <div className='flex flex-col ml-[80px]'>
-          <div className="mt-[50px] text-[24px] font-[600] text-[#0267FF]">
-            Borrower’s Saved Data{" "}
-          </div>
-          <div className="mt-[19px] text-[18px] font-[600] text-[#666666]">
-            Personal and contact Information
-          </div>
-          <div className="flex gap-[153px] mt-[58px]">
-            <div className="flex flex-col gap-[24px]">
-              <input
-                type="text"
-                className="border border-[#0252CC] rounded w-[400px] h-[60px] p-4"
-                placeholder="Full Name"
-              />
-              <input
-                type="text"
-                className="border border-[#0252CC] rounded w-[400px] h-[60px] p-4"
-                placeholder="Email"
-              />
-              <input
-                type="text"
-                className="border border-[#0252CC] rounded w-[400px] h-[60px] p-4"
-                placeholder="Address"
-              />
-              <input
-                type="text"
-                className="border border-[#0252CC] rounded w-[400px] h-[60px] p-4"
-                placeholder="Employment Status"
-              />
+        <section>
+          <div>
+            <div className="flex w-full mt-16">
+              <Card className="min-h-[350px] absolute mt-[180px] ml-[350px] pb-[20px]">
+                {step.form}
+                <div className="mt-8"></div>
+                <div className=" flex items-center justify-center w-full ">
+                  <Circle
+                    slides={slides}
+                    activeIndex={activeIndex}
+                    setActiveIndex={setActiveIndex}    
+                  />
+                </div>
+              </Card>
             </div>
-            <div className="flex flex-col gap-[24px] ">
-              <input
-                type="text"
-                className="border border-[#0252CC] rounded w-[400px] h-[60px] p-4"
-                placeholder="Phone Number"
-              />
-              <input
-                type="text"
-                className="border border-[#0252CC] rounded w-[400px] h-[60px] p-4"
-                placeholder="Date Of Birth"
-              />
-              <input
-                type="text"
-                className="border border-[#0252CC] rounded w-[400px] h-[60px] p-4"
-                placeholder="Password"
-              />
-              <input
-                type="text"
-                className="border border-[#0252CC] rounded w-[400px] h-[60px] p-4"
-                placeholder="Loan Amount"
+            <div className="grid grid-cols-2 justify-between items-center gap-10 mt-[760px] ml-[840px] pb-[95px]">
+              {activeIndex !== 0 ? (
+                <Button
+                  className="bg-white text-[#0267FF] border border-[#0267FF] w-4/12"
+                  label="Previous"
+                  onClick={() => setActiveIndex((prev) => prev - 1)}
+                />
+              ) : (
+                <div className="w-4/12"></div>
+              )}
+              <Button
+                className={`text-white bg-[#0267FF] ${
+                  activeIndex === 0 ? "w-4/12" : "w-4/12"
+                }`}
+                label={activeIndex === 3 ? "Ok" : "Next"}
+                onClick={() =>
+                  activeIndex === 3
+                    ? setActiveIndex((prev) => prev - 1)
+                    : setActiveIndex((prev) => prev + 1)
+                }
               />
             </div>
           </div>
-         <button>Next</button>
-        </div>
+        </section>
       </div>
     </div>
   );
-}
+};
 
-export default SavedData
+export default SavedData;
