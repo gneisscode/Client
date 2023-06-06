@@ -79,9 +79,8 @@ function App() {
         <Route element={<Help />} path="/help" />
         <Route element={<ChangePasswordPage />} path="/change-password" />
         <Route element={<ForgotPasswordPage />} path="/forgot-password" />
-        <Route element={<VerificationCodePage />} path="/verify/:id"/>
+        <Route element={<VerificationCodePage />} path="/verify" />
         <Route element={<ChangeSuccess />} path="/success" />
-  
         <Route element={<Error404 />} path="*" />
       </Routes>
     </>
