@@ -47,9 +47,8 @@ const BorrowersData = () => {
     },
   }
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [activeIndex]);
-
+    window.scrollTo(0, 0)
+  }, [activeIndex])
 
   const userData = {
     personalInfo: {
