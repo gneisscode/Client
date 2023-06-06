@@ -1,15 +1,22 @@
-import React from 'react'
+import React, {useState} from 'react'
 import HomeNav from '../components/HomeNav'
 import Hamburger from '../components/Hamburger'
+import {useForm} from "react-hook-form"
 
 const ContactUs = () => {
+  const { register, handleSubmit, reset, formState: { errors } } = useForm();
+  const [success, setSuccess] = useState("")
+  function submitForm(data) {
+    setSuccess("Your message was sent successfully!")
+    reset();
+  }
   return (
     <div className="flex flex-col">
       <HomeNav />
       <Hamburger />
 
       <div className="flex w-[100%] pb-12">
-        <div className="flex flex-col z-10 lg:pl-[80px] gap-[52px] lg:pt-[48px] px-4 lg:px-0 pt-4">
+        <form className="flex flex-col z-10 lg:pl-[80px] gap-[52px] lg:pt-[48px] px-4 lg:px-0 pt-4" onSubmit={handleSubmit(submitForm)}>
           <div>
             <div className="text-[32px] text-[#0267FF] font-[600]">
               Contact Us
@@ -17,33 +24,43 @@ const ContactUs = () => {
             <div className="text-[24px] font-400 text-[#808080] italic">
               Kindly reach out to us. we will get back to you as soon as we can
             </div>
+            <p className='text-[#37c237] text-[24px] font-[600] mt-2'>{success}</p>
           </div>
-
+          
           <div className=" flex">
             <div className=" flex flex-col justify-center items-center lg:justify-start lg:items-start w-[100%] lg:w-[654px] lg:h-[fit] bg-[#FAFCFF] border border-[#9AC2FF] pl-[24px] gap-[48px] pt-8">
               <div className="text-[24px] text-[#4D4D4D] font-[600]">
                 User Information
               </div>
               <input
+                {...register("name", {required: true})}
+                name='name'
                 className="border border-[#0252CC] lg:w-[589px] h-[61px] p-6 rounded-[4px] outline-none"
                 placeholder="Name"
               />
+              {errors.name?.type === "required" && <p className='text-[#ff4141] font-[500]'>Please input your name.</p>}
               <input
+                {...register("email", {required: true, pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i})}
+                name='email'
                 className="border border-[#0252CC] lg:w-[589px] h-[61px] p-6 rounded-[4px] outline-none"
                 placeholder="Email"
               />
-
+                {errors.email?.type === "required" && <p className='text-[#ff4141] font-[500]'>Please enter your email address.</p>}
+                {errors.email?.type === "pattern" && <p className='text-[#ff4141] font-[500]'>Please enter a valid email address.</p>}
               <input
-                className="border border-[#0252CC] lg:w-[589px] h-[195px] p-6 mb-16 rounded-[4px] outline-none bg-[#E6F0FF]"
+                {...register("message", {required: true})}
+                name='message'
+                className="border border-[#0252CC] lg:w-[589px] h-[195px] p-6 mb-8 rounded-[4px] outline-none bg-[#E6F0FF]"
                 placeholder="Message"
               />
+              {errors.message?.type === "required" && <p className='text-[#ff4141] font-[500] mb-[2em]'>Please enter a message.</p>}
             </div>
           </div>
 
-          <button className=" w-[150px] lg:w-[308px] h-[61px] bg-[#0267FF] text-white rounded-[4px] text-white text-[24px] font-600">
+          <button className=" w-[150px] lg:w-[308px] h-[61px] bg-[#0267FF] text-white rounded-[4px] text-[24px] font-600" type='submit'>
             Send
           </button>
-        </div>
+        </form>
 
         <div className="hidden lg:block lg:w-[270px] lg:h-[856px] bg-[#67A4FF] ml-auto pl-[31px] pb-8 z-0 relative">
           <div className="lg:w-[540px] lg:h-[530px] bg-blue-100 rounded-[8px] lg:absolute right-[26px] top-[156px] pl-[43px]">
@@ -54,7 +71,7 @@ const ContactUs = () => {
             <div className="flex flex-col gap-[58px]">
               <div className="flex text-[20px] font-600 text-[#4D4D4D] gap-[19.3px]">
                 <img src="assets/contact/mail.svg" alt="" />
-                <div>info@nodebt.co.uk</div>
+                <div>info@omega.ng</div>
               </div>
               <div className="flex text-[20px] font-600 text-[#4D4D4D] gap-[19.3px]">
                 <img src="assets/contact/phone.svg" alt="" />
@@ -63,7 +80,8 @@ const ContactUs = () => {
               <div className="flex text-[20px] font-600 text-[#4D4D4D] gap-[19.3px]">
                 <img src="assets/contact/address.svg" alt="" />
                 <div>
-                  12, Adewale Akinwumi Street,Grace Avenue, Ogudu, Lagos
+                  Badmus house, Tijaniki Upkpene Close, Victoria Island,
+                  Lagos,Nigeria.
                 </div>
               </div>
               <div className="flex text-[20px] font-600 text-[#4D4D4D] gap-[19.3px]">
@@ -110,14 +128,14 @@ const ContactUs = () => {
 
         <div className="flex justify-center items-center  w-[100%] pl-[80px]">
           <div className="flex flex-col justify-center items-center gap-[32px] px-4 lg:px-0 m-auto">
-            <div className="text-[16px] font-[400] lg:w-[876.41px] text-center">
-              No Debt unlock the potential of predictive modeling and credit
-              risk management to optimize your loan portfolio and drives
-              businesses growth
+            <div className="text-[16px] font-[500] lg:w-[876.41px] text-center">
+              Omega- unlock the potential of predictive modeling and credit risk
+              management to optimize your loan portfolio and drives businesses
+              growth
             </div>
 
-            <div className="text-[14px] font-[400] lg:w-[488px] text-center">
-              2020-2023 No Debt Global Limited - RC 1222200
+            <div className="text-[14px] font-[500] lg:w-[488px] text-center">
+              2020-2023 Omega Global Limited - RC 1222200
             </div>
           </div>
 
