@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import TextField from '../../../../components/TextField'
 import Button from '../../../../components/Button'
+import { BorrowerFormData } from '../InputData/BorrowersData'
 
-const PreviewForm = ({ handleModal }) => {
+const PreviewForm = ({ handleModal, handleModalTwo }) => {
+  const { value } = useContext(BorrowerFormData)
+  const showUserFormData = () => {
+    console.log(value)
+  }
+
   return (
     <div className='border border-gray-200 absolute z-[100] top-0 left-0 right-0 w-full bg-black bg-opacity-30 pt-[110px]'>
       <div className='max-w-[80%] bg-white ml-auto py-4'>
@@ -18,22 +24,54 @@ const PreviewForm = ({ handleModal }) => {
 
           <div className='flex flex-col space-y-5 border-b pb-28 mt-[51px] px-20'>
             <div className='flex gap-36'>
-              <TextField className='bg-white border-[#0252CC] ' />
-              <TextField className='bg-white border-[#0252CC] ' />
+              <TextField
+                className='bg-white border-[#0252CC]'
+                value={value.personalInfo.fullName}
+                disabled={true}
+              />
+              <TextField
+                className='bg-white border-[#0252CC] '
+                value={value.personalInfo.phoneNumber}
+                disabled={true}
+              />
             </div>
             <div className='flex gap-36'>
-              <TextField className='bg-white border-[#0252CC] w-96' />
-              <TextField className='bg-white border-[#0252CC] w-96' />
+              <TextField
+                className='bg-white border-[#0252CC] w-96'
+                value={value.personalInfo.email}
+                disabled={true}
+              />
+              <TextField
+                className='bg-white border-[#0252CC] w-96'
+                value={value.personalInfo.dob}
+                disabled={true}
+              />
             </div>
 
             <div className='flex gap-36'>
-              <TextField className='bg-white border-[#0252CC] w-96' />
-              <TextField className='bg-white border-[#0252CC] w-96' />
+              <TextField
+                className='bg-white border-[#0252CC] w-96'
+                value={value.personalInfo.address}
+                disabled={true}
+              />
+              <TextField
+                className='bg-white border-[#0252CC] w-96'
+                value={value.personalInfo.nin}
+                disabled={true}
+              />
             </div>
 
             <div className='flex gap-36'>
-              <TextField className='bg-white border-[#0252CC] w-96' />
-              <TextField className='bg-white border-[#0252CC] w-96' />
+              <TextField
+                className='bg-white border-[#0252CC] w-96'
+                value={value.personalInfo.employment}
+                disabled={true}
+              />
+              <TextField
+                className='bg-white border-[#0252CC] w-96'
+                value={value.personalInfo.income}
+                disabled={true}
+              />
             </div>
           </div>
         </div>
@@ -45,16 +83,36 @@ const PreviewForm = ({ handleModal }) => {
 
           <div className='flex flex-col  space-y-5 border-b pb-16 mt-16 px-20'>
             <div className='flex gap-36'>
-              <TextField className='bg-white border-[#0252CC] w-96' />
-              <TextField className='bg-white border-[#0252CC] w-96' />
+              <TextField
+                className='bg-white border-[#0252CC] w-96'
+                value={value.loanInfo.loanType}
+                disabled={true}
+              />
+              <TextField
+                className='bg-white border-[#0252CC] w-96'
+                value={value.loanInfo.repaymentType}
+                disabled={true}
+              />
             </div>
             <div className='flex gap-36'>
-              <TextField className='bg-white border-[#0252CC] w-96' />
-              <TextField className='bg-white border-[#0252CC] w-96' />
+              <TextField
+                className='bg-white border-[#0252CC] w-96'
+                value={value.loanInfo.creditReport}
+                disabled={true}
+              />
+              <TextField
+                className='bg-white border-[#0252CC] w-96'
+                value={value.loanInfo.creditScore}
+                disabled={true}
+              />
             </div>
 
             <div className='py-4 '>
-              <textarea className='bg-[#EEF5FC] border border-[#0252CC] w-full h-32 rounded'></textarea>
+              <textarea
+                className='bg-[#EEF5FC] border border-[#0252CC] w-full h-32 rounded'
+                value={value.loanInfo.loanPurpose}
+                disabled={true}
+              ></textarea>
             </div>
           </div>
 
@@ -63,11 +121,23 @@ const PreviewForm = ({ handleModal }) => {
               Collateral Information
             </div>
             <div className='flex gap-36'>
-              <TextField className='bg-white border-[#0252CC]' />
-              <TextField className='bg-white border-[#0252CC]' />
+              <TextField
+                className='bg-white border-[#0252CC]'
+                value={value.collateralInfo.collateralType}
+                disabled={true}
+              />
+              <TextField
+                className='bg-white border-[#0252CC]'
+                value={value.collateralInfo.collateralValue}
+                disabled={true}
+              />
             </div>
             <div className='py-4'>
-              <textarea className='bg-[#EEF5FC] border border-[#0252CC] w-full h-32 rounded'></textarea>
+              <textarea
+                className='bg-[#EEF5FC] border border-[#0252CC] w-full h-32 rounded'
+                value={value.collateralInfo.collateralInformation}
+                disabled={true}
+              ></textarea>
             </div>
           </div>
 
@@ -77,27 +147,67 @@ const PreviewForm = ({ handleModal }) => {
             </div>
             <div className='space-y-5 '>
               <div className='flex gap-36'>
-                <TextField className='bg-white border-[#0252CC] w-96' />
-                <TextField className='bg-white border-[#0252CC] w-96' />
+                <TextField
+                  className='bg-white border-[#0252CC] w-96'
+                  value={value.guarantorInfo.fullName}
+                  disabled={true}
+                />
+                <TextField
+                  className='bg-white border-[#0252CC] w-96'
+                  value={value.guarantorInfo.phoneNumber}
+                  disabled={true}
+                />
               </div>
               <div className='flex gap-36'>
-                <TextField className='bg-white border-[#0252CC] w-96' />
-                <TextField className='bg-white border-[#0252CC] w-96' />
+                <TextField
+                  className='bg-white border-[#0252CC] w-96'
+                  value={value.guarantorInfo.email}
+                  disabled={true}
+                />
+                <TextField
+                  className='bg-white border-[#0252CC] w-96'
+                  value={value.guarantorInfo.dob}
+                  disabled={true}
+                />
               </div>
 
               <div className='flex gap-36'>
-                <TextField className='bg-white border-[#0252CC] w-96' />
-                <TextField className='bg-white border-[#0252CC] w-96' />
+                <TextField
+                  className='bg-white border-[#0252CC] w-96'
+                  value={value.guarantorInfo.address}
+                  disabled={true}
+                />
+                <TextField
+                  className='bg-white border-[#0252CC] w-96'
+                  value={value.guarantorInfo.ssn}
+                  disabled={true}
+                />
               </div>
 
               <div className='flex gap-36'>
-                <TextField className='bg-white border-[#0252CC] w-96' />
-                <TextField className='bg-white border-[#0252CC] w-96' />
+                <TextField
+                  className='bg-white border-[#0252CC] w-96'
+                  value={value.guarantorInfo.relationship}
+                  disabled={true}
+                />
+                <TextField
+                  className='bg-white border-[#0252CC] w-96'
+                  value={value.guarantorInfo.employment}
+                  disabled={true}
+                />
               </div>
 
               <div className='flex gap-36'>
-                <TextField className='bg-white border-[#0252CC] w-96' />
-                <TextField className='bg-white border-[#0252CC] w-96' />
+                <TextField
+                  className='bg-white border-[#0252CC] w-96'
+                  value={value.guarantorInfo.incomeSource}
+                  disabled={true}
+                />
+                <TextField
+                  className='bg-white border-[#0252CC] w-96'
+                  value={value.guarantorInfo.incomePerMonth}
+                  disabled={true}
+                />
               </div>
             </div>
           </div>
@@ -126,7 +236,11 @@ const PreviewForm = ({ handleModal }) => {
           <Button
             className='text-white bg-[#0267FF] rounded'
             label='Upload Data'
-            onClick={handleModal}
+            onClick={() => {
+              showUserFormData()
+              handleModal(false)
+              handleModalTwo(true)
+            }}
           />
         </div>
       </div>
