@@ -75,7 +75,7 @@ const Login = () => {
       setIsLoading(false)
     } else {
       try {
-        const response = await axios.post("/users/login", formData);
+        const response = await axios.post("/admins/login", formData);
         console.log(response.data.data);
         const data = response.data.data;
         const token = data.access_token;
