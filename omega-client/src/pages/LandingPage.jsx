@@ -1,7 +1,6 @@
 import React from 'react'
 import HomeNav from '../components/HomeNav'
-import Hamburger from '../components/Hamburger'
-import { Link } from 'react-router-dom'
+import Hamburger from '../components/Hamburger';
 
 const LandingPage = () => {
   return (
@@ -12,16 +11,15 @@ const LandingPage = () => {
         <div className=" flex flex-col lg:w-[581px] mt-4 lg:mt-[94px] lg:ml-[81px] gap-6 lg:gap-[40px] ">
           <div className=" text-[20px] lg:text-[40px] font-semibold text-blue-600 text-center lg:text-start">
             Experience the power of predictive analytics with our loan
-            prediction software - Omega
+            prediction software - No Debt
           </div>
           <div className="lg:w-[437.48px] lg:text-2xl text-[#666666] font-normal text-center lg:text-start">
-            Get ready to explore our range of data prediction tools and services.
+            Get ready to explore our range of loan products and find the one
+            that's right for your client.
           </div>
-          <Link to="/signup">
-            <button className="bg-blue-700 mt-[32px] lg:w-[417px] h-[63px] text-white">
-              Get Started &#8594;
-            </button>
-          </Link>
+          <button className="bg-blue-700 mt-[32px] lg:w-[417px] h-[63px] text-white">
+            Get Started &#8594;
+          </button>
         </div>
         <div className="flex items-center justify-center">
           <img
@@ -33,10 +31,7 @@ const LandingPage = () => {
       </div>
 
       <div className=" flex flex-col w-[100%] bg-[#FAFCFF] pt-8 lg:pt-[100px] mt-[32px]">
-        <div
-          className="mb-8 lg:mb-0 underline lg:text-[32px] text-[24px] lg:ml-[80px] text-[#0267FF] self-center lg:self-start"
-          id="services"
-        >
+        <div className="mb-8 lg:mb-0 underline lg:text-[32px] text-[24px] lg:ml-[80px] text-[#0267FF] self-center lg:self-start" id='services'>
           Our Services
         </div>
         <div className="flex flex-col-reverse lg:flex-row items-center justify-center px-8 lg:px-[80px] gap-[63px] lg:mb-6 mb-10">
@@ -45,8 +40,8 @@ const LandingPage = () => {
               1
             </div>
             <div className="lg:w-[627px] lg:h-[156px] lg:text-[32px] text-[#666666] flex items-center">
-              Help reduce the rate of loan defaults by using our advanced algorithms
-              to analyze your borrower data and receive predictions of default
+              Help reduce the rate of loan default by using advanced algorithms
+              to analyze the borrowers data and giving predictions of default
               possibilities.
             </div>
           </div>
@@ -72,8 +67,9 @@ const LandingPage = () => {
           </div>
 
           <div className=" w-[100%] lg:w-[627px] lg:h-[156px] lg:text-[32px] text-[#666666] flex items-center">
-            Borrowers with financial difficulties will be flagged sooner
-            rather than later, so you can address issues before they arise. This is proactive credit risk
+            Borrowers with financial difficulties will be flagged up sooner
+            rather than later. So you can address issues before they arise – and
+            before a customer defaults. This is proactive credit risk
             management.
           </div>
         </div>
@@ -84,8 +80,8 @@ const LandingPage = () => {
               3
             </div>
             <div className="lg:w-[627px] lg:h-[156px] lg:text-[32px] text-[#666666] flex items-center">
-              Our prediction model helps businesses by minimizing the risk associated with lending and
-              reducing the amount of potential defaulters.
+              The prediction model helps the bank by minimizing the risk and
+              reducing the number of defaulters.
             </div>
           </div>
 
@@ -97,6 +93,10 @@ const LandingPage = () => {
             />
           </div>
         </div>
+
+        <button className="bg-[#3585FF] mt-[32px] w-[300px] h-[61px] lg:w-[419px] lg:h-[61px] text-white rounded-[6px] self-center mb-[134px] mt-[65px]">
+          View All Services
+        </button>
       </div>
 
       <div className="w-[100%] bg-white mt-[75px] pb-[167px] flex flex-col lg:flex-row justify-between items-center ">
@@ -116,7 +116,8 @@ const LandingPage = () => {
             </div>
 
             <div className="text-[#999999] self-center w-[298px] h-[34px] text-[14px] mt-[20px]">
-              With Omega's prediction model, I can now efficiently vet my company's loan applicants.
+              I was able to monitor a loan given out to my borrowers this year ,
+              Thanks to No debt.
             </div>
           </div>
 
@@ -135,8 +136,8 @@ const LandingPage = () => {
             </div>
 
             <div className="text-[#999999] self-center w-[298px] h-[34px] text-[14px] mt-[20px]">
-              Thank to Omega, the lending process in my company is more
-              streamlined!
+              Thank to No debt, i could predict loan defaulting from most of my
+              company borrowers
             </div>
           </div>
 
@@ -155,8 +156,8 @@ const LandingPage = () => {
             </div>
 
             <div className="text-[#999999] self-center w-[298px] h-[34px] text-[14px] mt-[20px]">
-              I was able to monitor loans given out to my borrowers this year ,
-              thanks to Omega.
+              I was able to monitor a loan given out to my borrowers this year ,
+              Thanks to No debt.
             </div>
           </div>
 
@@ -175,8 +176,8 @@ const LandingPage = () => {
             </div>
 
             <div className="text-[#999999] self-center w-[298px] h-[34px] text-[14px] mt-[20px]">
-              I saved my job because I was able to detect a loan defaulter
-              earlier and faster
+              I could not lose my job because i was able to detect a loan
+              defaulter earlier and faster
             </div>
           </div>
 
@@ -195,7 +196,7 @@ const LandingPage = () => {
             </div>
 
             <div className="text-[#999999] self-center w-[298px] h-[34px] text-[14px] mt-[20px]">
-              I was able to monitor my borrowers' data and avoid default from
+              I was able to monitor my borrowers data and avoid default from
               them
             </div>
           </div>
@@ -209,17 +210,15 @@ const LandingPage = () => {
 
             <div className=" text-sm lg:text-[16px] font-normal lg:w-[475.58px] h-[115px] px-2 lg:px-0 text-justify lg:text-left ">
               Since its launch in 2020, more than 4,000,000 individuals have
-              utilized Omega to forecast loan outcomes and facilitate loan
+              utilized No Debt to forecast loan outcomes and facilitate loan
               disbursements. This software has effectively mitigated the
               elevated risk associated with lending by providing reliable
               predictions and enabling responsible loan allocation.
             </div>
 
-            <Link to="/signup">
-              <button className="lg:w-[296px] w-[196px] h-[56px] bg-[#013E99] text-white text-[20px] mt-4 mb-[60px] self-center lg:self-start  ">
-                Create free account
-              </button>
-            </Link>
+            <button className="self-start lg:w-[296px] w-[196px] h-[56px] bg-[#013E99] text-white text-[20px] mt-4 mb-[60px] self-center lg:self-start  ">
+              Create free account
+            </button>
           </div>
 
           <div className="flex gap-[20px] mb-[70.5px] justify-center lg:justify-start">
@@ -291,7 +290,7 @@ const LandingPage = () => {
             <div className=" text-[32px] font-[600]">Join Our Newsletter</div>
             <div className=" text-[24px] font-[600]">
               Subsribe to join our newsletter, where you get weekly emails from
-              our team
+              our teams
             </div>
           </div>
 
@@ -315,7 +314,7 @@ const LandingPage = () => {
           <div className="flex  lg:gap-[233px] gap-12 justify-center items-center pt-[66.5px]">
             <div className="flex flex-col justify-center items-center gap-[24px]">
               <div className="cursor-pointer">Products</div>
-              <div className="cursor-pointer">Omega</div>
+              <div className="cursor-pointer">No Debt</div>
               <div className="cursor-pointer">Loan</div>
               <div className="cursor-pointer">Loan default</div>
             </div>
@@ -335,13 +334,13 @@ const LandingPage = () => {
 
         <div className="flex flex-col justify-center items-center gap-[32px] px-4 lg:px-0">
           <div className="text-[16px] font-[500] lg:w-[876.41px] text-center">
-            Omega- unlock the potential of predictive modeling and credit risk
+            No Debt unlock the potential of predictive modeling and credit risk
             management to optimize your loan portfolio and drives businesses
             growth
           </div>
 
           <div className="text-[14px] font-[500] lg:w-[488px] text-center">
-            2020-2023 Omega Global Limited - RC 1222200
+            2020-2023 No Debt Global Limited - RC 1222200
           </div>
         </div>
       </div>

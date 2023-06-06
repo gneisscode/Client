@@ -32,7 +32,7 @@ const TextField = ({
         <div
           className={[
             className,
-            `flex items-center w-full lg:h-[50px] my-1 focus-within:border focus-within:border-primary rounded max-md:w-4/5 ${
+            `flex items-center w-full lg:h-[50px] my-1 focus-within:border focus-within:border-primary rounded ${
               error
                 ? 'border text-red-300 border-red-500 bg-[#fd3d3d0f]'
                 : 'border hover:border-[hsl(0, 0%, 80%)] border-[hsl(0, 0%, 70%)]'
