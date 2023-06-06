@@ -23,7 +23,7 @@ const SignUp = () => {
   });
 
   const [formErrors, setFormErrors] = useState({
-    frstName: '',
+    firstName: '',
     lastName:'',
     organisationName:'',
     email: '',
@@ -46,24 +46,28 @@ const SignUp = () => {
   const validateField = (fieldName, value) => {
     let errorMessage = ''
 
-    if (fieldName === 'name' && !value) {
-      errorMessage = 'Name is required'
-    } else if (fieldName === 'email' && !value) {
-      errorMessage = 'Email is required'
-    } else if (fieldName === 'email' && !/\S+@\S+\.\S+/.test(value)) {
-      errorMessage = 'Email is invalid'
-    } else if (fieldName === 'password' && !value) {
-      errorMessage = 'Password is required'
+    if (fieldName === "firstName" && !value) {
+      errorMessage = "First Name is required";
+    } else if (fieldName === "lastName" && !value) {
+      errorMessage = "Last Name is required";
+    } else if (fieldName === "email" && !value) {
+      errorMessage = "Email is required";
+    } else if (fieldName === "email" && !/\S+@\S+\.\S+/.test(value)) {
+      errorMessage = "Email is invalid";
+    } else if (fieldName === "password" && !value) {
+      errorMessage = "Password is required";
+    } else if (fieldName === "organisationName" && !value) {
+      errorMessage = "Organisation Name is required";
     } else if (
-      fieldName === 'password' &&
+      fieldName === "password" &&
       !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(
         value
       )
     ) {
       errorMessage =
-        'Password must be at least eight characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character (@$!%*?&)!'
-    } else if (fieldName === 'confirmPassword' && value !== formData.password) {
-      errorMessage = 'Passwords do not match!'
+        "Password must be at least eight characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character (@$!%*?&)!";
+    } else if (fieldName === "confirmPassword" && value !== formData.password) {
+      errorMessage = "Passwords do not match!";
     }
 
     setFormErrors((prevErrors) => ({
@@ -154,11 +158,11 @@ const SignUp = () => {
                 onChange={handleInputChange}
                 type="text"
                 autoComplete="firstName"
-                // className={formErrors.name ? "border-red-700" : ""}
+                className={formErrors.firstName ? "border-red-700" : ""}
               />
-              {/* {formErrors.firstName && (
-                <p className="text-red-500">{formErrors.name}</p>
-              )} */}
+              {formErrors.firstName && (
+                <p className="text-red-500">{formErrors.firstName}</p>
+              )}
             </div>
 
             <div className="mb-6">
@@ -169,11 +173,11 @@ const SignUp = () => {
                 onChange={handleInputChange}
                 type="text"
                 autoComplete="lastName"
-                // className={formErrors.name ? "border-red-700" : ""}
+                className={formErrors.lastName ? "border-red-700" : ""}
               />
-              {/* {formErrors.firstName && (
-                <p className="text-red-500">{formErrors.name}</p>
-              )} */}
+              {formErrors.lastName && (
+                <p className="text-red-500">{formErrors.lastName}</p>
+              )}
             </div>
             <div className="mb-6">
               <TextField
@@ -197,11 +201,11 @@ const SignUp = () => {
                 onChange={handleInputChange}
                 type="text"
                 autoComplete="organisationName"
-                // className={formErrors.password ? "border-red-700" : ""}
+                className={formErrors.organisationName? "border-red-700" : ""}
               />
-              {/* {formErrors.password && (
-                <p className="text-red-500">{formErrors.password}</p>
-              )} */}
+              {formErrors.organisationName && (
+                <p className="text-red-500">{formErrors.organisationName}</p>
+              )}
             </div>
             <div className="mb-6">
               <TextField
