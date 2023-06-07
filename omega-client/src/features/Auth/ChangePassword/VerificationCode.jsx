@@ -14,23 +14,29 @@ const VerificationCode = () => {
     const [formData, setFormData] = useState({
       fiveDigitToken: "",
     });
-  
+
     const handleChange = (e, index) => {
       const newOtp = [...otp];
       newOtp[index] = e.target.value;
       setOtp(newOtp);
-      setFormData({fiveDigitToken: parseInt(otp.join(''))})
-      console.log(otp)
+
+      const updatedToken = newOtp.join("");
+      setFormData({ ...formData, fiveDigitToken: parseInt(updatedToken) });
       console.log(formData)
     };
+
     const handleSubmit = async (event) => {
       event.preventDefault()
       try {
         const response = await axios.post(
           `/password-reset/${user.adminId}`, formData
         );
-        console.log(response.data.data);
-        const data = response.data.data;
+
+        if (response.data === "Token Validated") {
+          window.location.replace("/change-password");
+
+        }
+        console.log(response.data);
       } catch (error) {
         console.log(error);
       }
@@ -42,8 +48,8 @@ const VerificationCode = () => {
       <h2 className="text-blue-600 text-2xl">Enter Verification Code</h2>
       <p className="text-xl pb-4">Kindly enter the code sent to your mail</p>
       <div>
-        <Card className="p-14 flex flex-col items-center gap-10 ">
-          <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
+          <Card className="p-14 flex flex-col items-center gap-10 ">
             <div className="flex justify-center mt-5">
               {otp.map((digit, index) => (
                 <input
@@ -64,8 +70,8 @@ const VerificationCode = () => {
             </p>
 
             <PasswordBtn text="Verify" />
-          </form>
-        </Card>
+          </Card>
+        </form>
       </div>
     </div>
   );

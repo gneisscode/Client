@@ -1,9 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import TextField from "../../../../components/TextField";
+import { BorrowerFormData } from "./BorrowersData";
 
 const PersonalInfo = ({ extractedFields, pdf }) => {
   const [pdfFile, setPdfFile] = useState(pdf);
   const [formFields, setFormFields] = useState({ ...extractedFields });
+  const { value, setValue } = useContext(BorrowerFormData);
+
+  // useEffect(() => {
+  //   if (pdfFile && extractedFields) {
+  //     const updatedValue = { ...value };
+
+  //     Object.keys(extractedFields).forEach((key) => {
+  //       updatedValue[key] = extractedFields[key];
+  //     });
+
+  //     setValue(updatedValue);
+  //   }
+  // }, [pdfFile]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -20,6 +34,7 @@ const PersonalInfo = ({ extractedFields, pdf }) => {
       }));
       console.log(formFields);
     }
+
   };
   return (
     <div className="grid grid-cols-2 w-full gap-7 px-8 max-md:grid-cols-1">
@@ -32,7 +47,13 @@ const PersonalInfo = ({ extractedFields, pdf }) => {
             ? formFields.name || extractedFields.name || ""
             : formFields.name || ""
         }
-        onChange={handleInputChange}
+        onChange={(e) => {
+          handleInputChange(e);
+          setValue((prevValue) => ({
+            ...prevValue,
+            name: e.target.value,
+          }));
+        }}
       />
       <TextField
         className="bg-white border-[#0252CC]"
@@ -43,7 +64,13 @@ const PersonalInfo = ({ extractedFields, pdf }) => {
             ? formFields.phoneNumber || extractedFields.phoneNumber || ""
             : formFields.phoneNumber || ""
         }
-        onChange={handleInputChange}
+        onChange={(e) => {
+          handleInputChange(e);
+          setValue((prevValue) => ({
+            ...prevValue,
+            phoneNumber: e.target.value,
+          }));
+        }}
       />
       <TextField
         className="bg-white border-[#0252CC]"
@@ -54,7 +81,13 @@ const PersonalInfo = ({ extractedFields, pdf }) => {
             ? formFields.email || extractedFields.email || ""
             : formFields.email || ""
         }
-        onChange={handleInputChange}
+        onChange={(e) => {
+          handleInputChange(e);
+          setValue((prevValue) => ({
+            ...prevValue,
+            email: e.target.value,
+          }));
+        }}
       />
       <TextField
         className="bg-white border-[#0252CC]"
@@ -65,7 +98,13 @@ const PersonalInfo = ({ extractedFields, pdf }) => {
             ? formFields.DOB || extractedFields.DOB || ""
             : formFields.DOB || ""
         }
-        onChange={handleInputChange}
+        onChange={(e) => {
+          handleInputChange(e);
+          setValue((prevValue) => ({
+            ...prevValue,
+            DOB: e.target.value,
+          }));
+        }}
       />
       <TextField
         className="bg-white border-[#0252CC]"
@@ -76,7 +115,13 @@ const PersonalInfo = ({ extractedFields, pdf }) => {
             ? formFields.address || extractedFields.address || ""
             : formFields.address || ""
         }
-        onChange={handleInputChange}
+        onChange={(e) => {
+          handleInputChange(e);
+          setValue((prevValue) => ({
+            ...prevValue,
+            address: e.target.value,
+          }));
+        }}
       />
       <TextField
         className="bg-white border-[#0252CC]"
@@ -87,7 +132,13 @@ const PersonalInfo = ({ extractedFields, pdf }) => {
             ? formFields.nin || extractedFields.nin || ""
             : formFields.nin || ""
         }
-        onChange={handleInputChange}
+        onChange={(e) => {
+          handleInputChange(e);
+          setValue((prevValue) => ({
+            ...prevValue,
+            nin: e.target.value,
+          }));
+        }}
       />
       <TextField
         className="bg-white border-[#0252CC]"
@@ -98,7 +149,13 @@ const PersonalInfo = ({ extractedFields, pdf }) => {
             ? formFields.employment || extractedFields.employment || ""
             : formFields.employment || ""
         }
-        onChange={handleInputChange}
+        onChange={(e) => {
+          handleInputChange(e);
+          setValue((prevValue) => ({
+            ...prevValue,
+            employment: e.target.value,
+          }));
+        }}
       />
       <TextField
         className="bg-white border-[#0252CC]"
@@ -109,7 +166,13 @@ const PersonalInfo = ({ extractedFields, pdf }) => {
             ? formFields.income || extractedFields.income || ""
             : formFields.income || ""
         }
-        onChange={handleInputChange}
+        onChange={(e) => {
+          handleInputChange(e);
+          setValue((prevValue) => ({
+            ...prevValue,
+           income: e.target.value,
+          }));
+        }}
       />
     </div>
   );

@@ -58,7 +58,7 @@ const ForgotPassword = () => {
         const response = await axios.get(`/password-reset?email=${formData.email}`);
         console.log(response.data.data);
         const data = response.data.data;
-        window.location.replace("/verify");
+        window.location.replace("/verification-email");
       } catch (error) {
         console.log(error);
         if (
@@ -86,11 +86,12 @@ const ForgotPassword = () => {
         make sure you enter the correct email.
       </p>
       <div>
-        <Card className="p-14 flex flex-col items-center gap-10 ">
-          {formErrors.email && (
-            <p className="text-red-500">{formErrors.email}</p>
-          )}
-          <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
+          <Card className="p-14 flex flex-col items-center gap-10 ">
+            {formErrors.email && (
+              <p className="text-red-500">{formErrors.email}</p>
+            )}
+
             <input
               className={`border border-blue-600 w-[589px] h-[61px] p-6 ${
                 formErrors.email ? "border-red-700" : ""
@@ -101,14 +102,14 @@ const ForgotPassword = () => {
               onChange={handleInputChange}
               type="email"
             />
-          
-              <PasswordBtn text="Send" />
-          
-          </form>
-          <p className="text-blue-600 p-12 flex flex-col items-centre">
-            <Link to="/login">Back to sign in</Link>
-          </p>
-        </Card>
+
+            <PasswordBtn text="Send" />
+
+            <p className="text-blue-600 p-12 flex flex-col items-centre">
+              <Link to="/login">Back to sign in</Link>
+            </p>
+          </Card>
+        </form>
       </div>
     </div>
   );

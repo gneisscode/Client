@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import TextField from "../../../../components/TextField";
+import { BorrowerFormData } from "./BorrowersData";
 
 const Gurarantors = ({ extractedFields, pdf }) => {
   const [pdfFile, setPdfFile] = useState(pdf);
   const [formFields, setFormFields] = useState({ ...extractedFields });
+  const { value, setValue } = useContext(BorrowerFormData);
+
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -21,6 +24,7 @@ const Gurarantors = ({ extractedFields, pdf }) => {
       console.log(formFields);
     }
   };
+
   return (
     <div className="grid grid-cols-2 w-full gap-7 px-8">
       <TextField
@@ -32,7 +36,13 @@ const Gurarantors = ({ extractedFields, pdf }) => {
             ? formFields.guarantorName || extractedFields.guarantorName || ""
             : formFields.guarantorName || ""
         }
-        onChange={handleInputChange}
+        onChange={(e) => {
+          handleInputChange(e);
+          setValue((prevValue) => ({
+            ...prevValue,
+            guarantorName: e.target.value,
+          }));
+        }}
       />
       <TextField
         className="bg-white border-[#0252CC]"
@@ -45,7 +55,13 @@ const Gurarantors = ({ extractedFields, pdf }) => {
               ""
             : formFields.guarantorPhoneNumber || ""
         }
-        onChange={handleInputChange}
+        onChange={(e) => {
+          handleInputChange(e);
+          setValue((prevValue) => ({
+            ...prevValue,
+            guarantorPhoneNumber: e.target.value,
+          }));
+        }}
       />
       <TextField
         className="bg-white border-[#0252CC]"
@@ -56,7 +72,13 @@ const Gurarantors = ({ extractedFields, pdf }) => {
             ? formFields.guarantorEmail || extractedFields.guarantorEmail || ""
             : formFields.guarantorEmail || ""
         }
-        onChange={handleInputChange}
+        onChange={(e) => {
+          handleInputChange(e);
+          setValue((prevValue) => ({
+            ...prevValue,
+            guarantorEmail: e.target.value,
+          }));
+        }}
       />
       <TextField
         className="bg-white border-[#0252CC]"
@@ -67,7 +89,13 @@ const Gurarantors = ({ extractedFields, pdf }) => {
             ? formFields.guarantorDOB || extractedFields.guarantorDOB || ""
             : formFields.guarantorDOB || ""
         }
-        onChange={handleInputChange}
+        onChange={(e) => {
+          handleInputChange(e);
+          setValue((prevValue) => ({
+            ...prevValue,
+            guarantorDOB: e.target.value,
+          }));
+        }}
       />
       <TextField
         className="bg-white border-[#0252CC]"
@@ -80,7 +108,13 @@ const Gurarantors = ({ extractedFields, pdf }) => {
               ""
             : formFields.guarantorAddress || ""
         }
-        onChange={handleInputChange}
+        onChange={(e) => {
+          handleInputChange(e);
+          setValue((prevValue) => ({
+            ...prevValue,
+            guarantorAddress: e.target.value,
+          }));
+        }}
       />
       <TextField
         className="bg-white border-[#0252CC]"
@@ -91,7 +125,13 @@ const Gurarantors = ({ extractedFields, pdf }) => {
             ? formFields.guarantorNin || extractedFields.guarantorNIN || ""
             : formFields.guarantorNin || ""
         }
-        onChange={handleInputChange}
+        onChange={(e) => {
+          handleInputChange(e);
+          setValue((prevValue) => ({
+            ...prevValue,
+            guarantorNin: e.target.value,
+          }));
+        }}
       />
       <TextField
         className="bg-white border-[#0252CC]"
@@ -104,7 +144,13 @@ const Gurarantors = ({ extractedFields, pdf }) => {
               ""
             : formFields.guarantorRelationship || ""
         }
-        onChange={handleInputChange}
+        onChange={(e) => {
+          handleInputChange(e);
+          setValue((prevValue) => ({
+            ...prevValue,
+            guarantorRelationship: e.target.value,
+          }));
+        }}
       />
       <TextField
         className="bg-white border-[#0252CC]"
@@ -117,7 +163,13 @@ const Gurarantors = ({ extractedFields, pdf }) => {
               ""
             : formFields.guarantorEmployment || ""
         }
-        onChange={handleInputChange}
+        onChange={(e) => {
+          handleInputChange(e);
+          setValue((prevValue) => ({
+            ...prevValue,
+            guarantorEmployment: e.target.value,
+          }));
+        }}
       />
       <TextField
         className="bg-white border-[#0252CC]"
@@ -130,7 +182,13 @@ const Gurarantors = ({ extractedFields, pdf }) => {
               ""
             : formFields.guarantorOtherIncome || ""
         }
-        onChange={handleInputChange}
+        onChange={(e) => {
+          handleInputChange(e);
+          setValue((prevValue) => ({
+            ...prevValue,
+            guarantorOtherIncome: e.target.value,
+          }));
+        }}
       />
       <TextField
         className="bg-white border-[#0252CC]"
@@ -143,7 +201,13 @@ const Gurarantors = ({ extractedFields, pdf }) => {
               ""
             : formFields.guarantorIncome || ""
         }
-        onChange={handleInputChange}
+        onChange={(e) => {
+          handleInputChange(e);
+          setValue((prevValue) => ({
+            ...prevValue,
+            guarantorIncome: e.target.value,
+          }));
+        }}
       />
     </div>
   );

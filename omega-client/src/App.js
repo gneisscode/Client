@@ -31,6 +31,7 @@ import Profile from "./features/Dashboard/Dashboard/BorrowersProfile/Profile";
 import SavedData from "./features/Dashboard/SavedData/SavedData";
 import axios from "axios";
 import { Context } from "./context/Context";
+import Email from "./features/Auth/ChangePassword/Email";
 
 
 function App() {
@@ -79,9 +80,9 @@ function App() {
         <Route element={<Help />} path="/help" />
         <Route element={<ChangePasswordPage />} path="/change-password" />
         <Route element={<ForgotPasswordPage />} path="/forgot-password" />
-        <Route element={<VerificationCodePage />} path="/verify/:id"/>
+        <Route element={<VerificationCodePage />} path="/verify/:id" />
         <Route element={<ChangeSuccess />} path="/success" />
-  
+        <Route element={<Email />} path="/verification-email" />
         <Route element={<Error404 />} path="*" />
       </Routes>
     </>
