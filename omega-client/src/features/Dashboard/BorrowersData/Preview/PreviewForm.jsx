@@ -1,8 +1,12 @@
-import React from "react";
+import React, {useContext} from "react";
 import TextField from "../../../../components/TextField";
 import Button from "../../../../components/Button";
+import { BorrowerFormData } from "../InputData/BorrowersData";
+
 
 const PreviewForm = ({ handleModal }) => {
+  
+  const { value } = useContext(BorrowerFormData);
   return (
     <div className="border border-gray-200 absolute z-[100] top-0 left-0 right-0 w-full bg-black bg-opacity-30 pt-[110px]">
       <div className="max-w-[80%] bg-white ml-auto py-4">
@@ -18,22 +22,54 @@ const PreviewForm = ({ handleModal }) => {
 
           <div className="flex flex-col space-y-5 border-b pb-28 mt-[51px] px-20">
             <div className="flex gap-36">
-              <TextField className="bg-white border-[#0252CC] " />
-              <TextField className="bg-white border-[#0252CC] " />
+              <TextField
+                className="bg-white border-[#0252CC]  "
+                value={value.name}
+                disabled={true}
+              />
+              <TextField
+                className="bg-white border-[#0252CC] "
+                value={value.phoneNumber}
+                disabled={true}
+              />
             </div>
             <div className="flex gap-36">
-              <TextField className="bg-white border-[#0252CC] w-96" />
-              <TextField className="bg-white border-[#0252CC] w-96" />
+              <TextField
+                className="bg-white border-[#0252CC] w-96"
+                value={value.email}
+                disabled={true}
+              />
+              <TextField
+                className="bg-white border-[#0252CC] w-96"
+                value={value.DOB}
+                disabled={true}
+              />
             </div>
 
             <div className="flex gap-36">
-              <TextField className="bg-white border-[#0252CC] w-96" />
-              <TextField className="bg-white border-[#0252CC] w-96" />
+              <TextField
+                className="bg-white border-[#0252CC] w-96"
+                value={value.address}
+                disabled={true}
+              />
+              <TextField
+                className="bg-white border-[#0252CC] w-96"
+                value={value.nin}
+                disabled={true}
+              />
             </div>
 
             <div className="flex gap-36">
-              <TextField className="bg-white border-[#0252CC] w-96" />
-              <TextField className="bg-white border-[#0252CC] w-96" />
+              <TextField
+                className="bg-white border-[#0252CC] w-96"
+                value={value.employment}
+                disabled={true}
+              />
+              <TextField
+                className="bg-white border-[#0252CC] w-96"
+                value={value.income}
+                disabled={true}
+              />
             </div>
           </div>
         </div>
@@ -50,11 +86,19 @@ const PreviewForm = ({ handleModal }) => {
             </div>
             <div className="flex gap-36">
               <TextField className="bg-white border-[#0252CC] w-96" />
-              <TextField className="bg-white border-[#0252CC] w-96" />
+              <TextField
+                className="bg-white border-[#0252CC] w-96"
+                value={value.loanAmount}
+                disabled={true}
+              />
             </div>
 
             <div className="py-4 ">
-              <textarea className="bg-[#EEF5FC] border border-[#0252CC] w-full h-32 rounded"></textarea>
+              <textarea
+                className="bg-[#EEF5FC] border border-[#0252CC] w-full h-32 rounded"
+                value={value.loanPurpose}
+                disabled={true}
+              ></textarea>
             </div>
           </div>
 
@@ -64,10 +108,18 @@ const PreviewForm = ({ handleModal }) => {
             </div>
             <div className="flex gap-36">
               <TextField className="bg-white border-[#0252CC]" />
-              <TextField className="bg-white border-[#0252CC]" />
+              <TextField
+                className="bg-white border-[#0252CC]"
+                value={value.collateralValue}
+                disabled={true}
+              />
             </div>
             <div className="py-4">
-              <textarea className="bg-[#EEF5FC] border border-[#0252CC] w-full h-32 rounded"></textarea>
+              <textarea
+                className="bg-[#EEF5FC] border border-[#0252CC] w-full h-32 rounded"
+                value={value.collateralInfo}
+                disabled={true}
+              ></textarea>
             </div>
           </div>
 
@@ -77,27 +129,67 @@ const PreviewForm = ({ handleModal }) => {
             </div>
             <div className="space-y-5 ">
               <div className="flex gap-36">
-                <TextField className="bg-white border-[#0252CC] w-96" />
-                <TextField className="bg-white border-[#0252CC] w-96" />
+                <TextField
+                  className="bg-white border-[#0252CC] w-96"
+                  value={value.guarantorName}
+                  disabled={true}
+                />
+                <TextField
+                  className="bg-white border-[#0252CC] w-96"
+                  value={value.guarantorPhoneNumber}
+                  disabled={true}
+                />
               </div>
               <div className="flex gap-36">
-                <TextField className="bg-white border-[#0252CC] w-96" />
-                <TextField className="bg-white border-[#0252CC] w-96" />
+                <TextField
+                  className="bg-white border-[#0252CC] w-96"
+                  value={value.guarantorEmail}
+                  disabled={true}
+                />
+                <TextField
+                  className="bg-white border-[#0252CC] w-96"
+                  value={value.guarantorDOB}
+                  disabled={true}
+                />
               </div>
 
               <div className="flex gap-36">
-                <TextField className="bg-white border-[#0252CC] w-96" />
-                <TextField className="bg-white border-[#0252CC] w-96" />
+                <TextField
+                  className="bg-white border-[#0252CC] w-96"
+                  value={value.guarantorAddress}
+                  disabled={true}
+                />
+                <TextField
+                  className="bg-white border-[#0252CC] w-96"
+                  value={value.guarantorNin}
+                  disabled={true}
+                />
               </div>
 
               <div className="flex gap-36">
-                <TextField className="bg-white border-[#0252CC] w-96" />
-                <TextField className="bg-white border-[#0252CC] w-96" />
+                <TextField
+                  className="bg-white border-[#0252CC] w-96"
+                  value={value.guarantorRelationship}
+                  disabled={true}
+                />
+                <TextField
+                  className="bg-white border-[#0252CC] w-96"
+                  value={value.guarantorEmployment}
+                  disabled={true}
+                />
               </div>
 
               <div className="flex gap-36">
-                <TextField className="bg-white border-[#0252CC] w-96" />
-                <TextField className="bg-white border-[#0252CC] w-96" />
+                <TextField
+                  className="bg-white border-[#0252CC] w-96"
+                  value={value.guarantorOtherIncome}
+                  disabled={true}
+                />
+                <TextField
+                  className="bg-white border-[#0252CC] w-96"
+                  value={value.guarantorIncome}
+                  disabled={true}
+                />
               </div>
             </div>
           </div>

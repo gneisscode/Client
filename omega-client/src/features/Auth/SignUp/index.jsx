@@ -20,6 +20,7 @@ const SignUp = () => {
     organisationName: "",
     password: "",
     confirmPassword: "",
+    passwordLink: "https://omega-prediction-app.netlify.app/verify",
   });
 
   const [formErrors, setFormErrors] = useState({

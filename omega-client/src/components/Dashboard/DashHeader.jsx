@@ -1,7 +1,10 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { Link } from 'react-router-dom'
+import { Context } from '../../context/Context';
+
 
 const DashHeader = () => {
+  const { user } = useContext(Context);
   return (
     <div className='hidden lg:flex justify-between h-[112px] w-[100%] bg-[#FAFCFF] text-gray-400 border border-gray-100 items-end px-[80.11px] py-8 fixed top-0 left-0 z-[1000]'>
       <Link to='/'>
@@ -19,7 +22,7 @@ const DashHeader = () => {
       </div>
 
       <div className='flex gap-[52px] justify-center items-center self-center'>
-        <div>Hello, Admin</div>
+        <div>Hello, {user.email}</div>
 
         <Link to='/settings'>
           <img
