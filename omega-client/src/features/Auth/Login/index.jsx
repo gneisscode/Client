@@ -1,15 +1,16 @@
-import React, { useState, useContext } from "react";
-import AuthLayout from "../../../components/AuthLayout";
-import Button from "../../../components/Button";
-import TextField from "../../../components/TextField";
-import { Link } from "react-router-dom";
-import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { Context } from "../../../context/Context";
+import React, { useState, useContext } from 'react'
+import AuthLayout from '../../../components/AuthLayout'
+import Button from '../../../components/Button'
+import TextField from '../../../components/TextField'
+import { Link } from 'react-router-dom'
+import axios from 'axios'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import { Context } from '../../../context/Context'
 const Login = () => {
-  const { dispatch, isFetching } = useContext(Context);
-  const [isLoading, setIsLoading] = useState(false);
+  const [inputType, setInputType] = useState('password')
+  const { dispatch, isFetching } = useContext(Context)
+  const [isLoading, setIsLoading] = useState(false)
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -59,7 +60,6 @@ const Login = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    console.log(formData)
     const errors = {}
     setIsLoading(true)
 
@@ -75,15 +75,15 @@ const Login = () => {
       setIsLoading(false)
     } else {
       try {
-        const response = await axios.post("/admins/login", formData);
-        console.log(response.data.data);
-        const data = response.data.data;
-        const token = data.access_token;
-        localStorage.setItem("token", token);
-        dispatch({ type: "LOGIN_SUCCESS", payload: data });
-        showToastSuccess();
-        setIsLoading(false);
-        window.location.replace("/dashboard");
+        const response = await axios.post('/admins/login', formData)
+        console.log(response.data.data)
+        const data = response.data.data
+        const token = data.access_token
+        localStorage.setItem('token', token)
+        dispatch({ type: 'LOGIN_SUCCESS', payload: data })
+        showToastSuccess()
+        setIsLoading(false)
+        window.location.replace('/dashboard')
       } catch (error) {
         console.log(error)
         if (
@@ -96,9 +96,9 @@ const Login = () => {
         } else {
           setServerError('Network error: Please check your internet connection')
         }
-        showToastError();
-        setIsLoading(false);
-        dispatch({ type: "LOGIN_FAILURE" });
+        showToastError()
+        setIsLoading(false)
+        dispatch({ type: 'LOGIN_FAILURE' })
       }
     }
   }
@@ -142,15 +142,30 @@ const Login = () => {
                 <p className='text-red-500'>{formErrors.email}</p>
               )}
             </div>
-            <div className='mb-2'>
+            <div className='mb-2 relative'>
               <TextField
                 placeholder='Password:'
                 name='password'
                 value={formData.password}
                 onChange={handleInputChange}
-                type='password'
+                type={inputType}
                 className={formErrors.password ? 'border-red-700' : ''}
               />
+              {inputType === 'text' ? (
+                <img
+                  src='/assets/auth/eye-hidden.png'
+                  alt='Hide eye icon'
+                  className='absolute top-[12px] right-[12px]'
+                  onClick={() => setInputType('password')}
+                />
+              ) : (
+                <img
+                  src='/assets/auth/eye-shown.png'
+                  alt='Show eye icon'
+                  className='absolute top-[12px] right-[12px]'
+                  onClick={() => setInputType('text')}
+                />
+              )}
               {formErrors.password && (
                 <p className='text-red-500'>{formErrors.password}</p>
               )}
