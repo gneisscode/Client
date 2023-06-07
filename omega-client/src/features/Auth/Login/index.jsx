@@ -83,7 +83,7 @@ const Login = () => {
         dispatch({ type: 'LOGIN_SUCCESS', payload: data })
         showToastSuccess()
         setIsLoading(false)
-        window.location.replace('/dashboard')
+        // window.location.replace('/dashboard')
       } catch (error) {
         console.log(error)
         if (

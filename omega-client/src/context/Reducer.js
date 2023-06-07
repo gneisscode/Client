@@ -57,6 +57,7 @@ const Reducer = (state, action) => {
     case 'UPDATE_PROFILE-PIC':
       return {
         ...state,
+        photoURLUpdated: false,
         userPhotoURL: action.payload,
       }
 

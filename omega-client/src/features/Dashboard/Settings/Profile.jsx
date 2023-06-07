@@ -4,7 +4,10 @@ import axios from 'axios'
 
 const Profile = () => {
   const [selectedFile, setSelectedFile] = useState(null)
-  const [profilePic, setProfilePic] = useState('assets/dashboard/pp.png')
+  const { userPhotoURL } = useContext(Context)
+  const [profilePic, setProfilePic] = useState(
+    userPhotoURL || 'assets/dashboard/pp.png'
+  )
   const { user, dispatch } = useContext(Context)
 
   const [adminDetails, setAdminDetails] = useState({
@@ -211,6 +214,7 @@ const Profile = () => {
                   firstName: e.target.value,
                 })
               }
+              required
             />
             <input
               type='text'
@@ -223,6 +227,7 @@ const Profile = () => {
                   lastName: e.target.value,
                 })
               }
+              required
             />
             <input
               type='email'
