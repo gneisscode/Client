@@ -11,7 +11,7 @@ const Reducer = (state, action) => {
       return {
         user: action.payload,
         isFetching: false,
-        error: true,
+        error: false,
       }
 
     case 'LOGIN_FAILURE':
@@ -30,7 +30,7 @@ const Reducer = (state, action) => {
       return {
         user: action.payload,
         isFetching: false,
-        error: true,
+        error: false,
       }
 
     case 'UPDATE_FAILURE':
