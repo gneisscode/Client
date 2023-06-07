@@ -1,5 +1,4 @@
 import React, { createContext, useState, useEffect  } from 'react'
-// import React, { useState, useEffect } from 'react'
 import DashHeader from '../../../../components/Dashboard/DashHeader'
 import Sidebar from '../../../../components/Dashboard/Sidebar'
 import Card from '../../../../components/Card'
@@ -12,23 +11,9 @@ import Collateral from './Collateral'
 import Modal from '../../../../components/Modal/modal'
 import PreviewForm from '../Preview/PreviewForm'
 import { useNavigate } from 'react-router-dom'
-
-export const BorrowerFormData = createContext()
-import React, { useState, useEffect } from "react";
-import DashHeader from "../../../../components/Dashboard/DashHeader";
-import Sidebar from "../../../../components/Dashboard/Sidebar";
-import Card from "../../../../components/Card";
-import Button from "../../../../components/Button";
-import Circle from "../../../../components/Circle/circle";
-import PersonalInfo from "./PersonalInfo";
-import Gurarantors from "./Gurarantors";
-import Loan from "./Loan";
-import Collateral from "./Collateral";
-import Modal from "../../../../components/Modal/modal";
-import PreviewForm from "../Preview/PreviewForm";
-import { useNavigate } from "react-router-dom";
 import { PDFDocument } from "pdf-lib";
 
+export const BorrowerFormData = createContext()
 const BorrowersData = () => {
   const navigate = useNavigate();
   const slides = [0, 1, 2, 3];
