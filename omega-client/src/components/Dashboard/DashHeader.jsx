@@ -24,12 +24,13 @@ const DashHeader = () => {
       <div className="flex gap-[52px] justify-center items-center self-center">
         {user && <div>Hello, {user.email}</div>}
 
-        <Link to="/settings">
-          {userPhotoURL ? (
+        <Link to='/settings'>
+
+          {user.imageUrl || userPhotoURL ? (
             <img
-              src={userPhotoURL}
-              className="w-[50px] h-[50px]"
-              alt=""
+              src={user.imageUrl || userPhotoURL}
+              className='w-[50px] h-[50px] rounded-full'
+              alt=''
             />
           ) : (
             <img
