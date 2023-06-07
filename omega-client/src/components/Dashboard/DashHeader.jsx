@@ -25,10 +25,11 @@ const DashHeader = () => {
         <div>Hello, {user.email}</div>
 
         <Link to='/settings'>
+
           {user.imageUrl || userPhotoURL ? (
             <img
               src={user.imageUrl || userPhotoURL}
-              className='w-[50px] h-[50px]'
+              className='w-[50px] h-[50px] rounded-full'
               alt=''
             />
           ) : (
