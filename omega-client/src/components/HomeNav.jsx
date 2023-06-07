@@ -7,8 +7,7 @@ import { Context } from '../context/Context'
 
 const HomeNav = () => {
   const location = useLocation()
-  const { user } = useContext(Context)
-  const { dispatch, isFetching, userPhotoURL } = useContext(Context)
+  const { dispatch, isFetching, user, userPhotoURL } = useContext(Context)
   const handleLogout = () => {
     dispatch({ type: 'LOGOUT' })
   }
@@ -50,8 +49,12 @@ const HomeNav = () => {
 
       {user ? (
         <div className='flex gap-6 justify-center items-center'>
-          {userPhotoURL ? (
-            <img src={userPhotoURL} className='w-[50px] h-[50px]  rounded-full' alt='' />
+          {user.imageUrl || userPhotoURL ? (
+            <img
+              src={user.imageUrl || userPhotoURL}
+              className='w-[50px] h-[50px] rounded-full'
+              alt=''
+            />
           ) : (
             <img
               src='assets/dashboard/dp.png'
