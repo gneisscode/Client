@@ -78,7 +78,7 @@ function App() {
         <Route element={<AddAdmin />} path="/add-admin" />
         <Route element={<Settings />} path="/settings" />
         <Route element={<Help />} path="/help" />
-        <Route element={<ChangePasswordPage />} path="/change-password" />
+        <Route element={<ChangePasswordPage />} path="/change-password/:id" />
         <Route element={<ForgotPasswordPage />} path="/forgot-password" />
         <Route element={<VerificationCodePage />} path="/verify/:id" />
         <Route element={<ChangeSuccess />} path="/success" />

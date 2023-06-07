@@ -2,13 +2,17 @@ import LockIcon from '../../../components/LockIcon';
 import Card from '../../../components/Card';
 import PasswordBtn from '../../../components/PasswordBtn';
 import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Context } from '../../../context/Context';
 import axios from 'axios';
 
 
 const VerificationCode = () => {
   const { user } = useContext(Context);
+  const location = useLocation()
+  const id = location.pathname.split('/')[2]
+
+  
   
     const [otp, setOtp] = useState(['', '', '', '', '']);
     const [formData, setFormData] = useState({
@@ -29,11 +33,11 @@ const VerificationCode = () => {
       event.preventDefault()
       try {
         const response = await axios.post(
-          `/password-reset/${user.adminId}`, formData
+          `/password-reset/${id}`, formData
         );
 
         if (response.data === "Token Validated") {
-          window.location.replace("/change-password");
+          window.location.replace(`/change-password/${id}`);
 
         }
         console.log(response.data);

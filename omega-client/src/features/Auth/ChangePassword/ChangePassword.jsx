@@ -2,10 +2,13 @@ import React, {useState} from 'react'
 import LockIcon from '../../../components/LockIcon';
 import Card from '../../../components/Card'
 import PasswordBtn from '../../../components/PasswordBtn'
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 const ChangePassword = () => {
+  const location = useLocation();
+  const id = location.pathname.split("/")[2];
+
    const [formData, setFormData] = useState({
      secret_key: 12345,
      password: "",
@@ -17,7 +20,7 @@ const ChangePassword = () => {
       confirmPassword: "",
     });
      const [serverError, setServerError] = useState("");
-    const id= useParams()
+  
 
      const handleInputChange = (e) => {
        const { name, value } = e.target;
@@ -61,7 +64,7 @@ const ChangePassword = () => {
         } else {
           try {
             const response = await axios.put(
-              "/password-reset/647f4f9f1d3cde7e43110c51",formData
+              `/password-reset/${id}`,formData
             );
             console.log(response.data);
             window.location.replace("/success");
