@@ -22,6 +22,7 @@ const SignUp = () => {
     organisationName: '',
     password: '',
     confirmPassword: '',
+    passwordLink: 'https://omega-prediction-app.netlify.app/verify',
   })
 
   const [formErrors, setFormErrors] = useState({
@@ -48,14 +49,18 @@ const SignUp = () => {
   const validateField = (fieldName, value) => {
     let errorMessage = ''
 
-    if (fieldName === 'name' && !value) {
-      errorMessage = 'Name is required'
+    if (fieldName === 'firstName' && !value) {
+      errorMessage = 'First Name is required'
+    } else if (fieldName === 'lastName' && !value) {
+      errorMessage = 'Last Name is required'
     } else if (fieldName === 'email' && !value) {
       errorMessage = 'Email is required'
     } else if (fieldName === 'email' && !/\S+@\S+\.\S+/.test(value)) {
       errorMessage = 'Email is invalid'
     } else if (fieldName === 'password' && !value) {
       errorMessage = 'Password is required'
+    } else if (fieldName === 'organisationName' && !value) {
+      errorMessage = 'Organisation Name is required'
     } else if (
       fieldName === 'password' &&
       !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(
@@ -156,11 +161,11 @@ const SignUp = () => {
                 onChange={handleInputChange}
                 type='text'
                 autoComplete='firstName'
-                // className={formErrors.name ? "border-red-700" : ""}
+                className={formErrors.firstName ? 'border-red-700' : ''}
               />
-              {/* {formErrors.firstName && (
-                <p className="text-red-500">{formErrors.name}</p>
-              )} */}
+              {formErrors.firstName && (
+                <p className='text-red-500'>{formErrors.firstName}</p>
+              )}
             </div>
 
             <div className='mb-6'>
@@ -171,11 +176,11 @@ const SignUp = () => {
                 onChange={handleInputChange}
                 type='text'
                 autoComplete='lastName'
-                // className={formErrors.name ? "border-red-700" : ""}
+                className={formErrors.lastName ? 'border-red-700' : ''}
               />
-              {/* {formErrors.firstName && (
-                <p className="text-red-500">{formErrors.name}</p>
-              )} */}
+              {formErrors.lastName && (
+                <p className='text-red-500'>{formErrors.lastName}</p>
+              )}
             </div>
             <div className='mb-6'>
               <TextField
@@ -199,11 +204,11 @@ const SignUp = () => {
                 onChange={handleInputChange}
                 type='text'
                 autoComplete='organisationName'
-                // className={formErrors.password ? "border-red-700" : ""}
+                className={formErrors.organisationName ? 'border-red-700' : ''}
               />
-              {/* {formErrors.password && (
-                <p className="text-red-500">{formErrors.password}</p>
-              )} */}
+              {formErrors.organisationName && (
+                <p className='text-red-500'>{formErrors.organisationName}</p>
+              )}
             </div>
             <div className='mb-6 relative'>
               <TextField
