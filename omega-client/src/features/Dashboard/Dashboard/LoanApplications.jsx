@@ -38,7 +38,7 @@ const LoanApplications = () => {
         <Sidebar />
         <div className="pl-[52px] py-[40px] w-[982px] font-semibold text-[#666666] absolute top-[112px] left-[300px]">
           <div className="w-[982px]">
-            <h4 className="text-[#0267FF] font-[600] text-[24px] w-[208px]">
+            <h4 className="text-[#0267FF] font-[600] text-[24px] w-[408px]">
               Loan Applications
             </h4>
           </div>
