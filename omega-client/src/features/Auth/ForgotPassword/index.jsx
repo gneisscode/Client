@@ -1,8 +1,9 @@
-import React from 'react'
-import LockIcon from '../../../components/LockIcon'
-import Card from '../../../components/Card';
-import PasswordBtn from '../../../components/PasswordBtn';
+import React, {useState} from "react";
+import LockIcon from "../../../components/LockIcon";
+import Card from "../../../components/Card";
+import PasswordBtn from "../../../components/PasswordBtn";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const ForgotPassword = () => {
   const [formData, setFormData] = useState({
@@ -76,8 +77,6 @@ const ForgotPassword = () => {
     }
   };
 
-
-const ForgotPassword = () => {
   return (
     <div className="flex flex-col items-center gap-4 p-10">
       <LockIcon />
@@ -111,10 +110,9 @@ const ForgotPassword = () => {
             </p>
           </Card>
         </form>
-
       </div>
     </div>
   );
 };
 
-export default ForgotPassword
+export default ForgotPassword;
