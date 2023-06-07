@@ -57,7 +57,7 @@ function App() {
         />
         <Route
           element={user ? <DashboardPage /> : <SignUpPage />}
-          path='/signup.'
+          path='/signup'
         />
         <Route
           element={user ? <DashboardPage /> : <LoginPage />}
