@@ -15,8 +15,9 @@ const Security = () => {
   });
 
   const [formErrors, setFormErrors] = useState({
-    password: "",
-    confirmPassword: "",
+    oldPassword: "",
+    newPassword: "",
+    confirmNewPassword: "",
   });
   const [serverError, setServerError] = useState("");
 
@@ -33,10 +34,12 @@ const Security = () => {
    const validateField = (fieldName, value) => {
      let errorMessage = "";
 
-     if (fieldName === "email" && !value) {
-       errorMessage = "Email is required";
-     } else if (fieldName === "email" && !/\S+@\S+\.\S+/.test(value)) {
-       errorMessage = "Email is invalid";
+     if (fieldName === "oldPassword" && !value) {
+       errorMessage = "Old Password is required";
+     } if (fieldName === "newPassword" && !value) {
+       errorMessage = "New Password is required";
+     }if (fieldName === "confirmNewPassword" && value !== formData.newPassword) {
+       errorMessage = "Passwords do not match!";
      }
 
      setFormErrors((prevErrors) => ({
@@ -125,29 +128,48 @@ const Security = () => {
       <form onSubmit={handleSubmit}>
         <div className="flex flex-col gap-[48px] mt-[43px] mb-[111px]">
           <input
-            className="w-[462px] h-[60px] border border-[#666666] p-4 bg-[#FAFCFF] rounded "
+            className={`w-[462px] h-[60px] border ${
+              formErrors.oldPassword ? "border-red-700" : "border-[#666666]"
+            } p-4 bg-[#FAFCFF] rounded outline-none`}
             placeholder="Old Password"
             name="oldPassword"
             value={formData.oldPassword}
             onChange={handleInputChange}
             type="password"
           />
+          {formErrors.oldPassword && (
+            <p className="text-red-500 self-start">{formErrors.oldPassword}</p>
+          )}
           <input
-            className="w-[462px] h-[60px] border border-[#666666] p-4 bg-[#FAFCFF] rounded "
+            className={`w-[462px] h-[60px] border ${
+              formErrors.newPassword ? "border-red-700" : "border-[#666666]"
+            } p-4 bg-[#FAFCFF] rounded outline-none`}
             placeholder="New Password"
             name="newPassword"
             value={formData.newPassword}
             onChange={handleInputChange}
             type="password"
           />
+          {formErrors.newPassword && (
+            <p className="text-red-500  self-start">{formErrors.newPassword}</p>
+          )}
           <input
-            className="w-[462px] h-[60px] border border-[#666666] p-4 bg-[#FAFCFF] rounded "
+            className={`w-[462px] h-[60px] border ${
+              formErrors.confirmNewPassword
+                ? "border-red-700"
+                : "border-[#666666] "
+            } p-4 bg-[#FAFCFF] rounded outline-none`}
             placeholder="Confirm New Password"
             name="confirmNewPassword"
             value={formData.confirmNewPassword}
             onChange={handleInputChange}
             type="password"
           />
+          {formErrors.confirmNewPassword && (
+            <p className="text-red-500  self-start">
+              {formErrors.confirmNewPassword}
+            </p>
+          )}
         </div>
         <button
           className="w-[462px] h-[61px] bg-[#0267FF] text-[24px] font-[600] text-white rounded mb-8"
