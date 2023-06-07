@@ -10,22 +10,25 @@ import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 const SignUp = () => {
+  const [inputTypeOne, setInputTypeOne] = useState('password')
+  const [inputTypeTwo, setInputTypeTwo] = useState('password')
   const [isModalOpen, setIsModalOpen] = useState(false)
   const openModal = () => setIsModalOpen(true)
   const closeModal = () => setIsModalOpen(false)
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    organisationName: "",
-    password: "",
-    confirmPassword: "",
-  });
+    firstName: '',
+    lastName: '',
+    email: '',
+    organisationName: '',
+    password: '',
+    confirmPassword: '',
+    passwordLink: 'https://omega-prediction-app.netlify.app/verify',
+  })
 
   const [formErrors, setFormErrors] = useState({
     firstName: '',
-    lastName:'',
-    organisationName:'',
+    lastName: '',
+    organisationName: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -46,28 +49,28 @@ const SignUp = () => {
   const validateField = (fieldName, value) => {
     let errorMessage = ''
 
-    if (fieldName === "firstName" && !value) {
-      errorMessage = "First Name is required";
-    } else if (fieldName === "lastName" && !value) {
-      errorMessage = "Last Name is required";
-    } else if (fieldName === "email" && !value) {
-      errorMessage = "Email is required";
-    } else if (fieldName === "email" && !/\S+@\S+\.\S+/.test(value)) {
-      errorMessage = "Email is invalid";
-    } else if (fieldName === "password" && !value) {
-      errorMessage = "Password is required";
-    } else if (fieldName === "organisationName" && !value) {
-      errorMessage = "Organisation Name is required";
+    if (fieldName === 'firstName' && !value) {
+      errorMessage = 'First Name is required'
+    } else if (fieldName === 'lastName' && !value) {
+      errorMessage = 'Last Name is required'
+    } else if (fieldName === 'email' && !value) {
+      errorMessage = 'Email is required'
+    } else if (fieldName === 'email' && !/\S+@\S+\.\S+/.test(value)) {
+      errorMessage = 'Email is invalid'
+    } else if (fieldName === 'password' && !value) {
+      errorMessage = 'Password is required'
+    } else if (fieldName === 'organisationName' && !value) {
+      errorMessage = 'Organisation Name is required'
     } else if (
-      fieldName === "password" &&
+      fieldName === 'password' &&
       !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(
         value
       )
     ) {
       errorMessage =
-        "Password must be at least eight characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character (@$!%*?&)!";
-    } else if (fieldName === "confirmPassword" && value !== formData.password) {
-      errorMessage = "Passwords do not match!";
+        'Password must be at least eight characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character (@$!%*?&)!'
+    } else if (fieldName === 'confirmPassword' && value !== formData.password) {
+      errorMessage = 'Passwords do not match!'
     }
 
     setFormErrors((prevErrors) => ({
@@ -127,158 +130,188 @@ const SignUp = () => {
   return (
     <AuthLayout>
       <ToastContainer />
-      <section className="lg:mt-8 mt-24 justify-center items-center lg:px-28 px-4">
-        <Link to="/">
-          <div className="cursor-pointer">
-            <img src="/assets/auth/backIcon.svg" alt="" />
+      <section className='lg:mt-8 mt-24 justify-center items-center lg:px-28 px-4'>
+        <Link to='/'>
+          <div className='cursor-pointer'>
+            <img src='/assets/auth/backIcon.svg' alt='' />
           </div>
         </Link>
         <div>
-          <h3 className=" mt-2  lg:text-4xl text-white text-center text-[1.5rem] leading-4">
+          <h3 className=' mt-2  lg:text-4xl text-white text-center text-[1.5rem] leading-4'>
             Create an account
           </h3>
-          <p className="my-2 text-center text-[#e5e5e5df] text-base font-normal">
+          <p className='my-2 text-center text-[#e5e5e5df] text-base font-normal'>
             Sign up to get an account
           </p>
-          <p className="my-5 mb-10 text-center text-[#e5e5e5df] text-base font-normal">
+          <p className='my-5 mb-10 text-center text-[#e5e5e5df] text-base font-normal'>
             Already have an account?
-            <span className="font-bold text-white ml-2">
-              <Link to="/login">Log in</Link>
+            <span className='font-bold text-white ml-2'>
+              <Link to='/login'>Log in</Link>
             </span>
           </p>
 
-          {serverError && <p className="text-red-500">{serverError}</p>}
+          {serverError && <p className='text-red-500'>{serverError}</p>}
 
-          <form className="text-white" onSubmit={handleSubmit}>
-            <div className="mb-6">
+          <form className='text-white' onSubmit={handleSubmit}>
+            <div className='mb-6'>
               <TextField
-                placeholder="First Name:"
-                name="firstName"
+                placeholder='First Name:'
+                name='firstName'
                 value={formData.firstName}
                 onChange={handleInputChange}
-                type="text"
-                autoComplete="firstName"
-                className={formErrors.firstName ? "border-red-700" : ""}
+                type='text'
+                autoComplete='firstName'
+                className={formErrors.firstName ? 'border-red-700' : ''}
               />
               {formErrors.firstName && (
-                <p className="text-red-500">{formErrors.firstName}</p>
+                <p className='text-red-500'>{formErrors.firstName}</p>
               )}
             </div>
 
-            <div className="mb-6">
+            <div className='mb-6'>
               <TextField
-                placeholder="Last Name:"
-                name="lastName"
+                placeholder='Last Name:'
+                name='lastName'
                 value={formData.lastName}
                 onChange={handleInputChange}
-                type="text"
-                autoComplete="lastName"
-                className={formErrors.lastName ? "border-red-700" : ""}
+                type='text'
+                autoComplete='lastName'
+                className={formErrors.lastName ? 'border-red-700' : ''}
               />
               {formErrors.lastName && (
-                <p className="text-red-500">{formErrors.lastName}</p>
+                <p className='text-red-500'>{formErrors.lastName}</p>
               )}
             </div>
-            <div className="mb-6">
+            <div className='mb-6'>
               <TextField
-                placeholder="Email Address:"
-                name="email"
+                placeholder='Email Address:'
+                name='email'
                 value={formData.email}
                 onChange={handleInputChange}
-                type="email"
-                autoComplete="email"
-                className={formErrors.email ? "border-red-700" : ""}
+                type='email'
+                autoComplete='email'
+                className={formErrors.email ? 'border-red-700' : ''}
               />
               {formErrors.email && (
-                <p className="text-red-500">{formErrors.email}</p>
+                <p className='text-red-500'>{formErrors.email}</p>
               )}
             </div>
-            <div className="mb-6">
+            <div className='mb-6'>
               <TextField
-                placeholder="Organisation Name:"
-                name="organisationName"
+                placeholder='Organisation Name:'
+                name='organisationName'
                 value={formData.organisationName}
                 onChange={handleInputChange}
-                type="text"
-                autoComplete="organisationName"
-                className={formErrors.organisationName? "border-red-700" : ""}
+                type='text'
+                autoComplete='organisationName'
+                className={formErrors.organisationName ? 'border-red-700' : ''}
               />
               {formErrors.organisationName && (
-                <p className="text-red-500">{formErrors.organisationName}</p>
+                <p className='text-red-500'>{formErrors.organisationName}</p>
               )}
             </div>
-            <div className="mb-6">
+            <div className='mb-6 relative'>
               <TextField
-                placeholder="Password:"
-                name="password"
+                placeholder='Password:'
+                name='password'
                 value={formData.password}
                 onChange={handleInputChange}
-                type="password"
-                autoComplete="password"
-                className={formErrors.password ? "border-red-700" : ""}
+                type={inputTypeOne}
+                autoComplete='password'
+                className={formErrors.password ? 'border-red-700' : ''}
               />
+              {inputTypeOne === 'text' ? (
+                <img
+                  src='/assets/auth/eye-hidden.png'
+                  alt='Hide eye icon'
+                  className='absolute top-[12px] right-[12px]'
+                  onClick={() => setInputTypeOne('password')}
+                />
+              ) : (
+                <img
+                  src='/assets/auth/eye-shown.png'
+                  alt='Show eye icon'
+                  className='absolute top-[12px] right-[12px]'
+                  onClick={() => setInputTypeOne('text')}
+                />
+              )}
               {formErrors.password && (
-                <p className="text-red-500">{formErrors.password}</p>
+                <p className='text-red-500'>{formErrors.password}</p>
               )}
             </div>
 
-            <div className="mb-6">
+            <div className='mb-6 relative'>
               <TextField
-                placeholder="Confirm Password:"
-                name="confirmPassword"
+                placeholder='Confirm Password:'
+                name='confirmPassword'
                 value={formData.confirmPassword}
                 onChange={handleInputChange}
-                type="password"
-                autoComplete="confirmPassword"
-                className={formErrors.confirmPassword ? "border-red-700" : ""}
+                type={inputTypeTwo}
+                autoComplete='confirmPassword'
+                className={formErrors.confirmPassword ? 'border-red-700' : ''}
               />
+              {inputTypeTwo === 'text' ? (
+                <img
+                  src='/assets/auth/eye-hidden.png'
+                  alt='Hide eye icon'
+                  className='absolute top-[12px] right-[12px]'
+                  onClick={() => setInputTypeTwo('password')}
+                />
+              ) : (
+                <img
+                  src='/assets/auth/eye-shown.png'
+                  alt='Show eye icon'
+                  className='absolute top-[12px] right-[12px]'
+                  onClick={() => setInputTypeTwo('text')}
+                />
+              )}
               {formErrors.confirmPassword && (
-                <p className="text-red-500">{formErrors.confirmPassword}</p>
+                <p className='text-red-500'>{formErrors.confirmPassword}</p>
               )}
             </div>
             <Button
-              className="text-[#012966] mt-5 bg-white"
-              label="Sign Up"
-              type="submit"
+              className='text-[#012966] mt-5 bg-white'
+              label='Sign Up'
+              type='submit'
               loading={isLoading}
             />
           </form>
 
           <div>
             <Modal isOpen={isModalOpen} onClose={closeModal}>
-              <section className="w-[500px] bg-slate-200 p-16 flex flex-col items-center justify-center">
-                <div className="mb-5">
-                  <img src="/assets/auth/modalImage.svg" alt="" />
+              <section className='w-[500px] bg-slate-200 p-16 flex flex-col items-center justify-center'>
+                <div className='mb-5'>
+                  <img src='/assets/auth/modalImage.svg' alt='' />
                 </div>
-                <p className="text-black text-center mb-5">
+                <p className='text-black text-center mb-5'>
                   You now have an account, please go ahead to Log into your
                   account
                 </p>
-                <Link to="/login" className="link w-64">
+                <Link to='/login' className='link w-64'>
                   <Button
-                    className="text-white bg-[#0267FF] w-64"
-                    label="Log In"
+                    className='text-white bg-[#0267FF] w-64'
+                    label='Log In'
                   />
                 </Link>
               </section>
             </Modal>
           </div>
 
-          <div className="grid grid-cols-3 mt-7 items-center">
-            <hr className="border-[#013E99]" />
-            <p className="text-center text-[#e5e5e5df]">Or continue with</p>
-            <hr className="border-[#013E99]" />
+          <div className='grid grid-cols-3 mt-7 items-center'>
+            <hr className='border-[#013E99]' />
+            <p className='text-center text-[#e5e5e5df]'>Or continue with</p>
+            <hr className='border-[#013E99]' />
           </div>
 
-          <div className="grid grid-cols-3 mt-7 items-center justify-items-center">
-            <img src="/assets/auth/email.svg" alt="" />
-            <img src="/assets/auth/google.svg" alt="" />
-            <img src="/assets/auth/apple-icon.svg" alt="" />
+          <div className='grid grid-cols-3 mt-7 items-center justify-items-center'>
+            <img src='/assets/auth/email.svg' alt='' />
+            <img src='/assets/auth/google.svg' alt='' />
+            <img src='/assets/auth/apple-icon.svg' alt='' />
           </div>
         </div>
       </section>
     </AuthLayout>
-  );
+  )
 }
 
 export default SignUp

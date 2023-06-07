@@ -20,7 +20,7 @@ const Settings = () => {
         <div className="flex flex-col pl-[54px] pt-[40px] w-[982px] absolute top-[112px] left-[300px]">
           <div className="text-[24px] text-[#0267FF] font-[600]">Settings</div>
 
-          <div className="flex gap-[56px] mt-[24px]">
+          <div className="flex gap-[36px] mt-[24px]">
             <div
               onClick={() => handlePage(<Profile />)}
               className={`cursor-pointer text-[24px] font-[400] ${
@@ -31,7 +31,7 @@ const Settings = () => {
             >
               Profile
             </div>
-            <div
+            {/* <div
               onClick={() => handlePage(<Notifications />)}
               className={`cursor-pointer text-[24px] font-[400] ${
                 currentPage.type === Notifications
@@ -40,7 +40,7 @@ const Settings = () => {
               }`}
             >
               Notifications
-            </div>
+            </div> */}
             <div
               onClick={() => handlePage(<Security />)}
               className={`cursor-pointer text-[24px] font-[400] ${

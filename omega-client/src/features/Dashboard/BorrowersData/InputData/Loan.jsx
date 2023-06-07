@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import TextField from "../../../../components/TextField";
 import SelectDropdown from "../../../../components/SelectDropDown/SelectDropDown";
+import { BorrowerFormData } from "./BorrowersData";
 
 const Loan = ({ extractedFields, pdf }) => {
   const [loanType, setLoanType] = useState(undefined);
@@ -18,6 +19,9 @@ const Loan = ({ extractedFields, pdf }) => {
   ];
   const [pdfFile, setPdfFile] = useState(pdf);
   const [formFields, setFormFields] = useState({ ...extractedFields });
+  const { value, setValue } = useContext(BorrowerFormData);
+
+
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -63,7 +67,13 @@ const Loan = ({ extractedFields, pdf }) => {
               ? formFields.loanAmount || extractedFields.loanAmount || ""
               : formFields.loanAmount || ""
           }
-          onChange={handleInputChange}
+          onChange={(e) => {
+            handleInputChange(e);
+            setValue((prevValue) => ({
+              ...prevValue,
+              loanAmount: e.target.value,
+            }));
+          }}
         />
       </div>
       <div className="px-8 mt-12">
@@ -76,7 +86,13 @@ const Loan = ({ extractedFields, pdf }) => {
               ? formFields.loanPurpose || extractedFields.loanPurpose || ""
               : formFields.loanPurpose || ""
           }
-          onChange={handleInputChange}
+          onChange={(e) => {
+            handleInputChange(e);
+            setValue((prevValue) => ({
+              ...prevValue,
+              loanPurpose: e.target.value,
+            }));
+          }}
         ></textarea>
       </div>
     </>

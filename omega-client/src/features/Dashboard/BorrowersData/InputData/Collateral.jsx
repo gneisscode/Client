@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import TextField from "../../../../components/TextField";
 import SelectDropdown from "../../../../components/SelectDropDown/SelectDropDown";
+import { BorrowerFormData } from "./BorrowersData";
 
 const Collateral = ({ extractedFields, pdf }) => {
   const [collateralType, setCollateralType] = useState(undefined);
   const [pdfFile, setPdfFile] = useState(pdf);
   const [formFields, setFormFields] = useState({ ...extractedFields });
+  const { value, setValue } = useContext(BorrowerFormData);
+
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -22,6 +25,8 @@ const Collateral = ({ extractedFields, pdf }) => {
       }));
       console.log(formFields);
     }
+    
+    console.log(value)
   };
 
   const collateralsType = [
@@ -29,6 +34,9 @@ const Collateral = ({ extractedFields, pdf }) => {
     { id: 2, label: "Collateral 2", value: "Collateral 2" },
     { id: 3, label: "Collateral 3", value: "Collateral 3" },
   ];
+  useEffect(() => {
+    console.log(value);
+  }, [value]);
 
   console.log({ collateralType });
   return (
@@ -52,7 +60,14 @@ const Collateral = ({ extractedFields, pdf }) => {
                 ""
               : formFields.collateralValue || ""
           }
-          onChange={handleInputChange}
+          onChange={(e) => {
+            handleInputChange(e);
+           setValue((prevValue) => ({
+             ...prevValue,
+             collateralValue: e.target.value,
+           }));
+            console.log(value);
+          }}
         />
       </div>
       <div className="px-8 mt-24">
@@ -67,7 +82,13 @@ const Collateral = ({ extractedFields, pdf }) => {
                 ""
               : formFields.collateralInfo || ""
           }
-          onChange={handleInputChange}
+          onChange={(e) => {
+            handleInputChange(e);
+             setValue((prevValue) => ({
+               ...prevValue,
+               collateralInfo: e.target.value,
+             }));
+          }}
         ></textarea>
       </div>
     </>
