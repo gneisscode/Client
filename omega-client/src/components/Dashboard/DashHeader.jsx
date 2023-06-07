@@ -25,8 +25,12 @@ const DashHeader = () => {
         <div>Hello, {user.email}</div>
 
         <Link to='/settings'>
-          {userPhotoURL ? (
-            <img src={userPhotoURL} className='w-[50px] h-[50px]' alt='' />
+          {user.imageUrl || userPhotoURL ? (
+            <img
+              src={user.imageUrl || userPhotoURL}
+              className='w-[50px] h-[50px]'
+              alt=''
+            />
           ) : (
             <img
               src='assets/dashboard/dp.png'

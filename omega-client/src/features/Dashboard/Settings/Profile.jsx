@@ -5,9 +5,8 @@ import axios from 'axios'
 const Profile = () => {
   const [selectedFile, setSelectedFile] = useState(null)
   const { userPhotoURL } = useContext(Context)
-  const [profilePic, setProfilePic] = useState(
-    userPhotoURL || 'assets/dashboard/pp.png'
-  )
+  const [profilePic, setProfilePic] = useState(userPhotoURL)
+  console.log(userPhotoURL)
   const { user, dispatch } = useContext(Context)
 
   const [adminDetails, setAdminDetails] = useState({
@@ -46,34 +45,38 @@ const Profile = () => {
   }
 
   const updateDetails = async () => {
-    try {
-      const response = await axios.put(
-        `/admins/${user.adminId}`,
-        adminDetails,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${user.access_token}`,
-          },
-        }
-      )
-      const data = response.data.data
-      console.log(response)
-      console.log(data)
-      setAdminDetails({
-        nameOfOrganization: '',
-        organizationEmail: '',
-        numberOfStaffs: '',
-        staffID: '',
-        organizationType: '',
-        website: '',
-        firstName: '',
-        lastName: '',
-        position: '',
-        phoneNumber: '',
-      })
-    } catch (error) {
-      console.log(error)
+    if (adminDetails.firstName === '' || adminDetails.lastName === '') {
+      console.log('First Name and Last Name should not be empty')
+    } else {
+      try {
+        const response = await axios.put(
+          `/admins/${user.adminId}`,
+          adminDetails,
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${user.access_token}`,
+            },
+          }
+        )
+        const data = response.data.data
+        console.log(response)
+        console.log(data)
+        setAdminDetails({
+          nameOfOrganization: '',
+          organizationEmail: '',
+          numberOfStaffs: '',
+          staffID: '',
+          organizationType: '',
+          website: '',
+          firstName: '',
+          lastName: '',
+          position: '',
+          phoneNumber: '',
+        })
+      } catch (error) {
+        console.log(error)
+      }
     }
   }
 
