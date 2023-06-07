@@ -19,10 +19,12 @@ const VerificationCode = () => {
       fiveDigitToken: "",
     });
 
+
     const handleChange = (e, index) => {
       const newOtp = [...otp];
       newOtp[index] = e.target.value;
       setOtp(newOtp);
+
 
       const updatedToken = newOtp.join("");
       setFormData({ ...formData, fiveDigitToken: parseInt(updatedToken) });
@@ -45,6 +47,7 @@ const VerificationCode = () => {
         console.log(error);
       }
     }
+
   
   return (
     <div className="flex flex-col items-center gap-4 p-10">
@@ -73,9 +76,11 @@ const VerificationCode = () => {
               </a>
             </p>
 
+          <Link to="/change-password">
             <PasswordBtn text="Verify" />
           </Card>
         </form>
+
       </div>
     </div>
   );
