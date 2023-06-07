@@ -51,7 +51,7 @@ const HomeNav = () => {
       {user ? (
         <div className='flex gap-6 justify-center items-center'>
           {userPhotoURL ? (
-            <img src={userPhotoURL} className='w-[50px] h-[50px]  rounded-full' alt='' />
+            <img src={userPhotoURL} className='w-[50px] h-[50px]' alt='' />
           ) : (
             <img
               src='assets/dashboard/dp.png'
