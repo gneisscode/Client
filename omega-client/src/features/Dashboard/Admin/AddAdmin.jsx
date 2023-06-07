@@ -16,7 +16,8 @@ const [addAdmin, setAddAdmin] = useState({
   email: "",
   phoneNumber: "",
   role: "",
-})
+  loginURL: "https://omega-prediction-app.netlify.app/login",
+});
 const handleAdminInput = (e) => {
   const { name, value } = e.target
   setAddAdmin({ ...addAdmin, [name]: value })
