@@ -31,7 +31,7 @@ const [addAdmin, setAddAdmin] = useState({
  const [serverError, setServerError] = useState("");
  const [isLoading, setIsLoading] = useState(false);
   const showToastSuccess = () => {
-    toast.success("Successfully logged in!", {
+    toast.success("Admin added successfully", {
       position: toast.POSITION.TOP_RIGHT,
     });
   };
@@ -57,7 +57,13 @@ const [addAdmin, setAddAdmin] = useState({
      errorMessage = "Position is required";
    } else if (fieldName === "phoneNumber" && !value) {
      errorMessage = "Phone Number is required";
+   } else if (
+     fieldName === "phoneNumber" &&
+     !/^\+?\d{1,3}[-.\s]?\(?\d{1,3}\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}$/.test(value)
+   ) {
+     errorMessage = "Phone Number is invalid";
    }
+
 
    setFormErrors((prevErrors) => ({
      ...prevErrors,
