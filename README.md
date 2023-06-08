@@ -30,6 +30,7 @@ Omega Loan Prediction Software combines the power of predictive analytics, data 
 1. Omega Loan Prediction Software offers the following features:
 
 2. Admin Account Creation: Administrators can create an admin account to access the system and manage loan predictions.
+
 ![image](https://github.com/gneisscode/Client/assets/103408439/65b5e7df-55e8-4617-9f5b-7a97b5d5abec)
 
 3. Team Management: Admins have the ability to add other admins to their company or organization's team, allowing for collaboration and shared access to loan prediction data.
