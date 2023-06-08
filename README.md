@@ -106,10 +106,7 @@ Please note that the version numbers provided are examples and may not reflect t
 
 To start the development server and run Omega Loan Prediction Software locally, use the following command:
 
-    ```bash
-  npm run build
-
- ```
+    `npm start`
 The application will be accessible at http://localhost:3000 in your browser.
 
 ### Building for Production
