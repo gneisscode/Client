@@ -35,7 +35,7 @@ const LandingPage = () => {
       <div className=" flex flex-col w-[100%] bg-[#FAFCFF] pt-8 lg:pt-[100px] mt-[32px]">
         <div
           className="mb-8 lg:mb-0 underline lg:text-[32px] text-[24px] lg:ml-[80px] text-[#0267FF] self-center lg:self-start"
-          id="ser vices"
+          id="services"
         >
           Our Services
         </div>
