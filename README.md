@@ -143,7 +143,40 @@ Please ensure that you are using a compatible browser for the best experience.
 That's it! You have now successfully installed and set up Omega Loan Prediction Software on your development environment. You're ready to start exploring and customizing the application as per your requirements.
 
 
+## Design Guidelines
+
+<!-- Document the design principles, UI/UX guidelines, and visual components used in the app. Include color schemes, typography, layout, and interaction patterns. Provide examples and usage guidelines for consistency. -->
 
 
+
+## Project Structure
+
+<!-- Describe the structure of the front-end codebase, including folders, files, and naming conventions. Explain the organization of components, stylesheets, scripts, and any other relevant assets. -->
+
+
+## Architecture and Components
+
+<!-- Explain the high-level architecture of the front-end, including the main components and their interactions. Provide diagrams or flowcharts to illustrate the structure and relationships between components. -->
+
+
+## API Documentation
+
+<!-- provide detailed documentation for all the endpoints, request/response formats, and any authentication mechanisms used. Include examples of API calls and expected responses. -->
+
+
+## Component Documentation
+
+<!-- Document each front-end component used in the app, including reusable UI elements, forms, navigation, and any custom components. Describe their purpose, props/inputs, state, methods, and usage guidelines. Include code examples and screenshots where applicable. -->
+
+
+## Styling and Theming
+
+<!-- Explain the approach to styling and theming in the app, such as CSS frameworks, preprocessors, or CSS-in-JS solutions used. Provide guidelines for consistent styling, including class naming conventions, global styles, and responsive design considerations. -->
+
+
+
+## Error Handling
+
+<!-- Outline the strategies for handling errors and edge cases in the client app. Document how error messages are displayed to users, how validation is handled, and any error logging or reporting mechanisms in place. -->
 
 
