@@ -30,8 +30,7 @@ export const ContextProvider = ({ children }) => {
         )
         const data = response.data.data
         dispatch({ type: 'UPDATE_PROFILE-PIC', payload: data.imageUrl })
-        // console.log(response)
-        console.log(data)
+        // console.log(data)
       } catch (error) {
         console.log(error)
       }
