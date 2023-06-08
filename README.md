@@ -45,6 +45,9 @@ Omega Loan Prediction Software offers the following features:
 
 5. PDF Upload and Auto-fill: Admins can easily upload borrower information in the form of a PDF file. The software automatically extracts the data and populates the borrower's application section in the dashboard, streamlining the data entry process.
 
+![image](https://github.com/gneisscode/Client/assets/103408439/0730b2c3-98f8-4daa-ac46-84166043fcdd)
+
+
 6. Direct Communication: The app allows admins to send loan eligibility status directly to the loan applicants. This feature facilitates efficient communication and improves the overall user experience.
 
 ![image](https://github.com/gneisscode/Client/assets/103408439/c26d94e2-716b-4d7c-9ef9-b9fba748093e)
