@@ -50,7 +50,7 @@ Omega Loan Prediction Software offers the following features:
 
 6. Direct Communication: The app allows admins to send loan eligibility status directly to the loan applicants. This feature facilitates efficient communication and improves the overall user experience.
 
-![image](https://github.com/gneisscode/Client/assets/103408439/82d7f924-2818-4913-90b4-d7480852a551)
+![image](https://github.com/gneisscode/Client/assets/103408439/c9d80565-ff88-43ec-95d7-8accbeb30b1a)
 
 By incorporating these features, Omega Loan Prediction Software offers administrators a comprehensive solution for managing loan predictions. The combination of user-friendly features and advanced analytics empowers admins to streamline their loan assessment processes and make well-informed decisions efficiently.
 
