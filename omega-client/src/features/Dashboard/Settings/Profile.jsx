@@ -4,8 +4,10 @@ import axios from 'axios'
 
 const Profile = () => {
   const [selectedFile, setSelectedFile] = useState(null)
-  const [profilePic, setProfilePic] = useState('assets/dashboard/pp.png')
-  const { user } = useContext(Context)
+  const { userPhotoURL } = useContext(Context)
+  const [profilePic, setProfilePic] = useState(userPhotoURL)
+  console.log(userPhotoURL)
+  const { user, dispatch } = useContext(Context)
 
   const [adminDetails, setAdminDetails] = useState({
     nameOfOrganization: '',
@@ -42,36 +44,69 @@ const Profile = () => {
     setSelectedFile(null)
   }
 
-  const handleUpdateAdminDetails = async () => {
+  const updateDetails = async () => {
+    if (adminDetails.firstName === '' || adminDetails.lastName === '') {
+      console.log('First Name and Last Name should not be empty')
+    } else {
+      try {
+        const response = await axios.put(
+          `/admins/${user.adminId}`,
+          adminDetails,
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${user.access_token}`,
+            },
+          }
+        )
+        const data = response.data.data
+        console.log(response)
+        console.log(data)
+        setAdminDetails({
+          nameOfOrganization: '',
+          organizationEmail: '',
+          numberOfStaffs: '',
+          staffID: '',
+          organizationType: '',
+          website: '',
+          firstName: '',
+          lastName: '',
+          position: '',
+          phoneNumber: '',
+        })
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
+
+  const updateProfilePic = async () => {
+    const formData = new FormData()
+    formData.append('profileImage', selectedFile)
     try {
       const response = await axios.put(
-        `/admins/${user.adminId}`,
-        adminDetails,
+        `/admins/${user.adminId}/profile-picture`,
+        formData,
         {
           headers: {
-            'Content-Type': 'application/json',
+            'Content-Type':
+              'multipart/form-data; boundary=<calculated when request is sent>',
             Authorization: `Bearer ${user.access_token}`,
           },
         }
       )
       const data = response.data.data
+      dispatch({ type: 'PROFILE-PIC_UPDATED' })
       console.log(response)
       console.log(data)
-      setAdminDetails({
-        nameOfOrganization: '',
-        organizationEmail: '',
-        numberOfStaffs: '',
-        staffID: '',
-        organizationType: '',
-        website: '',
-        firstName: '',
-        lastName: '',
-        position: '',
-        phoneNumber: '',
-      })
     } catch (error) {
       console.log(error)
     }
+  }
+
+  const handleUpdateAdminDetails = () => {
+    updateDetails()
+    updateProfilePic()
   }
 
   return (
@@ -182,6 +217,7 @@ const Profile = () => {
                   firstName: e.target.value,
                 })
               }
+              required
             />
             <input
               type='text'
@@ -194,6 +230,7 @@ const Profile = () => {
                   lastName: e.target.value,
                 })
               }
+              required
             />
             <input
               type='email'

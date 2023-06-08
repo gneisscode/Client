@@ -102,7 +102,7 @@ const handleSubmit = async (event) => {
                   />
               </div>
             <hr className="text-[#B3B3B3]" />
-              <div>
+              {/* <div>
                 <p className="text-[24px] mt-8 font-[500]">Add Image</p>
                 <div className="flex justify-center mt-[60px] text-center">
                   <img
@@ -117,9 +117,9 @@ const handleSubmit = async (event) => {
                 <p className="text-center font-[400] text-[24px] text-[#666666]">
                   <i>Compatible file type: .jpg, .png, .svg, .bmp or .dxf</i>
                 </p>
-              </div>
+              </div> */}
               <div className="flex flex-col">
-                <button
+                {/* <button
                   onClick={handleClick}
                   className="mt-12 bg-[#0267FF] text-[#FFFFFF] text-[24px] font-[600] w-[334px] h-[61px] mx-auto rounded"
                 >
@@ -130,7 +130,7 @@ const handleSubmit = async (event) => {
                   id="file-upload"
                   className="hidden"
                   ref={fileUpload}
-                />
+                /> */}
                 <button className="mt-32 bg-[#0267FF] text-[#FFFFFF] text-[24px] font-[600] w-[195px] h-[61px] ml-auto mr-8 p-2 rounded" type='submit'>
                   Save
                 </button>
