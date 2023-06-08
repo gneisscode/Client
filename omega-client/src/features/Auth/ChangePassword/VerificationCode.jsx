@@ -1,51 +1,52 @@
 import LockIcon from '../../../components/LockIcon';
 import Card from '../../../components/Card';
 import PasswordBtn from '../../../components/PasswordBtn';
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Context } from '../../../context/Context';
 import axios from 'axios';
 
-
 const VerificationCode = () => {
   const { user } = useContext(Context);
-  const location = useLocation()
-  const id = location.pathname.split('/')[2]
+  const location = useLocation();
+  const id = location.pathname.split('/')[2];
 
-  
-  
-    const [otp, setOtp] = useState(['', '', '', '', '']);
-    const [formData, setFormData] = useState({
-      fiveDigitToken: "",
-    });
+  const [otp, setOtp] = useState(['', '', '', '', '']);
+  const [formData, setFormData] = useState({
+    fiveDigitToken: "",
+  });
 
-    const handleChange = (e, index) => {
-      const newOtp = [...otp];
-      newOtp[index] = e.target.value;
-      setOtp(newOtp);
+  const inputRefs = useRef([]);
 
-      const updatedToken = newOtp.join("");
-      setFormData({ ...formData, fiveDigitToken: parseInt(updatedToken) });
-      console.log(formData)
-    };
+  const handleChange = (e, index) => {
+    const newOtp = [...otp];
+    newOtp[index] = e.target.value;
+    setOtp(newOtp);
 
-    const handleSubmit = async (event) => {
-      event.preventDefault()
-      try {
-        const response = await axios.post(
-          `/password-reset/${id}`, formData
-        );
+    const updatedToken = newOtp.join("");
+    setFormData({ ...formData, fiveDigitToken: parseInt(updatedToken) });
 
-        if (response.data === "Token Validated") {
-          window.location.replace(`/change-password/${id}`);
-
-        }
-        console.log(response.data);
-      } catch (error) {
-        console.log(error);
-      }
+    // Move focus to the next input
+    if (e.target.value !== "" && index < otp.length - 1) {
+      const nextInput = inputRefs.current[index + 1];
+      nextInput.focus();
     }
-  
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axios.post(`/password-reset/${id}`, formData);
+
+      if (response.data === "Token Validated") {
+        window.location.replace(`/change-password/${id}`);
+      }
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="flex flex-col items-center gap-4 p-10">
       <LockIcon />
@@ -58,6 +59,8 @@ const VerificationCode = () => {
               {otp.map((digit, index) => (
                 <input
                   key={index}
+                  ref={(ref) => (inputRefs.current[index] = ref)}
+                  id={`otp-${index}`}
                   className="w-12 h-12 text-3xl border border-blue-300 rounded-full mx-2 text-center"
                   type="text"
                   maxLength="1"
@@ -72,7 +75,6 @@ const VerificationCode = () => {
                 Resend
               </a>
             </p>
-
             <PasswordBtn text="Verify" />
           </Card>
         </form>
