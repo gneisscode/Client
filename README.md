@@ -25,6 +25,34 @@ Server requests are handled by Axios, a versatile and widely-used HTTP client li
 Omega Loan Prediction Software combines the power of predictive analytics, data science models, and modern front-end technologies to revolutionize the loan approval process. By automating the assessment of loan applicants, Omega empowers financial institutions to make more accurate and efficient lending decisions. With its user-friendly interface, modular architecture, and integration of cutting-edge technologies, Omega is poised to redefine the loan prediction landscape, delivering tangible benefits to both financial institutions and loan applicants alike.
 
 
+## Features
+
+1. Omega Loan Prediction Software offers the following features:
+
+2. Admin Account Creation: Administrators can create an admin account to access the system and manage loan predictions.
+image.png
+
+3. Team Management: Admins have the ability to add other admins to their company or organization's team, allowing for collaboration and shared access to loan prediction data.
+
+image.png
+
+4. Loan Prediction Model: The software utilizes a powerful predictive analytics data science model to assess the eligibility of loan applicants. This model provides accurate predictions to aid in decision-making processes.
+
+5. Personalized Dashboard: Users are presented with a personalized dashboard that displays statistics on loans approved and rejected. The dashboard provides an overview of key metrics, enabling admins to make informed decisions and track the performance of loan predictions.
+
+image.png
+
+6. PDF Upload and Auto-fill: Admins can easily upload borrower information in the form of a PDF file. The software automatically extracts the data and populates the borrower's application section in the dashboard, streamlining the data entry process.
+
+7. Direct Communication: The app allows admins to send loan eligibility status directly to the loan applicants. This feature facilitates efficient communication and improves the overall user experience.
+
+image.png
+
+By incorporating these features, Omega Loan Prediction Software offers administrators a comprehensive solution for managing loan predictions. The combination of user-friendly features and advanced analytics empowers admins to streamline their loan assessment processes and make well-informed decisions efficiently.
+
+Feel free to customize and expand upon these features to accurately represent the capabilities of your application.
+
+
 ## Installation and Setup
 
 To get started with Omega Loan Prediction Software, follow the steps below to set up your development environment:
