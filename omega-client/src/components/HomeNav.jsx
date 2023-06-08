@@ -49,9 +49,9 @@ const HomeNav = () => {
 
       {user ? (
         <div className='flex gap-6 justify-center items-center'>
-          {user.imageUrl || userPhotoURL ? (
+          {userPhotoURL || user.imageUrl ? (
             <img
-              src={user.imageUrl || userPhotoURL}
+              src={userPhotoURL || user.imageUrl}
               className='w-[50px] h-[50px] rounded-full'
               alt=''
             />
