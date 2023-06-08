@@ -21,8 +21,8 @@ const DashHeader = () => {
         />
       </div>
 
-      <div className="flex gap-[52px] justify-center items-center self-center">
-        {user && <div>Hello, {user.email}</div>}
+      <div className="flex gap-[42px] justify-center items-center self-center">
+        {user && <div>Hello, {user.firstName} {user.lastName}</div>}
 
         <Link to='/settings'>
 
