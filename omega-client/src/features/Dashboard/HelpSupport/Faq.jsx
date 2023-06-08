@@ -10,17 +10,17 @@ const Faq = () => {
     {
       question: 'Financial advice to be given to borrower?',
       answer:
-        'Loan default can be determined when the borrowers is  financially incapable to pay back the loan. This can be because of his/her loan credit score or past history of loan defaulting. If you need further assistance ask a team member.',
+        'Create a budget to manage your expenses and prioritize loan payments. Communicate with your lender if you are facing financial difficulties. They may offer alternative payment plans or options to help you stay on track.',
     },
     {
       question: 'What type of loans are available?',
       answer:
-        'Loan default can be determined when the borrowers is  financially incapable to pay back the loan. This can be because of his/her loan credit score or past history of loan defaulting. If you need further assistance ask a team member.',
+        'There are various types of loans available to meet different financial needs. Some common loan types include Personal loans: Used for various purposes, such as debt consolidation, home improvements, or major purchases. Auto loans: Specifically designed for purchasing vehicles. Mortgage loans: Used to finance the purchase of a home or property. Student loans: Intended to cover educational expenses for students.',
     },
     {
       question: 'Special loan offers for team members?',
       answer:
-        'Loan default can be determined when the borrowers is  financially incapable to pay back the loan. This can be because of his/her loan credit score or past history of loan defaulting. If you need further assistance ask a team member.',
+        'Yes. Team members may enjoy the benefits of special loan offers and lower interest rates, however terms and conditions apply. Please contact your lead administrator to find out more.',
     },
   ]
 
