@@ -169,6 +169,170 @@ That's it! You have now successfully installed and set up Omega Loan Prediction 
 <!-- Document each front-end component used in the app, including reusable UI elements, forms, navigation, and any custom components. Describe their purpose, props/inputs, state, methods, and usage guidelines. Include code examples and screenshots where applicable. -->
 
 
+### Button Component
+
+A reusable button component for triggering actions.
+
+#### Props
+
+| Prop             | Type     | Description                                               
+| ---------------- | -------- | --------------------------------------------------------- 
+| `type`           | string   | The type of the button (e.g., "button", "submit").         
+| `label`          | string   | The text label of the button.                              
+| `onClick`        | function | Callback function to be executed when the button is clicked. 
+| `onMouseOver`    | function | Callback function to be executed when the mouse is over the button. 
+| `disabled`       | boolean  | Determines if the button is disabled.                      
+| `loading`        | boolean  | Determines if the button is in a loading state.            
+| `loadingText`    | string   | The text to display while the button is in a loading state. 
+| `className`      | string   | Additional CSS class(es) for styling the button.           
+| `loadingIcon`    | string   | The icon to display while the button is in a loading state. 
+| `btnIcon`        | string   | The icon to display within the button.                     
+| `variant`        | string   | The visual style variant of the button.                    
+| `btnLeftIcon`    | string   | The icon to display on the left side of the button.        
+| `btnRightIcon`   | string   | The icon to display on the right side of the button.       
+
+#### Usage
+
+```jsx
+// import Button from 'components/Button';
+
+### Circle Component
+
+A component for displaying a circle-shaped navigation indicator.
+
+#### Props
+
+| Prop             | Type       | Description                                             
+| ---------------- | ---------- | ------------------------------------------------------- 
+| `slides`         | array      | An array of data representing each slide.                
+| `activeIndex`    | number     | The index of the currently active slide.                
+| `setActiveIndex` | function   | Callback function to set the active slide index.        
+
+#### Usage
+
+```jsx
+// import Circle from 'components/Circle'; 
+
+
+### DashHeader Component
+
+A header component for the dashboard page.
+
+#### Props
+
+The `DashHeader` component does not accept any props.
+
+#### Usage
+
+```jsx
+// import DashHeader from 'components/DashHeader';
+
+// Example usage:
+// <DashHeader />
+
+### LoanCard Component
+
+A component for displaying a loan card with status and details.
+
+#### Props
+
+| Prop       | Type   | Description                                     |
+| ---------- | ------ | ----------------------------------------------- |
+| `status`   | string | The status of the loan (generated, pending, etc) |
+| `amount`   | number | The amount of the loan                           |
+| `percent`  | string | The percentage value for the loan                |
+
+#### Usage
+
+```jsx
+import LoanCard from 'components/LoanCard';
+
+// Example usage
+<LoanCard status="generated" amount={1000} percent="50%" />
+
+### Sidebar Component
+
+This component represents a sidebar navigation menu for a web application. It is implemented using React and React Router. The sidebar displays different links based on the active page and provides navigation functionality.
+
+#### Installation
+
+To use the Sidebar component in your project, follow these steps:
+
+1. Install the required dependencies:
+   ```shell
+   npm install react react-router-dom
+
+### Modal Component
+
+The Modal component represents a modal dialog box that can be displayed or hidden based on the `isOpen` prop. It is implemented using React and provides a simple modal structure.
+
+### Installation
+
+To use the Modal component in your project, follow these steps:
+
+1. Install the required dependencies:
+   ```shell
+   npm install react
+   Props
+`isOpen` (boolean, required): Specifies whether the modal should be displayed or hidden.
+`onClose` (function, required): A callback function to handle the modal close event.
+`children` (ReactNode, optional): The content to be rendered inside the modal.
+
+### SelectDropdown Component
+
+The SelectDropdown component represents a customizable dropdown select input. It is implemented using React and the react-select library.
+
+#### Installation
+
+To use the SelectDropdown component in your project, follow these steps:
+
+1. Install the required dependencies:
+   ```shell
+   npm install react react-select
+
+   Props
+The SelectDropdown component accepts the following props:
+
+`defaultValue (object, optional): Specifies the default selected option(s) for the dropdown.
+`onChange` (function, required): A callback function to handle the selected option(s) change event.
+`styles` (object, optional): Custom styles to be applied to the dropdown. If not provided, the default styles `defined` in the component will be used.
+`disabled` (boolean, optional): Specifies whether the dropdown should be disabled or not.
+`options` (array, required): An array of objects representing the available options for the dropdown. Each object should have a value and label property.
+
+### TextField Component
+
+The TextField component represents a customizable text input field. It is implemented using React.
+
+#### Installation
+
+To use the TextField component in your project, follow these steps:
+
+1. Copy the `TextField.js` file into your project.
+
+2. Import the `TextField` component in your desired file:
+   ```javascript
+   import React from 'react';
+   import TextField from './TextField';
+
+####Props
+The TextField component accepts the following props:
+
+`type` (string, optional): Specifies the type of the input field (e.g., "text", "password", "email", etc.). Default value is "text".
+`placeholder` (string, optional): Specifies the placeholder text for the input field. Default value is "Enter a value".
+`value` (string, required): Represents the current value of the input field.
+`onClick` (function, optional): A callback function to handle the click event on the input field.
+`error` (boolean, optional): Specifies whether the input field has an error or not.
+`className` (string, optional): Additional CSS classes to be applied to the input field container.
+`onChange` (function, required): A callback function to handle the input change event.
+`name` (string, optional): Specifies the name attribute of the input field.
+`label` (string, optional): Specifies the label text for the input field.
+`inputRef` (object, optional): A ref object that can be used to reference the underlying input element.
+`message` (string, optional): The error message to be displayed when error is true.
+`inputClass` (string, optional): Additional CSS classes to be applied to the input field.
+`props` (object, optional): Additional props to be passed to the input field element.
+`disabled` (boolean, optional): Specifies whether the input field should be disabled or not.
+`icon` (element, optional): An icon element to be displayed alongside the input field.
+
 ## Styling and Theming
 
 <!-- Explain the approach to styling and theming in the app, such as CSS frameworks, preprocessors, or CSS-in-JS solutions used. Provide guidelines for consistent styling, including class naming conventions, global styles, and responsive design considerations. -->
