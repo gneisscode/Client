@@ -167,39 +167,6 @@ function App() {
             path={path}
           />
         ))}
-        {/* <Route
-          element={user ? <DashboardPage /> : <LoginPage />}
-          path='/login'
-        />
-        <Route
-          element={user ? <DashboardPage /> : <SignUpPage />}
-          path='/signup'
-        /> */}
-        {/* <Route
-          element={user ? <DashboardPage /> : <LoginPage />}
-          path="/dashboard"
-        /> */}
-        {/* <Route element={<Declined />} path="/loans-declined" />
-        <Route element={<Generated />} path="/loans-generated" />
-        <Route element={<Refunded />} path="/loans-refunded" />
-        <Route element={<Pending />} path="/loans-pending" />
-        <Route element={<BorrowersData />} path="/borrower-data" />
-        <Route element={<Profile />} path="/borrower-profile" />
-        <Route element={<SavedData />} path="/borrower-saved-data" />
-        <Route element={<BorrowerEligibility />} path="/borrower-eligibility" />
-        <Route element={<SendStatus />} path="/send-status" />
-        <Route element={<LoanApplications />} path="/loan-applications" />
-        <Route element={<History />} path="/history" />
-        <Route element={<Admin />} path="/admin" />
-        <Route element={<AddAdmin />} path="/add-admin" />
-        <Route element={<Settings />} path="/settings" />
-        <Route element={<Help />} path="/help" />
-        <Route element={<ChangePasswordPage />} path="/change-password/:id" />
-        <Route element={<ForgotPasswordPage />} path="/forgot-password" />
-        <Route element={<VerificationCodePage />} path="/verify/:id" />
-        <Route element={<ChangeSuccess />} path="/success" />
-        <Route element={<Email />} path="/verification-email" />
-    */}
       </Routes>
     </>
   );
