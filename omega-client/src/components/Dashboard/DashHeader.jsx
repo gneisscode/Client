@@ -1,9 +1,9 @@
-import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
-import { Context } from '../../context/Context'
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import { Context } from "../../context/Context";
 
 const DashHeader = () => {
-  const { user, userPhotoURL } = useContext(Context)
+  const { user, userPhotoURL } = useContext(Context);
 
   return (
     <div className="hidden lg:flex justify-between h-[112px] w-[100%] bg-[#FAFCFF] text-gray-400 border border-gray-100 items-end px-[80.11px] py-8 fixed top-0 left-0 z-[1000]">
@@ -21,16 +21,17 @@ const DashHeader = () => {
         />
       </div>
 
-      <div className="flex gap-[52px] justify-center items-center self-center">
-        {user && <div>Hello, {user.email}</div>}
+      <div className="flex gap-[30px] justify-center items-center self-center">
+        <div>
+          Hello, {user.firstName} {user.lastName}
+        </div>
 
-        <Link to='/settings'>
-
-          {user.imageUrl || userPhotoURL ? (
+        <Link to="/settings">
+          {userPhotoURL || user.imageUrl ? (
             <img
-              src={user.imageUrl || userPhotoURL}
-              className='w-[50px] h-[50px] rounded-full'
-              alt=''
+              src={userPhotoURL || user.imageUrl}
+              className="w-[50px] h-[50px] rounded-full"
+              alt=""
             />
           ) : (
             <img
@@ -43,6 +44,6 @@ const DashHeader = () => {
       </div>
     </div>
   );
-}
+};
 
-export default DashHeader
+export default DashHeader;
