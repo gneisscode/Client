@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import DashHeader from "../../../components/Dashboard/DashHeader";
 import Sidebar from "../../../components/Dashboard/Sidebar";
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { Context } from '../../../context/Context';
 
 
 const LoanApplications = () => {
+  const { user } = useContext(Context);
     const [data, SetData] = useState([
       {
         "Borrowers Name": "Blessing Effiong",
@@ -30,6 +33,32 @@ const LoanApplications = () => {
         Amount: "#5,000,000",
       },
     ]);
+    const [loans, setLoans] = useState([])
+    const [error, setError] = useState(false)
+
+useEffect(() => {
+  const fetchData = async () => {
+    if (user && user.access_token) {
+      try {
+        const config = {
+          headers: {
+            Authorization: `Bearer ${user.access_token}`,
+          },
+        };
+        const response = await axios.get("/loans/company-loans?page=2", config);
+        console.log(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      setError(true);
+    }
+  };
+
+  fetchData();
+}, [user, user?.access_token]);
+
+    
 
   return (
     <div className="flex flex-col">
