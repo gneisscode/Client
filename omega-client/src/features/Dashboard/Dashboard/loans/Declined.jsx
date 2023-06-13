@@ -117,6 +117,7 @@ const Declined = () => {
                       <td className='px-6 py-4 font-[600] text-[16px]text-[#666666]'>
                         {loan.loanAmount}
                       </td>
+                      ..
                     </tr>
                   ))}
                 </tbody>
