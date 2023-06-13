@@ -10,11 +10,10 @@ import Loan from "./Loan";
 import Collateral from "./Collateral";
 import Modal from "../../../../components/Modal/modal";
 import PreviewForm from "../Preview/PreviewForm";
-import { useNavigate } from "react-router-dom";
-import { PDFDocument } from "pdf-lib";
+import { Link, useNavigate } from "react-router-dom";
+import LoanInfo from "../../SavedData/LoanInfo";
 
 export const BorrowerFormData = createContext();
-
 
 const BorrowersData = () => {
   const navigate = useNavigate();
@@ -25,132 +24,88 @@ const BorrowersData = () => {
   const [modalTwo, setModalTwo] = useState(false);
   // const [logOutModal, setLogOutModal] = useState(false)
   const [showPreviewForm, setShowPreviewForm] = useState(false);
-  const [pdfFile, setPdfFile] = useState({});
-  const [formFields, setFormFields] = useState({
-    name: "",
-    email: "",
-    phoneNumber: "",
-    DOB: "",
-    address: "",
-    nin: "",
-    employment: "",
-    income: "",
-    loanAmount: "",
-    loanPurpose: "",
-    collateralValue: "",
-    collateralInfo: "",
-    guarantorName: "",
-    guarantorEmail: "",
-    guarantorDOB: "",
-    guarantorPhoneNumber: "",
-    guarantorAddress: "",
-    guarantorNin: "",
-    guarantorRelationship: "",
-    guarantorEmployment: "",
-    guarantorIncome: "",
-    guarantorOtherIncome: "",
-  });
-
-
-  
-  const handleFileChange = async (event) => {
-    const file = event.target.files[0];
-    try {
-      const reader = new FileReader();
-      reader.onload = async (e) => {
-        const pdfData = new Uint8Array(e.target.result);
-        const pdfDoc = await PDFDocument.load(pdfData);
-        setPdfFile(pdfDoc);
-        console.log(pdfFile);
-
-        const form = pdfDoc.getForm();
-
-        const extractedFields = {};
-
-        for (const [fieldName, fieldValue] of Object.entries(formFields)) {
-          try {
-            const textField = form.getTextField(fieldName);
-            if (textField) {
-              extractedFields[fieldName] = textField.getText() ?? "";
-            }
-          } catch (error) {
-            extractedFields[fieldName] = "";
-          }
-        }
-
-        setFormFields(extractedFields);
-        console.log(extractedFields);
-      };
-
-      reader.readAsArrayBuffer(file);
-    } catch (error) {
-      console.error("Error reading the PDF file:", error);
-    }
-  };
 
   const steps = {
     0: {
       id: 0,
       title: "Personal and contact Information",
-      form: <PersonalInfo extractedFields={formFields} pdf={pdfFile} />,
+      form: <PersonalInfo />,
     },
     1: {
       id: 1,
       title: "Loan Information",
-      form: <Loan extractedFields={formFields} pdf={pdfFile} />,
+      form: <Loan />,
     },
     2: {
       id: 2,
       title: "Collateral Information",
-      form: <Collateral extractedFields={formFields} pdf={pdfFile} />,
+      form: <Collateral />,
     },
     3: {
       id: 3,
       title: "Guarantor’s Information",
-      form: <Gurarantors extractedFields={formFields} pdf={pdfFile} />,
+      form: <Gurarantors />,
     },
   };
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [activeIndex]);
 
-   const userData = {
-     name: "",
-     email: "",
-     phoneNumber: "",
-     DOB: "",
-     address: "",
-     nin: "",
-     employment: "",
-     income: "",
-     loanAmount: "",
-     loanPurpose: "",
-     collateralValue: "",
-     collateralInfo: "",
-     guarantorName: "",
-     guarantorEmail: "",
-     guarantorDOB: "",
-     guarantorPhoneNumber: "",
-     guarantorAddress: "",
-     guarantorNin: "",
-     guarantorRelationship: "",
-     guarantorEmployment: "",
-     guarantorIncome: "",
-     guarantorOtherIncome: "",
-   };
+  const userData = {
+    personalInfo: {
+      fullName: "",
+      phoneNumber: "",
+      email: "",
+      age: "",
+      gender: "",
+      address: "",
+      nin: "",
+      income: "",
+      jobRole: "",
+      maritalStatus: "",
+      employmentType: "",
+      jobSector: "",
+    },
+    loanInfo: {
+      loanType: "",
+      repaymentType: "",
+      loanAmount: "",
+      loanPurpose: "",
+    },
+    collateralInfo: {
+      collateralType: "",
+      collateralValue: "",
+      collateralInformation: "",
+    },
+    guarantorInfo: {
+      fullName: "",
+      phoneNumber: "",
+      email: "",
+      age: "",
+      address: "",
+      ssn: "",
+      relationship: "",
+      employmentType: "",
+      incomeSource: "",
+      incomePerMonth: "",
+    },
+  };
 
-   const [value, setValue] = useState(userData);
+  const [value, setValue] = useState(userData);
+
   const step = steps[activeIndex];
-
-
-
   return (
     <BorrowerFormData.Provider value={{ value, setValue }}>
       <div className="flex flex-col">
         <DashHeader />
         <div className="flex relative">
           <Sidebar />
-          {/* {showPreviewForm && <PreviewForm handleModal={setModalTwo} />} */}
+          {showPreviewForm && (
+            <PreviewForm
+              handleModal={setShowPreviewForm}
+              handleModalTwo={setModalTwo}
+            />
+          )}
           <Modal isOpen={modalOne} onClose={() => setModalOne(false)}>
             <section className="w-[500px] bg-slate-200 p-12 flex flex-col items-center justify-center">
               <p className="text-black text-center mb-10 font-md text-xl">
@@ -221,18 +176,37 @@ const BorrowersData = () => {
                 <p className="text-[20px] font-[500] text-[#4D4D4D]">
                   Carefully input the borrowers details
                 </p>
-                <div>
-                  <p>Or upload a pre-filled form</p>
-                  <input
-                    type="file"
-                    accept="application/pdf"
-                    onChange={handleFileChange}
-                  />
-                </div>
+
+                <Link to="/upload">
+                  <div>Or upload pre-filled form</div>
+                </Link>
               </div>
               <div className="flex w-full mt-16">
-                <Card className="min-h-[700px] relative">
-                  <div className="mt-12 mb-16 px-8">
+                <Card className="min-h-[700px] relative px-16 py-16">
+                  <div className="text-[20px] font-[500] text-[#4D4D4D] px-8 py-8">
+                    Personal Information
+                  </div>
+
+                  <PersonalInfo />
+
+                  <div className="text-[20px] font-[500] text-[#4D4D4D] px-8 py-8">
+                    Loan Information
+                  </div>
+
+                  <Loan />
+                  <div className="text-[20px] font-[500] text-[#4D4D4D] px-8 py-8">
+                    Collateral Information
+                  </div>
+
+                  <Collateral />
+
+                  <div className="text-[20px] font-[500] text-[#4D4D4D] px-8 py-8">
+                    Guarantor's Information
+                  </div>
+
+                  <Gurarantors />
+
+                  {/* <div className="mt-12 mb-16 px-8">
                     <h2 className="text-[#4D4D4D] text-[20px] font-[600]">
                       {step.title}
                     </h2>
@@ -245,10 +219,16 @@ const BorrowersData = () => {
                       activeIndex={activeIndex}
                       setActiveIndex={setActiveIndex}
                     />
-                  </div>
+                  </div> */}
+                  <Button
+                    className="text-white bg-[#0267FF] w-1/2 my-8"
+                    label="Save Data"
+                    onClick={() => setModalOne(true)}
+                  />
                 </Card>
               </div>
-              <div className="grid grid-cols-2 justify-between items-center gap-20 mt-16 pb-[147px]">
+
+              {/* <div className="grid grid-cols-2 justify-between items-center gap-20 mt-16 pb-[147px]">
                 {activeIndex !== 0 ? (
                   <Button
                     className="bg-white text-[#0267FF] border border-[#0267FF] w-4/12"
@@ -265,11 +245,11 @@ const BorrowersData = () => {
                   label={activeIndex === 3 ? "Save Data" : "Next"}
                   onClick={() =>
                     activeIndex === 3
-                      ? setModalTwo(true)
+                      ? setModalOne(true)
                       : setActiveIndex((prev) => prev + 1)
                   }
                 />
-              </div>
+              </div> */}
             </div>
           </section>
         </div>

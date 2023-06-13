@@ -1,178 +1,222 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import TextField from "../../../../components/TextField";
+import SelectDropdown from "../../../../components/SelectDropDown/SelectDropDown";
 import { BorrowerFormData } from "./BorrowersData";
 
-const PersonalInfo = ({ extractedFields, pdf }) => {
-  const [pdfFile, setPdfFile] = useState(pdf);
-  const [formFields, setFormFields] = useState({ ...extractedFields });
-  const { value, setValue } = useContext(BorrowerFormData);
+const PersonalInfo = () => {
+   const { value, setValue } = useContext(BorrowerFormData);
+   const [gender, setGender] = useState(value.personalInfo.gender);
+   const [maritalStatus, setMaritalStatus] = useState(
+     value.personalInfo.maritalStatus
+   );
+   const [jobSector, setJobSector] = useState(value.personalInfo.jobSector);
+   const [employmentType, setEmploymentType] = useState(
+     value.personalInfo.employmentType
+   );
 
-  // useEffect(() => {
-  //   if (pdfFile && extractedFields) {
-  //     const updatedValue = { ...value };
 
-  //     Object.keys(extractedFields).forEach((key) => {
-  //       updatedValue[key] = extractedFields[key];
-  //     });
+  const genderType = [
+    { id: 1, label: "Male", value: "Male" },
+    { id: 2, label: "Female", value: "Female" },
+  ];
+  
+  const maritalType = [
+    { id: 1, label: "Single", value: "Single" },
+    { id: 2, label: "Married", value: "Married" },
+    { id: 3, label: "Divorced", value: "Divorced" },
+    { id: 4, label: "Separated", value: "Separated" },
+    { id: 5, label: "Widowed", value: "Widowed" },
+  ];
 
-  //     setValue(updatedValue);
-  //   }
-  // }, [pdfFile]);
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    if (pdfFile) {
-      setFormFields((prevFormFields) => ({
-        ...prevFormFields,
-        [name]: value,
-      }));
-    } else {
-      event.persist();
-      setFormFields((prevFormFields) => ({
-        ...prevFormFields,
-        [name]: value,
-      }));
-      console.log(formFields);
-    }
+  const employmentTypes = [
+    { id: 1, label: "Contract", value: "Contract" },
+    { id: 2, label: "Self-Employed", value: "Self-Employed" },
+    { id: 3, label: "Full-Time", value: "Full-Time" },
+    { id: 4, label: "Part-Time", value: "Part-Time" },
+    { id: 5, label: "Unemployed", value: "Unemployed" },
+  ];
 
-  };
+  
+  const sectorType = [
+    {
+      id: 1,
+      label: "Sales and Customer Service",
+      value: "Sales and Customer Service",
+    },
+    { id: 2, label: "Education and Training", value: "Education and Training" },
+    { id: 3, label: "Information Technology", value: "Information Technology" },
+    {
+      id: 4,
+      label: "Operations and Logistics",
+      value: "Operations and Logistics",
+    },
+    { id: 5, label: "Accounting and Finance", value: "Accounting and Finance" },
+    { id: 6, label: "Human Resources", value: "Human Resources" },
+    { id: 7, label: "Engineering", value: "Engineering" },
+    {
+      id: 8,
+      label: "Marketing and Advertising",
+      value: "Marketing and Advertising",
+    },
+    { id: 9, label: "Project Management", value: "Project Management" },
+    { id: 10, label: "Legal", value: "Legal" },
+    {
+      id: 11,
+      label: "Healthcare",
+      value: "Healthcare",
+    },
+    { id: 12, label: "Others", value: "Others" },
+  ];
   return (
     <div className="grid grid-cols-2 w-full gap-7 px-8 max-md:grid-cols-1">
       <TextField
-        className="bg-white border-[#0252CC]"
+        className="bg-white border-[#0252CC] "
         placeholder="Full Name"
-        name="name"
-        value={
-          pdfFile
-            ? formFields.name || extractedFields.name || ""
-            : formFields.name || ""
+        value={value.personalInfo.fullName}
+        onChange={(e) =>
+          setValue({
+            ...value,
+            personalInfo: { ...value.personalInfo, fullName: e.target.value },
+          })
         }
-        onChange={(e) => {
-          handleInputChange(e);
-          setValue((prevValue) => ({
-            ...prevValue,
-            name: e.target.value,
-          }));
-        }}
       />
       <TextField
         className="bg-white border-[#0252CC]"
         placeholder="Phone Number"
-        name="phoneNumber"
-        value={
-          pdfFile
-            ? formFields.phoneNumber || extractedFields.phoneNumber || ""
-            : formFields.phoneNumber || ""
+        value={value.personalInfo.phoneNumber}
+        onChange={(e) =>
+          setValue({
+            ...value,
+            personalInfo: {
+              ...value.personalInfo,
+              phoneNumber: e.target.value,
+            },
+          })
         }
-        onChange={(e) => {
-          handleInputChange(e);
-          setValue((prevValue) => ({
-            ...prevValue,
-            phoneNumber: e.target.value,
-          }));
-        }}
       />
       <TextField
         className="bg-white border-[#0252CC]"
         placeholder="Email"
-        name="email"
-        value={
-          pdfFile
-            ? formFields.email || extractedFields.email || ""
-            : formFields.email || ""
+        value={value.personalInfo.email}
+        onChange={(e) =>
+          setValue({
+            ...value,
+            personalInfo: { ...value.personalInfo, email: e.target.value },
+          })
         }
-        onChange={(e) => {
-          handleInputChange(e);
-          setValue((prevValue) => ({
-            ...prevValue,
-            email: e.target.value,
-          }));
-        }}
       />
       <TextField
         className="bg-white border-[#0252CC]"
-        placeholder="Date of Birth"
-        name="DOB"
-        value={
-          pdfFile
-            ? formFields.DOB || extractedFields.DOB || ""
-            : formFields.DOB || ""
+        placeholder="Age"
+        value={value.personalInfo.age}
+        onChange={(e) =>
+          setValue({
+            ...value,
+            personalInfo: { ...value.personalInfo, age: e.target.value },
+          })
         }
-        onChange={(e) => {
-          handleInputChange(e);
-          setValue((prevValue) => ({
-            ...prevValue,
-            DOB: e.target.value,
-          }));
+      />
+      <SelectDropdown
+        options={genderType}
+        placeholder="Gender"
+        onChange={(val) => {
+          setValue({
+            ...value,
+            personalInfo: {
+              ...value.personalInfo,
+              gender: val.value,
+            },
+          });
+          setGender(val.value);
+        }}
+      />
+
+      <SelectDropdown
+        options={maritalType}
+        placeholder="Marital Status"
+        onChange={(val) => {
+          setValue({
+            ...value,
+            personalInfo: {
+              ...value.personalInfo,
+              maritalStatus: val.value,
+            },
+          });
+          setMaritalStatus(val.value);
         }}
       />
       <TextField
         className="bg-white border-[#0252CC]"
         placeholder="Address"
-        name="address"
-        value={
-          pdfFile
-            ? formFields.address || extractedFields.address || ""
-            : formFields.address || ""
+        value={value.personalInfo.address}
+        onChange={(e) =>
+          setValue({
+            ...value,
+            personalInfo: { ...value.personalInfo, address: e.target.value },
+          })
         }
-        onChange={(e) => {
-          handleInputChange(e);
-          setValue((prevValue) => ({
-            ...prevValue,
-            address: e.target.value,
-          }));
-        }}
       />
       <TextField
         className="bg-white border-[#0252CC]"
         placeholder="National Identity Number"
-        name="nin"
-        value={
-          pdfFile
-            ? formFields.nin || extractedFields.nin || ""
-            : formFields.nin || ""
+        value={value.personalInfo.nin}
+        onChange={(e) =>
+          setValue({
+            ...value,
+            personalInfo: { ...value.personalInfo, nin: e.target.value },
+          })
         }
-        onChange={(e) => {
-          handleInputChange(e);
-          setValue((prevValue) => ({
-            ...prevValue,
-            nin: e.target.value,
-          }));
+      />
+      <SelectDropdown
+        options={employmentTypes}
+        placeholder="Employment"
+        onChange={(val) => {
+          setValue({
+            ...value,
+            personalInfo: {
+              ...value.personalInfo,
+              employmentType: val.value,
+            },
+          });
+          setEmploymentType(val.value);
         }}
       />
       <TextField
         className="bg-white border-[#0252CC]"
-        placeholder="Employment"
-        name="employment"
-        value={
-          pdfFile
-            ? formFields.employment || extractedFields.employment || ""
-            : formFields.employment || ""
+        placeholder=" Job Role"
+        value={value.personalInfo.jobRole}
+        onChange={(e) =>
+          setValue({
+            ...value,
+            personalInfo: { ...value.personalInfo, jobRole: e.target.value },
+          })
         }
-        onChange={(e) => {
-          handleInputChange(e);
-          setValue((prevValue) => ({
-            ...prevValue,
-            employment: e.target.value,
-          }));
+      />
+      <SelectDropdown
+        options={sectorType}
+        placeholder="Job Sector"
+        onChange={(val) => {
+          setValue({
+            ...value,
+            personalInfo: {
+              ...value.personalInfo,
+              jobSector: val.value,
+            },
+          });
+          setJobSector(val.value);
         }}
       />
       <TextField
         className="bg-white border-[#0252CC]"
         placeholder="Income per month"
-        name="income"
-        value={
-          pdfFile
-            ? formFields.income || extractedFields.income || ""
-            : formFields.income || ""
+        value={value.personalInfo.income}
+        onChange={(e) =>
+          setValue({
+            ...value,
+            personalInfo: { ...value.personalInfo, income: e.target.value },
+          })
         }
-        onChange={(e) => {
-          handleInputChange(e);
-          setValue((prevValue) => ({
-            ...prevValue,
-           income: e.target.value,
-          }));
-        }}
       />
     </div>
   );
