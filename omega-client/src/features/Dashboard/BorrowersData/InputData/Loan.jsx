@@ -1,86 +1,90 @@
-import React, { useState, useContext, useEffect } from "react";
-import TextField from "../../../../components/TextField";
-import SelectDropdown from "../../../../components/SelectDropDown/SelectDropDown";
+import React, { useState, useContext } from 'react'
+import TextField from '../../../../components/TextField'
+import SelectDropdown from '../../../../components/SelectDropDown/SelectDropDown'
+import { BorrowerFormData } from './BorrowersData'
 
+const Loan = () => {
+  const [loanType, setLoanType] = useState(undefined)
+  const [repayType, setRepayType] = useState(undefined)
 
-const Loan = ({ extractedFields, pdf }) => {
-  const [loanType, setLoanType] = useState(undefined);
-  const [repayType, setRepayType] = useState(undefined);
+  const { value, setValue } = useContext(BorrowerFormData)
 
   const loansType = [
-    { id: 1, label: "Loan 1", value: "Loan 1" },
-    { id: 2, label: "Loan 2", value: "Loan 2" },
-    { id: 3, label: "Loan 3", value: "Loan 3" },
-  ];
+    { id: 1, label: 'Business Loan', value: 'Business Loan' },
+    { id: 2, label: 'Student Loan', value: 'Student Loan' },
+    { id: 3, label: 'Agricultural Loan', value: 'Agricultural Loan' },
+    { id: 4, label: 'Housing Loan', value: 'Housing Loan' },
+    { id: 5, label: 'Others', value: 'Others' },
+  ]
   const repayTypeList = [
-    { id: 1, label: "Repay 1", value: "Repay 1" },
-    { id: 2, label: "Repay 2", value: "Repay 2" },
-    { id: 3, label: "Repay 3", value: "Repay 3" },
-  ];
-  const [pdfFile, setPdfFile] = useState(pdf);
-  const [formFields, setFormFields] = useState({ ...extractedFields });
- 
-
-
-
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    if (pdfFile) {
-      setFormFields((prevFormFields) => ({
-        ...prevFormFields,
-        [name]: value,
-      }));
-    } else {
-      event.persist();
-      setFormFields((prevFormFields) => ({
-        ...prevFormFields,
-        [name]: value,
-      }));
-      console.log(formFields);
-    }
-  };
+    { id: 1, label: 'Principal and Interest', value: 'Principal and Interest' },
+  ]
 
   return (
     <>
-      <div className="grid grid-cols-2 w-full gap-7 px-8">
+      <div className='grid grid-cols-2 w-full gap-7 px-8'>
         <SelectDropdown
           options={loansType}
-          placeholder="Loan Type"
-          onChange={handleInputChange}
+          placeholder='Loan Type'
+          onChange={(val) => {
+            setValue({
+              ...value,
+              loanInfo: {
+                ...value.loanInfo,
+                loanType: val.value,
+              },
+            })
+            setLoanType(val.value)
+          }}
         />
         <SelectDropdown
           options={repayTypeList}
-          placeholder="Repayment Type"
-          onChange={handleInputChange}
+          placeholder='Repayment Type'
+          onChange={(val) => {
+            setValue({
+              ...value,
+              loanInfo: {
+                ...value.loanInfo,
+                repaymentType: val.value,
+              },
+            })
+            setRepayType(val.value)
+          }}
         />
 
         <TextField
-          className="bg-white border-[#0252CC]"
-          placeholder="Loan Amount"
-          name="loanAmount"
-          value={
-            pdfFile
-              ? formFields.loanAmount || extractedFields.loanAmount || ""
-              : formFields.loanAmount || ""
+          className='bg-white border-[#0252CC]'
+          placeholder='Loan Amount'
+          value={value.loanInfo.loanAmount}
+          onChange={(e) =>
+            setValue({
+              ...value,
+              loanInfo: {
+                ...value.loanInfo,
+                loanAmount: e.target.value,
+              },
+            })
           }
-          onChange={handleInputChange}
         />
       </div>
-      <div className="px-8 mt-12">
+      <div className='px-8 mt-12'>
         <textarea
-          className="bg-white border border-[#0252CC] w-full h-36 px-4 py-4 rounded"
-          placeholder="Purpose of Loan"
-          name="loanPurpose"
-          value={
-            pdfFile
-              ? formFields.loanPurpose || extractedFields.loanPurpose || ""
-              : formFields.loanPurpose || ""
+          className='bg-white border border-[#0252CC] w-full h-36 px-4 py-4 rounded'
+          placeholder='Purpose of Loan'
+          value={value.loanInfo.loanPurpose}
+          onChange={(e) =>
+            setValue({
+              ...value,
+              loanInfo: {
+                ...value.loanInfo,
+                loanPurpose: e.target.value,
+              },
+            })
           }
-          onChange={handleInputChange}
         ></textarea>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Loan;
+export default Loan

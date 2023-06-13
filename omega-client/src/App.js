@@ -34,6 +34,7 @@ import { Context } from "./context/Context";
 import Email from "./features/Auth/ChangePassword/Email";
 import PublicRoute from "./components/Auth/PublicRoute";
 import PrivateRoutes from "./components/Auth/PrivateRoutes";
+import Upload from "./features/Dashboard/BorrowersData/InputData/Upload";
 
 function App() {
   axios.defaults.baseURL = `https://nodebt-application.onrender.com/api`;
@@ -78,6 +79,10 @@ function App() {
     {
       path: "/borrower-data",
       component: <BorrowersData />,
+    },
+    {
+      path: "/upload",
+      component: <Upload />,
     },
     {
       path: "/borrower-profile",
