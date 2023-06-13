@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import DashHeader from "../../../components/Dashboard/DashHeader";
 import Sidebar from "../../../components/Dashboard/Sidebar";
 import LoanCard from "../../../components/Dashboard/LoanCard";
@@ -14,10 +14,76 @@ Chart.register(CategoryScale);
 
 const Dashboard = () => {
    const { user } = useContext(Context);
+   const [loanData, setLoanData] = useState([])
+   const [loansSuccessful, setLoansSuccessful] = useState([])
+    const [loansDeclined, setLoansDeclined] = useState([]);
+    const [monthlyData, setMonthlyData] = useState({
+      January: {
+        generated: "",
+        successful: "",
+        declined: "",
+      },
+      February: {
+        generated: "",
+        successful: "",
+        declined: "",
+      },
+      March: {
+        generated: "",
+        successful: "",
+        declined: "",
+      },
+      April: {
+        generated: "",
+        successful: "",
+        declined: "",
+      },
+      May: {
+        generated: "",
+        successful: "",
+        declined: "",
+      },
+      June: {
+        generated: "",
+        successful: "",
+        declined: "",
+      },
+      July: {
+        generated: "",
+        successful: "",
+        declined: "",
+      },
+      August: {
+        generated: "",
+        successful: "",
+        declined: "",
+      },
+      September: {
+        generated: "",
+        successful: "",
+        declined: "",
+      },
+      October: {
+        generated: "",
+        successful: "",
+        declined: "",
+      },
+      November: {
+        generated: "",
+        successful: "",
+        declined: "",
+      },
+      December: {
+        generated: "",
+        successful: "",
+        declined: "",
+      },
+    });
+
   const status =[
-    "Loans given out",
-    "Loans paid",
-    "Loans declined"
+    "generated",
+    "successful",
+    "declined"
   ]
 
  
@@ -29,24 +95,31 @@ const Dashboard = () => {
     "May",
     "June",
     "July",
-    "Aug",
-    "Sept",
-    "Oct",
-    "Nov",
-    "Dec",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
   ];
 
+    useEffect(() => {
+    console.log(monthlyData);
+  }, [monthlyData]);
+
   const datasets = status.map((status) => {
+    const data = labels.map(
+      (month) => monthlyData[month][status.toLowerCase()]
+    );
+    const backgroundColor =
+      status === "generated"
+        ? "#3585FF"
+        : status === "successful"
+        ? "#4ED273"
+        : "#FF2727";
     return {
-      label: `${status}`,
-      data: Array.from({ length: 12 }, () => Math.random() * 100),
-      backgroundColor: `${
-        status === "Loans given out"
-          ? ["#3585FF"]
-          : status === "Loans paid"
-          ? ["#4ED273"]
-          : ["#FF2727"]
-      }`,
+      label: status,
+      data: data,
+      backgroundColor: backgroundColor,
       borderWidth: 1,
       borderRadius: 6,
     };
@@ -118,12 +191,70 @@ const Dashboard = () => {
           config
         );
         console.log(response.data);
+        console.log(response.data.data.loans)
+        const loansList = response.data.data.loans
+        setLoanData(loansList)
+         const declinedLoansCount = loansList.filter(
+           (loan) => loan.eligibility === false
+         ).length;
+         setLoansDeclined(declinedLoansCount);
+
+         // Count the number of successful loans
+         const successfulLoansCount = loansList.filter(
+           (loan) => loan.eligibility === true
+         ).length;
+         setLoansSuccessful(successfulLoansCount);
+
+
+          const updatedMonthlyData = {
+            January: { generated: 0, successful: 0, declined: 0 },
+            February: { generated: 0, successful: 0, declined: 0 },
+            March: { generated: 0, successful: 0, declined: 0 },
+            April: { generated: 0, successful: 0, declined: 0 },
+            May: { generated: 0, successful: 0, declined: 0 },
+            June: { generated: 0, successful: 0, declined: 0 },
+            July: { generated: 0, successful: 0, declined: 0 },
+            August: { generated: 0, successful: 0, declined: 0 },
+            September: { generated: 0, successful: 0, declined: 0 },
+            October: { generated: 0, successful: 0, declined: 0 },
+            November: { generated: 0, successful: 0, declined: 0 },
+            December: { generated: 0, successful: 0, declined: 0 },
+          };
+
+          loansList.forEach((loan) => {
+            const createdAt = new Date(loan.createdAt);
+            const month = createdAt.toLocaleString("en-US", { month: "long" });
+            console.log(month)
+
+            updatedMonthlyData[month].generated += 1;
+
+            if (loan.eligibility === true) {
+              updatedMonthlyData[month].successful += 1;
+            } else {
+              updatedMonthlyData[month].declined += 1;
+            }
+            
+          });
+          console.log(updatedMonthlyData)
+
+          setMonthlyData(updatedMonthlyData);
+           
+
+
+        
       } catch (error) {
         console.log(error);
       }
     }; handleSubmit()
+      console.log(monthlyData);
 
   }, [])
+
+  useEffect(() => {
+    console.log(monthlyData);
+    localStorage.setItem("monthlyData", JSON.stringify(monthlyData));
+         
+  }, [monthlyData]);
 
    
 
@@ -138,34 +269,27 @@ const Dashboard = () => {
           </div>
           <div className="text-[#4D4D4D] text-[20px] font-[500]">Analysis</div>
           <div className="flex flex-wrap gap-[17px]">
-            <Link to="/loans-generated">
+            <Link to="/loan-applications">
               {" "}
               <LoanCard
                 status="generated"
-                amount="4,587,541.28"
+                amount={loanData.length}
                 percent="2.15%"
               />
             </Link>
-            <Link to="/loans-refunded">
+            <Link to="/loans-successful">
               {" "}
               <LoanCard
-                status="refunded"
-                amount="4,587,541.28"
+                status="successful"
+                amount={loansSuccessful}
                 percent="2.15%"
               />
             </Link>
             <Link to="/loans-declined">
               {" "}
               <LoanCard
-                status="declined"
-                amount="4,587,541.28"
-                percent="2.15%"
-              />
-            </Link>
-            <Link to="/loans-pending">
-              <LoanCard
-                status="pending"
-                amount="4,587,541.28"
+                status={"declined"}
+                amount={loansDeclined}
                 percent="2.15%"
               />
             </Link>
@@ -177,16 +301,16 @@ const Dashboard = () => {
           </div>
           <div className="flex gap-[31px] mb-12 w-[890px]">
             <div className="w-[575px] h-[318px] border py-[20px] border-[#E6F0FF]">
-              <Graph />
+              <Graph monthlyData={monthlyData} />
             </div>
             <div className=" flex border border-[#E6F0FF] py-[40px] items-center justify-center w-[300px] h-[318px] bg-[#FAFCFF] relative">
-              <div className="flex flex-col items-center justify-center absolute top-[100px] left-[118px]">
+              <div className="flex flex-col items-center justify-center absolute top-[85px] left-[118px]">
                 <div className="font-[600] text-[24px] text-[#0267FF]">85%</div>
                 <div className="font-[400] text-[16px] text-[#808080]">
                   Positive
                 </div>
               </div>
-              <Donut />
+              <Donut successful={loansSuccessful} declined={loansDeclined} generated={loanData.length} />
             </div>
           </div>
         </div>
