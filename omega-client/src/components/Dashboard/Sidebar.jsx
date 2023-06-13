@@ -87,9 +87,8 @@ const Sidebar = () => {
             <div
               className={` text-[18px] font-600 ${
                 active === "dashboard" ||
-                active === "loans-refunded" ||
                 active === "loans-generated" ||
-                active === "loans-pending" ||
+                active === "loans-successful" ||
                 active === "loans-declined"
                   ? "text-[#0267FF]"
                   : "text-[#999999]"
