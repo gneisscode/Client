@@ -35,9 +35,13 @@ const LoanApplications = () => {
     ]);
     const [loans, setLoans] = useState([])
     const [error, setError] = useState(false)
+     const [loanData, setLoanData] = useState([]);
 
 useEffect(() => {
   const fetchData = async () => {
+     const loans = axios.create({
+       baseURL: `https://nodebtdev.onrender.com/api`,
+     });
     if (user && user.access_token) {
       try {
         const config = {
@@ -45,7 +49,9 @@ useEffect(() => {
             Authorization: `Bearer ${user.access_token}`,
           },
         };
-        const response = await axios.get("/loans/company-loans?page=2", config);
+        const response = await loans.get("/loans/company-loans", config);
+         const loansList = response.data.data.loans;
+         setLoanData(loansList);
         console.log(response.data);
       } catch (error) {
         console.log(error);
@@ -78,25 +84,15 @@ useEffect(() => {
             <h6>Credit Score</h6>
             <h6>Amount</h6>
           </div>
-          {data.map((dt) => {
+          {loanData.map((dt) => {
             return (
               <Link to="/borrower-profile">
                 <div className=" justify-center items-center mt-6 grid grid-cols-5 p-2 gap-10 bg-[#FAFCFF] px-12 text-[16px] w-[982px] h-[50px] text-[#666666]">
-                  <p>{dt["Borrowers Name"]}</p>
-                  <p>{dt.Date}</p>
-                  <p
-                    className={
-                      dt.Status === "Successful"
-                        ? "text-[#4ED273]"
-                        : dt.Status === "Pending"
-                        ? "text-[#E48900]"
-                        : "text-[#FF2727]"
-                    }
-                  >
-                    {dt.Status}
-                  </p>
+                  <p>{dt.fullname}</p>
+                  <p>{new Date(dt.createdAt).toLocaleDateString()}</p>
+                    {dt.eligibility===true ? <p className='text-[#4ED273]'>Successful</p> : <p className='text-[#FF2727]'>Declined</p> }
                   <p>{dt["Credit Score"]}</p>
-                  <p>{dt.Amount}</p>
+                  <p>{dt.loanAmount}</p>
                 </div>
               </Link>
             );
