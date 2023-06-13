@@ -9,11 +9,9 @@ import Gurarantors from "./Gurarantors";
 import Loan from "./Loan";
 import Collateral from "./Collateral";
 import Modal from "../../../../components/Modal/modal";
-import PreviewForm from "../Preview/PreviewForm";
 import { useNavigate } from "react-router-dom";
 import { PDFDocument } from "pdf-lib";
 
-export const BorrowerFormData = createContext();
 
 
 const BorrowersData = () => {
@@ -23,8 +21,6 @@ const BorrowersData = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [modalOne, setModalOne] = useState(false);
   const [modalTwo, setModalTwo] = useState(false);
-  // const [logOutModal, setLogOutModal] = useState(false)
-  const [showPreviewForm, setShowPreviewForm] = useState(false);
   const [pdfFile, setPdfFile] = useState({});
   const [formFields, setFormFields] = useState({
     name: "",
@@ -51,6 +47,61 @@ const BorrowersData = () => {
     guarantorOtherIncome: "",
   });
 
+  const [formData, setFormData] = useState({ 
+    guarantor: {
+      fullname: "",
+      phoneNumber: "",
+      email: "",
+      dateOfBirth: "",
+      address: "",
+      socialSecurityNumber: "",
+      relationship: "",
+      employment: "",
+      incomePerMonth: "",
+      otherSourcesOfIncome: "",
+    },
+
+    loanAmount: "",
+    fullname: "",
+    email: "",
+    address: "",
+    employmentType: "",
+    phoneNumber: "",
+    dateOfBirth: "",
+    nationalIdentityNumber: "",
+    incomePerMonth: "",
+    loanType: "",
+    repaymentType: "",
+    purposeOfLoan: "",
+    collateralType: "",
+    collateralValue: "",
+    collateralInformation: "",
+  })
+
+  const fieldMapping = {
+  name: "fullname",
+  email: "email",
+  phoneNumber: "phoneNumber",
+  DOB: "dateOfBirth",
+  address: "address",
+  nin: "nationalIdentityNumber",
+  employment: "employmentType",
+  income: "incomePerMonth",
+  loanAmount: "loanAmount",
+  loanPurpose: "purposeOfLoan",
+  collateralValue: "collateralValue",
+  collateralInfo: "collateralInformation",
+  guarantorName: "guarantor.fullname",
+  guarantorEmail: "guarantor.email",
+  guarantorDOB: "guarantor.dateOfBirth",
+  guarantorPhoneNumber: "guarantor.phoneNumber",
+  guarantorAddress: "guarantor.address",
+  guarantorNin: "guarantor.socialSecurityNumber",
+  guarantorRelationship: "guarantor.relationship",
+  guarantorEmployment: "guarantor.employment",
+  guarantorIncome: "guarantor.incomePerMonth",
+  guarantorOtherIncome: "guarantor.otherSourcesOfIncome",
+};
 
   
   const handleFileChange = async (event) => {
@@ -114,43 +165,16 @@ const BorrowersData = () => {
     window.scrollTo(0, 0);
   }, [activeIndex]);
 
-   const userData = {
-     name: "",
-     email: "",
-     phoneNumber: "",
-     DOB: "",
-     address: "",
-     nin: "",
-     employment: "",
-     income: "",
-     loanAmount: "",
-     loanPurpose: "",
-     collateralValue: "",
-     collateralInfo: "",
-     guarantorName: "",
-     guarantorEmail: "",
-     guarantorDOB: "",
-     guarantorPhoneNumber: "",
-     guarantorAddress: "",
-     guarantorNin: "",
-     guarantorRelationship: "",
-     guarantorEmployment: "",
-     guarantorIncome: "",
-     guarantorOtherIncome: "",
-   };
 
-   const [value, setValue] = useState(userData);
   const step = steps[activeIndex];
 
 
 
   return (
-    <BorrowerFormData.Provider value={{ value, setValue }}>
       <div className="flex flex-col">
         <DashHeader />
         <div className="flex relative">
           <Sidebar />
-          {/* {showPreviewForm && <PreviewForm handleModal={setModalTwo} />} */}
           <Modal isOpen={modalOne} onClose={() => setModalOne(false)}>
             <section className="w-[500px] bg-slate-200 p-12 flex flex-col items-center justify-center">
               <p className="text-black text-center mb-10 font-md text-xl">
@@ -161,7 +185,6 @@ const BorrowersData = () => {
                 label="Preview"
                 onClick={() => {
                   setModalOne(false);
-                  setShowPreviewForm(true);
                 }}
               />
               <div>
@@ -190,27 +213,7 @@ const BorrowersData = () => {
             </section>
           </Modal>
 
-          {/* <Modal isOpen={logOutModal} onClose={() => setLogOutModal(false)}>
-          <section className='w-[500px] bg-slate-200 p-12 flex flex-col items-center justify-center'>
-            <p className='text-black text-center mb-10 font-md text-xl'>
-              Are you sure you want to Log out?
-            </p>
-            <div className='flex flex-col-2 font-medium text-xl'>
-              <Button
-                className='text-[#FF2727] '
-                label='Yes'
-                onClick={() => {
-                  navigate('/login')
-                }}
-              />
-              <Button
-                className='text-[#0267FF] font-medium text-xl'
-                label='No'
-                onClick={() => setLogOutModal(false)}
-              />
-            </div>
-          </section>
-        </Modal> */}
+        
 
           <section className="flex justify-center ml-[52px]  absolute top-[112px] left-[300px] my-[40px]">
             <div>
@@ -274,7 +277,6 @@ const BorrowersData = () => {
           </section>
         </div>
       </div>
-    </BorrowerFormData.Provider>
   );
 };
 
