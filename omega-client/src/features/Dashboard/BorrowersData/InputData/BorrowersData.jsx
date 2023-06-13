@@ -9,11 +9,8 @@ import Gurarantors from './Gurarantors'
 import Loan from './Loan'
 import Collateral from './Collateral'
 import Modal from '../../../../components/Modal/modal'
-import PreviewForm from '../Preview/PreviewForm'
 import { useNavigate } from 'react-router-dom'
 import { PDFDocument } from 'pdf-lib'
-
-export const BorrowerFormData = createContext()
 
 const BorrowersData = () => {
   const navigate = useNavigate()
@@ -22,8 +19,6 @@ const BorrowersData = () => {
   const [activeIndex, setActiveIndex] = useState(0)
   const [modalOne, setModalOne] = useState(false)
   const [modalTwo, setModalTwo] = useState(false)
-  // const [logOutModal, setLogOutModal] = useState(false)
-  const [showPreviewForm, setShowPreviewForm] = useState(false)
   const [pdfFile, setPdfFile] = useState({})
   const [formFields, setFormFields] = useState({
     name: '',
@@ -49,6 +44,62 @@ const BorrowersData = () => {
     guarantorIncome: '',
     guarantorOtherIncome: '',
   })
+
+  const [formData, setFormData] = useState({
+    guarantor: {
+      fullname: '',
+      phoneNumber: '',
+      email: '',
+      dateOfBirth: '',
+      address: '',
+      socialSecurityNumber: '',
+      relationship: '',
+      employment: '',
+      incomePerMonth: '',
+      otherSourcesOfIncome: '',
+    },
+
+    loanAmount: '',
+    fullname: formFields.name,
+    email: formFields.email,
+    address: formFields.address,
+    employmentType: formFields.employment,
+    phoneNumber: formFields.phoneNumber,
+    dateOfBirth: formFields.DOB,
+    nationalIdentityNumber: formFields.nin,
+    incomePerMonth: formFields.income,
+    loanType: '',
+    repaymentType: '',
+    purposeOfLoan: '',
+    collateralType: '',
+    collateralValue: '',
+    collateralInformation: '',
+  })
+
+  const fieldMapping = {
+    name: 'fullname',
+    email: 'email',
+    phoneNumber: 'phoneNumber',
+    DOB: 'dateOfBirth',
+    address: 'address',
+    nin: 'nationalIdentityNumber',
+    employment: 'employmentType',
+    income: 'incomePerMonth',
+    loanAmount: 'loanAmount',
+    loanPurpose: 'purposeOfLoan',
+    collateralValue: 'collateralValue',
+    collateralInfo: 'collateralInformation',
+    guarantorName: 'guarantor.fullname',
+    guarantorEmail: 'guarantor.email',
+    guarantorDOB: 'guarantor.dateOfBirth',
+    guarantorPhoneNumber: 'guarantor.phoneNumber',
+    guarantorAddress: 'guarantor.address',
+    guarantorNin: 'guarantor.socialSecurityNumber',
+    guarantorRelationship: 'guarantor.relationship',
+    guarantorEmployment: 'guarantor.employment',
+    guarantorIncome: 'guarantor.incomePerMonth',
+    guarantorOtherIncome: 'guarantor.otherSourcesOfIncome',
+  }
 
   const handleFileChange = async (event) => {
     const file = event.target.files[0]
@@ -85,6 +136,26 @@ const BorrowersData = () => {
     }
   }
 
+  const handleSubmitForm = async (event) => {
+    // event.preventDefault()
+    // try {
+    //   const response = await axios.post('/loans/create', formFields);
+    // }catch (error) {
+    //   console.log(error)
+    // }
+    console.log(formData)
+    console.log(formFields)
+  }
+
+  const handleSaveData = () => {
+    if (activeIndex === 3) {
+      setModalTwo(true)
+      handleSubmitForm()
+    } else {
+      setActiveIndex((prev) => prev + 1)
+    }
+  }
+
   const steps = {
     0: {
       id: 0,
@@ -103,7 +174,7 @@ const BorrowersData = () => {
     },
     3: {
       id: 3,
-      title: "Guarantor's Information",
+      title: 'Guarantor’s Information',
       form: <Gurarantors extractedFields={formFields} pdf={pdfFile} />,
     },
   }
@@ -111,165 +182,109 @@ const BorrowersData = () => {
     window.scrollTo(0, 0)
   }, [activeIndex])
 
-  const userData = {
-    name: '',
-    email: '',
-    phoneNumber: '',
-    DOB: '',
-    address: '',
-    nin: '',
-    employment: '',
-    income: '',
-    loanAmount: '',
-    loanPurpose: '',
-    collateralValue: '',
-    collateralInfo: '',
-    guarantorName: '',
-    guarantorEmail: '',
-    guarantorDOB: '',
-    guarantorPhoneNumber: '',
-    guarantorAddress: '',
-    guarantorNin: '',
-    guarantorRelationship: '',
-    guarantorEmployment: '',
-    guarantorIncome: '',
-    guarantorOtherIncome: '',
-  }
-
-  const [value, setValue] = useState(userData)
   const step = steps[activeIndex]
 
   return (
-    <BorrowerFormData.Provider value={{ value, setValue }}>
-      <div className='flex flex-col'>
-        <DashHeader />
-        <div className='flex relative'>
-          <Sidebar />
-          {/* {showPreviewForm && <PreviewForm handleModal={setModalTwo} />} */}
-          <Modal isOpen={modalOne} onClose={() => setModalOne(false)}>
-            <section className='w-[500px] bg-slate-200 p-12 flex flex-col items-center justify-center'>
-              <p className='text-black text-center mb-10 font-md text-xl'>
-                Borrower's data has been saved. Kindly preview data
-              </p>
-              <Button
-                className='text-white bg-[#0267FF] w-64'
-                label='Preview'
-                onClick={() => {
-                  setModalOne(false)
-                  setShowPreviewForm(true)
-                }}
-              />
-              <div>
-                <Button
-                  className='text-red-600 w-64 mt-5'
-                  label='Cancel'
-                  onClick={() => setModalOne(false)}
-                />
-              </div>
-            </section>
-          </Modal>
-
-          <Modal isOpen={modalTwo} onClose={() => setModalTwo(false)}>
-            <section className='w-[500px] bg-slate-200 p-12 flex flex-col items-center justify-center'>
-              <p className='text-black text-center mb-10 font-md text-xl'>
-                Borrower's data has been uploaded successfully!
-              </p>
-              <Button
-                className='text-white bg-[#0267FF] w-64'
-                label='Check Eligibility Status'
-                onClick={() => {
-                  setModalTwo(false)
-                  navigate('/borrower-eligibility')
-                }}
-              />
-            </section>
-          </Modal>
-
-          {/* <Modal isOpen={logOutModal} onClose={() => setLogOutModal(false)}>
+    <div className='flex flex-col'>
+      <DashHeader />
+      <div className='flex relative'>
+        <Sidebar />
+        <Modal isOpen={modalOne} onClose={() => setModalOne(false)}>
           <section className='w-[500px] bg-slate-200 p-12 flex flex-col items-center justify-center'>
             <p className='text-black text-center mb-10 font-md text-xl'>
-              Are you sure you want to Log out?
+              Borrower's data has been saved. Kindly preview data
             </p>
-            <div className='flex flex-col-2 font-medium text-xl'>
+            <Button
+              className='text-white bg-[#0267FF] w-64'
+              label='Preview'
+              onClick={() => {
+                setModalOne(false)
+              }}
+            />
+            <div>
               <Button
-                className='text-[#FF2727] '
-                label='Yes'
-                onClick={() => {
-                  navigate('/login')
-                }}
-              />
-              <Button
-                className='text-[#0267FF] font-medium text-xl'
-                label='No'
-                onClick={() => setLogOutModal(false)}
+                className='text-red-600 w-64 mt-5'
+                label='Cancel'
+                onClick={() => setModalOne(false)}
               />
             </div>
           </section>
-        </Modal> */}
+        </Modal>
 
-          <section className='flex justify-center ml-[52px]  absolute top-[112px] left-[300px] my-[40px]'>
-            <div>
-              <div className='flex flex-col gap-[16px]'>
-                <h3 className='text-[#0267FF] text-[24px] font-[600]'>
-                  Input Borrower's Data
-                </h3>
-                <p className='text-[20px] font-[500] text-[#4D4D4D]'>
-                  Carefully input the borrowers details
-                </p>
-                <div>
-                  <p>Or upload a pre-filled form</p>
-                  <input
-                    type='file'
-                    accept='application/pdf'
-                    onChange={handleFileChange}
-                  />
-                </div>
-              </div>
-              <div className='flex w-full mt-16'>
-                <Card className='min-h-[700px] relative'>
-                  <div className='mt-12 mb-16 px-8'>
-                    <h2 className='text-[#4D4D4D] text-[20px] font-[600]'>
-                      {step.title}
-                    </h2>
-                  </div>
-                  {step.form}
-                  <div className='mt-8'></div>
-                  <div className='bottom-10 absolute flex items-center justify-center w-full'>
-                    <Circle
-                      slides={slides}
-                      activeIndex={activeIndex}
-                      setActiveIndex={setActiveIndex}
-                    />
-                  </div>
-                </Card>
-              </div>
-              <div className='grid grid-cols-2 justify-between items-center gap-20 mt-16 pb-[147px]'>
-                {activeIndex !== 0 ? (
-                  <Button
-                    className='bg-white text-[#0267FF] border border-[#0267FF] w-4/12'
-                    label='Previous'
-                    onClick={() => setActiveIndex((prev) => prev - 1)}
-                  />
-                ) : (
-                  <div className='w-4/12'></div>
-                )}
-                <Button
-                  className={`text-white bg-[#0267FF] ${
-                    activeIndex === 0 ? 'w-4/12' : 'w-4/12'
-                  }`}
-                  label={activeIndex === 3 ? 'Save Data' : 'Next'}
-                  onClick={() =>
-                    activeIndex === 3
-                      ? setModalTwo(true)
-                      : setActiveIndex((prev) => prev + 1)
-                  }
+        <Modal isOpen={modalTwo} onClose={() => setModalTwo(false)}>
+          <section className='w-[500px] bg-slate-200 p-12 flex flex-col items-center justify-center'>
+            <p className='text-black text-center mb-10 font-md text-xl'>
+              Borrower's data has been uploaded successfully!
+            </p>
+            <Button
+              className='text-white bg-[#0267FF] w-64'
+              label='Check Eligibility Status'
+              onClick={() => {
+                setModalTwo(false)
+                navigate('/borrower-eligibility')
+              }}
+            />
+          </section>
+        </Modal>
+
+        <section className='flex justify-center ml-[52px]  absolute top-[112px] left-[300px] my-[40px]'>
+          <div>
+            <div className='flex flex-col gap-[16px]'>
+              <h3 className='text-[#0267FF] text-[24px] font-[600]'>
+                Input Borrower's Data
+              </h3>
+              <p className='text-[20px] font-[500] text-[#4D4D4D]'>
+                Carefully input the borrowers details
+              </p>
+              <div>
+                <p>Or upload a pre-filled form</p>
+                <input
+                  type='file'
+                  accept='application/pdf'
+                  onChange={handleFileChange}
                 />
               </div>
             </div>
-          </section>
-        </div>
+            <div className='flex w-full mt-16'>
+              <Card className='min-h-[700px] relative'>
+                <div className='mt-12 mb-16 px-8'>
+                  <h2 className='text-[#4D4D4D] text-[20px] font-[600]'>
+                    {step.title}
+                  </h2>
+                </div>
+                {step.form}
+                <div className='mt-8'></div>
+                <div className='bottom-10 absolute flex items-center justify-center w-full'>
+                  <Circle
+                    slides={slides}
+                    activeIndex={activeIndex}
+                    setActiveIndex={setActiveIndex}
+                  />
+                </div>
+              </Card>
+            </div>
+            <div className='grid grid-cols-2 justify-between items-center gap-20 mt-16 pb-[147px]'>
+              {activeIndex !== 0 ? (
+                <Button
+                  className='bg-white text-[#0267FF] border border-[#0267FF] w-4/12'
+                  label='Previous'
+                  onClick={() => setActiveIndex((prev) => prev - 1)}
+                />
+              ) : (
+                <div className='w-4/12'></div>
+              )}
+              <Button
+                className={`text-white bg-[#0267FF] ${
+                  activeIndex === 0 ? 'w-4/12' : 'w-4/12'
+                }`}
+                label={activeIndex === 3 ? 'Save Data' : 'Next'}
+                onClick={handleSaveData}
+              />
+            </div>
+          </div>
+        </section>
       </div>
-    </BorrowerFormData.Provider>
+    </div>
   )
 }
 

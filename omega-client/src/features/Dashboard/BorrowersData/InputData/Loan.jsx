@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import TextField from "../../../../components/TextField";
 import SelectDropdown from "../../../../components/SelectDropDown/SelectDropDown";
-import { BorrowerFormData } from "./BorrowersData";
+
 
 const Loan = ({ extractedFields, pdf }) => {
   const [loanType, setLoanType] = useState(undefined);
@@ -19,7 +19,7 @@ const Loan = ({ extractedFields, pdf }) => {
   ];
   const [pdfFile, setPdfFile] = useState(pdf);
   const [formFields, setFormFields] = useState({ ...extractedFields });
-  const { value, setValue } = useContext(BorrowerFormData);
+ 
 
 
 
@@ -46,18 +46,14 @@ const Loan = ({ extractedFields, pdf }) => {
         <SelectDropdown
           options={loansType}
           placeholder="Loan Type"
-          onChange={(val) => setLoanType(val.value)}
+          onChange={handleInputChange}
         />
         <SelectDropdown
           options={repayTypeList}
           placeholder="Repayment Type"
-          onChange={(val) => setRepayType(val.value)}
+          onChange={handleInputChange}
         />
 
-        <TextField
-          className="bg-white border-[#0252CC]"
-          placeholder="Upload Credit Report"
-        />
         <TextField
           className="bg-white border-[#0252CC]"
           placeholder="Loan Amount"
@@ -67,13 +63,7 @@ const Loan = ({ extractedFields, pdf }) => {
               ? formFields.loanAmount || extractedFields.loanAmount || ""
               : formFields.loanAmount || ""
           }
-          onChange={(e) => {
-            handleInputChange(e);
-            setValue((prevValue) => ({
-              ...prevValue,
-              loanAmount: e.target.value,
-            }));
-          }}
+          onChange={handleInputChange}
         />
       </div>
       <div className="px-8 mt-12">
@@ -86,13 +76,7 @@ const Loan = ({ extractedFields, pdf }) => {
               ? formFields.loanPurpose || extractedFields.loanPurpose || ""
               : formFields.loanPurpose || ""
           }
-          onChange={(e) => {
-            handleInputChange(e);
-            setValue((prevValue) => ({
-              ...prevValue,
-              loanPurpose: e.target.value,
-            }));
-          }}
+          onChange={handleInputChange}
         ></textarea>
       </div>
     </>
