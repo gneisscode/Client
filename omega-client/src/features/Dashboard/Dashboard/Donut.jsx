@@ -4,13 +4,17 @@ import Chart from "chart.js/auto";
 import { CategoryScale } from "chart.js";
 Chart.register(CategoryScale);
 
-const Donut = () => {
+const Donut = ({generated, successful, declined}) => {
+
+ 
+
+
   const data = {
-    labels: ["Given", "Paid", "Declined"],
+    labels: ["generated", "successful", "declined"],
     datasets: [
       {
         label: "Total Number of Loans",
-        data: [300, 50, 100],
+        data: [generated, successful, declined],
         backgroundColor: ["#3585FF", "#4ED273", "#FF2727"],
         hoverOffset: 4,
       },

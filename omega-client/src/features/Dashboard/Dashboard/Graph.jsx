@@ -1,11 +1,11 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Chart from "chart.js/auto";
 import { CategoryScale } from "chart.js";
 import { Line } from "react-chartjs-2";
 
 Chart.register(CategoryScale);
 
-const Graph = () => {
+const Graph = ({monthlyData}) => {
   const labels = [
     "January",
     "February",
@@ -14,30 +14,36 @@ const Graph = () => {
     "May",
     "June",
     "July",
-    "Aug",
-    "Sept",
-    "Oct",
-    "Nov",
-    "Dec",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
   ];
+  const status = ["generated", "successful", "declined"];
 
-  const status = ["Loans given out", "Loans paid", "Loans declined"];
+  useEffect(() => {
+    console.log(monthlyData);
+  }, [monthlyData]);
 
   const datasets = status.map((status) => {
+     const data = labels.map(
+       (month) => monthlyData[month][status.toLowerCase()]
+     );
     return {
       label: `${status}`,
-      data: Array.from({ length: 12 }, () => Math.random() * 100),
+      data:data,
       backgroundColor: `${
-        status === "Loans given out"
+        status === "generated"
           ? ["#3585FF"]
-          : status === "Loans paid"
+          : status === "successful"
           ? ["#4ED273"]
           : ["#FF2727"]
       }`,
       borderColor: `${
-        status === "Loans given out"
+        status === "generated"
           ? ["#3585FF"]
-          : status === "Loans paid"
+          : status === "successful"
           ? ["#4ED273"]
           : ["#FF2727"]
       }`,
@@ -82,7 +88,7 @@ const Graph = () => {
         },
       },
       y: {
-        max: 100,
+        max: 20,
         grid: {
           display: false,
         },

@@ -36,16 +36,16 @@ const Generated = () => {
             </Link>
             <img src="assets/dashboard/arrowdark.svg" alt="" />
             <div className="text-[20px] font-[400] text-[#0267FF]">
-              Loans generated
+              Loans successful
             </div>
           </div>
           <div className="lg:w-[938px] lg:h-[fit] bg-[#FAFCFF] border border-[#CCE1FF]  mt-[40px] mb-16">
             <div className="flex justify-between">
               <div className="mt-5 p-5">
                 <p className="font-[600] text-[20px] text-[#013E99] ">
-                  Loans Generated
+                  Loans Successful
                 </p>
-                <p className="font-[500] text-[16px] text-[#0267FF] mt-5">
+                <p className="font-[500] text-[16px] text-[#04AB33] mt-5">
                   Total Amount: 4,587,541.28
                 </p>
                 <p className="font-[700] text-[14px] text-[#0252CC] mt-5">
@@ -93,7 +93,7 @@ const Generated = () => {
                           {row.date}
                         </td>
                         <td className="px-6 py-4 font-[600] text-[16px] text-[#666666]">
-                          <span className={`text-[#0267FF]`}>{row.status}</span>
+                          <span className={`text-[#04AB33]`}>{row.status}</span>
                         </td>
                         <td className="px-6 py-4 font-[600] text-[16px] text-[#666666]">
                           {row.creditScore}

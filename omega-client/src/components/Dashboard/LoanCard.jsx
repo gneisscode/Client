@@ -8,41 +8,35 @@ const LoanCard = (props) => {
           className={`text-[16px] font-semibold pt-[23px] ${
             props.status === "generated"
               ? "text-[#0267FF]"
-              : props.status === "pending"
-              ? "text-[#F29509]"
-              : props.status === "refunded"
+              : props.status === "successful"
               ? "text-[#04AB33]"
               : "text-[#FF1C1C]"
           }`}
         >
           Loans {props.status}
         </div>
-        <div className="flex gap-[105px] items-center">
+        <div className="flex justify-between items-center px-4">
           <div className="text-[24px] font-bold ">{props.amount}</div>
           <img src="assets/dashboard/wallet.svg" alt="" />
         </div>
       </div>
       <div className="lg:w-[317px] lg:h-[49px] border border-[#CCCCCC] bg-[#F2F2F2] flex gap-[108px] justify-center items-center w-[100%]  rounded-bl rounded-br">
-        <div className="flex gap-[8px] ">
+        <div className="flex gap-[8px] justify-center  items-center">
           <div
-            className={` flex justify-center items-center ${
+            className={`text-[16px] font-semibold pt-[23px] items-center justify-center ${
               props.status === "generated"
                 ? "text-[#0267FF]"
-                : props.status === "pending"
-                ? "text-[#F29509]"
-                : props.status === "refunded"
+                : props.status === "successful"
                 ? "text-[#04AB33]"
                 : "text-[#FF1C1C]"
             }`}
           >
-            <div className="flex justify-center items-center gap-2">
+            <div className="flex justify-center items-center gap-2 mt-[-1em]">
               <div
                 className={`w-[16px] h-[16px] ${
                   props.status === "generated"
                     ? "bg-[#0267FF]"
-                    : props.status === "pending"
-                    ? "bg-[#F29509]"
-                    : props.status === "refunded"
+                    : props.status === "successful"
                     ? "bg-[#04AB33]"
                     : "bg-[#FF1C1C]"
                 }`}

@@ -61,7 +61,7 @@ function App() {
       component: <AddAdmin />,
     },
     {
-      path: "/loans-generated",
+      path: "/loans-successful",
       component: <Generated />,
     },
     {
