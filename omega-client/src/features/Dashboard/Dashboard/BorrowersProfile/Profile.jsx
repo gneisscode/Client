@@ -1,9 +1,41 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import DashHeader from '../../../../components/Dashboard/DashHeader'
 import Sidebar from '../../../../components/Dashboard/Sidebar'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
+import axios from 'axios'
+import { Context } from '../../../../context/Context'
 
 const Profile = () => {
+  const [currentUser, setCurrentUser] = useState({})
+  const param = useParams()
+
+  const { user } = useContext(Context)
+
+  useEffect(() => {
+    const getUserLoan = async () => {
+      const loans = axios.create({
+        baseURL: `https://nodebtdev.onrender.com/api`,
+      })
+      try {
+        const config = {
+          headers: {
+            Authorization: `Bearer ${user.access_token}`,
+          },
+        }
+        const response = await loans.get(`/loans/company-loans`, config)
+        // console.log(response.data)
+        // console.log(response.data.data.loans)
+        const loansList = response.data.data.loans
+
+        const userLoan = loansList.find((loan) => loan._id === param.id)
+        setCurrentUser(userLoan)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    getUserLoan()
+  }, [user, user?.access_token])
   return (
     <div className='flex flex-col'>
       <DashHeader />
@@ -23,9 +55,11 @@ const Profile = () => {
           </div>
           <div className='flex bg-blue-100 p-16 justify-between align-middle'>
             <div className='flex flex-col'>
-              <h2 className='font-semibold text-base mb-8'>Blessing Effiong</h2>
+              <h2 className='font-semibold text-base mb-8'>
+                {currentUser.fullname}
+              </h2>
               <p className='text-[#666666] font-normal text-sm'>
-                Date: 677/89/9089
+                {new Date(currentUser.createdAt).toLocaleDateString()}
               </p>
             </div>
             <div>
@@ -43,14 +77,16 @@ const Profile = () => {
           <div className='p-16'>
             <div className='flex gap-5 mb-8'>
               <h3 className='w-32'>Loan Amount:</h3>
-              <p>#5,000,000</p>
+              <p>{currentUser.loanAmount}</p>
             </div>
             <div className='flex gap-5 mb-8'>
               <h3 className='w-32'>Loan Status:</h3>
-              <p>Declined</p>
-              {/* {status === 'Successful' && <p className='text-green'>{status}</p>}
-            {status === 'Pending' && <p className='text-orange'>{status}</p>}
-            {status === 'Declined' && <p className='text-red'>{status}</p>} */}
+
+              {currentUser.eligibility ? (
+                <p className='text-[#4ED273]'>Successful</p>
+              ) : (
+                <p className='text-[#FF2727]'>Declined</p>
+              )}
             </div>
             <div className='flex gap-5 mb-8'>
               <h3 className='w-32'>Admin in charge:</h3>

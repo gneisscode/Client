@@ -43,7 +43,7 @@ const BorrowersData = () => {
     },
     3: {
       id: 3,
-      title: 'Guarantor’s Information',
+      title: "Guarantor's Information",
       form: <Gurarantors />,
     },
   }
