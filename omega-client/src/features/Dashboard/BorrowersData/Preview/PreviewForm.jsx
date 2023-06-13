@@ -1,12 +1,69 @@
-import React, {useContext} from "react";
+import React, { useContext, useState } from "react";
 import TextField from "../../../../components/TextField";
 import Button from "../../../../components/Button";
 import { BorrowerFormData } from "../InputData/BorrowersData";
+import { Context } from "../../../../context/Context";
+import axios from "axios";
 
-
-const PreviewForm = ({ handleModal }) => {
-  
+const PreviewForm = ({ handleModal, handleModalTwo }) => {
   const { value } = useContext(BorrowerFormData);
+  const { user } = useContext(Context);
+  const showUserFormData = () => {
+    console.log(value);
+  };
+
+  const [formData, setFormData] = useState({
+    guarantor: {
+      fullname: value.guarantorInfo.fullName,
+      phoneNumber: value.guarantorInfo.phoneNumber,
+      email: value.guarantorInfo.email,
+      age: parseInt(value.guarantorInfo.age),
+      address: value.guarantorInfo.address,
+      socialSecurityNumber: value.guarantorInfo.ssn,
+      relationship: value.guarantorInfo.relationship,
+      employmentType: value.guarantorInfo.employmentType,
+      incomePerMonth: parseInt(value.guarantorInfo.incomePerMonth),
+      otherSourcesOfIncome: value.guarantorInfo.incomeSource,
+    },
+    fullname: value.personalInfo.fullName,
+    email: value.personalInfo.email,
+    address: value.personalInfo.address,
+    employmentType: value.personalInfo.employmentType,
+    jobSector: value.personalInfo.jobSector,
+    jobRole: value.personalInfo.jobRole,
+    phoneNumber: value.personalInfo.phoneNumber,
+    age: parseInt(value.personalInfo.age),
+    gender: value.personalInfo.gender,
+    maritalStatus: value.personalInfo.maritalStatus,
+    nationalIdentityNumber: value.personalInfo.nin,
+    incomePerMonth: parseInt(value.personalInfo.income),
+    loanType: value.loanInfo.loanType,
+    loanAmount: parseInt(value.loanInfo.loanAmount),
+    repaymentType: value.loanInfo.repaymentType,
+    purposeOfLoan: value.loanInfo.loanPurpose,
+    collateralType: value.collateralInfo.collateralType,
+    collateralValue: parseInt(value.collateralInfo.collateralValue),
+    collateralInformation: value.collateralInfo.collateralInformation,
+  });
+
+  console.log(formData);
+
+  const handleSubmit = async (event) => {
+    const loans = axios.create({
+      baseURL: `https://nodebtdev.onrender.com/api`,
+    });
+    try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${user.access_token}`,
+        },
+      };
+      const response = await loans.post(`/loans/create`, formData, config);
+      console.log(response.data);
+    } catch (error) {
+      console.log(error)
+    }
+  };
   return (
     <div className="border border-gray-200 absolute z-[100] top-0 left-0 right-0 w-full bg-black bg-opacity-30 pt-[110px]">
       <div className="max-w-[80%] bg-white ml-auto py-4">
@@ -23,25 +80,37 @@ const PreviewForm = ({ handleModal }) => {
           <div className="flex flex-col space-y-5 border-b pb-28 mt-[51px] px-20">
             <div className="flex gap-36">
               <TextField
-                className="bg-white border-[#0252CC]  "
-                value={value.name}
+                className="bg-white border-[#0252CC]"
+                value={value.personalInfo.fullName}
                 disabled={true}
               />
               <TextField
                 className="bg-white border-[#0252CC] "
-                value={value.phoneNumber}
+                value={value.personalInfo.phoneNumber}
                 disabled={true}
               />
             </div>
             <div className="flex gap-36">
               <TextField
                 className="bg-white border-[#0252CC] w-96"
-                value={value.email}
+                value={value.personalInfo.email}
                 disabled={true}
               />
               <TextField
                 className="bg-white border-[#0252CC] w-96"
-                value={value.DOB}
+                value={value.personalInfo.age}
+                disabled={true}
+              />
+            </div>
+            <div className="flex gap-36">
+              <TextField
+                className="bg-white border-[#0252CC] w-96"
+                value={value.personalInfo.gender}
+                disabled={true}
+              />
+              <TextField
+                className="bg-white border-[#0252CC] w-96"
+                value={value.personalInfo.maritalStatus}
                 disabled={true}
               />
             </div>
@@ -49,12 +118,12 @@ const PreviewForm = ({ handleModal }) => {
             <div className="flex gap-36">
               <TextField
                 className="bg-white border-[#0252CC] w-96"
-                value={value.address}
+                value={value.personalInfo.address}
                 disabled={true}
               />
               <TextField
                 className="bg-white border-[#0252CC] w-96"
-                value={value.nin}
+                value={value.personalInfo.nin}
                 disabled={true}
               />
             </div>
@@ -62,12 +131,25 @@ const PreviewForm = ({ handleModal }) => {
             <div className="flex gap-36">
               <TextField
                 className="bg-white border-[#0252CC] w-96"
-                value={value.employment}
+                value={value.personalInfo.employmentType}
                 disabled={true}
               />
               <TextField
                 className="bg-white border-[#0252CC] w-96"
-                value={value.income}
+                value={value.personalInfo.income}
+                disabled={true}
+              />
+            </div>
+
+            <div className="flex gap-36">
+              <TextField
+                className="bg-white border-[#0252CC] w-96"
+                value={value.personalInfo.jobRole}
+                disabled={true}
+              />
+              <TextField
+                className="bg-white border-[#0252CC] w-96"
+                value={value.personalInfo.jobSector}
                 disabled={true}
               />
             </div>
@@ -81,14 +163,21 @@ const PreviewForm = ({ handleModal }) => {
 
           <div className="flex flex-col  space-y-5 border-b pb-16 mt-16 px-20">
             <div className="flex gap-36">
-              <TextField className="bg-white border-[#0252CC] w-96" />
-              <TextField className="bg-white border-[#0252CC] w-96" />
-            </div>
-            <div className="flex gap-36">
-              <TextField className="bg-white border-[#0252CC] w-96" />
               <TextField
                 className="bg-white border-[#0252CC] w-96"
-                value={value.loanAmount}
+                value={value.loanInfo.loanType}
+                disabled={true}
+              />
+              <TextField
+                className="bg-white border-[#0252CC] w-96"
+                value={value.loanInfo.repaymentType}
+                disabled={true}
+              />
+            </div>
+            <div className="flex gap-36">
+              <TextField
+                className="bg-white border-[#0252CC] w-96"
+                value={value.loanInfo.loanAmount}
                 disabled={true}
               />
             </div>
@@ -96,7 +185,7 @@ const PreviewForm = ({ handleModal }) => {
             <div className="py-4 ">
               <textarea
                 className="bg-[#EEF5FC] border border-[#0252CC] w-full h-32 rounded"
-                value={value.loanPurpose}
+                value={value.loanInfo.loanPurpose}
                 disabled={true}
               ></textarea>
             </div>
@@ -107,17 +196,21 @@ const PreviewForm = ({ handleModal }) => {
               Collateral Information
             </div>
             <div className="flex gap-36">
-              <TextField className="bg-white border-[#0252CC]" />
               <TextField
                 className="bg-white border-[#0252CC]"
-                value={value.collateralValue}
+                value={value.collateralInfo.collateralType}
+                disabled={true}
+              />
+              <TextField
+                className="bg-white border-[#0252CC]"
+                value={value.collateralInfo.collateralValue}
                 disabled={true}
               />
             </div>
             <div className="py-4">
               <textarea
                 className="bg-[#EEF5FC] border border-[#0252CC] w-full h-32 rounded"
-                value={value.collateralInfo}
+                value={value.collateralInfo.collateralInformation}
                 disabled={true}
               ></textarea>
             </div>
@@ -131,37 +224,24 @@ const PreviewForm = ({ handleModal }) => {
               <div className="flex gap-36">
                 <TextField
                   className="bg-white border-[#0252CC] w-96"
-                  value={value.guarantorName}
+                  value={value.guarantorInfo.fullName}
                   disabled={true}
                 />
                 <TextField
                   className="bg-white border-[#0252CC] w-96"
-                  value={value.guarantorPhoneNumber}
+                  value={value.guarantorInfo.phoneNumber}
                   disabled={true}
                 />
               </div>
               <div className="flex gap-36">
                 <TextField
                   className="bg-white border-[#0252CC] w-96"
-                  value={value.guarantorEmail}
+                  value={value.guarantorInfo.email}
                   disabled={true}
                 />
                 <TextField
                   className="bg-white border-[#0252CC] w-96"
-                  value={value.guarantorDOB}
-                  disabled={true}
-                />
-              </div>
-
-              <div className="flex gap-36">
-                <TextField
-                  className="bg-white border-[#0252CC] w-96"
-                  value={value.guarantorAddress}
-                  disabled={true}
-                />
-                <TextField
-                  className="bg-white border-[#0252CC] w-96"
-                  value={value.guarantorNin}
+                  value={value.guarantorInfo.age}
                   disabled={true}
                 />
               </div>
@@ -169,12 +249,12 @@ const PreviewForm = ({ handleModal }) => {
               <div className="flex gap-36">
                 <TextField
                   className="bg-white border-[#0252CC] w-96"
-                  value={value.guarantorRelationship}
+                  value={value.guarantorInfo.address}
                   disabled={true}
                 />
                 <TextField
                   className="bg-white border-[#0252CC] w-96"
-                  value={value.guarantorEmployment}
+                  value={value.guarantorInfo.ssn}
                   disabled={true}
                 />
               </div>
@@ -182,12 +262,25 @@ const PreviewForm = ({ handleModal }) => {
               <div className="flex gap-36">
                 <TextField
                   className="bg-white border-[#0252CC] w-96"
-                  value={value.guarantorOtherIncome}
+                  value={value.guarantorInfo.relationship}
                   disabled={true}
                 />
                 <TextField
                   className="bg-white border-[#0252CC] w-96"
-                  value={value.guarantorIncome}
+                  value={value.guarantorInfo.employmentType}
+                  disabled={true}
+                />
+              </div>
+
+              <div className="flex gap-36">
+                <TextField
+                  className="bg-white border-[#0252CC] w-96"
+                  value={value.guarantorInfo.incomeSource}
+                  disabled={true}
+                />
+                <TextField
+                  className="bg-white border-[#0252CC] w-96"
+                  value={value.guarantorInfo.incomePerMonth}
                   disabled={true}
                 />
               </div>
@@ -218,7 +311,12 @@ const PreviewForm = ({ handleModal }) => {
           <Button
             className="text-white bg-[#0267FF] rounded"
             label="Upload Data"
-            onClick={handleModal}
+            onClick={(e) => {
+              handleSubmit(e);
+              // showUserFormData();
+              // handleModal(false);
+              // handleModalTwo(true);
+            }}
           />
         </div>
       </div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import DashHeader from "../../../components/Dashboard/DashHeader";
 import Sidebar from "../../../components/Dashboard/Sidebar";
 import LoanCard from "../../../components/Dashboard/LoanCard";
@@ -8,9 +8,12 @@ import Chart from "chart.js/auto";
 import { CategoryScale } from "chart.js";
 import Donut from "./Donut";
 import Graph from "./Graph";
+import { Context } from "../../../context/Context";
+import axios from "axios";
 Chart.register(CategoryScale);
 
 const Dashboard = () => {
+   const { user } = useContext(Context);
   const status =[
     "Loans given out",
     "Loans paid",
@@ -98,6 +101,31 @@ const Dashboard = () => {
       },
     },
   };
+
+  useEffect(()=> {
+    const handleSubmit = async () => {
+      const loans = axios.create({
+        baseURL: `https://nodebtdev.onrender.com/api`,
+      });
+      try {
+        const config = {
+          headers: {
+            Authorization: `Bearer ${user.access_token}`,
+          },
+        };
+        const response = await loans.get(
+          `/loans/company-loans`,
+          config
+        );
+        console.log(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }; handleSubmit()
+
+  }, [])
+
+   
 
   return (
     <div className="flex flex-col">
