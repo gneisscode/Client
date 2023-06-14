@@ -63,20 +63,20 @@ const Profile = () => {
     setProfilePic(URL.createObjectURL(file))
     setSelectedFile(file)
     // const reader = new FileReader()
-
     // reader.onloadend = () => {
     //   setProfilePic(reader.result)
     // }
-
     // if (file) {
     //   reader.readAsDataURL(file)
     //   setSelectedFile(file)
     // }
-    console.log(file)
+    // console.log(file)
   }
 
   const removeProfilePic = () => {
+
     setProfilePic('assets/dashboard/default.jpg')
+
     setSelectedFile(null)
   }
 
@@ -107,33 +107,45 @@ const Profile = () => {
     }
   }
 
-  const updateProfilePic = async () => {
-    const formData = new FormData()
-    formData.append('profileImage', selectedFile)
-    try {
-      const response = await axios.put(
-        `/admins/${user.adminId}/profile-picture`,
-        formData,
-        {
-          headers: {
-            'Content-Type':
-              'multipart/form-data; boundary=<calculated when request is sent>',
-            Authorization: `Bearer ${user.access_token}`,
-          },
-        }
-      )
-      const data = response.data.data
-      dispatch({ type: 'PROFILE-PIC_UPDATED' })
-      console.log(response)
-    } catch (error) {
-      console.log(error)
-    }
+  const updateProfilePic = () => {
+    // if (selectedFile) {
+    //   const formData = new FormData()
+    //   formData.append('profileImage', selectedFile)
+    //   try {
+    //     const response = await axios.put(
+    //       `/admins/${user.adminId}/profile-picture`,
+    //       formData,
+    //       {
+    //         headers: {
+    //           'Content-Type':
+    //             'multipart/form-data; boundary=<calculated when request is sent>',
+    //           Authorization: `Bearer ${user.access_token}`,
+    //         },
+    //       }
+    //     )
+    //     const data = response.data.data
+    //     dispatch({ type: 'PROFILE-PIC_UPDATED' })
+    //     console.log(response)
+    //   } catch (error) {
+    //     console.log(error)
+    //   }
+    // } else {
+    //   try {
+    //     const response = axios.delete(`admins/${user.adminId}/profile-picture`)
+    //     console.log(response.data)
+    //   } catch (error) {
+    //     console.log(error)
+    //   }
+    // }
+    console.log(selectedFile)
+    console.log(profilePic)
   }
 
-  const handleUpdateAdminDetails = async () => {
+  const handleUpdateAdminDetails = () => {
     setIsLoading(true)
     try {
-      await Promise.all([updateDetails(), updateProfilePic()])
+      // await Promise.all([updateDetails(), updateProfilePic()])
+      updateProfilePic()
     } catch (error) {
       showToastError()
     } finally {
