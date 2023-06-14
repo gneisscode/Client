@@ -1,156 +1,173 @@
-import React, { useState, useContext, useEffect } from "react";
-import TextField from "../../../../components/TextField";
+import React, { useContext, useState } from 'react'
+import TextField from '../../../../components/TextField'
+import { BorrowerFormData } from './BorrowersData'
+import SelectDropdown from '../../../../components/SelectDropDown/SelectDropDown'
 
+const Gurarantors = () => {
+  const { value, setValue } = useContext(BorrowerFormData)
+  const [employmentType, setEmploymentType] = useState(undefined)
+  const [relationship, setRelationship] = useState(undefined)
 
-const Gurarantors = ({ extractedFields, pdf }) => {
-  const [pdfFile, setPdfFile] = useState(pdf);
-  const [formFields, setFormFields] = useState({ ...extractedFields });
+  const employmentTypes = [
+    { id: 1, label: 'Contract', value: 'Contract' },
+    { id: 2, label: 'Self-Employed', value: 'Self-Employed' },
+    { id: 3, label: 'Full-Time', value: 'Full-Time' },
+    { id: 4, label: 'Part-Time', value: 'Part-Time' },
+    { id: 5, label: 'Unemployed', value: 'Unemployed' },
+  ]
 
-
-
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    if (pdfFile) {
-      setFormFields((prevFormFields) => ({
-        ...prevFormFields,
-        [name]: value,
-      }));
-    } else {
-      event.persist();
-      setFormFields((prevFormFields) => ({
-        ...prevFormFields,
-        [name]: value,
-      }));
-      console.log(formFields);
-    }
-  };
+  const relationshipTypes = [
+    { id: 1, label: 'Sister', value: 'Sister' },
+    { id: 2, label: 'Brother', value: 'Brother' },
+    { id: 3, label: 'Parent', value: 'Parent' },
+    { id: 4, label: 'Friend', value: 'Friend' },
+    { id: 5, label: 'Spouse', value: 'Spouse' },
+  ]
 
   return (
-    <div className="grid grid-cols-2 w-full gap-7 px-8">
+    <div className='grid grid-cols-2 w-full gap-7 px-8'>
       <TextField
-        className="bg-white border-[#0252CC] "
-        placeholder="Name"
-        name="guarantorName"
-        value={
-          pdfFile
-            ? formFields.guarantorName || extractedFields.guarantorName || ""
-            : formFields.guarantorName || ""
+        className='bg-white border-[#0252CC] '
+        placeholder='Name'
+        value={value.guarantorInfo.fullName}
+        onChange={(e) =>
+          setValue({
+            ...value,
+            guarantorInfo: {
+              ...value.guarantorInfo,
+              fullName: e.target.value,
+            },
+          })
         }
-        onChange={handleInputChange}
       />
       <TextField
-        className="bg-white border-[#0252CC]"
-        placeholder="Phone Number"
-        name="guarantorPhoneNumber"
-        value={
-          pdfFile
-            ? formFields.guarantorPhoneNumber ||
-              extractedFields.guarantorPhoneNumber ||
-              ""
-            : formFields.guarantorPhoneNumber || ""
+        className='bg-white border-[#0252CC]'
+        placeholder='Phone Number'
+        value={value.guarantorInfo.phoneNumber}
+        onChange={(e) =>
+          setValue({
+            ...value,
+            guarantorInfo: {
+              ...value.guarantorInfo,
+              phoneNumber: e.target.value,
+            },
+          })
         }
-        onChange={handleInputChange}
       />
       <TextField
-        className="bg-white border-[#0252CC]"
-        placeholder="Email"
-        name="guarantorEmail"
-        value={
-          pdfFile
-            ? formFields.guarantorEmail || extractedFields.guarantorEmail || ""
-            : formFields.guarantorEmail || ""
+        className='bg-white border-[#0252CC]'
+        placeholder='Email'
+        value={value.guarantorInfo.email}
+        onChange={(e) =>
+          setValue({
+            ...value,
+            guarantorInfo: {
+              ...value.guarantorInfo,
+              email: e.target.value,
+            },
+          })
         }
-        onChange={handleInputChange}
       />
       <TextField
-        className="bg-white border-[#0252CC]"
-        placeholder="Date of Birth"
-        name="guarantorDOB"
-        value={
-          pdfFile
-            ? formFields.guarantorDOB || extractedFields.guarantorDOB || ""
-            : formFields.guarantorDOB || ""
+        className='bg-white border-[#0252CC]'
+        placeholder='Age'
+        value={value.guarantorInfo.age}
+        onChange={(e) =>
+          setValue({
+            ...value,
+            guarantorInfo: {
+              ...value.guarantorInfo,
+              age: e.target.value,
+            },
+          })
         }
-        onChange={handleInputChange}
       />
       <TextField
-        className="bg-white border-[#0252CC]"
-        placeholder="Address"
-        name="guarantorAddress"
-        value={
-          pdfFile
-            ? formFields.guarantorAddress ||
-              extractedFields.guarantorAddress ||
-              ""
-            : formFields.guarantorAddress || ""
+        className='bg-white border-[#0252CC]'
+        placeholder='Address'
+        value={value.guarantorInfo.address}
+        onChange={(e) =>
+          setValue({
+            ...value,
+            guarantorInfo: {
+              ...value.guarantorInfo,
+              address: e.target.value,
+            },
+          })
         }
-        onChange={handleInputChange}
       />
       <TextField
-        className="bg-white border-[#0252CC]"
-        placeholder="National Identity Number"
-        name="guarantorNin"
-        value={
-          pdfFile
-            ? formFields.guarantorNin || extractedFields.guarantorNIN || ""
-            : formFields.guarantorNin || ""
+        className='bg-white border-[#0252CC]'
+        placeholder='Social Security Number'
+        value={value.guarantorInfo.ssn}
+        onChange={(e) =>
+          setValue({
+            ...value,
+            guarantorInfo: {
+              ...value.guarantorInfo,
+              ssn: e.target.value,
+            },
+          })
         }
-        onChange={handleInputChange}
+      />
+      <SelectDropdown
+        options={relationshipTypes}
+        placeholder='Relationship'
+        onChange={(val) => {
+          setValue({
+            ...value,
+            guarantorInfo: {
+              ...value.guarantorInfo,
+              relationship: val.value,
+            },
+          })
+          setRelationship(val.value)
+        }}
+      />
+      <SelectDropdown
+        options={employmentTypes}
+        placeholder='Employment'
+        onChange={(val) => {
+          setValue({
+            ...value,
+            guarantorInfo: {
+              ...value.guarantorInfo,
+              employmentType: val.value,
+            },
+          })
+          setEmploymentType(val.value)
+        }}
       />
       <TextField
-        className="bg-white border-[#0252CC]"
-        placeholder="Relationship"
-        name="guarantorRelationship"
-        value={
-          pdfFile
-            ? formFields.guarantorRelationship ||
-              extractedFields.guarantorRelationship ||
-              ""
-            : formFields.guarantorRelationship || ""
+        className='bg-white border-[#0252CC]'
+        placeholder='Other sources of Income'
+        value={value.guarantorInfo.incomeSource}
+        onChange={(e) =>
+          setValue({
+            ...value,
+            guarantorInfo: {
+              ...value.guarantorInfo,
+              incomeSource: e.target.value,
+            },
+          })
         }
-        onChange={handleInputChange}
       />
       <TextField
-        className="bg-white border-[#0252CC]"
-        placeholder="Employment"
-        name="guarantorEmployment"
-        value={
-          pdfFile
-            ? formFields.guarantorEmployment ||
-              extractedFields.guarantorEmployment ||
-              ""
-            : formFields.guarantorEmployment || ""
+        className='bg-white border-[#0252CC]'
+        placeholder=' Income per month'
+        value={value.guarantorInfo.incomePerMonth}
+        onChange={(e) =>
+          setValue({
+            ...value,
+            guarantorInfo: {
+              ...value.guarantorInfo,
+              incomePerMonth: e.target.value,
+            },
+          })
         }
-        onChange={handleInputChange}
-      />
-      <TextField
-        className="bg-white border-[#0252CC]"
-        placeholder="Other sources of Income"
-        name="guarantorOtherIncome"
-        value={
-          pdfFile
-            ? formFields.guarantorOtherIncome ||
-              extractedFields.guarantorOtherIncome ||
-              ""
-            : formFields.guarantorOtherIncome || ""
-        }
-        onChange={handleInputChange}
-      />
-      <TextField
-        className="bg-white border-[#0252CC]"
-        placeholder="Income per month"
-        name="guarantorIncome"
-        value={
-          pdfFile
-            ? formFields.guarantorIncome ||
-              extractedFields.guarantorIncome ||
-              ""
-            : formFields.guarantorIncome || ""
-        }
-        onChange={handleInputChange}
       />
     </div>
-  );
-};
+  )
+}
 
-export default Gurarantors;
+export default Gurarantors

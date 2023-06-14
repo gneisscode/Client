@@ -17,9 +17,9 @@ const Sidebar = () => {
 
   return (
     <div className="lg:flex flex-col lg:min-h-[100%] hidden lg:min-w-[300px] bg-[#FAFCFF] fixed top-[112px] left-0">
-      <div className="flex flex-col justify-center pl-[40px] pt-[20px] gap-[40px]">
+      <div className="flex flex-col justify-center pl-[40px] pt-[20px] gap-[40px] ">
         <Link to="/dashboard">
-          <div className="flex  items-center gap-[10px]">
+          <div className="flex  items-center gap-[10px] duration-500 transform hover:translate-x-2">
             <svg
               width="23"
               height="24"
@@ -31,9 +31,8 @@ const Sidebar = () => {
                 d="M20.6287 11H14.2287C13.7869 11 13.4287 11.3838 13.4287 11.8571V22.1429C13.4287 22.6162 13.7869 23 14.2287 23H20.6287C21.0705 23 21.4287 22.6162 21.4287 22.1429V11.8571C21.4287 11.3838 21.0705 11 20.6287 11Z"
                 stroke={
                   active === "dashboard" ||
-                  active === "loans-refunded" ||
                   active === "loans-generated" ||
-                  active === "loans-pending" ||
+                  active === "loans-successful" ||
                   active === "loans-declined"
                     ? "#0267FF"
                     : "#999999"
@@ -46,9 +45,8 @@ const Sidebar = () => {
                 d="M20.7143 1H13.8571C13.3838 1 13 1.38376 13 1.85714V5.30286C13 5.77624 13.3838 6.16 13.8571 6.16H20.7143C21.1877 6.16 21.5714 5.77624 21.5714 5.30286V1.85714C21.5714 1.38376 21.1877 1 20.7143 1Z"
                 stroke={
                   active === "dashboard" ||
-                  active === "loans-refunded" ||
                   active === "loans-generated" ||
-                  active === "loans-pending" ||
+                  active === "loans-successful" ||
                   active === "loans-declined"
                     ? "#0267FF"
                     : "#999999"
@@ -61,9 +59,8 @@ const Sidebar = () => {
                 d="M8.2 1H1.8C1.35817 1 1 1.38376 1 1.85714V12.1429C1 12.6162 1.35817 13 1.8 13H8.2C8.64183 13 9 12.6162 9 12.1429V1.85714C9 1.38376 8.64183 1 8.2 1Z"
                 stroke={
                   active === "dashboard" ||
-                  active === "loans-refunded" ||
                   active === "loans-generated" ||
-                  active === "loans-pending" ||
+                  active === "loans-successful" ||
                   active === "loans-declined"
                     ? "#0267FF"
                     : "#999999"
@@ -76,9 +73,8 @@ const Sidebar = () => {
                 d="M8.71429 17.125H1.85714C1.38376 17.125 1 17.5088 1 17.9821V21.4279C1 21.9012 1.38376 22.285 1.85714 22.285H8.71429C9.18767 22.285 9.57143 21.9012 9.57143 21.4279V17.9821C9.57143 17.5088 9.18767 17.125 8.71429 17.125Z"
                 stroke={
                   active === "dashboard" ||
-                  active === "loans-refunded" ||
                   active === "loans-generated" ||
-                  active === "loans-pending" ||
+                  active === "loans-successful" ||
                   active === "loans-declined"
                     ? "#0267FF"
                     : "#999999"
@@ -91,9 +87,8 @@ const Sidebar = () => {
             <div
               className={` text-[18px] font-600 ${
                 active === "dashboard" ||
-                active === "loans-refunded" ||
                 active === "loans-generated" ||
-                active === "loans-pending" ||
+                active === "loans-successful" ||
                 active === "loans-declined"
                   ? "text-[#0267FF]"
                   : "text-[#999999]"
@@ -105,7 +100,7 @@ const Sidebar = () => {
         </Link>
 
         <Link to="/borrower-data">
-          <div className="flex  items-center gap-[10px]">
+          <div className="flex  items-center gap-[10px] duration-500 transform hover:translate-x-2">
             <svg
               width="20"
               height="20"
@@ -148,7 +143,7 @@ const Sidebar = () => {
         </Link>
 
         <Link to="/loan-applications">
-          <div className="flex  items-center gap-[10px]">
+          <div className="flex  items-center gap-[10px] duration-500 transform hover:translate-x-2">
             <svg
               width="24"
               height="24"
@@ -200,7 +195,7 @@ const Sidebar = () => {
         </Link>
 
         <Link to="/history">
-          <div className="flex items-center gap-[10px]">
+          <div className="flex items-center gap-[10px] duration-500 transform hover:translate-x-2">
             <svg
               width="21"
               height="18"
@@ -224,7 +219,7 @@ const Sidebar = () => {
         </Link>
 
         <Link to="/admin">
-          <div className="flex  items-center gap-[10px]">
+          <div className="flex  items-center gap-[10px] duration-500 transform hover:translate-x-2">
             <svg
               width="18"
               height="21"
@@ -250,7 +245,7 @@ const Sidebar = () => {
         </Link>
 
         <Link to="/settings">
-          <div className="flex items-center gap-[10px]">
+          <div className="flex items-center gap-[10px] duration-500 transform hover:translate-x-2">
             <svg
               width="20"
               height="20"
@@ -274,7 +269,7 @@ const Sidebar = () => {
         </Link>
 
         <Link to="/help">
-          <div className="flex items-center gap-[10px]">
+          <div className="flex items-center gap-[10px] duration-500 transform hover:translate-x-2">
             <svg
               width="20"
               height="20"
@@ -296,7 +291,7 @@ const Sidebar = () => {
             </div>
           </div>
         </Link>
-        <div className="flex items-center gap-[10px] mt-[-10px] mb-16 cursor-pointer">
+        <div className="flex items-center gap-[10px] mt-[-10px] mb-16 cursor-pointer duration-500 transform hover:translate-x-2">
           <svg
             width="20"
             height="18"
@@ -314,7 +309,7 @@ const Sidebar = () => {
           </svg>
 
           <div
-            className="text-[#999999] text-[18px] font-600"
+            className="text-[#999999] text-[18px] font-600 "
             onClick={handleLogout}
           >
             Log out
