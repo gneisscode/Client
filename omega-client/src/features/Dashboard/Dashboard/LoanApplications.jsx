@@ -55,7 +55,7 @@ const LoanApplications = () => {
             </h4>
           </div>
           <div className=" justify-center items-center mt-8 grid grid-cols-5 p-2 gap-10 bg-[#E6F0FF] px-12 text-[16px] w-[982px]  h-[51px]">
-            <h6>Borrowers Name</h6>
+            <h6>Borrower</h6>
             <h6>Date</h6>
             <h6>Status</h6>
             <h6>Credit Score</h6>
