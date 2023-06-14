@@ -192,7 +192,6 @@ const Dashboard = () => {
         ).length;
         setLoansDeclined(declinedLoansCount);
 
-
         const successfulLoansCount = loansList.filter(
           (loan) => loan.eligibility === true
         ).length;
@@ -238,11 +237,6 @@ const Dashboard = () => {
     handleSubmit();
     console.log(monthlyData);
   }, []);
-
-  useEffect(() => {
-    console.log(monthlyData);
-    localStorage.setItem("monthlyData", JSON.stringify(monthlyData));
-  }, [monthlyData]);
 
   return (
     <div className="flex flex-col">
@@ -307,31 +301,41 @@ const Dashboard = () => {
                 />
               </Link>
             </div>
-            <div className="flex items-center w-[890px] bg-[#F9F9F96B] border border-[#E6F0FF] pl-[55px] mt-[91px]  pt-[12px] pb-[35px] mb-[92px]">
-              <div className="w-[790px]">
-                <Bar options={options} data={data} />
-              </div>
-            </div>
-            <div className="flex gap-[31px] mb-12 w-[890px]">
-              <div className="w-[575px] h-[318px] border py-[20px] border-[#E6F0FF]">
-                <Graph monthlyData={monthlyData} />
-              </div>
-              <div className=" flex border border-[#E6F0FF] py-[40px] items-center justify-center w-[300px] h-[318px] bg-[#FAFCFF] relative">
-                <div className="flex flex-col items-center justify-center absolute top-[85px] left-[118px]">
-                  <div className="font-[600] text-[24px] text-[#0267FF]">
-                    {`${(loansSuccessful / loanData.length) * 100}%`}
-                  </div>
-                  <div className="font-[400] text-[16px] text-[#808080]">
-                    Positive
+            {loanData.length > 0 ? (
+              <>
+                <div className="flex items-center w-[890px] bg-[#F9F9F96B] border border-[#E6F0FF] pl-[55px] mt-[91px]  pt-[12px] pb-[35px] mb-[92px]">
+                  <div className="w-[790px]">
+                    <Bar options={options} data={data} />
                   </div>
                 </div>
-                <Donut
-                  successful={loansSuccessful}
-                  declined={loansDeclined}
-                  generated={loanData.length}
-                />
-              </div>
-            </div>
+                <div className="flex gap-[31px] mb-12 w-[890px]">
+                  <div className="w-[575px] h-[318px] border py-[20px] border-[#E6F0FF]">
+                    <Graph monthlyData={monthlyData} />
+                  </div>
+                  <div className=" flex border border-[#E6F0FF] py-[40px] items-center justify-center w-[300px] h-[318px] bg-[#FAFCFF] relative">
+                    <div className="flex flex-col items-center justify-center absolute top-[85px] left-[118px]">
+                      <div className="font-[600] text-[24px] text-[#0267FF]">
+                        {`${(loansSuccessful / loanData.length) * 100}%`}
+                      </div>
+                      <div className="font-[400] text-[16px] text-[#808080]">
+                        Positive
+                      </div>
+                    </div>
+                    <Donut
+                      successful={loansSuccessful}
+                      declined={loansDeclined}
+                      generated={loanData.length}
+                    />
+                  </div>
+                </div>
+              </>
+            ) : (
+              <Link className="text-blue-500" to="/borrower-data">
+                <div className="flex justify-center items-center mt-24">
+                  No loan stats to display, click here to create a new loan application
+                </div>
+              </Link>
+            )}
           </div>
         )}
       </div>
