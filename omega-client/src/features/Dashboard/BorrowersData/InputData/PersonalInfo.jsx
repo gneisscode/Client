@@ -1,78 +1,75 @@
-import React, { useContext, useState } from "react";
-import TextField from "../../../../components/TextField";
-import SelectDropdown from "../../../../components/SelectDropDown/SelectDropDown";
-import { BorrowerFormData } from "./BorrowersData";
+import React, { useContext, useState } from 'react'
+import TextField from '../../../../components/TextField'
+import SelectDropdown from '../../../../components/SelectDropDown/SelectDropDown'
+import { BorrowerFormData } from './BorrowersData'
 
 const PersonalInfo = () => {
-   const { value, setValue } = useContext(BorrowerFormData);
-   const [gender, setGender] = useState(value.personalInfo.gender);
-   const [maritalStatus, setMaritalStatus] = useState(
-     value.personalInfo.maritalStatus
-   );
-   const [jobSector, setJobSector] = useState(value.personalInfo.jobSector);
-   const [employmentType, setEmploymentType] = useState(
-     value.personalInfo.employmentType
-   );
-
+  const { value, setValue } = useContext(BorrowerFormData)
+  const [gender, setGender] = useState(value.personalInfo.gender)
+  const [maritalStatus, setMaritalStatus] = useState(
+    value.personalInfo.maritalStatus
+  )
+  const [jobSector, setJobSector] = useState(value.personalInfo.jobSector)
+  const [employmentType, setEmploymentType] = useState(
+    value.personalInfo.employmentType
+  )
 
   const genderType = [
-    { id: 1, label: "Male", value: "Male" },
-    { id: 2, label: "Female", value: "Female" },
-  ];
-  
-  const maritalType = [
-    { id: 1, label: "Single", value: "Single" },
-    { id: 2, label: "Married", value: "Married" },
-    { id: 3, label: "Divorced", value: "Divorced" },
-    { id: 4, label: "Separated", value: "Separated" },
-    { id: 5, label: "Widowed", value: "Widowed" },
-  ];
+    { id: 1, label: 'Male', value: 'Male' },
+    { id: 2, label: 'Female', value: 'Female' },
+  ]
 
+  const maritalType = [
+    { id: 1, label: 'Single', value: 'Single' },
+    { id: 2, label: 'Married', value: 'Married' },
+    { id: 3, label: 'Divorced', value: 'Divorced' },
+    { id: 4, label: 'Separated', value: 'Separated' },
+    { id: 5, label: 'Widowed', value: 'Widowed' },
+  ]
 
   const employmentTypes = [
-    { id: 1, label: "Contract", value: "Contract" },
-    { id: 2, label: "Self-Employed", value: "Self-Employed" },
-    { id: 3, label: "Full-Time", value: "Full-Time" },
-    { id: 4, label: "Part-Time", value: "Part-Time" },
-    { id: 5, label: "Unemployed", value: "Unemployed" },
-  ];
+    { id: 1, label: 'Contract', value: 'Contract' },
+    { id: 2, label: 'Self-Employed', value: 'Self-Employed' },
+    { id: 3, label: 'Full-Time', value: 'Full-Time' },
+    { id: 4, label: 'Part-Time', value: 'Part-Time' },
+    { id: 5, label: 'Unemployed', value: 'Unemployed' },
+  ]
 
-  
   const sectorType = [
     {
       id: 1,
-      label: "Sales and Customer Service",
-      value: "Sales and Customer Service",
+      label: 'Sales and Customer Service',
+      value: 'Sales and Customer Service',
     },
-    { id: 2, label: "Education and Training", value: "Education and Training" },
-    { id: 3, label: "Information Technology", value: "Information Technology" },
+    { id: 2, label: 'Education and Training', value: 'Education and Training' },
+    { id: 3, label: 'Information Technology', value: 'Information Technology' },
     {
       id: 4,
-      label: "Operations and Logistics",
-      value: "Operations and Logistics",
+      label: 'Operations and Logistics',
+      value: 'Operations and Logistics',
     },
-    { id: 5, label: "Accounting and Finance", value: "Accounting and Finance" },
-    { id: 6, label: "Human Resources", value: "Human Resources" },
-    { id: 7, label: "Engineering", value: "Engineering" },
+    { id: 5, label: 'Accounting and Finance', value: 'Accounting and Finance' },
+    { id: 6, label: 'Human Resources', value: 'Human Resources' },
+    { id: 7, label: 'Engineering', value: 'Engineering' },
     {
       id: 8,
-      label: "Marketing and Advertising",
-      value: "Marketing and Advertising",
+      label: 'Marketing and Advertising',
+      value: 'Marketing and Advertising',
     },
-    { id: 9, label: "Project Management", value: "Project Management" },
-    { id: 10, label: "Legal", value: "Legal" },
+    { id: 9, label: 'Project Management', value: 'Project Management' },
+    { id: 10, label: 'Legal', value: 'Legal' },
     {
       id: 11,
-      label: "Healthcare",
-      value: "Healthcare",
+      label: 'Healthcare',
+      value: 'Healthcare',
     },
-    { id: 12, label: "Others", value: "Others" },
-  ];
+    { id: 12, label: 'Others', value: 'Others' },
+  ]
   return (
-    <div className="grid grid-cols-2 w-full gap-7 px-8 max-md:grid-cols-1">
+    <div className='grid grid-cols-2 w-full gap-7 px-8 max-md:grid-cols-1'>
       <TextField
-        className="bg-white border-[#0252CC] "
-        placeholder="Full Name"
+        className='bg-white border-[#0252CC] '
+        placeholder='Full Name'
         value={value.personalInfo.fullName}
         onChange={(e) =>
           setValue({
@@ -82,8 +79,8 @@ const PersonalInfo = () => {
         }
       />
       <TextField
-        className="bg-white border-[#0252CC]"
-        placeholder="Phone Number"
+        className='bg-white border-[#0252CC]'
+        placeholder='Phone Number'
         value={value.personalInfo.phoneNumber}
         onChange={(e) =>
           setValue({
@@ -96,8 +93,8 @@ const PersonalInfo = () => {
         }
       />
       <TextField
-        className="bg-white border-[#0252CC]"
-        placeholder="Email"
+        className='bg-white border-[#0252CC]'
+        placeholder='Email'
         value={value.personalInfo.email}
         onChange={(e) =>
           setValue({
@@ -107,8 +104,8 @@ const PersonalInfo = () => {
         }
       />
       <TextField
-        className="bg-white border-[#0252CC]"
-        placeholder="Age"
+        className='bg-white border-[#0252CC]'
+        placeholder='Age'
         value={value.personalInfo.age}
         onChange={(e) =>
           setValue({
@@ -119,7 +116,7 @@ const PersonalInfo = () => {
       />
       <SelectDropdown
         options={genderType}
-        placeholder="Gender"
+        placeholder='Gender'
         onChange={(val) => {
           setValue({
             ...value,
@@ -127,14 +124,14 @@ const PersonalInfo = () => {
               ...value.personalInfo,
               gender: val.value,
             },
-          });
-          setGender(val.value);
+          })
+          setGender(val.value)
         }}
       />
 
       <SelectDropdown
         options={maritalType}
-        placeholder="Marital Status"
+        placeholder='Marital Status'
         onChange={(val) => {
           setValue({
             ...value,
@@ -142,13 +139,13 @@ const PersonalInfo = () => {
               ...value.personalInfo,
               maritalStatus: val.value,
             },
-          });
-          setMaritalStatus(val.value);
+          })
+          setMaritalStatus(val.value)
         }}
       />
       <TextField
-        className="bg-white border-[#0252CC]"
-        placeholder="Address"
+        className='bg-white border-[#0252CC]'
+        placeholder='Address'
         value={value.personalInfo.address}
         onChange={(e) =>
           setValue({
@@ -158,8 +155,8 @@ const PersonalInfo = () => {
         }
       />
       <TextField
-        className="bg-white border-[#0252CC]"
-        placeholder="National Identity Number"
+        className='bg-white border-[#0252CC]'
+        placeholder='National Identity Number'
         value={value.personalInfo.nin}
         onChange={(e) =>
           setValue({
@@ -170,7 +167,7 @@ const PersonalInfo = () => {
       />
       <SelectDropdown
         options={employmentTypes}
-        placeholder="Employment"
+        placeholder='Employment'
         onChange={(val) => {
           setValue({
             ...value,
@@ -178,13 +175,13 @@ const PersonalInfo = () => {
               ...value.personalInfo,
               employmentType: val.value,
             },
-          });
-          setEmploymentType(val.value);
+          })
+          setEmploymentType(val.value)
         }}
       />
       <TextField
-        className="bg-white border-[#0252CC]"
-        placeholder=" Job Role"
+        className='bg-white border-[#0252CC]'
+        placeholder=' Job Role'
         value={value.personalInfo.jobRole}
         onChange={(e) =>
           setValue({
@@ -195,7 +192,7 @@ const PersonalInfo = () => {
       />
       <SelectDropdown
         options={sectorType}
-        placeholder="Job Sector"
+        placeholder='Job Sector'
         onChange={(val) => {
           setValue({
             ...value,
@@ -203,13 +200,13 @@ const PersonalInfo = () => {
               ...value.personalInfo,
               jobSector: val.value,
             },
-          });
-          setJobSector(val.value);
+          })
+          setJobSector(val.value)
         }}
       />
       <TextField
-        className="bg-white border-[#0252CC]"
-        placeholder="Income per month"
+        className='bg-white border-[#0252CC]'
+        placeholder='Income per month'
         value={value.personalInfo.income}
         onChange={(e) =>
           setValue({
@@ -219,7 +216,7 @@ const PersonalInfo = () => {
         }
       />
     </div>
-  );
-};
+  )
+}
 
-export default PersonalInfo;
+export default PersonalInfo
