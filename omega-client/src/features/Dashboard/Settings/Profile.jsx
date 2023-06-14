@@ -76,7 +76,7 @@ const Profile = () => {
   }
 
   const removeProfilePic = () => {
-    setProfilePic('assets/dashboard/dummy.png')
+    setProfilePic('assets/dashboard/default.jpg')
     setSelectedFile(null)
   }
 
@@ -154,7 +154,7 @@ const Profile = () => {
               type="text"
               className="w-[462px] h-[60px] border border-[#666666] bg-[#FAFCFF] p-4 rounded outline-none"
               placeholder="Name of Organization"
-              value={user.organisationId.organisationName}
+              value={adminDetails.nameOfOrganization}
               onChange={(e) =>
                 setAdminDetails({
                   ...adminDetails,
@@ -188,19 +188,19 @@ const Profile = () => {
                 })
               }
 
-              disabled={true}
             />
             <input
               type="text"
               className="w-[462px] h-[60px] border border-[#666666] bg-[#FAFCFF] p-4 rounded outline-none"
               placeholder="Identity Number"
-              value={user.organisationId._id}
+              value={adminDetails._id}
               onChange={(e) =>
                 setAdminDetails({
                   ...adminDetails,
                   staffID: e.target.value,
                 })
               }
+              disabled={true}
             />
           </div>
 
