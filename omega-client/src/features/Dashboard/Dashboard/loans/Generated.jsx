@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
 import DashHeader from "../../../../components/Dashboard/DashHeader";
 import Sidebar from "../../../../components/Dashboard/Sidebar";
 import { TfiAngleDown } from "react-icons/tfi";
 import { Link } from "react-router-dom";
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+// import { Context } from '../../../context/Context';
 
 const Generated = () => {
   const tableData = {
@@ -21,6 +25,33 @@ const Generated = () => {
   };
   const rowData = Array(11).fill(tableData);
   const repeatData = [tableData, secondRowData, ...rowData];
+  const [loans, setLoans] = useState([]);
+  // const { user } = useContext(Context);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('/api/loans/success-loans/ascending', {
+          headers: {
+            Authorization:
+              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbklkIjoiNjQ4MjRhYjQ2MmRhOTlmZTMwNjBkNTk5IiwiZW1haWwiOiJtaXRyb25hcnpvQGd1ZnVtLmNvbSIsImlhdCI6MTY4NjI2MDQxNywiZXhwIjoxNjg2MzQ2ODE3fQ.Z4kRnkACtjdt2T0DjpS_WZ5PHBmpgsXSPHPn72TCX4E',
+          },
+        });
+
+        if (response.data.status === 'Success') {
+          setLoans(response.data.data.loans);
+        } else {
+          toast.error('Failed to fetch loans');
+        }
+      } catch (error) {
+        console.error('Error fetching loans:', error);
+        // Display a toast message for any error
+        toast.error('An error occurred');
+      }
+    };
+
+    fetchData();
+  }, []);
+  
 
   return (
     <div className="flex flex-col">
