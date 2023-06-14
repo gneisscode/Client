@@ -8,31 +8,6 @@ import { Context } from '../../../context/Context';
 
 const LoanApplications = () => {
   const { user } = useContext(Context);
-  const [data, SetData] = useState([
-    {
-      "Borrowers Name": "Blessing Effiong",
-      Date: "15/02/23",
-      Status: "Successful",
-      "Credit Score": 520,
-      Amount: "#5,000,000",
-    },
-
-    {
-      "Borrowers Name": "Blessing Effiong",
-      Date: "15/02/23",
-      Status: "Pending",
-      "Credit Score": 520,
-      Amount: "#5,000,000",
-    },
-
-    {
-      "Borrowers Name": "Blessing Effiong",
-      Date: "15/02/23",
-      Status: "Declined",
-      "Credit Score": 520,
-      Amount: "#5,000,000",
-    },
-  ]);
   const [loans, setLoans] = useState([]);
   const [error, setError] = useState(false);
   const [loanData, setLoanData] = useState([]);
@@ -87,8 +62,11 @@ const LoanApplications = () => {
             <h6>Amount</h6>
           </div>
 
-          {loading === true && (
-            <div role="status" className=' flex mt-20 justify-center items-center'>
+          {loading === true ? (
+            <div
+              role="status"
+              className=" flex mt-20 justify-center items-center"
+            >
               <svg
                 aria-hidden="true"
                 className="w-12 h-12 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
@@ -107,12 +85,11 @@ const LoanApplications = () => {
               </svg>
               <span className="sr-only">Loading...</span>
             </div>
-          )}
-          {loanData &&
+          ): loanData.length > 0 ? (
             loanData.map((dt) => {
               return (
-                <Link to="/borrower-profile">
-                  <div className=" justify-center items-center mt-6 grid grid-cols-5 p-2 gap-10 bg-[#FAFCFF] px-12 text-[16px] w-[982px] h-[50px] text-[#666666]">
+                <Link to={`/borrower-profile/${dt._id}`}>
+                  <div className=" justify-center items-center mt-6 grid grid-cols-5 p-2 gap-10 bg-[#FAFCFF] px-12 text-[16px] w-[982px] h-[50px] text-[#666666] hover:text-[#0267FF]">
                     <p>{dt.fullname}</p>
                     <p>{new Date(dt.createdAt).toLocaleDateString()}</p>
                     {dt.eligibility === true ? (
@@ -125,7 +102,15 @@ const LoanApplications = () => {
                   </div>
                 </Link>
               );
-            })}
+            })
+          ) : (
+            <Link className="text-blue-500" to="/borrower-data">
+              <div className="flex justify-center items-center mt-24 font-normal">
+                No loan applications to display, click here to create a new loan application
+              </div>
+            </Link>
+          ) }
+          
         </div>
       </div>
     </div>

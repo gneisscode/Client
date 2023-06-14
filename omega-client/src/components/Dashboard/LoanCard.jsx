@@ -2,8 +2,8 @@ import React from "react";
 
 const LoanCard = (props) => {
   return (
-    <div className="flex flex-col">
-      <div className="lg:w-[317px] lg:h-[104px] border border-[#CCCCCC] mt-[24px] flex flex-col rounded-tl rounded-tr pl-[20px] gap-2">
+    <div className="flex flex-col  hover:shadow-lg transition-shadow hover:scale-105 hover:-translate-y-1 ">
+      <div className="lg:w-[317px] lg:h-[104px] border border-[#CCCCCC] mt-[24px] flex flex-col rounded-tl rounded-tr pl-[20px] gap-2  ">
         <div
           className={`text-[16px] font-semibold pt-[23px] ${
             props.status === "generated"

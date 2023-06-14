@@ -17,9 +17,9 @@ const Sidebar = () => {
 
   return (
     <div className="lg:flex flex-col lg:min-h-[100%] hidden lg:min-w-[300px] bg-[#FAFCFF] fixed top-[112px] left-0">
-      <div className="flex flex-col justify-center pl-[40px] pt-[20px] gap-[40px]">
+      <div className="flex flex-col justify-center pl-[40px] pt-[20px] gap-[40px] ">
         <Link to="/dashboard">
-          <div className="flex  items-center gap-[10px]">
+          <div className="flex  items-center gap-[10px] duration-500 transform hover:translate-x-2">
             <svg
               width="23"
               height="24"
@@ -100,7 +100,7 @@ const Sidebar = () => {
         </Link>
 
         <Link to="/borrower-data">
-          <div className="flex  items-center gap-[10px]">
+          <div className="flex  items-center gap-[10px] duration-500 transform hover:translate-x-2">
             <svg
               width="20"
               height="20"
@@ -143,7 +143,7 @@ const Sidebar = () => {
         </Link>
 
         <Link to="/loan-applications">
-          <div className="flex  items-center gap-[10px]">
+          <div className="flex  items-center gap-[10px] duration-500 transform hover:translate-x-2">
             <svg
               width="24"
               height="24"
@@ -195,7 +195,7 @@ const Sidebar = () => {
         </Link>
 
         <Link to="/history">
-          <div className="flex items-center gap-[10px]">
+          <div className="flex items-center gap-[10px] duration-500 transform hover:translate-x-2">
             <svg
               width="21"
               height="18"
@@ -219,7 +219,7 @@ const Sidebar = () => {
         </Link>
 
         <Link to="/admin">
-          <div className="flex  items-center gap-[10px]">
+          <div className="flex  items-center gap-[10px] duration-500 transform hover:translate-x-2">
             <svg
               width="18"
               height="21"
@@ -245,7 +245,7 @@ const Sidebar = () => {
         </Link>
 
         <Link to="/settings">
-          <div className="flex items-center gap-[10px]">
+          <div className="flex items-center gap-[10px] duration-500 transform hover:translate-x-2">
             <svg
               width="20"
               height="20"
@@ -269,7 +269,7 @@ const Sidebar = () => {
         </Link>
 
         <Link to="/help">
-          <div className="flex items-center gap-[10px]">
+          <div className="flex items-center gap-[10px] duration-500 transform hover:translate-x-2">
             <svg
               width="20"
               height="20"
@@ -291,7 +291,7 @@ const Sidebar = () => {
             </div>
           </div>
         </Link>
-        <div className="flex items-center gap-[10px] mt-[-10px] mb-16 cursor-pointer">
+        <div className="flex items-center gap-[10px] mt-[-10px] mb-16 cursor-pointer duration-500 transform hover:translate-x-2">
           <svg
             width="20"
             height="18"
@@ -309,7 +309,7 @@ const Sidebar = () => {
           </svg>
 
           <div
-            className="text-[#999999] text-[18px] font-600"
+            className="text-[#999999] text-[18px] font-600 "
             onClick={handleLogout}
           >
             Log out

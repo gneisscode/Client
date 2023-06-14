@@ -74,7 +74,9 @@ const Profile = () => {
   }
 
   const removeProfilePic = () => {
-    setProfilePic('assets/dashboard/dp.png')
+
+    setProfilePic('assets/dashboard/default.jpg')
+
     setSelectedFile(null)
   }
 
@@ -105,44 +107,44 @@ const Profile = () => {
     }
   }
 
-  const updateProfilePic = () => {
-    // if (selectedFile) {
-    //   const formData = new FormData()
-    //   formData.append('profileImage', selectedFile)
-    //   try {
-    //     const response = await axios.put(
-    //       `/admins/${user.adminId}/profile-picture`,
-    //       formData,
-    //       {
-    //         headers: {
-    //           'Content-Type':
-    //             'multipart/form-data; boundary=<calculated when request is sent>',
-    //           Authorization: `Bearer ${user.access_token}`,
-    //         },
-    //       }
-    //     )
-    //     const data = response.data.data
-    //     dispatch({ type: 'PROFILE-PIC_UPDATED' })
-    //     console.log(response)
-    //   } catch (error) {
-    //     console.log(error)
-    //   }
-    // } else {
-    //   try {
-    //     const response = axios.delete(`admins/${user.adminId}/profile-picture`)
-    //     console.log(response.data)
-    //   } catch (error) {
-    //     console.log(error)
-    //   }
-    // }
+  const updateProfilePic = async () => {
+    if (selectedFile) {
+      const formData = new FormData()
+      formData.append('profileImage', selectedFile)
+      try {
+        const response = await axios.put(
+          `/admins/${user.adminId}/profile-picture`,
+          formData,
+          {
+            headers: {
+              'Content-Type':
+                'multipart/form-data; boundary=<calculated when request is sent>',
+              Authorization: `Bearer ${user.access_token}`,
+            },
+          }
+        )
+        const data = response.data.data
+        dispatch({ type: 'PROFILE-PIC_UPDATED' })
+        console.log(response)
+      } catch (error) {
+        console.log(error)
+      }
+    } else {
+      try {
+        const response = axios.delete(`admins/${user.adminId}/profile-picture`)
+        console.log(response.data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
     console.log(selectedFile)
     console.log(profilePic)
   }
 
-  const handleUpdateAdminDetails = () => {
+  const handleUpdateAdminDetails = async () => {
     setIsLoading(true)
     try {
-      // await Promise.all([updateDetails(), updateProfilePic()])
+      await Promise.all([updateDetails(), updateProfilePic()])
       updateProfilePic()
     } catch (error) {
       showToastError()
@@ -164,7 +166,7 @@ const Profile = () => {
               type="text"
               className="w-[462px] h-[60px] border border-[#666666] bg-[#FAFCFF] p-4 rounded outline-none"
               placeholder="Name of Organization"
-              value={user.organisationId.organisationName}
+              value={adminDetails.nameOfOrganization}
               onChange={(e) =>
                 setAdminDetails({
                   ...adminDetails,
@@ -197,20 +199,19 @@ const Profile = () => {
                   numberOfStaffs: e.target.value,
                 })
               }
-
-              disabled={true}
             />
             <input
               type="text"
               className="w-[462px] h-[60px] border border-[#666666] bg-[#FAFCFF] p-4 rounded outline-none"
               placeholder="Identity Number"
-              value={user.organisationId._id}
+              value={adminDetails._id}
               onChange={(e) =>
                 setAdminDetails({
                   ...adminDetails,
                   staffID: e.target.value,
                 })
               }
+              disabled={true}
             />
           </div>
 
@@ -344,12 +345,12 @@ const Profile = () => {
 
       <div className="flex gap-4 justify-end items-center mt-[77px] mb-[47px] mr-[80px]">
         <Link to="/dashboard">
-          <button className="w-[195px] h-[61px] border border-[#FF2727] text-[#FF2727] text-[24px] font-[600] rounded hover:bg-[#FF2727] hover:text-white">
+          <button className="w-[195px] h-[61px] border border-[#FF2727] text-[#FF2727] text-[24px] font-[600] rounded hover:bg-[#FF2727] hover:text-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300">
             Cancel
           </button>
         </Link>
         <button
-          className="w-[195px] h-[61px] text-white text-[24px] font-[600] bg-[#0267FF] rounded"
+          className="w-[195px] h-[61px] text-white text-[24px] font-[600] bg-[#0267FF] rounded transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300"
           onClick={handleUpdateAdminDetails}
           disabled={isLoading}
         >
