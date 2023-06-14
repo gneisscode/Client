@@ -181,9 +181,11 @@ const BorrowersData = () => {
                   <div>Or upload pre-filled form</div>
                 </Link>
               </div>
-              <div className='flex w-full mt-16'>
-                <Card className='min-h-[700px] relative px-16 py-16'>
-                  <div className='text-[20px] font-[500] text-[#4D4D4D] px-8 py-8'>
+
+              <div className="flex w-full mt-8">
+                <Card className="min-h-[700px] relative px-4 py-4">
+                  <div className="text-[20px] font-[500] text-[#4D4D4D] px-8 py-8">
+
                     Personal Information
                   </div>
 
