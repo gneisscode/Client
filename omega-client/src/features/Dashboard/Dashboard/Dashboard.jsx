@@ -315,10 +315,10 @@ const Dashboard = () => {
                   <div className=" flex border border-[#E6F0FF] py-[40px] items-center justify-center w-[300px] h-[318px] bg-[#FAFCFF] relative">
                     <div className="flex flex-col items-center justify-center absolute top-[85px] left-[118px]">
                       <div className="font-[600] text-[24px] text-[#0267FF]">
-                        {`${(loansSuccessful / loanData.length) * 100}%`}
+                        {`${parseInt(loansSuccessful / loanData.length * 100)}%`}
                       </div>
                       <div className="font-[400] text-[16px] text-[#808080]">
-                        Positive
+                       Success
                       </div>
                     </div>
                     <Donut

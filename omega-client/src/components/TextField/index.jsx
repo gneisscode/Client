@@ -17,14 +17,18 @@ const TextField = ({
   props,
   disabled,
   icon,
+  onKeyDown,
+  title,
+  required,
+  maxLength,
 }) => {
   return (
-    <div className='w-full'>
+    <div className="w-full">
       <div>
         {label && (
-          <div className='mb-4'>
+          <div className="mb-4">
             <FormLabel
-              className='text-sm md:text-base font-light'
+              className="text-sm md:text-base font-light"
               title={label}
             />
           </div>
@@ -34,19 +38,19 @@ const TextField = ({
             className,
             `flex items-center w-full lg:h-[50px] my-1 focus-within:border focus-within:border-primary rounded max-md:w-4/5 ${
               error
-                ? 'border text-red-300 border-red-500 bg-[#fd3d3d0f]'
-                : 'border hover:border-[hsl(0, 0%, 80%)] border-[hsl(0, 0%, 70%)]'
+                ? "border text-red-300 border-red-500 bg-[#fd3d3d0f]"
+                : "border hover:border-[hsl(0, 0%, 80%)] border-[hsl(0, 0%, 70%)]"
             }`,
-          ].join(' ')}
+          ].join(" ")}
         >
           <input
-            type={type || 'text'}
+            type={type || "text"}
             className={[
               inputClass,
-              error ? 'bg-[#fd3d3d0f]' : 'bg-transparent',
-              'outline-none text-neutral-copy-black px-4 py-4 h-12 w-full focus:bg-[#F9F9FB]/25 focus:border-primary transition-all duration-200 ease-in-out',
-            ].join(' ')}
-            placeholder={placeholder || 'Enter a value'}
+              error ? "bg-[#fd3d3d0f]" : "bg-transparent",
+              "outline-none text-neutral-copy-black px-4 py-4 h-12 w-full focus:bg-[#F9F9FB]/25 focus:border-primary transition-all duration-200 ease-in-out",
+            ].join(" ")}
+            placeholder={placeholder || "Enter a value"}
             value={value}
             onClick={onClick}
             error={error}
@@ -54,14 +58,18 @@ const TextField = ({
             name={name}
             disabled={disabled}
             ref={inputRef}
+            onKeyDown={onKeyDown}
+            title={title}
+            required={required}
+            maxLength={maxLength}
             {...props}
           />
-          {icon && <div className='cursor-pointer p-4'>{icon}</div>}
+          {icon && <div className="cursor-pointer p-4">{icon}</div>}
         </div>
       </div>
-      {error && <small style={{ color: '#e11900' }}>{message}</small>}
+      {error && <small style={{ color: "#e11900" }}>{message}</small>}
     </div>
-  )
+  );
 }
 
 export default TextField

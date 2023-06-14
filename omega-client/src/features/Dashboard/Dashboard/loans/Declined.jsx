@@ -105,7 +105,7 @@ const Declined = () => {
                   <thead>
                     <tr>
                       <th className="px-6 py-3 bg-[#E6F0FF] text-left font-[600] text-[#666666]">
-                        Borrower's Name
+                        Borrower
                       </th>
                       <th className="px-6 py-3 bg-[#E6F0FF] text-left font-[600] text-[#666666]">
                         Date
