@@ -37,8 +37,8 @@ const SendStatus = () => {
           </h3>
           <p>
             <i>
-              Choose to send the eligibility status and financial advice of the
-              borrower via Email or text message
+              Choose to send the eligibility status of the
+              borrower via email or text message
             </i>
           </p>
           <div className="flex flex-col gap-2 mt-12">

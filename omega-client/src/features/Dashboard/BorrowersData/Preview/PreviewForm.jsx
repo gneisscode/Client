@@ -7,11 +7,13 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+
 const PreviewForm = ({ handleModal, handleModalTwo }) => {
   const { value } = useContext(BorrowerFormData);
   const { user } = useContext(Context);
   const [validationErrors, setValidationErrors] = useState({});
   const [loading, setLoading] = useState(false)
+  const [eligibility, setEligibility] = useState("")
 
     const showToastError = () => {
       toast.error("Something went wrong!", {
@@ -223,7 +225,15 @@ const PreviewForm = ({ handleModal, handleModalTwo }) => {
       };
       const response = await loans.post(`/loans/create`, formData, config);
       console.log(response.data);
-      handleModalTwo(true)
+      const eligibility = response.data.data.loan.eligibility
+      const loan_id = response.data.data.loan._id
+      setEligibility(eligibility)
+
+      if (eligibility === true){
+        window.location.replace(`eligibility/successful/${loan_id}`) ;
+      } else if (eligibility === false) {
+         window.location.replace(`eligibility/declined/${loan_id}`) ;
+      }
       setLoading(false)
     } catch (error) {
       console.log(error);
