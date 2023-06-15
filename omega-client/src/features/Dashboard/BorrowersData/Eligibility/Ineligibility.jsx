@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
-import DashHeader from '../../../../components/Dashboard/DashHeader'
-import Sidebar from '../../../../components/Dashboard/Sidebar'
-import { Link } from 'react-router-dom'
-import Modal from '../../../../components/Modal/modal'
-import Button from '../../../../components/Button'
+import React, { useState } from "react";
+import DashHeader from "../../../../components/Dashboard/DashHeader";
+import Sidebar from "../../../../components/Dashboard/Sidebar";
+import { Link } from "react-router-dom";
+import Modal from "../../../../components/Modal/modal";
+import Button from "../../../../components/Button";
 
-const BorrowerEligibility = () => {
-  const [modal, setModal] = useState(false)
+const Ineligibility = () => {
+     const [modal, setModal] = useState(false);
 
   return (
     <div className="flex flex-col">
@@ -50,22 +50,24 @@ const BorrowerEligibility = () => {
           </h3>
           <p className="text-[20px]">
             <i>
-              Borrower is <span className='text-green-600 font-[600]'>eligible</span> for this loan type
+              Borrower is{" "}
+              <span className="text-red-600 font-[600]">not eligible</span> for
+              this loan type
             </i>
           </p>
           <p className="text-[20px]">
             <i>
               After thorough analysis by the Omega model, it has been predicted
-              that this borrower is not lilely to default on the loan
-              repayments. It is hereby advised to accept the loan application of
-              this borrower.
+              that this borrower is lilely to default on loan repayments. It is
+              hereby advised to reject the loan application of this borrower.
             </i>
           </p>
+
           <div className="flex flex-col mt-10 gap-[32px]">
             {/* <button
-              className='border-blue-600 border-solid text-white border text-[20px] font-[500] rounded w-[408px] h-[61px] py-2 bg-[#0267FF]'
+              className="border-blue-600 border-solid text-white border text-[20px] font-[500] rounded w-[408px] h-[61px] py-2 bg-[#0267FF]"
               onClick={() => {
-                setModal(true)
+                setModal(true);
               }}
             >
               Cancel Loan Generation
@@ -80,6 +82,6 @@ const BorrowerEligibility = () => {
       </div>
     </div>
   );
-}
+};
 
-export default BorrowerEligibility
+export default Ineligibility;
