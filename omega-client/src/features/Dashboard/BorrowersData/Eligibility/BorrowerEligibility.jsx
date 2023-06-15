@@ -36,11 +36,11 @@ const BorrowerEligibility = () => {
               </div>
             </Link>
 
-            <img src='assets/dashboard/arrowdark.svg' alt='' />
+             <i className="fa-solid fa-chevron-right mt-2"></i>
             <div className='text-[20px] font-[400] text-[#808080]'>
               Borrower's data preview
             </div>
-            <img src='assets/dashboard/arrowdark.svg' alt='' />
+             <i className="fa-solid fa-chevron-right mt-2"></i>
             <div className='text-[20px] font-[400] text-[#0267FF]'>
               Loan eligibility status
             </div>
