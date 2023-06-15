@@ -35,7 +35,7 @@ const DashHeader = () => {
             />
           ) : (
             <img
-              src="assets/dashboard/dp.png"
+              src="assets/dashboard/default.jpg"
               className="w-[50px] h-[50px]"
               alt=""
             />

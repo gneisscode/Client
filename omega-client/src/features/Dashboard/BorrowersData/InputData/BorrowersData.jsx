@@ -1,99 +1,103 @@
-import React, { createContext, useState, useEffect } from "react";
-import DashHeader from "../../../../components/Dashboard/DashHeader";
-import Sidebar from "../../../../components/Dashboard/Sidebar";
-import Card from "../../../../components/Card";
-import Button from "../../../../components/Button";
-import Circle from "../../../../components/Circle/circle";
-import PersonalInfo from "./PersonalInfo";
-import Gurarantors from "./Gurarantors";
-import Loan from "./Loan";
-import Collateral from "./Collateral";
-import Modal from "../../../../components/Modal/modal";
-import PreviewForm from "../Preview/PreviewForm";
-import { Link, useNavigate } from "react-router-dom";
-import LoanInfo from "../../SavedData/LoanInfo";
+import React, { createContext, useState, useEffect } from 'react'
+import DashHeader from '../../../../components/Dashboard/DashHeader'
+import Sidebar from '../../../../components/Dashboard/Sidebar'
+import Card from '../../../../components/Card'
+import Button from '../../../../components/Button'
+import Circle from '../../../../components/Circle/circle'
+import PersonalInfo from './PersonalInfo'
+import Gurarantors from './Gurarantors'
+import Loan from './Loan'
+import Collateral from './Collateral'
+import Modal from '../../../../components/Modal/modal'
+import PreviewForm from '../Preview/PreviewForm'
+import { Link, useNavigate } from 'react-router-dom'
+import LoanInfo from '../../SavedData/LoanInfo'
 
-export const BorrowerFormData = createContext();
+
+export const BorrowerFormData = createContext()
 
 const BorrowersData = () => {
-  const navigate = useNavigate();
-  const slides = [0, 1, 2, 3];
+  const navigate = useNavigate()
+  const slides = [0, 1, 2, 3]
 
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [modalOne, setModalOne] = useState(false);
-  const [modalTwo, setModalTwo] = useState(false);
-  // const [logOutModal, setLogOutModal] = useState(false)
-  const [showPreviewForm, setShowPreviewForm] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0)
+  const [modalOne, setModalOne] = useState(false)
+  const [modalTwo, setModalTwo] = useState(false)
+  const [showPreviewForm, setShowPreviewForm] = useState(false)
 
   const steps = {
     0: {
       id: 0,
-      title: "Personal and contact Information",
+      title: 'Personal and contact Information',
       form: <PersonalInfo />,
     },
     1: {
       id: 1,
-      title: "Loan Information",
+      title: 'Loan Information',
       form: <Loan />,
     },
     2: {
       id: 2,
-      title: "Collateral Information",
+      title: 'Collateral Information',
       form: <Collateral />,
     },
     3: {
       id: 3,
-      title: "Guarantor’s Information",
+      title: "Guarantor's Information",
       form: <Gurarantors />,
     },
-  };
+  }
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [activeIndex]);
+    window.scrollTo(0, 0)
+  }, [activeIndex])
 
   const userData = {
     personalInfo: {
-      fullName: "",
-      phoneNumber: "",
-      email: "",
-      age: "",
-      gender: "",
-      address: "",
-      nin: "",
-      income: "",
-      jobRole: "",
-      maritalStatus: "",
-      employmentType: "",
-      jobSector: "",
+      fullName: '',
+      phoneNumber: '',
+      email: '',
+      age: '',
+      gender: '',
+      address: '',
+      nin: '',
+      income: '',
+      jobRole: '',
+      maritalStatus: '',
+      employmentType: '',
+      jobSector: '',
     },
     loanInfo: {
-      loanType: "",
-      repaymentType: "",
-      loanAmount: "",
-      loanPurpose: "",
+      loanType: '',
+      repaymentType: '',
+      loanAmount: '',
+      loanPurpose: '',
     },
     collateralInfo: {
-      collateralType: "",
-      collateralValue: "",
-      collateralInformation: "",
+      collateralType: '',
+      collateralValue: '',
+      collateralInformation: '',
     },
     guarantorInfo: {
-      fullName: "",
-      phoneNumber: "",
-      email: "",
-      age: "",
-      address: "",
-      ssn: "",
-      relationship: "",
-      employmentType: "",
-      incomeSource: "",
-      incomePerMonth: "",
+      fullName: '',
+      phoneNumber: '',
+      email: '',
+      age: '',
+      address: '',
+      ssn: '',
+      relationship: '',
+      employmentType: '',
+      incomeSource: '',
+      incomePerMonth: '',
     },
-  };
+  }
 
-  const [value, setValue] = useState(userData);
+  const [value, setValue] = useState(userData)
 
-  const step = steps[activeIndex];
+  const step = steps[activeIndex]
+
+
+
+
   return (
     <BorrowerFormData.Provider value={{ value, setValue }}>
       <div className="flex flex-col">
@@ -135,7 +139,7 @@ const BorrowersData = () => {
                 Borrower's data has been uploaded successfully!
               </p>
               <Button
-                className="text-white bg-[#0267FF] w-64"
+                className="text-white bg-[#0267FF] w-64 self-center"
                 label="Check Eligibility Status"
                 onClick={() => {
                   setModalTwo(false);
@@ -181,8 +185,9 @@ const BorrowersData = () => {
                   <div>Or upload pre-filled form</div>
                 </Link>
               </div>
-              <div className="flex w-full mt-16">
-                <Card className="min-h-[700px] relative px-16 py-16">
+
+              <div className="flex w-full mt-8">
+                <Card className="min-h-[700px] relative px-4 py-4 mb-12">
                   <div className="text-[20px] font-[500] text-[#4D4D4D] px-8 py-8">
                     Personal Information
                   </div>
@@ -220,12 +225,16 @@ const BorrowersData = () => {
                       setActiveIndex={setActiveIndex}
                     />
                   </div> */}
-                  <Button
-                    className="text-white bg-[#0267FF] w-1/2 my-8"
-                    label="Save Data"
-                    onClick={() => setModalOne(true)}
-                  />
+                  <button
+                    className="text-white bg-[#0267FF] w-[400px] my-8 h-[54px] rounded-sm self-center mt-12"
+                    onClick={() => {
+                      setModalOne(true);
+                    }}
+                    // disabled={!!Object.keys(validationErrors).length}
+                    >Save Data</button>
+                  
                 </Card>
+               
               </div>
 
               {/* <div className="grid grid-cols-2 justify-between items-center gap-20 mt-16 pb-[147px]">
@@ -256,6 +265,6 @@ const BorrowersData = () => {
       </div>
     </BorrowerFormData.Provider>
   );
-};
+}
 
-export default BorrowersData;
+export default BorrowersData

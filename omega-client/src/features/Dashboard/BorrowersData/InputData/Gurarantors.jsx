@@ -7,7 +7,8 @@ const Gurarantors = () => {
   const { value, setValue } = useContext(BorrowerFormData);
   const [employmentType, setEmploymentType] = useState(undefined);
   const [relationship, setRelationship] = useState(undefined);
-  
+  const [validationErrors, setValidationErrors] = useState();
+
   const employmentTypes = [
     { id: 1, label: "Contract", value: "Contract" },
     { id: 2, label: "Self-Employed", value: "Self-Employed" },
@@ -23,6 +24,57 @@ const Gurarantors = () => {
     { id: 4, label: "Friend", value: "Friend" },
     { id: 5, label: "Spouse", value: "Spouse" },
   ];
+
+  const handleEmailChange = (event) => {
+    const email = event.target.value;
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailPattern.test(email)) {
+      setValidationErrors((prevErrors) => ({
+        ...prevErrors,
+        email: "Invalid email format",
+      }));
+    } else {
+      setValidationErrors((prevErrors) => ({
+        ...prevErrors,
+        email: "",
+      }));
+    }
+  };
+
+  const handleNumber = (event) => {
+    const enteredNumber = event.target.value;
+    const maxLength = 11;
+
+    if (enteredNumber.length !== maxLength) {
+      setValidationErrors((prevErrors) => ({
+        ...prevErrors,
+        phoneNumber: `Phone number cannot be shorter than ${maxLength} digits`,
+      }));
+    } else {
+      setValidationErrors((prevErrors) => ({
+        ...prevErrors,
+        phoneNumber: "",
+      }));
+    }
+  };
+
+  const handleId = (event) => {
+    const enteredNumber = event.target.value;
+    const maxLength = 11;
+
+    if (enteredNumber.length != maxLength) {
+      setValidationErrors((prevErrors) => ({
+        ...prevErrors,
+        socialSecurityNumber: `Social Security Number cannot be shorter than ${maxLength} digits`,
+      }));
+    } else {
+      setValidationErrors((prevErrors) => ({
+        ...prevErrors,
+        socialSecurityNumber: "",
+      }));
+    }
+  };
 
   return (
     <div className="grid grid-cols-2 w-full gap-7 px-8">
@@ -44,29 +96,43 @@ const Gurarantors = () => {
         className="bg-white border-[#0252CC]"
         placeholder="Phone Number"
         value={value.guarantorInfo.phoneNumber}
-        onChange={(e) =>
+        onChange={(e) => {
           setValue({
             ...value,
             guarantorInfo: {
               ...value.guarantorInfo,
               phoneNumber: e.target.value,
             },
-          })
-        }
+          });
+          handleNumber(e);
+        }}
+        error={validationErrors?.phoneNumber}
+        message={validationErrors?.phoneNumber}
+        onKeyDown={(e) => {
+          const keyCode = e.which || e.keyCode;
+          if (keyCode !== 8 && (keyCode < 48 || keyCode > 57)) {
+            e.preventDefault();
+          }
+        }}
+        title="Please enter numbers only"
+        maxLength={11}
       />
       <TextField
         className="bg-white border-[#0252CC]"
         placeholder="Email"
         value={value.guarantorInfo.email}
-        onChange={(e) =>
+        onChange={(e) => {
           setValue({
             ...value,
             guarantorInfo: {
               ...value.guarantorInfo,
               email: e.target.value,
             },
-          })
-        }
+          });
+          handleEmailChange(e);
+        }}
+        error={validationErrors?.email}
+        message={validationErrors?.email}
       />
       <TextField
         className="bg-white border-[#0252CC]"
@@ -81,6 +147,13 @@ const Gurarantors = () => {
             },
           })
         }
+        onKeyDown={(e) => {
+          const keyCode = e.which || e.keyCode;
+          if (keyCode !== 8 && (keyCode < 48 || keyCode > 57)) {
+            e.preventDefault();
+          }
+        }}
+        title="Please enter numbers only"
       />
       <TextField
         className="bg-white border-[#0252CC]"
@@ -100,15 +173,26 @@ const Gurarantors = () => {
         className="bg-white border-[#0252CC]"
         placeholder="Social Security Number"
         value={value.guarantorInfo.ssn}
-        onChange={(e) =>
+        onChange={(e) => {
           setValue({
             ...value,
             guarantorInfo: {
               ...value.guarantorInfo,
               ssn: e.target.value,
             },
-          })
-        }
+          });
+          handleId(e);
+        }}
+        error={validationErrors?.socialSecurityNumber}
+        message={validationErrors?.socialSecurityNumber}
+        onKeyDown={(e) => {
+          const keyCode = e.which || e.keyCode;
+          if (keyCode !== 8 && (keyCode < 48 || keyCode > 57)) {
+            e.preventDefault();
+          }
+        }}
+        title="Please enter numbers only"
+        maxLength={11}
       />
       <SelectDropdown
         options={relationshipTypes}
@@ -165,6 +249,13 @@ const Gurarantors = () => {
             },
           })
         }
+        onKeyDown={(e) => {
+          const keyCode = e.which || e.keyCode;
+          if (keyCode !== 8 && (keyCode < 48 || keyCode > 57)) {
+            e.preventDefault();
+          }
+        }}
+        title="Please enter numbers only"
       />
     </div>
   );

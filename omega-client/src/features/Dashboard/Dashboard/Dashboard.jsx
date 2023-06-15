@@ -13,81 +13,76 @@ import axios from "axios";
 Chart.register(CategoryScale);
 
 const Dashboard = () => {
-   const { user } = useContext(Context);
-    const [loading, setLoading] = useState(true); 
-   const [loanData, setLoanData] = useState([])
-   const [loansSuccessful, setLoansSuccessful] = useState([])
-    const [loansDeclined, setLoansDeclined] = useState([]);
-    const [monthlyData, setMonthlyData] = useState({
-      January: {
-        generated: "",
-        successful: "",
-        declined: "",
-      },
-      February: {
-        generated: "",
-        successful: "",
-        declined: "",
-      },
-      March: {
-        generated: "",
-        successful: "",
-        declined: "",
-      },
-      April: {
-        generated: "",
-        successful: "",
-        declined: "",
-      },
-      May: {
-        generated: "",
-        successful: "",
-        declined: "",
-      },
-      June: {
-        generated: "",
-        successful: "",
-        declined: "",
-      },
-      July: {
-        generated: "",
-        successful: "",
-        declined: "",
-      },
-      August: {
-        generated: "",
-        successful: "",
-        declined: "",
-      },
-      September: {
-        generated: "",
-        successful: "",
-        declined: "",
-      },
-      October: {
-        generated: "",
-        successful: "",
-        declined: "",
-      },
-      November: {
-        generated: "",
-        successful: "",
-        declined: "",
-      },
-      December: {
-        generated: "",
-        successful: "",
-        declined: "",
-      },
-    });
+  const { user } = useContext(Context);
+  const [loading, setLoading] = useState(true);
+  const [loanData, setLoanData] = useState([]);
+  const [loansSuccessful, setLoansSuccessful] = useState([]);
+  const [loansDeclined, setLoansDeclined] = useState([]);
+  const [monthlyData, setMonthlyData] = useState({
+    January: {
+      generated: "",
+      successful: "",
+      declined: "",
+    },
+    February: {
+      generated: "",
+      successful: "",
+      declined: "",
+    },
+    March: {
+      generated: "",
+      successful: "",
+      declined: "",
+    },
+    April: {
+      generated: "",
+      successful: "",
+      declined: "",
+    },
+    May: {
+      generated: "",
+      successful: "",
+      declined: "",
+    },
+    June: {
+      generated: "",
+      successful: "",
+      declined: "",
+    },
+    July: {
+      generated: "",
+      successful: "",
+      declined: "",
+    },
+    August: {
+      generated: "",
+      successful: "",
+      declined: "",
+    },
+    September: {
+      generated: "",
+      successful: "",
+      declined: "",
+    },
+    October: {
+      generated: "",
+      successful: "",
+      declined: "",
+    },
+    November: {
+      generated: "",
+      successful: "",
+      declined: "",
+    },
+    December: {
+      generated: "",
+      successful: "",
+      declined: "",
+    },
+  });
 
-  const status =[
-    "generated",
-    "successful",
-    "declined"
-  ]
+  const status = ["generated", "successful", "declined"];
 
- 
   const labels = [
     "January",
     "February",
@@ -103,7 +98,7 @@ const Dashboard = () => {
     "December",
   ];
 
-    useEffect(() => {
+  useEffect(() => {
     console.log(monthlyData);
   }, [monthlyData]);
 
@@ -142,7 +137,7 @@ const Dashboard = () => {
           size: 20,
           weight: 500,
         },
-        padding:30,
+        padding: 30,
       },
       legend: {
         display: true,
@@ -176,7 +171,7 @@ const Dashboard = () => {
     },
   };
 
-  useEffect(()=> {
+  useEffect(() => {
     const handleSubmit = async () => {
       const loans = axios.create({
         baseURL: `https://nodebtdev.onrender.com/api`,
@@ -187,79 +182,61 @@ const Dashboard = () => {
             Authorization: `Bearer ${user.access_token}`,
           },
         };
-        const response = await loans.get(
-          `/loans/company-loans`,
-          config
-        );
+        const response = await loans.get(`/loans/company-loans`, config);
         console.log(response.data);
-        console.log(response.data.data.loans)
-        const loansList = response.data.data.loans
-        setLoanData(loansList)
-         const declinedLoansCount = loansList.filter(
-           (loan) => loan.eligibility === false
-         ).length;
-         setLoansDeclined(declinedLoansCount);
+        console.log(response.data.data.loans);
+        const loansList = response.data.data.loans;
+        setLoanData(loansList);
+        const declinedLoansCount = loansList.filter(
+          (loan) => loan.eligibility === false
+        ).length;
+        setLoansDeclined(declinedLoansCount);
 
-         // Count the number of successful loans
-         const successfulLoansCount = loansList.filter(
-           (loan) => loan.eligibility === true
-         ).length;
-         setLoansSuccessful(successfulLoansCount);
+        const successfulLoansCount = loansList.filter(
+          (loan) => loan.eligibility === true
+        ).length;
+        setLoansSuccessful(successfulLoansCount);
 
+        const updatedMonthlyData = {
+          January: { generated: 0, successful: 0, declined: 0 },
+          February: { generated: 0, successful: 0, declined: 0 },
+          March: { generated: 0, successful: 0, declined: 0 },
+          April: { generated: 0, successful: 0, declined: 0 },
+          May: { generated: 0, successful: 0, declined: 0 },
+          June: { generated: 0, successful: 0, declined: 0 },
+          July: { generated: 0, successful: 0, declined: 0 },
+          August: { generated: 0, successful: 0, declined: 0 },
+          September: { generated: 0, successful: 0, declined: 0 },
+          October: { generated: 0, successful: 0, declined: 0 },
+          November: { generated: 0, successful: 0, declined: 0 },
+          December: { generated: 0, successful: 0, declined: 0 },
+        };
 
-          const updatedMonthlyData = {
-            January: { generated: 0, successful: 0, declined: 0 },
-            February: { generated: 0, successful: 0, declined: 0 },
-            March: { generated: 0, successful: 0, declined: 0 },
-            April: { generated: 0, successful: 0, declined: 0 },
-            May: { generated: 0, successful: 0, declined: 0 },
-            June: { generated: 0, successful: 0, declined: 0 },
-            July: { generated: 0, successful: 0, declined: 0 },
-            August: { generated: 0, successful: 0, declined: 0 },
-            September: { generated: 0, successful: 0, declined: 0 },
-            October: { generated: 0, successful: 0, declined: 0 },
-            November: { generated: 0, successful: 0, declined: 0 },
-            December: { generated: 0, successful: 0, declined: 0 },
-          };
+        loansList.forEach((loan) => {
+          const createdAt = new Date(loan.createdAt);
+          const month = createdAt.toLocaleString("en-US", { month: "long" });
+          console.log(month);
 
-          loansList.forEach((loan) => {
-            const createdAt = new Date(loan.createdAt);
-            const month = createdAt.toLocaleString("en-US", { month: "long" });
-            console.log(month)
+          updatedMonthlyData[month].generated += 1;
 
-            updatedMonthlyData[month].generated += 1;
+          if (loan.eligibility === true) {
+            updatedMonthlyData[month].successful += 1;
+          } else {
+            updatedMonthlyData[month].declined += 1;
+          }
+        });
+        console.log(updatedMonthlyData);
 
-            if (loan.eligibility === true) {
-              updatedMonthlyData[month].successful += 1;
-            } else {
-              updatedMonthlyData[month].declined += 1;
-            }
-            
-          });
-          console.log(updatedMonthlyData)
-
-          setMonthlyData(updatedMonthlyData);
-          setLoading(false);
-           
-
-
-        
+        setMonthlyData(updatedMonthlyData);
+        setLoading(false);
       } catch (error) {
         console.log(error);
         setLoading(false);
       }
-    }; handleSubmit()
-      console.log(monthlyData);
-
-  }, [])
-
-  useEffect(() => {
+    };
+    handleSubmit();
     console.log(monthlyData);
-    localStorage.setItem("monthlyData", JSON.stringify(monthlyData));
-         
-  }, [monthlyData]);
-
-   
+  }, []);
 
   return (
     <div className="flex flex-col">
@@ -324,31 +301,41 @@ const Dashboard = () => {
                 />
               </Link>
             </div>
-            <div className="flex items-center w-[890px] bg-[#F9F9F96B] border border-[#E6F0FF] pl-[55px] mt-[91px]  pt-[12px] pb-[35px] mb-[92px]">
-              <div className="w-[790px]">
-                <Bar options={options} data={data} />
-              </div>
-            </div>
-            <div className="flex gap-[31px] mb-12 w-[890px]">
-              <div className="w-[575px] h-[318px] border py-[20px] border-[#E6F0FF]">
-                <Graph monthlyData={monthlyData} />
-              </div>
-              <div className=" flex border border-[#E6F0FF] py-[40px] items-center justify-center w-[300px] h-[318px] bg-[#FAFCFF] relative">
-                <div className="flex flex-col items-center justify-center absolute top-[85px] left-[118px]">
-                  <div className="font-[600] text-[24px] text-[#0267FF]">
-                    {`${(loansSuccessful / loanData.length) * 100}%`}
-                  </div>
-                  <div className="font-[400] text-[16px] text-[#808080]">
-                    Positive
+            {loanData.length > 0 ? (
+              <>
+                <div className="flex items-center w-[890px] bg-[#F9F9F96B] border border-[#E6F0FF] pl-[55px] mt-[91px]  pt-[12px] pb-[35px] mb-[92px]">
+                  <div className="w-[790px]">
+                    <Bar options={options} data={data} />
                   </div>
                 </div>
-                <Donut
-                  successful={loansSuccessful}
-                  declined={loansDeclined}
-                  generated={loanData.length}
-                />
-              </div>
-            </div>
+                <div className="flex gap-[31px] mb-12 w-[890px]">
+                  <div className="w-[575px] h-[318px] border py-[20px] border-[#E6F0FF]">
+                    <Graph monthlyData={monthlyData} />
+                  </div>
+                  <div className=" flex border border-[#E6F0FF] py-[40px] items-center justify-center w-[300px] h-[318px] bg-[#FAFCFF] relative">
+                    <div className="flex flex-col items-center justify-center absolute top-[85px] left-[118px]">
+                      <div className="font-[600] text-[24px] text-[#0267FF]">
+                        {`${parseInt(loansSuccessful / loanData.length * 100)}%`}
+                      </div>
+                      <div className="font-[400] text-[16px] text-[#808080]">
+                       Success
+                      </div>
+                    </div>
+                    <Donut
+                      successful={loansSuccessful}
+                      declined={loansDeclined}
+                      generated={loanData.length}
+                    />
+                  </div>
+                </div>
+              </>
+            ) : (
+              <Link className="text-blue-500" to="/borrower-data">
+                <div className="flex justify-center items-center mt-24">
+                  No loan stats to display, click here to create a new loan application
+                </div>
+              </Link>
+            )}
           </div>
         )}
       </div>

@@ -1,25 +1,25 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import TextField from "../../../../components/TextField";
 import SelectDropdown from "../../../../components/SelectDropDown/SelectDropDown";
 import { BorrowerFormData } from "./BorrowersData";
 
 const PersonalInfo = () => {
-   const { value, setValue } = useContext(BorrowerFormData);
-   const [gender, setGender] = useState(value.personalInfo.gender);
-   const [maritalStatus, setMaritalStatus] = useState(
-     value.personalInfo.maritalStatus
-   );
-   const [jobSector, setJobSector] = useState(value.personalInfo.jobSector);
-   const [employmentType, setEmploymentType] = useState(
-     value.personalInfo.employmentType
-   );
-
+  const { value, setValue } = useContext(BorrowerFormData);
+  const [validationErrors, setValidationErrors] = useState();
+  const [gender, setGender] = useState(value.personalInfo.gender);
+  const [maritalStatus, setMaritalStatus] = useState(
+    value.personalInfo.maritalStatus
+  );
+  const [jobSector, setJobSector] = useState(value.personalInfo.jobSector);
+  const [employmentType, setEmploymentType] = useState(
+    value.personalInfo.employmentType
+  );
 
   const genderType = [
     { id: 1, label: "Male", value: "Male" },
     { id: 2, label: "Female", value: "Female" },
   ];
-  
+
   const maritalType = [
     { id: 1, label: "Single", value: "Single" },
     { id: 2, label: "Married", value: "Married" },
@@ -27,7 +27,6 @@ const PersonalInfo = () => {
     { id: 4, label: "Separated", value: "Separated" },
     { id: 5, label: "Widowed", value: "Widowed" },
   ];
-
 
   const employmentTypes = [
     { id: 1, label: "Contract", value: "Contract" },
@@ -37,7 +36,6 @@ const PersonalInfo = () => {
     { id: 5, label: "Unemployed", value: "Unemployed" },
   ];
 
-  
   const sectorType = [
     {
       id: 1,
@@ -68,43 +66,112 @@ const PersonalInfo = () => {
     },
     { id: 12, label: "Others", value: "Others" },
   ];
+  const handleEmailChange = (event) => {
+    const email = event.target.value;
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailPattern.test(email)) {
+      setValidationErrors((prevErrors) => ({
+        ...prevErrors,
+        email: "Invalid email format",
+      }));
+    } else {
+      setValidationErrors((prevErrors) => ({
+        ...prevErrors,
+        email: "",
+      }));
+    }
+  };
+
+  const handleNumber = (event) => {
+    const enteredNumber = event.target.value;
+    const maxLength = 11;
+
+    if (enteredNumber.length !== maxLength) {
+      setValidationErrors((prevErrors) => ({
+        ...prevErrors,
+        phoneNumber: `Phone number cannot be shorter than ${maxLength} digits`,
+      }));
+    } else {
+      setValidationErrors((prevErrors) => ({
+        ...prevErrors,
+        phoneNumber: "",
+      }));
+    }
+  };
+
+  const handleId = (event) => {
+    const enteredNumber = event.target.value;
+    const maxLength = 11;
+
+    if (enteredNumber.length !== maxLength) {
+      setValidationErrors((prevErrors) => ({
+        ...prevErrors,
+        nationalIdentityNumber: `National Identity Number cannot be shorter than ${maxLength} digits`,
+      }));
+    } else {
+      setValidationErrors((prevErrors) => ({
+        ...prevErrors,
+        nationalIdentityNumber: "",
+      }));
+    }
+  };
+
   return (
     <div className="grid grid-cols-2 w-full gap-7 px-8 max-md:grid-cols-1">
-      <TextField
-        className="bg-white border-[#0252CC] "
-        placeholder="Full Name"
-        value={value.personalInfo.fullName}
-        onChange={(e) =>
-          setValue({
-            ...value,
-            personalInfo: { ...value.personalInfo, fullName: e.target.value },
-          })
-        }
-      />
-      <TextField
-        className="bg-white border-[#0252CC]"
-        placeholder="Phone Number"
-        value={value.personalInfo.phoneNumber}
-        onChange={(e) =>
-          setValue({
-            ...value,
-            personalInfo: {
-              ...value.personalInfo,
-              phoneNumber: e.target.value,
-            },
-          })
-        }
-      />
+      <div>
+        <TextField
+          className="bg-white border-[#0252CC] "
+          placeholder="Full Name"
+          value={value.personalInfo.fullName}
+          onChange={(e) =>
+            setValue({
+              ...value,
+              personalInfo: { ...value.personalInfo, fullName: e.target.value },
+            })
+          }
+        />
+      </div>
+      <div>
+        <TextField
+          className="bg-white border-[#0252CC]"
+          placeholder="Phone Number"
+          value={value.personalInfo.phoneNumber}
+          onChange={(e) => {
+            setValue({
+              ...value,
+              personalInfo: {
+                ...value.personalInfo,
+                phoneNumber: e.target.value,
+              },
+            });
+            handleNumber(e);
+          }}
+          error={validationErrors?.phoneNumber}
+          message={validationErrors?.phoneNumber}
+          onKeyDown={(e) => {
+            const keyCode = e.which || e.keyCode;
+            if (keyCode !== 8 && (keyCode < 48 || keyCode > 57)) {
+              e.preventDefault();
+            }
+          }}
+          title="Please enter numbers only"
+          maxLength={11}
+        />
+      </div>
       <TextField
         className="bg-white border-[#0252CC]"
         placeholder="Email"
         value={value.personalInfo.email}
-        onChange={(e) =>
+        onChange={(e) => {
           setValue({
             ...value,
             personalInfo: { ...value.personalInfo, email: e.target.value },
-          })
-        }
+          });
+          handleEmailChange(e);
+        }}
+        error={validationErrors?.email}
+        message={validationErrors?.email}
       />
       <TextField
         className="bg-white border-[#0252CC]"
@@ -116,6 +183,13 @@ const PersonalInfo = () => {
             personalInfo: { ...value.personalInfo, age: e.target.value },
           })
         }
+        onKeyDown={(e) => {
+          const keyCode = e.which || e.keyCode;
+          if (keyCode !== 8 && (keyCode < 48 || keyCode > 57)) {
+            e.preventDefault();
+          }
+        }}
+        title="Please enter numbers only"
       />
       <SelectDropdown
         options={genderType}
@@ -161,12 +235,23 @@ const PersonalInfo = () => {
         className="bg-white border-[#0252CC]"
         placeholder="National Identity Number"
         value={value.personalInfo.nin}
-        onChange={(e) =>
+        onChange={(e) => {
           setValue({
             ...value,
             personalInfo: { ...value.personalInfo, nin: e.target.value },
-          })
-        }
+          });
+          handleId(e);
+        }}
+        error={validationErrors?.nationalIdentityNumber}
+        message={validationErrors?.nationalIdentityNumber}
+        onKeyDown={(e) => {
+          const keyCode = e.which || e.keyCode;
+          if (keyCode !== 8 && (keyCode < 48 || keyCode > 57)) {
+            e.preventDefault();
+          }
+        }}
+        title="Please enter numbers only"
+        maxLength={11}
       />
       <SelectDropdown
         options={employmentTypes}
@@ -217,6 +302,13 @@ const PersonalInfo = () => {
             personalInfo: { ...value.personalInfo, income: e.target.value },
           })
         }
+        onKeyDown={(e) => {
+          const keyCode = e.which || e.keyCode;
+          if (keyCode !== 8 && (keyCode < 48 || keyCode > 57)) {
+            e.preventDefault();
+          }
+        }}
+        title="Please enter numbers only"
       />
     </div>
   );

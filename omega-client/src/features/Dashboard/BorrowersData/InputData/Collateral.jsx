@@ -5,6 +5,7 @@ import { BorrowerFormData } from "./BorrowersData";
 
 const Collateral = () => {
   const [collateralType, setCollateralType] = useState(undefined);
+  const [validationErrors, setValidationErrors] = useState();
 
   const collateralsType = [
     { id: 1, label: "Real Estate", value: "Real Estate" },
@@ -16,7 +17,22 @@ const Collateral = () => {
 
   const { value, setValue } = useContext(BorrowerFormData);
 
-  // console.log({ collateralType })
+  const handleField = (event) => {
+    const value = event.target.value;
+    const minLength = 50;
+
+    if (value.length < minLength) {
+      setValidationErrors((prevErrors) => ({
+        ...prevErrors,
+        collateralInfo: `Collateral Information must be at least ${minLength} characters long`,
+      }));
+    } else {
+      setValidationErrors((prevErrors) => ({
+        ...prevErrors,
+        collateralInfo: "",
+      }));
+    }
+  };
   return (
     <>
       <div className="grid grid-cols-2 items-center  w-full gap-7 px-8">
@@ -49,23 +65,40 @@ const Collateral = () => {
               },
             })
           }
+          onKeyDown={(e) => {
+            const keyCode = e.which || e.keyCode;
+            if (keyCode !== 8 && (keyCode < 48 || keyCode > 57)) {
+              e.preventDefault();
+            }
+          }}
+          title="Please enter numbers only"
         />
       </div>
       <div className="px-8 mt-24">
         <textarea
-          className="bg-white border border-[#0252CC] w-full h-14 px-4 py-4 rounded"
+          className={`bg-white outline-none border border-[#0252CC] w-full h-36 rounded p-4 ${
+            validationErrors?.collateralInfo
+              ? "border text-red-300 border-red-500 bg-[#fd3d3d0f]"
+              : "border hover:border-[hsl(0, 0%, 80%)] border-[hsl(0, 0%, 70%)]"
+          }`}
           placeholder="Provide collateral information e.g location, car model, mileage e.t.c"
           value={value.collateralInfo.collateralInformation}
-          onChange={(e) =>
+          onChange={(e) => {
             setValue({
               ...value,
               collateralInfo: {
                 ...value.collateralInfo,
                 collateralInformation: e.target.value,
               },
-            })
-          }
+            });
+            handleField(e);
+          }}
         ></textarea>
+        {validationErrors?.collateralInfo && (
+          <small style={{ color: "#e11900" }}>
+            {validationErrors?.collateralInfo}
+          </small>
+        )}
       </div>
     </>
   );

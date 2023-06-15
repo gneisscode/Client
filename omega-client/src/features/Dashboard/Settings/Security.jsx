@@ -187,7 +187,7 @@ const Security = () => {
           )}
         </div>
         <button
-          className="w-[462px] h-[61px] bg-[#0267FF] text-[24px] font-[600] text-white rounded mb-8"
+          className="w-[462px] h-[61px] bg-[#0267FF] text-[24px] font-[600] text-white rounded mb-8 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300"
           type="submit"
         >
           {isLoading && (
