@@ -90,7 +90,7 @@ function App() {
       component: <Profile />,
     },
     {
-      path: "/borrower-saved-data",
+      path: "/borrower-saved-data/:id",
       component: <SavedData />,
     },
     {

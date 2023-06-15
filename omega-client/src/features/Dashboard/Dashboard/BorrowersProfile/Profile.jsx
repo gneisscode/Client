@@ -120,7 +120,7 @@ const Profile = () => {
             </div>
 
             <div>
-              <Link to="/borrower-saved-data">
+              <Link to={`/borrower-saved-data/${currentUser._id}`}>
                 <p className="flex p-16 gap-16 text-[#0267FF]">
                   View Borrower's Data
                 </p>

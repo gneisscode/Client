@@ -1,10 +1,52 @@
-import React from 'react'
+import React, {useState} from 'react'
 import DashHeader from "../../../../components/Dashboard/DashHeader";
 import Sidebar from "../../../../components/Dashboard/Sidebar";
 import { Link } from 'react-router-dom';
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useLocation } from "react-router-dom";
 
 
 const SendStatus = () => {
+  //  const [loading, setLoading] = useState(false);
+  //  const location = useLocation();
+  //  const id = location.pathname.split("/")[2];
+
+  //   const handleSubmit = async (event) => {
+  //     setLoading(true);
+  //     const loans = axios.create({
+  //       baseURL: `https://nodebtdev.onrender.com/api`,
+  //     });
+  //     try {
+  //       const config = {
+  //         headers: {
+  //           Authorization: `Bearer ${user.access_token}`,
+  //         },
+  //       };
+  //       const response = await loans.post(
+  //         `/loans/send-eligibility-status?id={loanId}`,
+  //         formData,
+  //         config
+  //       );
+  //       console.log(response.data);
+  //       const eligibility = response.data.data.loan.eligibility;
+  //       const loan_id = response.data.data.loan._id;
+  //       setEligibility(eligibility);
+
+  //       if (eligibility === true) {
+  //         window.location.replace(`eligibility/successful/${loan_id}`);
+  //       } else if (eligibility === false) {
+  //         window.location.replace(`eligibility/declined/${loan_id}`);
+  //       }
+  //       setLoading(false);
+  //     } catch (error) {
+  //       console.log(error);
+  //       setLoading(false);
+  //       showToastError();
+  //     }
+  //   };
+
   return (
     <div className="flex flex-col">
       <DashHeader />

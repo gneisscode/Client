@@ -22,63 +22,75 @@ const HomeNav = () => {
   }, [location])
 
   return (
-    <div className='hidden lg:flex justify-between h-[112px] w-[100%] text-gray-400 border border-gray-100 items-end px-[80.11px] py-8'>
-      <Link to='/' className='link'>
-        <div className='flex justify-center items-center'>
-          <img src='/assets/omega-logo.png' alt='' />
+    <div className="hidden lg:flex justify-between h-[112px] w-[100%] text-gray-400 border border-gray-100 items-end px-[80.11px] py-8 fixed z-30 bg-white">
+      <Link to="/" className="link">
+        <div className="flex justify-center items-center">
+          <img src="/assets/omega-logo.png" alt="" />
         </div>
       </Link>
 
-      <ul className='flex gap-[64px] text-xl font-medium justify-center items-center self-center'>
-        <Link to='/' className='link'>
-          <li>Home</li>
+      <ul className="flex gap-[64px] text-xl font-medium justify-center items-center self-center">
+        <Link to="/" className="link">
+          <li
+            className={` hover:text-blue-500 ${
+              location.pathname === "/" ? "underline text-blue-500" : ""
+            }`}
+          >
+            Home
+          </li>
         </Link>
 
-        <Link to='/about' className='link'>
-          <li>About Us</li>
+        <Link to="/about" className="link">
+          <li
+            className={` hover:text-blue-500 ${
+              location.pathname === "/about" ? "underline text-blue-500" : ""
+            }`}
+          >
+            About Us
+          </li>
         </Link>
 
-        <a href='/services' className='link'>
+        <a
+          href="/services"
+          className={`hover:text-blue-500 ${
+            location.pathname === "/services"
+              ? "underline text-blue-500"
+              : "no-underline"
+          }`}
+        >
           Services
         </a>
 
-        <Link to='/contact' className='link'>
-          <li>Contact Us</li>
+        <Link to="/contact" className="link">
+          <li
+            className={`hover:text-blue-500 ${
+              location.pathname === "/contact" ? "underline text-blue-500" : " "
+            }`}
+          >
+            Contact Us
+          </li>
         </Link>
       </ul>
 
       {user ? (
-        <div className='flex gap-6 justify-center items-center'>
-          {userPhotoURL || user.imageUrl ? (
-            <img
-              src={userPhotoURL || user.imageUrl}
-              className='w-[50px] h-[50px] rounded-full'
-              alt=''
-            />
-          ) : (
-            <img
-              src='assets/dashboard/dp.png'
-              className='w-[50px] h-[50px]'
-              alt=''
-            />
-          )}
-          <Link to='/dashboard' className='link'>
-            <PrimaryButton text='Dashboard' />
+        <div className="flex gap-6 justify-center items-center">
+          <Link to="/dashboard" className="link">
+            <PrimaryButton text="Dashboard" />
           </Link>
-          <SecondaryButton text='Log Out' onClick={handleLogout} />
+          <SecondaryButton text="Log Out" onClick={handleLogout} />
         </div>
       ) : (
-        <div className='flex gap-4 justify-center items-center'>
-          <Link to='/login' className='link'>
-            <SecondaryButton text='Log In' />
+        <div className="flex gap-4 justify-center items-center">
+          <Link to="/login" className="link">
+            <SecondaryButton text="Log In" />
           </Link>
-          <Link to='/signup' className='link'>
-            <PrimaryButton text='Sign Up' />
+          <Link to="/signup" className="link">
+            <PrimaryButton text="Sign Up" />
           </Link>
         </div>
       )}
     </div>
-  )
+  );
 }
 
 export default HomeNav

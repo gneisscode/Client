@@ -106,78 +106,78 @@ const Login = () => {
   return (
     <AuthLayout>
       <ToastContainer />
-      <section className='mt-8  justify-center items-center px-28'>
-        <Link to='/'>
-          <div className='cursor-pointer'>
-            <img src='/assets/auth/backIcon.svg' alt='' />
+      <section className="mt-8  justify-center items-center px-28">
+        <Link to="/">
+          <div className="cursor-pointer">
+            <img src="/assets/auth/backIcon.svg" alt="" />
           </div>
         </Link>
         <div>
-          <h3 className=' mt-2 lg:text-4xl text-white text-center text-[1.5rem] leading-4'>
+          <h3 className=" mt-2 lg:text-4xl text-white text-center text-[1.5rem] leading-4">
             Welcome back
           </h3>
-          <p className='my-2 text-center text-[#e5e5e5df] text-base font-normal'>
+          <p className="my-2 text-center text-[#e5e5e5df] text-base font-normal">
             Log into your account
           </p>
-          <p className='my-5 mb-10 text-center text-[#e5e5e5df] text-base font-normal'>
+          <p className="my-5 mb-10 text-center text-[#e5e5e5df] text-base font-normal">
             Don't have an account?
-            <span className='font-bold text-white ml-2'>
-              <Link to='/signup'>Sign up</Link>
+            <span className="font-bold text-white ml-2">
+              <Link to="/signup">Sign up</Link>
             </span>
           </p>
 
-          {serverError && <p className='text-red-500'>{serverError}</p>}
+          {serverError && <p className="text-red-500">{serverError}</p>}
 
-          <form className='text-white' onSubmit={handleSubmit}>
-            <div className='mb-6'>
+          <form className="text-white" onSubmit={handleSubmit}>
+            <div className="mb-6">
               <TextField
-                placeholder='Email Address:'
-                name='email'
+                placeholder="Email Address:"
+                name="email"
                 value={formData.email}
                 onChange={handleInputChange}
-                type='email'
-                className={formErrors.email ? 'border-red-700' : ''}
+                type="email"
+                className={formErrors.email ? "border-red-700" : ""}
               />
               {formErrors.email && (
-                <p className='text-red-500'>{formErrors.email}</p>
+                <p className="text-red-500">{formErrors.email}</p>
               )}
             </div>
-            <div className='mb-2 relative'>
+            <div className="mb-2 relative">
               <TextField
-                placeholder='Password:'
-                name='password'
+                placeholder="Password:"
+                name="password"
                 value={formData.password}
                 onChange={handleInputChange}
                 type={inputType}
-                className={formErrors.password ? 'border-red-700' : ''}
+                className={formErrors.password ? "border-red-700" : ""}
               />
-              {inputType === 'text' ? (
+              {inputType === "text" ? (
                 <img
-                  src='/assets/auth/eye-hidden.png'
-                  alt='Hide eye icon'
-                  className='absolute top-[12px] right-[12px]'
-                  onClick={() => setInputType('password')}
+                  src="/assets/auth/eye-hidden.png"
+                  alt="Hide eye icon"
+                  className="absolute top-[12px] right-[12px]"
+                  onClick={() => setInputType("password")}
                 />
               ) : (
                 <img
-                  src='/assets/auth/eye-shown.png'
-                  alt='Show eye icon'
-                  className='absolute top-[12px] right-[12px]'
-                  onClick={() => setInputType('text')}
+                  src="/assets/auth/eye-shown.png"
+                  alt="Show eye icon"
+                  className="absolute top-[12px] right-[12px]"
+                  onClick={() => setInputType("text")}
                 />
               )}
               {formErrors.password && (
-                <p className='text-red-500'>{formErrors.password}</p>
+                <p className="text-red-500">{formErrors.password}</p>
               )}
             </div>
-            <div className='flex justify-between items-center'>
+            <div className="flex justify-between items-center">
               <div></div>
-              <Link to='/forgot-password'>
+              <Link to="/forgot-password">
                 <div>Forgot Password</div>
               </Link>
             </div>
 
-            <div className='flex items-center gap-2'>
+            {/* <div className='flex items-center gap-2'>
               <div>
                 <input
                   className='border border-[#013E99]'
@@ -185,33 +185,33 @@ const Login = () => {
                 ></input>
               </div>
               <div>Always keep me logged in</div>
-            </div>
+            </div> */}
 
             <div>
               <Button
-                className='text-[#012966] mt-20 bg-white'
-                type='submit'
-                label='Log In'
+                className="text-[#012966] mt-20 bg-white hover:bg-blue-600 hover:text-white"
+                type="submit"
+                label="Log In"
                 loading={isLoading}
               />
             </div>
           </form>
 
-          <div className='grid grid-cols-3 mt-7 items-center'>
-            <hr className='border-[#013E99]' />
-            <p className='text-center text-[#e5e5e5df]'>Or continue with</p>
-            <hr className='border-[#013E99]' />
+          <div className="grid grid-cols-3 mt-7 items-center">
+            <hr className="border-[#013E99]" />
+            <p className="text-center text-[#e5e5e5df]">Or continue with</p>
+            <hr className="border-[#013E99]" />
           </div>
 
-          <div className='grid grid-cols-3 mt-7 items-center justify-items-center'>
-            <img src='/assets/auth/email.svg' alt='' />
-            <img src='/assets/auth/google.svg' alt='' />
-            <img src='/assets/auth/apple-icon.svg' alt='' />
+          <div className="grid grid-cols-3 mt-7 items-center justify-items-center mb-8">
+            <img src="/assets/auth/email.svg" alt="" />
+            <img src="/assets/auth/google.svg" alt="" />
+            <img src="/assets/auth/apple-icon.svg" alt="" />
           </div>
         </div>
       </section>
     </AuthLayout>
-  )
+  );
 }
 
 export default Login

@@ -58,7 +58,7 @@ const Ineligibility = () => {
           <p className="text-[20px]">
             <i>
               After thorough analysis by the Omega model, it has been predicted
-              that this borrower is lilely to default on loan repayments. It is
+              that this borrower is likely to default on loan repayments. It is
               hereby advised to reject the loan application of this borrower.
             </i>
           </p>
