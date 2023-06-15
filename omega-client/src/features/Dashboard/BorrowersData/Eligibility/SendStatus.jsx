@@ -22,11 +22,9 @@ const SendStatus = () => {
               Borrower's data preview
             </div>
              <i className="fa-solid fa-chevron-right mt-2"></i>
-            <Link to="/borrower-eligibility">
               <div className="text-[20px] font-[400] text-[#808080]">
                 Loan Eligibility Status
               </div>
-            </Link>
              <i className="fa-solid fa-chevron-right mt-2"></i>
             <div className="text-[20px] font-[400] text-[#0267FF]">
               Send Message
