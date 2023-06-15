@@ -109,10 +109,10 @@ function App() {
       path: "/loan-applications",
       component: <LoanApplications />,
     },
-    {
-      path: "/history",
-      component: <History />,
-    },
+    // {
+    //   path: "/history",
+    //   component: <History />,
+    // },
     {
       path: "/settings",
       component: <Settings />,
