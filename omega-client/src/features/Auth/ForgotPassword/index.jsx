@@ -13,6 +13,7 @@ const ForgotPassword = () => {
   const [formErrors, setFormErrors] = useState({
     email: "",
   });
+  const [loading, setLoading] = useState(false)
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -41,7 +42,7 @@ const ForgotPassword = () => {
     event.preventDefault();
     console.log(formData);
     const errors = {};
-    // setIsLoading(true);
+    setLoading(true);
 
     Object.keys(formData).forEach((fieldName) => {
       validateField(fieldName, formData[fieldName]);
@@ -52,13 +53,15 @@ const ForgotPassword = () => {
 
     if (Object.keys(errors).length > 0) {
       setFormErrors(errors);
-      // setIsLoading(false);
+      setLoading(false);
     } else {
       try {
         const response = await axios.get(`/password-reset?email=${formData.email}`);
         console.log(response.data.data);
         const data = response.data.data;
+        setLoading(false)
         window.location.replace("/verification-email");
+
       } catch (error) {
         console.log(error);
         if (
@@ -68,10 +71,12 @@ const ForgotPassword = () => {
         ) {
           const errorMessage = error.response.data.message;
           setServerError(errorMessage);
+           setLoading(false);
         } else {
           setServerError(
             "Network error: Please check your internet connection"
           );
+           setLoading(false);
         }
       }
     }
@@ -88,12 +93,13 @@ const ForgotPassword = () => {
       <div>
         <form onSubmit={handleSubmit}>
           <Card className="p-14 flex flex-col items-center gap-10 ">
-            {formErrors.email && (
+            {serverError && <p className="text-red-500">{serverError}</p>}
+            {/* {formErrors.email && (
               <p className="text-red-500">{formErrors.email}</p>
-            )}
+            )} */}
 
             <input
-              className={`border border-blue-600 w-[589px] h-[61px] p-6 ${
+              className={`border border-blue-600 w-[589px] h-[61px] p-6 outline-none ${
                 formErrors.email ? "border-red-700" : ""
               }`}
               placeholder="Email address:"
@@ -103,7 +109,7 @@ const ForgotPassword = () => {
               type="email"
             />
 
-            <PasswordBtn text="Send" />
+            <PasswordBtn text="Send" loading={loading} />
 
             <p className="text-blue-600 p-12 flex flex-col items-centre">
               <Link to="/login">Back to sign in</Link>

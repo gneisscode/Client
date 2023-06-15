@@ -131,7 +131,16 @@ const Profile = () => {
       }
     } else {
       try {
-        const response = axios.delete(`admins/${user.adminId}/profile-picture`)
+        const response = axios.delete(
+          `admins/${user.adminId}/profile-picture`,
+          {
+            headers: {
+              "Content-Type":
+                "multipart/form-data; boundary=<calculated when request is sent>",
+              Authorization: `Bearer ${user.access_token}`,
+            },
+          }
+        );
         console.log(response.data)
       } catch (error) {
         console.log(error)

@@ -56,7 +56,7 @@ const BorrowerEligibility = () => {
           <p className="text-[20px]">
             <i>
               After thorough analysis by the Omega model, it has been predicted
-              that this borrower is not lilely to default on the loan
+              that this borrower is not likely to default on the loan
               repayments. It is hereby advised to accept the loan application of
               this borrower.
             </i>

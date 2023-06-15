@@ -5,14 +5,14 @@ import { Link } from 'react-router-dom';
 
 const Error404 = () => {
   return (
-    <div>
+    <div lassName="flex flex-col">
       <HomeNav />
       <Hamburger />
-      <div className="flex justify-center mt-8">
+      <div className="flex justify-center ">
         <img
           src="assets/error/error.png"
           alt="error-img"
-          className="w-3/5 lg:w-1/3"
+          className="w-3/5 lg:w-1/3 mt-36"
         />
       </div>
       <div className=" flex flex-col gap-2 md:gap-4 items-center text-center mt-6 md:mt-10 leading-4 text-base">
