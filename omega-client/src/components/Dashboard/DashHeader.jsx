@@ -30,7 +30,7 @@ const DashHeader = () => {
           {userPhotoURL || user.imageUrl ? (
             <img
               src={userPhotoURL || user.imageUrl}
-              className="w-[50px] h-[50px] rounded-full"
+              className="w-[50px] h-[50px] rounded-full border-2 border-blue-500 hover:drop-shadow-xl "
               alt=""
             />
           ) : (
