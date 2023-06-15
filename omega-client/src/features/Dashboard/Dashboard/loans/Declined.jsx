@@ -78,7 +78,7 @@ const Declined = () => {
                   Dashboard
                 </div>
               </Link>
-              <img src="assets/dashboard/arrowdark.svg" alt="" />
+              <i className="fa-solid fa-chevron-right mt-2"></i>
               <div className="text-[20px] font-[400] text-[#0267FF]">
                 Loans declined
               </div>

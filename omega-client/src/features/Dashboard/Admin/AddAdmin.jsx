@@ -132,8 +132,8 @@ const handleSubmit = async (event) => {
               </div>
             </Link>
 
-            <img src="assets/dashboard/arrowdark.svg" alt="" />
-            <div className="text-[20px] font-[500] text-[#333333]">
+            <i className="fa-solid fa-chevron-right mt-2"></i>
+            <div className="text-[20px] font-[500] text-[#0267FF]">
               Add admin
             </div>
           </div>

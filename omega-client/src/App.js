@@ -35,6 +35,7 @@ import Email from './features/Auth/ChangePassword/Email'
 import PublicRoute from './components/Auth/PublicRoute'
 import PrivateRoutes from './components/Auth/PrivateRoutes'
 import Upload from './features/Dashboard/BorrowersData/InputData/Upload'
+import Ineligibility from './features/Dashboard/BorrowersData/Eligibility/Ineligibility'
 
 function App() {
   axios.defaults.baseURL = `https://nodebt-application.onrender.com/api`
@@ -49,74 +50,78 @@ function App() {
 
   const privateRoutes = [
     {
-      path: '/dashboard',
+      path: "/dashboard",
       component: <DashboardPage />,
     },
     {
-      path: '/admin',
+      path: "/admin",
       component: <Admin />,
     },
     {
-      path: '/add-admin',
+      path: "/add-admin",
       component: <AddAdmin />,
     },
     {
-      path: '/loans-successful',
+      path: "/loans-successful",
       component: <Generated />,
     },
     {
-      path: '/loans-declined',
+      path: "/loans-declined",
       component: <Declined />,
     },
     {
-      path: '/loans-pending',
+      path: "/loans-pending",
       component: <Pending />,
     },
     {
-      path: '/loans-refunded',
+      path: "/loans-refunded",
       component: <Refunded />,
     },
     {
-      path: '/borrower-data',
+      path: "/borrower-data",
       component: <BorrowersData />,
     },
     {
-      path: '/upload',
+      path: "/upload",
       component: <Upload />,
     },
     {
-      path: '/borrower-profile/:id',
+      path: "/borrower-profile/:id",
       component: <Profile />,
     },
     {
-      path: '/borrower-saved-data',
+      path: "/borrower-saved-data",
       component: <SavedData />,
     },
     {
-      path: '/borrower-eligibility',
+      path: "/eligibility/declined/:id",
+      component: <Ineligibility />,
+    },
+    {
+      path: "/eligibility/successful/:id",
       component: <BorrowerEligibility />,
     },
     {
-      path: '/send-status',
+      path: "/send-status",
       component: <SendStatus />,
     },
     {
-      path: '/loan-applications',
+      path: "/loan-applications",
       component: <LoanApplications />,
     },
     {
-      path: '/history',
+      path: "/history",
       component: <History />,
     },
     {
-      path: '/settings',
+      path: "/settings",
       component: <Settings />,
     },
     {
-      path: '/help',
+      path: "/help",
       component: <Help />,
     },
-  ]
+  ];
 
   const publicRoutes = [
     {
