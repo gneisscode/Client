@@ -1,13 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import DashHeader from '../../../components/Dashboard/DashHeader';
 import Sidebar from '../../../components/Dashboard/Sidebar';
-import { Context } from "../../../context/Context";
 import { Link} from 'react-router-dom';
 import axios from "axios";
 
 
 const Admin = () => {
-  const {user, userPhotoURL} = useContext(Context)
   let users = JSON.parse(localStorage.getItem("user"))
   const [loading, setLoading] = useState(true);
   let organDetail = users.organisationId._id;
@@ -41,6 +39,7 @@ const Admin = () => {
     return value !==null;
   }
   let filteredAdmin = admin.filter(removeNull);
+  console.log(filteredAdmin)
 
   const colours = ["#0252CC", "#F29509", "#04AB33" ];
   const getColour = () => colours[Math.floor(Math.random() * colours.length)];
@@ -99,7 +98,7 @@ const Admin = () => {
                     >
                       <div className="flex flex-row gap-10">
                         <img
-                          src="assets/dashboard/admin1.png"
+                          src={adm.imageUrl}
                           alt="admin-img"
                           className="w-[67px] h-[67px]"
                         />
