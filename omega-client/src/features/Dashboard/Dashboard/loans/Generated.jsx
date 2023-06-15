@@ -77,7 +77,7 @@ const Generated = () => {
                   Dashboard
                 </div>
               </Link>
-              <img src="assets/dashboard/arrowdark.svg" alt="" />
+              <i className="fa-solid fa-chevron-right mt-2"></i>
               <div className="text-[20px] font-[400] text-[#0267FF]">
                 Loans successful
               </div>
@@ -104,7 +104,7 @@ const Generated = () => {
                     <thead>
                       <tr>
                         <th className="px-6 py-3 bg-[#E6F0FF] text-left font-[600] text-[#666666]">
-                          Borrower's Name
+                          Borrower
                         </th>
                         <th className="px-6 py-3 bg-[#E6F0FF] text-left font-[600] text-[#666666]">
                           Date

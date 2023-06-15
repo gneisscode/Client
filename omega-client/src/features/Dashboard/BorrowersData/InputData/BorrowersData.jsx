@@ -13,6 +13,7 @@ import PreviewForm from '../Preview/PreviewForm'
 import { Link, useNavigate } from 'react-router-dom'
 import LoanInfo from '../../SavedData/LoanInfo'
 
+
 export const BorrowerFormData = createContext()
 
 const BorrowersData = () => {
@@ -22,7 +23,6 @@ const BorrowersData = () => {
   const [activeIndex, setActiveIndex] = useState(0)
   const [modalOne, setModalOne] = useState(false)
   const [modalTwo, setModalTwo] = useState(false)
-  // const [logOutModal, setLogOutModal] = useState(false)
   const [showPreviewForm, setShowPreviewForm] = useState(false)
 
   const steps = {
@@ -94,11 +94,15 @@ const BorrowersData = () => {
   const [value, setValue] = useState(userData)
 
   const step = steps[activeIndex]
+
+
+
+
   return (
     <BorrowerFormData.Provider value={{ value, setValue }}>
-      <div className='flex flex-col'>
+      <div className="flex flex-col">
         <DashHeader />
-        <div className='flex relative'>
+        <div className="flex relative">
           <Sidebar />
           {showPreviewForm && (
             <PreviewForm
@@ -107,22 +111,22 @@ const BorrowersData = () => {
             />
           )}
           <Modal isOpen={modalOne} onClose={() => setModalOne(false)}>
-            <section className='w-[500px] bg-slate-200 p-12 flex flex-col items-center justify-center'>
-              <p className='text-black text-center mb-10 font-md text-xl'>
+            <section className="w-[500px] bg-slate-200 p-12 flex flex-col items-center justify-center">
+              <p className="text-black text-center mb-10 font-md text-xl">
                 Borrower's data has been saved. Kindly preview data
               </p>
               <Button
-                className='text-white bg-[#0267FF] w-64'
-                label='Preview'
+                className="text-white bg-[#0267FF] w-64"
+                label="Preview"
                 onClick={() => {
-                  setModalOne(false)
-                  setShowPreviewForm(true)
+                  setModalOne(false);
+                  setShowPreviewForm(true);
                 }}
               />
               <div>
                 <Button
-                  className='text-red-600 w-64 mt-5'
-                  label='Cancel'
+                  className="text-red-600 w-64 mt-5"
+                  label="Cancel"
                   onClick={() => setModalOne(false)}
                 />
               </div>
@@ -130,16 +134,16 @@ const BorrowersData = () => {
           </Modal>
 
           <Modal isOpen={modalTwo} onClose={() => setModalTwo(false)}>
-            <section className='w-[500px] bg-slate-200 p-12 flex flex-col items-center justify-center'>
-              <p className='text-black text-center mb-10 font-md text-xl'>
+            <section className="w-[500px] bg-slate-200 p-12 flex flex-col items-center justify-center">
+              <p className="text-black text-center mb-10 font-md text-xl">
                 Borrower's data has been uploaded successfully!
               </p>
               <Button
-                className='text-white bg-[#0267FF] w-64'
-                label='Check Eligibility Status'
+                className="text-white bg-[#0267FF] w-64 self-center"
+                label="Check Eligibility Status"
                 onClick={() => {
-                  setModalTwo(false)
-                  navigate('/borrower-eligibility')
+                  setModalTwo(false);
+                  navigate("/borrower-eligibility");
                 }}
               />
             </section>
@@ -167,42 +171,41 @@ const BorrowersData = () => {
           </section>
         </Modal> */}
 
-          <section className='flex justify-center ml-[52px]  absolute top-[112px] left-[300px] my-[40px]'>
+          <section className="flex justify-center ml-[52px]  absolute top-[112px] left-[300px] my-[40px]">
             <div>
-              <div className='flex flex-col gap-[16px]'>
-                <h3 className='text-[#0267FF] text-[24px] font-[600]'>
+              <div className="flex flex-col gap-[16px]">
+                <h3 className="text-[#0267FF] text-[24px] font-[600]">
                   Input Borrower's Data
                 </h3>
-                <p className='text-[20px] font-[500] text-[#4D4D4D]'>
+                <p className="text-[20px] font-[500] text-[#4D4D4D]">
                   Carefully input the borrowers details
                 </p>
 
-                <Link to='/upload'>
+                <Link to="/upload">
                   <div>Or upload pre-filled form</div>
                 </Link>
               </div>
 
               <div className="flex w-full mt-8">
-                <Card className="min-h-[700px] relative px-4 py-4">
+                <Card className="min-h-[700px] relative px-4 py-4 mb-12">
                   <div className="text-[20px] font-[500] text-[#4D4D4D] px-8 py-8">
-
                     Personal Information
                   </div>
 
                   <PersonalInfo />
 
-                  <div className='text-[20px] font-[500] text-[#4D4D4D] px-8 py-8'>
+                  <div className="text-[20px] font-[500] text-[#4D4D4D] px-8 py-8">
                     Loan Information
                   </div>
 
                   <Loan />
-                  <div className='text-[20px] font-[500] text-[#4D4D4D] px-8 py-8'>
+                  <div className="text-[20px] font-[500] text-[#4D4D4D] px-8 py-8">
                     Collateral Information
                   </div>
 
                   <Collateral />
 
-                  <div className='text-[20px] font-[500] text-[#4D4D4D] px-8 py-8'>
+                  <div className="text-[20px] font-[500] text-[#4D4D4D] px-8 py-8">
                     Guarantor's Information
                   </div>
 
@@ -222,12 +225,16 @@ const BorrowersData = () => {
                       setActiveIndex={setActiveIndex}
                     />
                   </div> */}
-                  <Button
-                    className='text-white bg-[#0267FF] w-1/2 my-8'
-                    label='Save Data'
-                    onClick={() => setModalOne(true)}
-                  />
+                  <button
+                    className="text-white bg-[#0267FF] w-[400px] my-8 h-[54px] rounded-sm self-center mt-12"
+                    onClick={() => {
+                      setModalOne(true);
+                    }}
+                    // disabled={!!Object.keys(validationErrors).length}
+                    >Save Data</button>
+                  
                 </Card>
+               
               </div>
 
               {/* <div className="grid grid-cols-2 justify-between items-center gap-20 mt-16 pb-[147px]">
@@ -257,7 +264,7 @@ const BorrowersData = () => {
         </div>
       </div>
     </BorrowerFormData.Provider>
-  )
+  );
 }
 
 export default BorrowersData

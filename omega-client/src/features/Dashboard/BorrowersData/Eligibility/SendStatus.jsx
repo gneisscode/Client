@@ -17,17 +17,17 @@ const SendStatus = () => {
                 Input borrower's data{" "}
               </div>
             </Link>
-            <img src="assets/dashboard/arrowdark.svg" alt="" />
+             <i className="fa-solid fa-chevron-right mt-2"></i>
             <div className="text-[20px] font-[400] text-[#808080]">
               Borrower's data preview
             </div>
-            <img src="assets/dashboard/arrowdark.svg" alt="" />
+             <i className="fa-solid fa-chevron-right mt-2"></i>
             <Link to="/borrower-eligibility">
               <div className="text-[20px] font-[400] text-[#808080]">
                 Loan Eligibility Status
               </div>
             </Link>
-            <img src="assets/dashboard/arrowdark.svg" alt="" />
+             <i className="fa-solid fa-chevron-right mt-2"></i>
             <div className="text-[20px] font-[400] text-[#0267FF]">
               Send Message
             </div>
@@ -37,8 +37,8 @@ const SendStatus = () => {
           </h3>
           <p>
             <i>
-              Choose to send the eligibility status and financial advice of the
-              borrower via Email or text message
+              Choose to send the eligibility status of the
+              borrower via email or text message
             </i>
           </p>
           <div className="flex flex-col gap-2 mt-12">
