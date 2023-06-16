@@ -94,7 +94,7 @@ const Admin = () => {
                   return (
                     <div
                       style={{ borderColor: getColour() }}
-                      className=" p-4 border rounded-md bg-[#f4f7fc] w-[300px] h-[150px] hover:shadow-lg cursor-default"
+                      className=" p-4 border rounded-md bg-[#f4f7fc] w-[300px] h-[170px] hover:shadow-lg cursor-default"
                     >
                       <div className="flex flex-row gap-10">
                         <img
@@ -115,7 +115,7 @@ const Admin = () => {
                               <div className="text-[#333333]">
                                 Phone number:
                               </div>
-                              <p className="text-[14px] font-[400] mt-[2px] text-blue-500">
+                              <p className="text-[14px] font-[400] mt-[2px] pb-2 text-blue-500">
                                 {adm.phoneNumber}
                               </p>
                             </div>
