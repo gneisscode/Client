@@ -214,7 +214,7 @@ const Profile = () => {
                 <input
                   type="email"
                   className="w-[462px] h-[60px] border border-[#666666] bg-[#FAFCFF] p-4 rounded outline-none"
-                  placeholder="Email Address"
+                  placeholder=" Organisation Email Address"
                   value={adminDetails.organizationEmail}
                   onChange={(e) =>
                     setAdminDetails({
