@@ -13,6 +13,7 @@ const Sidebar = () => {
 
   const handleLogout = () => {
     dispatch({ type: 'LOGOUT' })
+    localStorage.removeItem("visitedDashboard");
   }
 
   return (
