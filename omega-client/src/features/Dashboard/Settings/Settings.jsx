@@ -6,10 +6,9 @@ import Notifications from "./Notifications";
 import Security from "./Security";
 
 const Settings = () => {
-  const [currentPage, setCurrentPage] = useState(<Profile/>); // State to keep track of the current page
-
+  const [currentPage, setCurrentPage] = useState(<Profile/>); 
   const handlePage = (pageComponent) => {
-    setCurrentPage(pageComponent); // Update the current page state
+    setCurrentPage(pageComponent); 
   };
 
   return (
