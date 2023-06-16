@@ -99,7 +99,7 @@ const Profile = () => {
               </div>
             </div>
 
-            <div className="p-16">
+            <div className="p-16 mt-[-2em]">
               <div className="flex gap-5 mb-8">
                 <h3 className="w-32">Loan Amount:</h3>
                 <p>{currentUser.loanAmount}</p>
@@ -113,7 +113,7 @@ const Profile = () => {
                   <p className="text-[#FF2727]">Declined</p>
                 )}
               </div>
-              <div className="flex gap-5 mb-8">
+              <div className="flex gap-5">
                 <h3 className="w-32">Admin in charge:</h3>
                 <p>Mabel Okeke</p>
               </div>
@@ -121,7 +121,7 @@ const Profile = () => {
 
             <div>
               <Link to={`/borrower-saved-data/${currentUser._id}`}>
-                <p className="flex p-16 gap-16 text-[#0267FF]">
+                <p className="flex px-16 gap-16 mb-10 text-[#0267FF]">
                   View Borrower's Data
                 </p>
               </Link>

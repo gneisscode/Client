@@ -10,6 +10,8 @@ import Donut from "./Donut";
 import Graph from "./Graph";
 import { Context } from "../../../context/Context";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 Chart.register(CategoryScale);
 
 const Dashboard = () => {
@@ -18,6 +20,17 @@ const Dashboard = () => {
   const [loanData, setLoanData] = useState([]);
   const [loansSuccessful, setLoansSuccessful] = useState([]);
   const [loansDeclined, setLoansDeclined] = useState([]);
+   useEffect(() => {
+     const visitedDashboard = localStorage.getItem("visitedDashboard");
+
+     if (!visitedDashboard) {
+       // Show the toaster only for the first visit
+       toast("Welcome to the dashboard!", { autoClose: 5000 });
+       localStorage.setItem("visitedDashboard", "true");
+     }
+   }, []);
+
+      
   const [monthlyData, setMonthlyData] = useState({
     January: {
       generated: "",
@@ -234,6 +247,7 @@ const Dashboard = () => {
 
   return (
     <div className="flex flex-col">
+      <ToastContainer />
       <DashHeader />
       <div className="flex gap-8 relative">
         <Sidebar />
