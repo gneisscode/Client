@@ -192,8 +192,7 @@ const handleSubmit = async (event) => {
                   name="phoneNumber"
                   value={addAdmin.phoneNumber}
                   onChange={handleAdminInput}
-                  placeholder="Phone Number"
-                  pattern="[0-9]*"
+                  placeholder="Phone Number e.g. +2348023456909"
                   title="Please enter numbers only"
                 />
                 {formErrors.phoneNumber && (
