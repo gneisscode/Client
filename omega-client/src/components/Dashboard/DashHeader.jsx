@@ -51,7 +51,7 @@ const DashHeader = () => {
       </form>
 
       <div className="flex gap-[30px] justify-center items-center self-center">
-        <div>
+        <div className="text-[18px]">
           Hello, {user.firstName} {user.lastName}
         </div>
 
@@ -59,7 +59,7 @@ const DashHeader = () => {
           {userPhotoURL || user.imageUrl ? (
             <img
               src={userPhotoURL || user.imageUrl}
-              className="w-[50px] h-[50px] rounded-full"
+              className="w-[50px] h-[50px] rounded-full border-2 border-blue-500 hover:drop-shadow-xl "
               alt=""
             />
           ) : (

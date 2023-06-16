@@ -90,7 +90,7 @@ function App() {
       component: <Profile />,
     },
     {
-      path: "/borrower-saved-data",
+      path: "/borrower-saved-data/:id",
       component: <SavedData />,
     },
     {
@@ -102,17 +102,17 @@ function App() {
       component: <BorrowerEligibility />,
     },
     {
-      path: "/send-status",
+      path: "/send-status/:id",
       component: <SendStatus />,
     },
     {
       path: "/loan-applications",
       component: <LoanApplications />,
     },
-    {
-      path: "/history",
-      component: <History />,
-    },
+    // {
+    //   path: "/history",
+    //   component: <History />,
+    // },
     {
       path: "/settings",
       component: <Settings />,

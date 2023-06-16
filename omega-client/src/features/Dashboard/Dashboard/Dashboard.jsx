@@ -10,6 +10,8 @@ import Donut from "./Donut";
 import Graph from "./Graph";
 import { Context } from "../../../context/Context";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 Chart.register(CategoryScale);
 
 const Dashboard = () => {
@@ -18,6 +20,17 @@ const Dashboard = () => {
   const [loanData, setLoanData] = useState([]);
   const [loansSuccessful, setLoansSuccessful] = useState([]);
   const [loansDeclined, setLoansDeclined] = useState([]);
+   useEffect(() => {
+     const visitedDashboard = localStorage.getItem("visitedDashboard");
+
+     if (!visitedDashboard) {
+       // Show the toaster only for the first visit
+       toast("Welcome to the dashboard!", { autoClose: 5000 });
+       localStorage.setItem("visitedDashboard", "true");
+     }
+   }, []);
+
+      
   const [monthlyData, setMonthlyData] = useState({
     January: {
       generated: "",
@@ -98,9 +111,7 @@ const Dashboard = () => {
     "December",
   ];
 
-  useEffect(() => {
-    console.log(monthlyData);
-  }, [monthlyData]);
+
 
   const datasets = status.map((status) => {
     const data = labels.map(
@@ -215,7 +226,6 @@ const Dashboard = () => {
         loansList.forEach((loan) => {
           const createdAt = new Date(loan.createdAt);
           const month = createdAt.toLocaleString("en-US", { month: "long" });
-          console.log(month);
 
           updatedMonthlyData[month].generated += 1;
 
@@ -225,8 +235,6 @@ const Dashboard = () => {
             updatedMonthlyData[month].declined += 1;
           }
         });
-        console.log(updatedMonthlyData);
-
         setMonthlyData(updatedMonthlyData);
         setLoading(false);
       } catch (error) {
@@ -235,11 +243,11 @@ const Dashboard = () => {
       }
     };
     handleSubmit();
-    console.log(monthlyData);
   }, []);
 
   return (
     <div className="flex flex-col">
+      <ToastContainer />
       <DashHeader />
       <div className="flex gap-8 relative">
         <Sidebar />
@@ -303,22 +311,24 @@ const Dashboard = () => {
             </div>
             {loanData.length > 0 ? (
               <>
-                <div className="flex items-center w-[890px] bg-[#F9F9F96B] border border-[#E6F0FF] pl-[55px] mt-[91px]  pt-[12px] pb-[35px] mb-[92px]">
+                <div className="flex items-center w-[890px] bg-[#F9F9F96B] border border-[#E6F0FF] pl-[55px] mt-[91px]  pt-[12px] pb-[35px] mb-[92px] hover:shadow-lg">
                   <div className="w-[790px]">
                     <Bar options={options} data={data} />
                   </div>
                 </div>
                 <div className="flex gap-[31px] mb-12 w-[890px]">
-                  <div className="w-[575px] h-[318px] border py-[20px] border-[#E6F0FF]">
+                  <div className="w-[575px] h-[318px] border py-[20px] border-[#E6F0FF] hover:shadow-lg">
                     <Graph monthlyData={monthlyData} />
                   </div>
-                  <div className=" flex border border-[#E6F0FF] py-[40px] items-center justify-center w-[300px] h-[318px] bg-[#FAFCFF] relative">
+                  <div className=" flex border border-[#E6F0FF] py-[40px] items-center justify-center w-[300px] h-[318px] bg-[#FAFCFF] relative hover:shadow-lg">
                     <div className="flex flex-col items-center justify-center absolute top-[85px] left-[118px]">
                       <div className="font-[600] text-[24px] text-[#0267FF]">
-                        {`${parseInt(loansSuccessful / loanData.length * 100)}%`}
+                        {`${parseInt(
+                          (loansSuccessful / loanData.length) * 100
+                        )}%`}
                       </div>
                       <div className="font-[400] text-[16px] text-[#808080]">
-                       Success
+                        Success
                       </div>
                     </div>
                     <Donut
@@ -332,7 +342,8 @@ const Dashboard = () => {
             ) : (
               <Link className="text-blue-500" to="/borrower-data">
                 <div className="flex justify-center items-center mt-24">
-                  No loan stats to display, click here to create a new loan application
+                  No loan stats to display, click here to create a new loan
+                  application
                 </div>
               </Link>
             )}

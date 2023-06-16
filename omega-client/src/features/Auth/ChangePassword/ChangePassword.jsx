@@ -3,11 +3,15 @@ import LockIcon from "../../../components/LockIcon";
 import Card from "../../../components/Card";
 import PasswordBtn from "../../../components/PasswordBtn";
 import { Link, useParams, useLocation } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import axios from "axios";
 
 const ChangePassword = () => {
   const location = useLocation();
   const id = location.pathname.split("/")[2];
+   const [loading, setLoading] = useState(false);
 
   const [formData, setFormData] = useState({
     secret_key: 12345,
@@ -20,6 +24,11 @@ const ChangePassword = () => {
     confirmPassword: "",
   });
   const [serverError, setServerError] = useState("");
+    const showToastError = () => {
+      toast.error("Something went wrong!", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -47,7 +56,7 @@ const ChangePassword = () => {
     event.preventDefault();
     console.log(formData);
     const errors = {};
-    // setIsLoading(true);
+    setLoading(true);
 
     Object.keys(formData).forEach((fieldName) => {
       validateField(fieldName, formData[fieldName]);
@@ -58,14 +67,18 @@ const ChangePassword = () => {
 
     if (Object.keys(errors).length > 0) {
       setFormErrors(errors);
-      // setIsLoading(false);
+      setLoading(false);
+      showToastError()
     } else {
       try {
         const response = await axios.put(`/password-reset/${id}`, formData);
         console.log(response.data);
         window.location.replace("/success");
+        setLoading(false)
       } catch (error) {
         console.log(error);
+        setLoading(false)
+        showToastError()
         if (
           error.response &&
           error.response.data &&
@@ -83,10 +96,14 @@ const ChangePassword = () => {
   };
   return (
     <div className="flex flex-col items-center gap-4 p-10">
+      <ToastContainer />
       <LockIcon />
       <h2 className="text-blue-600 text-2xl">Change Password</h2>
       <p className="text-xl pb-4">Kindly enter your new password</p>
       <div>
+        {serverError && (
+          <p className="text-red-500 text-center mb-4">{serverError}</p>
+        )}
         <form onSubmit={handleSubmit}>
           <Card className="p-14 flex flex-col items-center gap-10 ">
             <input
@@ -122,7 +139,7 @@ const ChangePassword = () => {
               </p>
             )}
 
-            <PasswordBtn text="Change Password" />
+            <PasswordBtn text="Change Password" loading={loading} />
           </Card>
         </form>
       </div>
