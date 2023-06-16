@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import DashHeader from "../../../../components/Dashboard/DashHeader";
 import Sidebar from "../../../../components/Dashboard/Sidebar";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Modal from "../../../../components/Modal/modal";
 import Button from "../../../../components/Button";
 
 const Ineligibility = () => {
+    const location = useLocation();
+    const id = location.pathname.split("/")[3];
      const [modal, setModal] = useState(false);
 
   return (
@@ -72,7 +74,7 @@ const Ineligibility = () => {
             >
               Cancel Loan Generation
             </button> */}
-            <Link to="/send-status">
+            <Link to= {`/send-status/${id}`}>
               <button className=" text-[#0267FF] text-[20px] font-[500] py-2 mb-8">
                 Send Eligibility Status To Borrower
               </button>

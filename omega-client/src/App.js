@@ -102,7 +102,7 @@ function App() {
       component: <BorrowerEligibility />,
     },
     {
-      path: "/send-status",
+      path: "/send-status/:id",
       component: <SendStatus />,
     },
     {
