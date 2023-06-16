@@ -4,6 +4,8 @@ import Card from "../../../components/Card";
 import PasswordBtn from "../../../components/PasswordBtn";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ForgotPassword = () => {
   const [formData, setFormData] = useState({
@@ -14,6 +16,12 @@ const ForgotPassword = () => {
     email: "",
   });
   const [loading, setLoading] = useState(false)
+
+   const showToastError = () => {
+     toast.error("Something went wrong!", {
+       position: toast.POSITION.TOP_RIGHT,
+     });
+   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -54,6 +62,7 @@ const ForgotPassword = () => {
     if (Object.keys(errors).length > 0) {
       setFormErrors(errors);
       setLoading(false);
+      showToastError()
     } else {
       try {
         const response = await axios.get(`/password-reset?email=${formData.email}`);
@@ -64,6 +73,7 @@ const ForgotPassword = () => {
 
       } catch (error) {
         console.log(error);
+          showToastError();
         if (
           error.response &&
           error.response.data &&
@@ -77,6 +87,7 @@ const ForgotPassword = () => {
             "Network error: Please check your internet connection"
           );
            setLoading(false);
+         
         }
       }
     }
@@ -84,6 +95,7 @@ const ForgotPassword = () => {
 
   return (
     <div className="flex flex-col items-center gap-4 p-10">
+      <ToastContainer />
       <LockIcon />
       <h2 className="text-blue-600 text-2xl">Forgot Password</h2>
       <p className="text-xl pb-4">

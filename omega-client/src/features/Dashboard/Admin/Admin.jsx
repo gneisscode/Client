@@ -73,11 +73,11 @@ const Admin = () => {
             <span className="sr-only">Loading...</span>
           </div>
         ) : (
-          <div className="py-[40px] px-[52px] absolute top-[112px] left-[300px]">
+          <div className="py-[40px] px-[52px] absolute top-[112px] left-[300px] w-[1024px]">
             <h4 className="text-[#0267FF] font-semibold text-[24px]">
               Admin Dashboard
             </h4>
-            <div className="grid grid-cols-2 mt-[20px]">
+            <div className="grid grid-cols-2 mt-[20px] w-[100%]">
               <h3 className="text-[#04AB33] font-[500] text-[20px]">
                 Number of Admins ({filteredAdmin?.length})
               </h3>
@@ -94,7 +94,7 @@ const Admin = () => {
                   return (
                     <div
                       style={{ borderColor: getColour() }}
-                      className="px-8 py-6 border rounded-md bg-[#f4f7fc]"
+                      className=" p-4 border rounded-md bg-[#f4f7fc] w-[300px] h-[150px] hover:shadow-lg cursor-default"
                     >
                       <div className="flex flex-row gap-10">
                         <img
@@ -110,12 +110,15 @@ const Admin = () => {
                             {adm.role}
                           </p>
                           {adm.phoneNumber && (
-                            <p className="text-[14px] font-[400] mt-[6px] text-blue-500">
-                              <span className="text-[#333333]">
+                            <div className='flex flex-col'>
+                            
+                              <div className="text-[#333333]">
                                 Phone number:
-                              </span>{" "}
-                              {adm.phoneNumber}
-                            </p>
+                              </div>
+                              <p className="text-[14px] font-[400] mt-[2px] text-blue-500">
+                                {adm.phoneNumber}
+                              </p>
+                            </div>
                           )}
                           {/* <p className="flex text-[14px] font-[400] mt-[18px]">
                               <span className="">Active</span>

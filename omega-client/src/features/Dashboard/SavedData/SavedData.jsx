@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import DashHeader from "../../../components/Dashboard/DashHeader";
 import Sidebar from "../../../components/Dashboard/Sidebar";
 import Card from "../../../components/Card";
@@ -8,10 +8,17 @@ import PersonalInfo from "./PersonalInfo";
 import LoanInfo from "./LoanInfo";
 import Collateral from "./Collateral";
 import Guarantors from "./Guarantors";
+import { Link, useLocation } from "react-router-dom";
 
 const SavedData = () => {
+  const location = useLocation();
+  const id = location.pathname.split("/")[2];
   const slides = [0, 1, 2, 3];
   const [activeIndex, setActiveIndex] = useState(0);
+
+   useEffect(() => {
+     window.scrollTo(0, 0);
+   }, [activeIndex]);
 
   const steps = {
     0: {
@@ -48,7 +55,7 @@ const SavedData = () => {
                   <Circle
                     slides={slides}
                     activeIndex={activeIndex}
-                    setActiveIndex={setActiveIndex}    
+                    setActiveIndex={setActiveIndex}
                   />
                 </div>
               </Card>
@@ -56,24 +63,26 @@ const SavedData = () => {
             <div className="grid grid-cols-2 justify-between items-center gap-10 mt-[760px] ml-[840px] pb-[95px]">
               {activeIndex !== 0 ? (
                 <Button
-                  className="bg-white text-[#0267FF] border border-[#0267FF] w-4/12"
+                  className="bg-white text-[#0267FF] border border-[#0267FF] hover:bg-[#0267FF] hover:text-white w-4/12  transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-100"
                   label="Previous"
                   onClick={() => setActiveIndex((prev) => prev - 1)}
                 />
               ) : (
                 <div className="w-4/12"></div>
               )}
-              <Button
-                className={`text-white bg-[#0267FF] ${
-                  activeIndex === 0 ? "w-4/12" : "w-4/12"
-                }`}
-                label={activeIndex === 3 ? "Ok" : "Next"}
-                onClick={() =>
-                  activeIndex === 3
-                    ? setActiveIndex((prev) => prev - 1)
-                    : setActiveIndex((prev) => prev + 1)
-                }
-              />
+              <Link
+                to={`${activeIndex === 3 ? `/borrower-profile/${id}` : ""}`}
+              >
+                <Button
+                  className={`text-white bg-[#0267FF]  ${
+                    activeIndex === 0 ? "w-4/12" : "w-4/12"
+                  }  transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-100`}
+                  label={activeIndex === 3 ? "Ok" : "Next"}
+                  onClick={() =>
+                    activeIndex === 3 ? "" : setActiveIndex((prev) => prev + 1)
+                  }
+                />
+              </Link>
             </div>
           </div>
         </section>
