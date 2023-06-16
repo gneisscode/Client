@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import DashHeader from '../../../../components/Dashboard/DashHeader'
 import Sidebar from '../../../../components/Dashboard/Sidebar'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import Modal from '../../../../components/Modal/modal'
 import Button from '../../../../components/Button'
 
 const BorrowerEligibility = () => {
   const [modal, setModal] = useState(false)
+   const location = useLocation();
+   const id = location.pathname.split("/")[3];
 
   return (
     <div className="flex flex-col">
@@ -50,13 +52,15 @@ const BorrowerEligibility = () => {
           </h3>
           <p className="text-[20px]">
             <i>
-              Borrower is <span className='text-green-600 font-[600]'>eligible</span> for this loan type
+              Borrower is{" "}
+              <span className="text-green-600 font-[600]">eligible</span> for
+              this loan type
             </i>
           </p>
           <p className="text-[20px]">
             <i>
               After thorough analysis by the Omega model, it has been predicted
-              that this borrower is not lilely to default on the loan
+              that this borrower is not likely to default on the loan
               repayments. It is hereby advised to accept the loan application of
               this borrower.
             </i>
@@ -70,7 +74,7 @@ const BorrowerEligibility = () => {
             >
               Cancel Loan Generation
             </button> */}
-            <Link to="/send-status">
+            <Link to={`/send-status/${id}`}>
               <button className=" text-[#0267FF] text-[20px] font-[500] py-2 mb-8">
                 Send Eligibility Status To Borrower
               </button>

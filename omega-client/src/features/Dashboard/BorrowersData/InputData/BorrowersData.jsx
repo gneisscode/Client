@@ -116,7 +116,7 @@ const BorrowersData = () => {
                 Borrower's data has been saved. Kindly preview data
               </p>
               <Button
-                className="text-white bg-[#0267FF] w-64"
+                className="text-white bg-[#0267FF] w-58 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300"
                 label="Preview"
                 onClick={() => {
                   setModalOne(false);
@@ -125,7 +125,7 @@ const BorrowersData = () => {
               />
               <div>
                 <Button
-                  className="text-red-600 w-64 mt-5"
+                  className="text-red-600 w-64 mt-5 hover:text-blue-500"
                   label="Cancel"
                   onClick={() => setModalOne(false)}
                 />
@@ -226,15 +226,15 @@ const BorrowersData = () => {
                     />
                   </div> */}
                   <button
-                    className="text-white bg-[#0267FF] w-[400px] my-8 h-[54px] rounded-sm self-center mt-12"
+                    className="text-white bg-[#0267FF] w-[400px] my-8 h-[54px] rounded-sm self-center mt-12 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300"
                     onClick={() => {
                       setModalOne(true);
                     }}
                     // disabled={!!Object.keys(validationErrors).length}
-                    >Save Data</button>
-                  
+                  >
+                    Save Data
+                  </button>
                 </Card>
-               
               </div>
 
               {/* <div className="grid grid-cols-2 justify-between items-center gap-20 mt-16 pb-[147px]">

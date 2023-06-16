@@ -15,7 +15,7 @@ const ContactUs = () => {
       <HomeNav />
       <Hamburger />
 
-      <div className="flex w-[100%] pb-12">
+      <div className="flex w-[100%] pb-12 lg:mt-24">
         <form className="flex flex-col z-10 lg:pl-[80px] gap-[52px] lg:pt-[48px] px-4 lg:px-0 pt-4" onSubmit={handleSubmit(submitForm)}>
           <div>
             <div className="text-[32px] text-[#0267FF] font-[600]">

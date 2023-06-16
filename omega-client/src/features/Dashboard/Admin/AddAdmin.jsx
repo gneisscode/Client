@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import DashHeader from '../../../components/Dashboard/DashHeader';
 import Sidebar from '../../../components/Dashboard/Sidebar';
 import { Link } from 'react-router-dom';
@@ -20,6 +20,10 @@ const [addAdmin, setAddAdmin] = useState({
   role: "",
   loginURL: "https://omega-prediction-app.netlify.app/login",
 });
+
+useEffect(()=>{
+  console.log(addAdmin)
+}, [addAdmin])
 
  const [formErrors, setFormErrors] = useState({
    firstName: "",

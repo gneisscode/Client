@@ -17,7 +17,7 @@ const Sidebar = () => {
 
   return (
     <div className="lg:flex flex-col lg:min-h-[100%] hidden lg:min-w-[300px] bg-[#FAFCFF] fixed top-[112px] left-0">
-      <div className="flex flex-col justify-center pl-[40px] pt-[20px] gap-[40px] ">
+      <div className="flex flex-col justify-center pl-[40px] pt-[50px] gap-[40px] ">
         <Link to="/dashboard">
           <div className="flex  items-center gap-[10px] duration-500 transform hover:translate-x-2">
             <svg
@@ -85,7 +85,7 @@ const Sidebar = () => {
               />
             </svg>
             <div
-              className={` text-[18px] font-600 ${
+              className={` text-[20px] font-600 ${
                 active === "dashboard" ||
                 active === "loans-generated" ||
                 active === "loans-successful" ||
@@ -128,7 +128,7 @@ const Sidebar = () => {
               />
             </svg>
             <div
-              className={` text-[18px] font-600 ${
+              className={` text-[20px] font-600 ${
                 active === "borrower-data" ||
                 active === "borrower-profile" ||
                 active === "borrower-eligibility" ||
@@ -183,7 +183,7 @@ const Sidebar = () => {
               />
             </svg>
             <div
-              className={` text-[18px] font-600 ${
+              className={` text-[20px] font-600 ${
                 active === "loan-applications"
                   ? "text-[#0267FF]"
                   : "text-[#999999]"
@@ -194,7 +194,7 @@ const Sidebar = () => {
           </div>
         </Link>
 
-        <Link to="/history">
+        {/* <Link to="/history">
           <div className="flex items-center gap-[10px] duration-500 transform hover:translate-x-2">
             <svg
               width="21"
@@ -216,7 +216,7 @@ const Sidebar = () => {
               History
             </div>
           </div>
-        </Link>
+        </Link> */}
 
         <Link to="/admin">
           <div className="flex  items-center gap-[10px] duration-500 transform hover:translate-x-2">
@@ -233,7 +233,7 @@ const Sidebar = () => {
               />
             </svg>
             <div
-              className={` text-[18px] font-600 ${
+              className={` text-[20px] font-600 ${
                 active === "admin" || active === "add-admin"
                   ? "text-[#0267FF]"
                   : "text-[#999999]"
@@ -259,7 +259,7 @@ const Sidebar = () => {
               />
             </svg>
             <div
-              className={` text-[18px] font-600 ${
+              className={` text-[20px] font-600 ${
                 active === "settings" ? "text-[#0267FF]" : "text-[#999999]"
               } `}
             >
@@ -283,7 +283,7 @@ const Sidebar = () => {
               />
             </svg>
             <div
-              className={` text-[18px] font-600 ${
+              className={` text-[20px] font-600 ${
                 active === "help" ? "text-[#0267FF]" : "text-[#999999]"
               } `}
             >
@@ -309,7 +309,7 @@ const Sidebar = () => {
           </svg>
 
           <div
-            className="text-[#999999] text-[18px] font-600 "
+            className="text-[#999999] text-[20px] font-600 "
             onClick={handleLogout}
           >
             Log out

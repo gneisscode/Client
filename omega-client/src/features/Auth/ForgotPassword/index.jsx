@@ -4,6 +4,8 @@ import Card from "../../../components/Card";
 import PasswordBtn from "../../../components/PasswordBtn";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ForgotPassword = () => {
   const [formData, setFormData] = useState({
@@ -13,6 +15,13 @@ const ForgotPassword = () => {
   const [formErrors, setFormErrors] = useState({
     email: "",
   });
+  const [loading, setLoading] = useState(false)
+
+   const showToastError = () => {
+     toast.error("Something went wrong!", {
+       position: toast.POSITION.TOP_RIGHT,
+     });
+   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -41,7 +50,7 @@ const ForgotPassword = () => {
     event.preventDefault();
     console.log(formData);
     const errors = {};
-    // setIsLoading(true);
+    setLoading(true);
 
     Object.keys(formData).forEach((fieldName) => {
       validateField(fieldName, formData[fieldName]);
@@ -52,15 +61,19 @@ const ForgotPassword = () => {
 
     if (Object.keys(errors).length > 0) {
       setFormErrors(errors);
-      // setIsLoading(false);
+      setLoading(false);
+      showToastError()
     } else {
       try {
         const response = await axios.get(`/password-reset?email=${formData.email}`);
         console.log(response.data.data);
         const data = response.data.data;
+        setLoading(false)
         window.location.replace("/verification-email");
+
       } catch (error) {
         console.log(error);
+          showToastError();
         if (
           error.response &&
           error.response.data &&
@@ -68,10 +81,13 @@ const ForgotPassword = () => {
         ) {
           const errorMessage = error.response.data.message;
           setServerError(errorMessage);
+           setLoading(false);
         } else {
           setServerError(
             "Network error: Please check your internet connection"
           );
+           setLoading(false);
+         
         }
       }
     }
@@ -79,6 +95,7 @@ const ForgotPassword = () => {
 
   return (
     <div className="flex flex-col items-center gap-4 p-10">
+      <ToastContainer />
       <LockIcon />
       <h2 className="text-blue-600 text-2xl">Forgot Password</h2>
       <p className="text-xl pb-4">
@@ -88,12 +105,13 @@ const ForgotPassword = () => {
       <div>
         <form onSubmit={handleSubmit}>
           <Card className="p-14 flex flex-col items-center gap-10 ">
-            {formErrors.email && (
+            {serverError && <p className="text-red-500">{serverError}</p>}
+            {/* {formErrors.email && (
               <p className="text-red-500">{formErrors.email}</p>
-            )}
+            )} */}
 
             <input
-              className={`border border-blue-600 w-[589px] h-[61px] p-6 ${
+              className={`border border-blue-600 w-[589px] h-[61px] p-6 outline-none ${
                 formErrors.email ? "border-red-700" : ""
               }`}
               placeholder="Email address:"
@@ -103,7 +121,7 @@ const ForgotPassword = () => {
               type="email"
             />
 
-            <PasswordBtn text="Send" />
+            <PasswordBtn text="Send" loading={loading} />
 
             <p className="text-blue-600 p-12 flex flex-col items-centre">
               <Link to="/login">Back to sign in</Link>
