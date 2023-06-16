@@ -87,12 +87,13 @@ const PersonalInfo = () => {
     const enteredNumber = event.target.value;
     const maxLength = 11;
 
-    if (enteredNumber.length !== maxLength) {
+    if (!/^\+\d{1,3}\d{6,14}$/.test(enteredNumber)) {
       setValidationErrors((prevErrors) => ({
         ...prevErrors,
-        phoneNumber: `Phone number cannot be shorter than ${maxLength} digits`,
+        phoneNumber: "Phone Number is invalid",
       }));
-    } else {
+   
+   } else {
       setValidationErrors((prevErrors) => ({
         ...prevErrors,
         phoneNumber: "",
@@ -135,7 +136,7 @@ const PersonalInfo = () => {
       <div>
         <TextField
           className="bg-white border-[#0252CC]"
-          placeholder="Phone Number"
+          placeholder="Phone Number e.g. +12345678901234"
           value={value.personalInfo.phoneNumber}
           onChange={(e) => {
             setValue({
@@ -149,14 +150,7 @@ const PersonalInfo = () => {
           }}
           error={validationErrors?.phoneNumber}
           message={validationErrors?.phoneNumber}
-          onKeyDown={(e) => {
-            const keyCode = e.which || e.keyCode;
-            if (keyCode !== 8 && (keyCode < 48 || keyCode > 57)) {
-              e.preventDefault();
-            }
-          }}
           title="Please enter numbers only"
-          maxLength={11}
         />
       </div>
       <TextField

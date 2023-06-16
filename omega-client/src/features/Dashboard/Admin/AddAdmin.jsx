@@ -61,10 +61,7 @@ useEffect(()=>{
      errorMessage = "Position is required";
    } else if (fieldName === "phoneNumber" && !value) {
      errorMessage = "Phone Number is required";
-   } else if (
-     fieldName === "phoneNumber" &&
-     !/^\+?\d{1,3}[-.\s]?\(?\d{1,3}\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}$/.test(value)
-   ) {
+   } else if (fieldName === "phoneNumber" && !/^\+\d{1,3}\d{6,14}$/.test(value)) {
      errorMessage = "Phone Number is invalid";
    }
 
