@@ -67,9 +67,11 @@ const PreviewForm = ({ handleModal, handleModalTwo }) => {
 
       if (!formData.fullname) {
         errors.fullname = "Full Name is required";
-      }
-
-      if (!formData.phoneNumber || formData.phoneNumber.length !== 11) {
+      } 
+      if (
+        !formData.phoneNumber ||
+        !/^\+\d{1,3}\d{6,14}$/.test(formData.phoneNumber)
+      ) {
         errors.phoneNumber = "Invalid Phone Number";
       }
 
@@ -157,10 +159,7 @@ const PreviewForm = ({ handleModal, handleModalTwo }) => {
         errors.guarantorFullName = "Full Name is required";
       }
 
-      if (
-        !guarantorInfo.phoneNumber ||
-        guarantorInfo.phoneNumber.length !== 11
-      ) {
+      if (!guarantorInfo.phoneNumber || !/^\+\d{1,3}\d{6,14}$/.test(guarantorInfo.phoneNumber)) {
         errors.guarantorPhoneNumber = "Invalid Phone Number";
       }
 
