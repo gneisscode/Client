@@ -10,7 +10,7 @@ const PersonalInfo = () => {
 
   function getLoanInfo() {
     axios
-      .get(`https://nodebtdev.onrender.com/api/loans?id=${id}`, {
+      .get(`/loans?id=${id}`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${localStorage.getItem("token")}`,
