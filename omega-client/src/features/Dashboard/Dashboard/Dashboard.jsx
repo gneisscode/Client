@@ -142,13 +142,13 @@ const Dashboard = () => {
       title: {
         display: true,
         text: "Loan Monthly Frequency",
-        align: "start",
+        align: "center",
         color: "#1A1A1A",
         font: {
           size: 20,
           weight: 500,
         },
-        padding: 30,
+        padding: 20,
       },
       legend: {
         display: true,
@@ -170,7 +170,7 @@ const Dashboard = () => {
         },
       },
       y: {
-        display: false,
+        display: true,
         beginAtZero: true,
         ticks: {
           precision: 0,
