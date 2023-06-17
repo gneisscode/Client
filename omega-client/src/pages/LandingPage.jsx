@@ -9,7 +9,7 @@ const LandingPage = () => {
       <HomeNav />
       <Hamburger />
       <div className="  bg-gray-50 flex flex-col-reverse lg:flex-row w-[95%] lg:w-[1178px] mt-8 lg:mt-[140px] rounded-md px-4 lg:rounded-tr-[30px] lg:rounded-bl-[30px] mb-12 lg:mr-[123px] lg:ml-[80px]">
-        <div className=" flex flex-col lg:w-[581px] mt-4 lg:mt-[54px] lg:ml-[41px] gap-6 lg:gap-[20px] ">
+        <div className=" flex flex-col lg:w-[581px] mt-4 lg:mt-[54px] lg:ml-[41px] gap-6 lg:gap-[25px] ">
           <div className=" text-[20px] lg:text-[40px] font-semibold text-blue-600 text-center lg:text-start">
             Experience the power of predictive analytics with our loan
             prediction software - Omega
@@ -19,7 +19,7 @@ const LandingPage = () => {
             services.
           </div>
           <Link to="/signup">
-            <button className="bg-blue-700 lg:mt-[32px] text-[24px]  mt-[-2em] lg:w-[417px] w-[150px] h-[43px]  lg:h-[63px] text-white lg:hover:rounded lg:hover:bg-white lg:hover:border-2 lg:hover:text-blue-700 lg:hover:border-blue-700">
+            <button className="bg-blue-700 lg:mt-[18px] text-[24px]  mt-[-2em] lg:w-[417px] w-[150px] h-[43px]  lg:h-[63px] text-white lg:hover:rounded lg:hover:bg-white lg:hover:border-2 lg:hover:text-blue-700 lg:hover:border-blue-700">
               Get Started &#8594;
             </button>
           </Link>
