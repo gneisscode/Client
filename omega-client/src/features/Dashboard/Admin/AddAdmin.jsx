@@ -61,10 +61,7 @@ useEffect(()=>{
      errorMessage = "Position is required";
    } else if (fieldName === "phoneNumber" && !value) {
      errorMessage = "Phone Number is required";
-   } else if (
-     fieldName === "phoneNumber" &&
-     !/^\+?\d{1,3}[-.\s]?\(?\d{1,3}\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}$/.test(value)
-   ) {
+   } else if (fieldName === "phoneNumber" && !/^\+\d{1,3}\d{6,14}$/.test(value)) {
      errorMessage = "Phone Number is invalid";
    }
 
@@ -105,6 +102,7 @@ const handleSubmit = async (event) => {
     });
     console.log(response.data.data);
     showToastSuccess()
+    window.location.replace('/admin')
     setIsLoading(false);
   } catch (error) {
     console.log(error.response);
@@ -195,8 +193,7 @@ const handleSubmit = async (event) => {
                   name="phoneNumber"
                   value={addAdmin.phoneNumber}
                   onChange={handleAdminInput}
-                  placeholder="Phone Number"
-                  pattern="[0-9]*"
+                  placeholder="Phone Number e.g. +2348023456909"
                   title="Please enter numbers only"
                 />
                 {formErrors.phoneNumber && (
@@ -248,7 +245,7 @@ const handleSubmit = async (event) => {
                   ref={fileUpload}
                 /> */}
               <button
-                className="mt-2 bg-[#0267FF] text-[#FFFFFF] text-[24px] font-[600] w-[195px] h-[61px] ml-auto mr-8 p-2 rounded"
+                className="mt-2 bg-[#0267FF] text-[#FFFFFF] text-[24px] font-[600] w-[195px] h-[61px] ml-auto mr-8 p-2 rounded transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300"
                 type="submit"
               >
                 {isLoading && (

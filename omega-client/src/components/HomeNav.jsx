@@ -22,7 +22,7 @@ const HomeNav = () => {
   }, [location])
 
   return (
-    <div className="hidden lg:flex justify-between h-[112px] w-[100%] text-gray-400 border border-gray-100 items-end px-[80.11px] py-8 fixed z-30 bg-white">
+    <div className="hidden lg:flex justify-between h-[112px] w-[100%] text-gray-400 border border-gray-100 items-end px-[60px] py-8 fixed z-30 bg-white">
       <Link to="/" className="link">
         <div className="flex justify-center items-center">
           <img src="/assets/omega-logo.png" alt="" />
@@ -33,7 +33,7 @@ const HomeNav = () => {
         <Link to="/" className="link">
           <li
             className={` hover:text-blue-500 ${
-              location.pathname === "/" ? "underline text-blue-500" : ""
+              location.pathname === "/" ? " text-blue-500" : ""
             }`}
           >
             Home
@@ -43,7 +43,7 @@ const HomeNav = () => {
         <Link to="/about" className="link">
           <li
             className={` hover:text-blue-500 ${
-              location.pathname === "/about" ? "underline text-blue-500" : ""
+              location.pathname === "/about" ? " text-blue-500" : ""
             }`}
           >
             About Us
@@ -52,10 +52,10 @@ const HomeNav = () => {
 
         <a
           href="/services"
-          className={`hover:text-blue-500 ${
+          className={` link hover:text-blue-500 ${
             location.pathname === "/services"
-              ? "underline text-blue-500"
-              : "no-underline"
+              ? " text-blue-500"
+              : ""
           }`}
         >
           Services
@@ -64,7 +64,7 @@ const HomeNav = () => {
         <Link to="/contact" className="link">
           <li
             className={`hover:text-blue-500 ${
-              location.pathname === "/contact" ? "underline text-blue-500" : " "
+              location.pathname === "/contact" ? " text-blue-500" : " "
             }`}
           >
             Contact Us

@@ -3,7 +3,7 @@ import React from "react";
 const LoanCard = (props) => {
   return (
     <div className="flex flex-col  hover:shadow-lg transition-shadow hover:scale-105 hover:-translate-y-1 drop-shadow-sm ">
-      <div className="lg:w-[317px] lg:h-[104px] border border-[#CCCCCC] mt-[24px] flex flex-col rounded-tl rounded-tr pl-[20px] gap-2  ">
+      <div className="lg:w-[300px] lg:h-[104px] border border-[#CCCCCC] mt-[24px] flex flex-col rounded-tl rounded-tr pl-[20px] gap-2  ">
         <div
           className={`text-[16px] font-semibold pt-[23px] ${
             props.status === "generated"
@@ -20,8 +20,8 @@ const LoanCard = (props) => {
           <img src="assets/dashboard/wallet.svg" alt="" />
         </div>
       </div>
-      <div className="lg:w-[317px] lg:h-[49px] border border-[#CCCCCC] bg-[#F2F2F2] flex gap-[108px] justify-center items-center w-[100%]  rounded-bl rounded-br">
-        <div className="flex gap-[8px] justify-center  items-center">
+      <div className="lg:w-[300px] lg:h-[49px] border border-[#CCCCCC] bg-[#F2F2F2] flex gap-[108px] justify-center items-center w-[100%]  rounded-bl rounded-br">
+        {/* <div className="flex gap-[8px] justify-center  items-center">
           <div
             className={`text-[16px] font-semibold pt-[23px] items-center justify-center ${
               props.status === "generated"
@@ -47,7 +47,7 @@ const LoanCard = (props) => {
           <div className=" flex justify-center items-center text-[10px] font-light text-[#808080]">
             Last month
           </div>
-        </div>
+        </div> */}
         <div className="text-[10px] font-medium">View more</div>
       </div>
     </div>

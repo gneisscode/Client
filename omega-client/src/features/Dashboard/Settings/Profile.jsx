@@ -13,10 +13,10 @@ const Profile = () => {
   const [fetching, setFetching] =useState(true)
   const [adminDetails, setAdminDetails] = useState({
     nameOfOrganization: '',
-    organizationEmail: '',
+    organisationEmail: '',
     numberOfStaffs: '',
     staffID: '',
-    organizationType: '',
+    organisationType: '',
     website: '',
     firstName: '',
     lastName: '',
@@ -37,9 +37,9 @@ const Profile = () => {
         console.log(response.data.data)
         setAdminDetails({
           ...adminDetails,
-          ...data.admin,
+          ...data,
         })
-        console.log(adminDetails)
+        // console.log(adminDetails)
         setFetching(false)
       } catch (error) {
         console.log(error)
@@ -156,7 +156,7 @@ const Profile = () => {
     setIsLoading(true)
     try {
       await Promise.all([updateDetails(), updateProfilePic()])
-      updateProfilePic()
+      // updateProfilePic()
     } catch (error) {
       showToastError()
     } finally {
@@ -203,7 +203,7 @@ const Profile = () => {
                   type="text"
                   className="w-[462px] h-[60px] border border-[#666666] bg-[#FAFCFF] p-4 rounded outline-none"
                   placeholder="Name of Organisation"
-                  value={adminDetails.nameOfOrganization}
+                  value={adminDetails.organisationName}
                   onChange={(e) =>
                     setAdminDetails({
                       ...adminDetails,
@@ -214,12 +214,12 @@ const Profile = () => {
                 <input
                   type="email"
                   className="w-[462px] h-[60px] border border-[#666666] bg-[#FAFCFF] p-4 rounded outline-none"
-                  placeholder="Email Address"
-                  value={adminDetails.organizationEmail}
+                  placeholder=" Organisation Email Address"
+                  value={adminDetails.organisationEmail}
                   onChange={(e) =>
                     setAdminDetails({
                       ...adminDetails,
-                      organizationEmail: e.target.value,
+                      organisationEmail: e.target.value,
                     })
                   }
                 />
@@ -241,7 +241,7 @@ const Profile = () => {
                   type="text"
                   className="w-[462px] h-[60px] border border-[#666666] bg-[#FAFCFF] p-4 rounded outline-none"
                   placeholder="Identity Number"
-                  value={adminDetails._id}
+                  value={adminDetails.staffID}
                   onChange={(e) =>
                     setAdminDetails({
                       ...adminDetails,
@@ -257,11 +257,11 @@ const Profile = () => {
                   type="text"
                   className="w-[462px] h-[60px] border border-[#666666] bg-[#FAFCFF] p-4 rounded outline-none"
                   placeholder="Type of Organisation"
-                  value={adminDetails.organizationType}
+                  value={adminDetails.organisationType}
                   onChange={(e) =>
                     setAdminDetails({
                       ...adminDetails,
-                      organizationType: e.target.value,
+                      organisationType: e.target.value,
                     })
                   }
                 />

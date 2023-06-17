@@ -10,6 +10,8 @@ import Donut from "./Donut";
 import Graph from "./Graph";
 import { Context } from "../../../context/Context";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 Chart.register(CategoryScale);
 
 const Dashboard = () => {
@@ -18,6 +20,17 @@ const Dashboard = () => {
   const [loanData, setLoanData] = useState([]);
   const [loansSuccessful, setLoansSuccessful] = useState([]);
   const [loansDeclined, setLoansDeclined] = useState([]);
+   useEffect(() => {
+     const visitedDashboard = localStorage.getItem("visitedDashboard");
+
+     if (!visitedDashboard) {
+       // Show the toaster only for the first visit
+       toast("Welcome to the dashboard!", { autoClose: 5000 });
+       localStorage.setItem("visitedDashboard", "true");
+     }
+   }, []);
+
+      
   const [monthlyData, setMonthlyData] = useState({
     January: {
       generated: "",
@@ -129,13 +142,13 @@ const Dashboard = () => {
       title: {
         display: true,
         text: "Loan Monthly Frequency",
-        align: "start",
+        align: "center",
         color: "#1A1A1A",
         font: {
           size: 20,
           weight: 500,
         },
-        padding: 30,
+        padding: 20,
       },
       legend: {
         display: true,
@@ -157,7 +170,7 @@ const Dashboard = () => {
         },
       },
       y: {
-        display: false,
+        display: true,
         beginAtZero: true,
         ticks: {
           precision: 0,
@@ -171,16 +184,13 @@ const Dashboard = () => {
 
   useEffect(() => {
     const handleSubmit = async () => {
-      const loans = axios.create({
-        baseURL: `https://nodebtdev.onrender.com/api`,
-      });
       try {
         const config = {
           headers: {
             Authorization: `Bearer ${user.access_token}`,
           },
         };
-        const response = await loans.get(`/loans/company-loans`, config);
+        const response = await axios.get(`/loans/company-loans`, config);
         console.log(response.data);
         console.log(response.data.data.loans);
         const loansList = response.data.data.loans;
@@ -234,6 +244,7 @@ const Dashboard = () => {
 
   return (
     <div className="flex flex-col">
+      <ToastContainer />
       <DashHeader />
       <div className="flex gap-8 relative">
         <Sidebar />
