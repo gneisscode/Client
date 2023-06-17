@@ -14,20 +14,18 @@ const Profile = () => {
 
   useEffect(() => {
     const getUserLoan = async () => {
-      const loans = axios.create({
-        baseURL: `https://nodebtdev.onrender.com/api`,
-      });
       try {
         const config = {
           headers: {
             Authorization: `Bearer ${user.access_token}`,
           },
         };
-        const response = await loans.get(`/loans/company-loans`, config);
+        const response = await axios.get(`/loans/company-loans`, config);
 
         const loansList = response.data.data.loans;
 
         const userLoan = loansList.find((loan) => loan._id === param.id);
+        console.log(userLoan)
         setCurrentUser(userLoan);
         setLoading(false);
       } catch (error) {
@@ -82,32 +80,40 @@ const Profile = () => {
             <div className="flex bg-blue-100 p-10 justify-between align-middle">
               <div className="flex flex-col">
                 <h2 className="font-semibold text-base mb-8">
-                  {currentUser.fullname}
+                  {currentUser?.fullname}
                 </h2>
                 <p className="text-[#666666] font-normal text-sm">
-                  {new Date(currentUser.createdAt).toLocaleDateString()}
+                  {new Date(currentUser?.createdAt).toLocaleDateString()}
                 </p>
               </div>
               <div>
-                <select className="bg-[#0267FF] text-white p-2 px-2 outline-none">
+                <Link
+                  to={`/borrower-saved-data/${currentUser?._id}`}
+                  className="justify-self-end"
+                >
+                  <button className="justify-self-end bg-[#0267FF] p-2 text-[#FFFFFF] rounded text-[16px] font-[500] transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300">
+                    Borrower's Data
+                  </button>
+                </Link>
+                {/* <select className="bg-[#0267FF] text-white p-2 px-2 outline-none">
                   <option className="font-medium text-xl" value="">
                     Change status
                   </option>
                   <option value="Successful">Successful</option>
                   <option value="Declined">Declined</option>
-                </select>
+                </select> */}
               </div>
             </div>
 
-            <div className="p-16 mt-[-2em]">
+            <div className=" px-8 mt-[1em]">
               <div className="flex gap-5 mb-8">
                 <h3 className="w-32">Loan Amount:</h3>
-                <p>{currentUser.loanAmount}</p>
+                <p>{currentUser?.loanAmount}</p>
               </div>
               <div className="flex gap-5 mb-8">
                 <h3 className="w-32">Loan Status:</h3>
 
-                {currentUser.eligibility ? (
+                {currentUser?.eligibility ? (
                   <p className="text-[#4ED273]">Successful</p>
                 ) : (
                   <p className="text-[#FF2727]">Declined</p>
@@ -115,17 +121,17 @@ const Profile = () => {
               </div>
               <div className="flex gap-5">
                 <h3 className="w-32">Admin in charge:</h3>
-                <p>Mabel Okeke</p>
+                <p>{currentUser?.adminInCharge}</p>
               </div>
             </div>
 
-            <div>
+            {/* <div>
               <Link to={`/borrower-saved-data/${currentUser._id}`}>
-                <p className="flex px-16 gap-16 mb-10 text-[#0267FF]">
+                <p className="flex px-8 pt-8 gap-16 mb-10 text-[#0267FF]">
                   View Borrower's Data
                 </p>
               </Link>
-            </div>
+            </div> */}
           </div>
         )}
       </div>

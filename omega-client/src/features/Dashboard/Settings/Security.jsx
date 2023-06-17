@@ -58,6 +58,12 @@ const Security = () => {
        });
      };
 
+     const showToastSuccess = () => {
+       toast.success("Password changed successfully!", {
+         position: toast.POSITION.TOP_RIGHT,
+       });
+     };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(formData);
@@ -89,7 +95,13 @@ const Security = () => {
           formData, config
         );
         console.log(response.data);
-        setModal(true);
+        showToastSuccess()
+        setFormData({
+           oldPassword: "",
+           newPassword: "",
+           confirmNewPassword: "",
+         });
+         setIsLoading(false)
       } catch (error) {
         console.log(error);
         setIsLoading(false);
@@ -113,7 +125,7 @@ const Security = () => {
   return (
     <div>
       <ToastContainer />
-      <Modal isOpen={modal} onClose={() => setModal(false)}>
+      {/* <Modal isOpen={modal} onClose={() => setModal(false)}>
         <section className="w-[500px] bg-slate-200 p-16 flex flex-col items-center justify-center">
           <div className="mb-5">
             <img src="/assets/auth/modalImage.svg" alt="" />
@@ -131,7 +143,7 @@ const Security = () => {
             onClick={() => setModal(false)}
           />
         </section>
-      </Modal>
+      </Modal> */}
 
       <div className="text-[24px] font-[500] text-[#4D4D4D] mt-[40px] mb-[20px]">
         Password Settings
@@ -140,51 +152,64 @@ const Security = () => {
         Make sure a strong password is used, this is to ensure maximum security
         of your data
       </div>
+      {serverError && <p className="text-red-500 my-4">{serverError}</p>}
+
       <form onSubmit={handleSubmit}>
         <div className="flex flex-col gap-[48px] mt-[43px] mb-[111px]">
-          <input
-            className={`w-[462px] h-[60px] border ${
-              formErrors.oldPassword ? "border-red-700" : "border-[#666666]"
-            } p-4 bg-[#FAFCFF] rounded outline-none`}
-            placeholder="Old Password"
-            name="oldPassword"
-            value={formData.oldPassword}
-            onChange={handleInputChange}
-            type="password"
-          />
-          {formErrors.oldPassword && (
-            <p className="text-red-500 self-start">{formErrors.oldPassword}</p>
-          )}
-          <input
-            className={`w-[462px] h-[60px] border ${
-              formErrors.newPassword ? "border-red-700" : "border-[#666666]"
-            } p-4 bg-[#FAFCFF] rounded outline-none`}
-            placeholder="New Password"
-            name="newPassword"
-            value={formData.newPassword}
-            onChange={handleInputChange}
-            type="password"
-          />
-          {formErrors.newPassword && (
-            <p className="text-red-500  self-start">{formErrors.newPassword}</p>
-          )}
-          <input
-            className={`w-[462px] h-[60px] border ${
-              formErrors.confirmNewPassword
-                ? "border-red-700"
-                : "border-[#666666] "
-            } p-4 bg-[#FAFCFF] rounded outline-none`}
-            placeholder="Confirm New Password"
-            name="confirmNewPassword"
-            value={formData.confirmNewPassword}
-            onChange={handleInputChange}
-            type="password"
-          />
-          {formErrors.confirmNewPassword && (
-            <p className="text-red-500  self-start">
-              {formErrors.confirmNewPassword}
-            </p>
-          )}
+          <div>
+            <input
+              className={`w-[462px] h-[60px] border ${
+                formErrors.oldPassword ? "border-red-700" : "border-[#666666]"
+              } p-4 bg-[#FAFCFF] rounded outline-none`}
+              placeholder="Old Password"
+              name="oldPassword"
+              value={formData.oldPassword}
+              onChange={handleInputChange}
+              type="password"
+            />
+            {formErrors.oldPassword && (
+              <p className="text-red-500 self-start">
+                {formErrors.oldPassword}
+              </p>
+            )}
+          </div>
+          <div>
+            {" "}
+            <input
+              className={`w-[462px] h-[60px] border ${
+                formErrors.newPassword ? "border-red-700" : "border-[#666666]"
+              } p-4 bg-[#FAFCFF] rounded outline-none`}
+              placeholder="New Password"
+              name="newPassword"
+              value={formData.newPassword}
+              onChange={handleInputChange}
+              type="password"
+            />
+            {formErrors.newPassword && (
+              <p className="text-red-500  self-start">
+                {formErrors.newPassword}
+              </p>
+            )}
+          </div>
+          <div>
+            <input
+              className={`w-[462px] h-[60px] border ${
+                formErrors.confirmNewPassword
+                  ? "border-red-700"
+                  : "border-[#666666] "
+              } p-4 bg-[#FAFCFF] rounded outline-none`}
+              placeholder="Confirm New Password"
+              name="confirmNewPassword"
+              value={formData.confirmNewPassword}
+              onChange={handleInputChange}
+              type="password"
+            />
+            {formErrors.confirmNewPassword && (
+              <p className="text-red-500  self-start">
+                {formErrors.confirmNewPassword}
+              </p>
+            )}
+          </div>
         </div>
         <button
           className="w-[462px] h-[61px] bg-[#0267FF] text-[24px] font-[600] text-white rounded mb-8 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300"

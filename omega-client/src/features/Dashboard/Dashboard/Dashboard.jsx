@@ -142,13 +142,13 @@ const Dashboard = () => {
       title: {
         display: true,
         text: "Loan Monthly Frequency",
-        align: "start",
+        align: "center",
         color: "#1A1A1A",
         font: {
           size: 20,
           weight: 500,
         },
-        padding: 30,
+        padding: 20,
       },
       legend: {
         display: true,
@@ -170,7 +170,7 @@ const Dashboard = () => {
         },
       },
       y: {
-        display: false,
+        display: true,
         beginAtZero: true,
         ticks: {
           precision: 0,
@@ -184,16 +184,13 @@ const Dashboard = () => {
 
   useEffect(() => {
     const handleSubmit = async () => {
-      const loans = axios.create({
-        baseURL: `https://nodebtdev.onrender.com/api`,
-      });
       try {
         const config = {
           headers: {
             Authorization: `Bearer ${user.access_token}`,
           },
         };
-        const response = await loans.get(`/loans/company-loans`, config);
+        const response = await axios.get(`/loans/company-loans`, config);
         console.log(response.data);
         console.log(response.data.data.loans);
         const loansList = response.data.data.loans;

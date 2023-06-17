@@ -88,7 +88,7 @@ const Graph = ({monthlyData}) => {
         },
       },
       y: {
-        max: 20,
+        max: 50,
         grid: {
           display: false,
         },

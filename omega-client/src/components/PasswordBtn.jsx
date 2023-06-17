@@ -2,7 +2,7 @@ import React from 'react'
 
 const PasswordBtn = ({text,loading}) => {
   return (
-    <button className=" flex justify-center items-center bg-blue-600 w-[589px] h-[61px] text-white text-lg font-semibold rounded hover:bg-blue-700">
+    <button disabled={loading} className=" flex justify-center items-center bg-blue-600 w-[589px] h-[61px] text-white text-lg font-semibold rounded hover:bg-blue-700">
       {loading && (
         <div role="status" className="flex justify-center items-center">
           <svg

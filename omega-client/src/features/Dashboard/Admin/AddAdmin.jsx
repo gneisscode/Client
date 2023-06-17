@@ -102,6 +102,7 @@ const handleSubmit = async (event) => {
     });
     console.log(response.data.data);
     showToastSuccess()
+    window.location.replace('/admin')
     setIsLoading(false);
   } catch (error) {
     console.log(error.response);
@@ -244,7 +245,7 @@ const handleSubmit = async (event) => {
                   ref={fileUpload}
                 /> */}
               <button
-                className="mt-2 bg-[#0267FF] text-[#FFFFFF] text-[24px] font-[600] w-[195px] h-[61px] ml-auto mr-8 p-2 rounded"
+                className="mt-2 bg-[#0267FF] text-[#FFFFFF] text-[24px] font-[600] w-[195px] h-[61px] ml-auto mr-8 p-2 rounded transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300"
                 type="submit"
               >
                 {isLoading && (
