@@ -10,19 +10,28 @@ const Generated = () => {
   const [loansSuccessful, setLoansSuccessful] = useState([]);
   const { user } = useContext(Context);
   const [loading, setLoading] = useState(true);
+  function padZerosWithCommas(number) {
+    if (typeof number !== "number") {
+      return "";
+    }
+
+    const formattedNumber = number.toLocaleString("en-US", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+
+    return formattedNumber;
+  }
 
   useEffect(() => {
     const getSuccessfulLoans = async () => {
-      const loans = axios.create({
-        baseURL: `https://nodebtdev.onrender.com/api`,
-      });
       try {
         const config = {
           headers: {
             Authorization: `Bearer ${user.access_token}`,
           },
         };
-        const response = await loans.get(`/loans/company-loans`, config);
+        const response = await axios.get(`/loans/company-loans`, config);
         console.log(response.data);
         console.log(response.data.data.loans);
         const loansList = response.data.data.loans;
@@ -138,10 +147,10 @@ const Generated = () => {
                             <span className={`text-[#04AB33]`}>Successful</span>
                           </td>
                           <td className="px-6 py-4 font-[600] text-[16px] text-[#666666]">
-                            {/* {loan.creditScore} */}
+                            {loan.creditScore}
                           </td>
                           <td className="px-6 py-4 font-[600] text-[16px] text-[#666666]">
-                            {loan.loanAmount}
+                            {padZerosWithCommas(loan.loanAmount)}
                           </td>
                         </tr>
                       ))}

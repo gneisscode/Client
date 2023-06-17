@@ -14,16 +14,13 @@ const Profile = () => {
 
   useEffect(() => {
     const getUserLoan = async () => {
-      const loans = axios.create({
-        baseURL: `https://nodebtdev.onrender.com/api`,
-      });
       try {
         const config = {
           headers: {
             Authorization: `Bearer ${user.access_token}`,
           },
         };
-        const response = await loans.get(`/loans/company-loans`, config);
+        const response = await axios.get(`/loans/company-loans`, config);
 
         const loansList = response.data.data.loans;
 

@@ -12,12 +12,21 @@ const LoanApplications = () => {
   const [error, setError] = useState(false);
   const [loanData, setLoanData] = useState([]);
   const [loading, setLoading] = useState(true); 
+  function padZerosWithCommas(number) {
+    if (typeof number !== "number") {
+      return "";
+    }
+
+    const formattedNumber = number.toLocaleString("en-US", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+
+    return formattedNumber;
+  }
 
   useEffect(() => {
     const fetchData = async () => {
-      const loans = axios.create({
-        baseURL: `https://nodebtdev.onrender.com/api`,
-      });
       if (user && user.access_token) {
         try {
           const config = {
@@ -25,7 +34,7 @@ const LoanApplications = () => {
               Authorization: `Bearer ${user.access_token}`,
             },
           };
-          const response = await loans.get("/loans/company-loans", config);
+          const response = await axios.get("/loans/company-loans", config);
           const loansList = response.data.data.loans;
           setLoanData(loansList);
            setLoading(false);
@@ -97,8 +106,8 @@ const LoanApplications = () => {
                     ) : (
                       <p className="text-[#FF2727]">Declined</p>
                     )}
-                    <p>{dt["Credit Score"]}</p>
-                    <p>{dt.loanAmount}</p>
+                    <p>{dt.creditScore}</p>
+                    <p>{padZerosWithCommas(dt.loanAmount)}</p>
                   </div>
                 </Link>
               );

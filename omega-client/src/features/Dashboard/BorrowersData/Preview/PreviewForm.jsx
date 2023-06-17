@@ -7,20 +7,19 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
 const PreviewForm = ({ handleModal, handleModalTwo }) => {
   const { value } = useContext(BorrowerFormData);
   const { user } = useContext(Context);
   const [validationErrors, setValidationErrors] = useState({});
-  const [loading, setLoading] = useState(false)
-  const [eligibility, setEligibility] = useState("")
+  const [loading, setLoading] = useState(false);
+  const [eligibility, setEligibility] = useState("");
 
-    const showToastError = () => {
-      toast.error("Something went wrong!", {
-        position: toast.POSITION.TOP_RIGHT,
-      });
-    };
- 
+  const showToastError = () => {
+    toast.error("Something went wrong!", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
+  };
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -59,15 +58,13 @@ const PreviewForm = ({ handleModal, handleModalTwo }) => {
     collateralInformation: value.collateralInfo.collateralInformation,
   });
 
-
-
   useEffect(() => {
     const validateForm = () => {
       const errors = {};
 
       if (!formData.fullname) {
         errors.fullname = "Full Name is required";
-      } 
+      }
       if (
         !formData.phoneNumber ||
         !/^\+\d{1,3}\d{6,14}$/.test(formData.phoneNumber)
@@ -159,7 +156,10 @@ const PreviewForm = ({ handleModal, handleModalTwo }) => {
         errors.guarantorFullName = "Full Name is required";
       }
 
-      if (!guarantorInfo.phoneNumber || !/^\+\d{1,3}\d{6,14}$/.test(guarantorInfo.phoneNumber)) {
+      if (
+        !guarantorInfo.phoneNumber ||
+        !/^\+\d{1,3}\d{6,14}$/.test(guarantorInfo.phoneNumber)
+      ) {
         errors.guarantorPhoneNumber = "Invalid Phone Number";
       }
 
@@ -210,39 +210,36 @@ const PreviewForm = ({ handleModal, handleModalTwo }) => {
     validateForm();
   }, [formData]);
 
-
   const handleSubmit = async (event) => {
-    setLoading(true)
-    const loans = axios.create({
-      baseURL: `https://nodebtdev.onrender.com/api`,
-    });
+    setLoading(true);
+
     try {
       const config = {
         headers: {
           Authorization: `Bearer ${user.access_token}`,
         },
       };
-      const response = await loans.post(`/loans/create`, formData, config);
+      const response = await axios.post(`/loans/create`, formData, config);
       console.log(response.data);
-      const eligibility = response.data.data.loan.eligibility
-      const loan_id = response.data.data.loan._id
-      setEligibility(eligibility)
+      const eligibility = response.data.data.loan.eligibility;
+      const loan_id = response.data.data.loan._id;
+      setEligibility(eligibility);
 
-      if (eligibility === true){
-        window.location.replace(`eligibility/successful/${loan_id}`) ;
+      if (eligibility === true) {
+        window.location.replace(`eligibility/successful/${loan_id}`);
       } else if (eligibility === false) {
-         window.location.replace(`eligibility/declined/${loan_id}`) ;
+        window.location.replace(`eligibility/declined/${loan_id}`);
       }
-      setLoading(false)
+      setLoading(false);
     } catch (error) {
       console.log(error);
-      setLoading(false)
-      showToastError()
+      setLoading(false);
+      showToastError();
     }
   };
 
   const handleClose = () => {
-    handleModal(false); 
+    handleModal(false);
   };
   return (
     <div className="border border-gray-200 absolute z-[100] top-0 left-0 right-0 w-full bg-black bg-opacity-30 pt-[110px]">

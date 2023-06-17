@@ -184,16 +184,13 @@ const Dashboard = () => {
 
   useEffect(() => {
     const handleSubmit = async () => {
-      const loans = axios.create({
-        baseURL: `https://nodebtdev.onrender.com/api`,
-      });
       try {
         const config = {
           headers: {
             Authorization: `Bearer ${user.access_token}`,
           },
         };
-        const response = await loans.get(`/loans/company-loans`, config);
+        const response = await axios.get(`/loans/company-loans`, config);
         console.log(response.data);
         console.log(response.data.data.loans);
         const loansList = response.data.data.loans;
