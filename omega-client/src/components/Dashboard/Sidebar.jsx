@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Context } from "../../context/Context";
 import Button from "../Button";
-import Modal from "../Modal/modal";
+
 
 const Sidebar = () => {
   const location = useLocation();

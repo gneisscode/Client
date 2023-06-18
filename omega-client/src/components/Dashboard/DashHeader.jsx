@@ -5,33 +5,35 @@ import axios from "axios";
 
 const DashHeader = () => {
   const { user, userPhotoURL } = useContext(Context);
-   const location = useLocation();
+  const location = useLocation();
 
   const [searchValue, setSearchValue] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const searchContainerRef = useRef(null);
 
   useEffect(() => {
-    const handleSearch = async () => {
-      try {
-        const config = {
-          headers: {
-            Authorization: `Bearer ${user.access_token}`,
-          },
-        };
-        const response = await axios.get(
-          `/loans/getloan/${searchValue}`,
-          config
-        );
-        console.log(response.data);
-       setSearchResults(response.data.loans.slice(0, 5));
-      } catch (error) {
-        console.log("Error occurred during search:", error);
-        setSearchResults([]);
-      }
-    };
-    handleSearch();
-  }, [searchValue]);
+    if (location.pathname === "/loan-applications") {
+      const handleSearch = async () => {
+        try {
+          const config = {
+            headers: {
+              Authorization: `Bearer ${user.access_token}`,
+            },
+          };
+          const response = await axios.get(
+            `/loans/getloan/${searchValue}`,
+            config
+          );
+          console.log(response.data);
+          setSearchResults(response.data.loans.slice(0, 5));
+        } catch (error) {
+          console.log("Error occurred during search:", error);
+          setSearchResults([]);
+        }
+      };
+      handleSearch();
+    }
+  }, [searchValue, location.pathname]);
 
   const handleChange = (event) => {
     setSearchValue(event.target.value);
