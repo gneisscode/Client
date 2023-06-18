@@ -282,7 +282,6 @@ const Dashboard = () => {
 
             <div className="flex flex-wrap gap-[17px]">
               <Link to="/loan-applications">
-                {" "}
                 <LoanCard
                   status="generated"
                   amount={loanData.length}
@@ -290,7 +289,6 @@ const Dashboard = () => {
                 />
               </Link>
               <Link to="/loans-successful">
-                {" "}
                 <LoanCard
                   status="successful"
                   amount={loansSuccessful}
@@ -298,7 +296,6 @@ const Dashboard = () => {
                 />
               </Link>
               <Link to="/loans-declined">
-                {" "}
                 <LoanCard
                   status={"declined"}
                   amount={loansDeclined}
@@ -337,12 +334,15 @@ const Dashboard = () => {
                 </div>
               </>
             ) : (
-              <Link className="text-blue-500" to="/borrower-data">
-                <div className="flex justify-center items-center mt-24">
-                  No loan stats to display, click here to create a new loan
-                  application
-                </div>
-              </Link>
+              <div className="flex justify-center items-center mt-24 font-normal">
+                No loan applications to display, click
+                <span>
+                  <Link className="text-blue-500" to="/borrower-data">
+                    &nbsp;here&nbsp;
+                  </Link>
+                </span>
+                to create a new loan application
+              </div>
             )}
           </div>
         )}
