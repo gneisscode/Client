@@ -10,44 +10,28 @@ const Declined = () => {
   const [loansDeclined, setLoansDeclined] = useState([])
   const { user } = useContext(Context)
   const [loading, setLoading] = useState(true)
-
-  const handleDescendingOrder = async () => {
-    const loans = axios.create({
-      baseURL: `https://nodebtdev.onrender.com/api`,
-    })
-    try {
-      const config = {
-        headers: {
-          Authorization: `Bearer ${user.access_token}`,
-        },
-      }
-      const response = await loans.get(
-        `/loans/rejected-loans/descending`,
-        config
-      )
-      console.log(response.data)
-      console.log(response.data.data.loans)
-      const loansList = response.data.data.loans
-      setLoansDeclined(loansList)
-      setLoading(false)
-    } catch (error) {
-      console.log(error)
-      setLoading(false)
+  function padZerosWithCommas(number) {
+    if (typeof number !== 'number') {
+      return ''
     }
+
+    const formattedNumber = number.toLocaleString('en-US', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    })
+
+    return formattedNumber
   }
 
   useEffect(() => {
     const getDeclinedLoans = async () => {
-      const loans = axios.create({
-        baseURL: `https://nodebtdev.onrender.com/api`,
-      })
       try {
         const config = {
           headers: {
             Authorization: `Bearer ${user.access_token}`,
           },
         }
-        const response = await loans.get(`/loans/company-loans`, config)
+        const response = await axios.get(`/loans/company-loans`, config)
         console.log(response.data)
         console.log(response.data.data.loans)
         const loansList = response.data.data.loans
@@ -121,9 +105,7 @@ const Declined = () => {
                 <div className='flex mt-10 p-10 mr-10 gap-2 items-center'>
                   <p className='text-[#0252CC]'>Sort by</p>
                   <TfiAngleDown />
-                  <p className='text-[#4D4D4D]' onClick={handleDescendingOrder}>
-                    Descending
-                  </p>
+                  <p className='text-[#4D4D4D]'>Month</p>
                 </div>
               </div>
 
@@ -164,10 +146,10 @@ const Declined = () => {
                           <span className={`text-[#FF2727]`}>Declined</span>
                         </td>
                         <td className='px-6 py-4 font-[600] text-[16px]text-[#666666]'>
-                          {/* {loan.creditScore} */}
+                          {loan.creditScore}
                         </td>
                         <td className='px-6 py-4 font-[600] text-[16px]text-[#666666]'>
-                          {loan.loanAmount}
+                          {padZerosWithCommas(loan.loanAmount)}
                         </td>
                       </tr>
                     ))}

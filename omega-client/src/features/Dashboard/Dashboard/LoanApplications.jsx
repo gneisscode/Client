@@ -12,12 +12,21 @@ const LoanApplications = () => {
   const [error, setError] = useState(false);
   const [loanData, setLoanData] = useState([]);
   const [loading, setLoading] = useState(true); 
+  function padZerosWithCommas(number) {
+    if (typeof number !== "number") {
+      return "";
+    }
+
+    const formattedNumber = number.toLocaleString("en-US", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+
+    return formattedNumber;
+  }
 
   useEffect(() => {
     const fetchData = async () => {
-      const loans = axios.create({
-        baseURL: `https://nodebtdev.onrender.com/api`,
-      });
       if (user && user.access_token) {
         try {
           const config = {
@@ -25,7 +34,7 @@ const LoanApplications = () => {
               Authorization: `Bearer ${user.access_token}`,
             },
           };
-          const response = await loans.get("/loans/company-loans", config);
+          const response = await axios.get("/loans/company-loans", config);
           const loansList = response.data.data.loans;
           setLoanData(loansList);
            setLoading(false);
@@ -85,11 +94,11 @@ const LoanApplications = () => {
               </svg>
               <span className="sr-only">Loading...</span>
             </div>
-          ): loanData.length > 0 ? (
+          ) : loanData.length > 0 ? (
             loanData.map((dt) => {
               return (
                 <Link to={`/borrower-profile/${dt._id}`}>
-                  <div className=" justify-center items-center mt-6 grid grid-cols-5 p-2 gap-10 bg-[#FAFCFF] px-12 text-[16px] w-[982px] h-[50px] text-[#666666] hover:text-[#0267FF]">
+                  <div className=" justify-center items-center mt-6 grid grid-cols-5 gap-10 bg-[#FAFCFF] px-12 text-[16px] w-[982px] h-[50px] text-[#666666] hover:text-[#0267FF]">
                     <p>{dt.fullname}</p>
                     <p>{new Date(dt.createdAt).toLocaleDateString()}</p>
                     {dt.eligibility === true ? (
@@ -97,20 +106,23 @@ const LoanApplications = () => {
                     ) : (
                       <p className="text-[#FF2727]">Declined</p>
                     )}
-                    <p>{dt["Credit Score"]}</p>
-                    <p>{dt.loanAmount}</p>
+                    <p>{dt.creditScore}</p>
+                    <p>{padZerosWithCommas(dt.loanAmount)}</p>
                   </div>
                 </Link>
               );
             })
           ) : (
-            <Link className="text-blue-500" to="/borrower-data">
-              <div className="flex justify-center items-center mt-24 font-normal">
-                No loan applications to display, click here to create a new loan application
-              </div>
-            </Link>
-          ) }
-          
+            <div className="flex justify-center items-center mt-24 font-normal">
+              No loan applications to display, click
+              <span>
+                <Link className="text-blue-500" to="/borrower-data">
+                  &nbsp;here&nbsp;
+                </Link>
+              </span>
+              to create a new loan application
+            </div>
+          )}
         </div>
       </div>
     </div>

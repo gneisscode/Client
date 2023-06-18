@@ -142,13 +142,13 @@ const Dashboard = () => {
       title: {
         display: true,
         text: "Loan Monthly Frequency",
-        align: "start",
+        align: "center",
         color: "#1A1A1A",
         font: {
           size: 20,
           weight: 500,
         },
-        padding: 30,
+        padding: 20,
       },
       legend: {
         display: true,
@@ -170,7 +170,7 @@ const Dashboard = () => {
         },
       },
       y: {
-        display: false,
+        display: true,
         beginAtZero: true,
         ticks: {
           precision: 0,
@@ -184,16 +184,13 @@ const Dashboard = () => {
 
   useEffect(() => {
     const handleSubmit = async () => {
-      const loans = axios.create({
-        baseURL: `https://nodebtdev.onrender.com/api`,
-      });
       try {
         const config = {
           headers: {
             Authorization: `Bearer ${user.access_token}`,
           },
         };
-        const response = await loans.get(`/loans/company-loans`, config);
+        const response = await axios.get(`/loans/company-loans`, config);
         console.log(response.data);
         console.log(response.data.data.loans);
         const loansList = response.data.data.loans;
@@ -285,7 +282,6 @@ const Dashboard = () => {
 
             <div className="flex flex-wrap gap-[17px]">
               <Link to="/loan-applications">
-                {" "}
                 <LoanCard
                   status="generated"
                   amount={loanData.length}
@@ -293,7 +289,6 @@ const Dashboard = () => {
                 />
               </Link>
               <Link to="/loans-successful">
-                {" "}
                 <LoanCard
                   status="successful"
                   amount={loansSuccessful}
@@ -301,7 +296,6 @@ const Dashboard = () => {
                 />
               </Link>
               <Link to="/loans-declined">
-                {" "}
                 <LoanCard
                   status={"declined"}
                   amount={loansDeclined}
@@ -340,12 +334,15 @@ const Dashboard = () => {
                 </div>
               </>
             ) : (
-              <Link className="text-blue-500" to="/borrower-data">
-                <div className="flex justify-center items-center mt-24">
-                  No loan stats to display, click here to create a new loan
-                  application
-                </div>
-              </Link>
+              <div className="flex justify-center items-center mt-24 font-normal">
+                No loan applications to display, click
+                <span>
+                  <Link className="text-blue-500" to="/borrower-data">
+                    &nbsp;here&nbsp;
+                  </Link>
+                </span>
+                to create a new loan application
+              </div>
             )}
           </div>
         )}
