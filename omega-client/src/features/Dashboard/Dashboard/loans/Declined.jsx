@@ -10,6 +10,8 @@ const Declined = () => {
   const [loansDeclined, setLoansDeclined] = useState([])
   const { user } = useContext(Context)
   const [loading, setLoading] = useState(true)
+  const [datesOrder, setDatesOrder] = useState('ascending')
+
   function padZerosWithCommas(number) {
     if (typeof number !== 'number') {
       return ''
@@ -49,6 +51,41 @@ const Declined = () => {
 
     getDeclinedLoans()
   }, [user, user?.access_token])
+
+  const handleAscendingDates = () => {
+    let newLoanList = []
+    loansDeclined.forEach((loan) => {
+      newLoanList.push({ ...loan, createdAt: new Date(loan.createdAt) })
+    })
+    console.log(newLoanList)
+    const sortedDates = newLoanList.sort(
+      (a, b) => Number(a.createdAt) - Number(b.createdAt)
+    )
+    console.log(sortedDates)
+    setLoansDeclined(sortedDates)
+  }
+
+  const handleDescendingDates = () => {
+    let newLoanList = []
+    loansDeclined.forEach((loan) => {
+      newLoanList.push({ ...loan, createdAt: new Date(loan.createdAt) })
+    })
+    console.log(newLoanList)
+    const sortedDates = newLoanList.sort(
+      (a, b) => Number(b.createdAt) - Number(a.createdAt)
+    )
+    console.log(sortedDates)
+    setLoansDeclined(sortedDates)
+  }
+
+  const handleDatesOrder = (e) => {
+    setDatesOrder(e.target.value)
+    if (datesOrder === 'ascending') {
+      handleDescendingDates()
+    } else {
+      handleAscendingDates()
+    }
+  }
 
   return (
     <div className='flex flex-col'>
@@ -104,8 +141,15 @@ const Declined = () => {
                 </div>
                 <div className='flex mt-10 p-10 mr-10 gap-2 items-center'>
                   <p className='text-[#0252CC]'>Sort by</p>
-                  <TfiAngleDown />
-                  <p className='text-[#4D4D4D]'>Month</p>
+                  {/* <TfiAngleDown /> */}
+                  <select
+                    className='text-[#4D4D4D]'
+                    onChange={handleDatesOrder}
+                    value={datesOrder}
+                  >
+                    <option value='ascending'>Ascending</option>
+                    <option value='descending'>Descending</option>
+                  </select>
                 </div>
               </div>
 
