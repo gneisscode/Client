@@ -77,7 +77,6 @@ const HomeNav = () => {
           <Link to="/dashboard" className="link">
             <PrimaryButton text="Dashboard" />
           </Link>
-          <SecondaryButton text="Log Out" onClick={handleLogout} />
         </div>
       ) : (
         <div className="flex gap-4 justify-center items-center">
