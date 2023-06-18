@@ -10,7 +10,7 @@ const PersonalInfo = () => {
 
   function getLoanInfo() {
     axios
-      .get(`https://nodebtdev.onrender.com/api/loans?id=${id}`, {
+      .get(`/loans?id=${id}`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -40,7 +40,7 @@ const PersonalInfo = () => {
             Personal and contact Information
           </h4>
         </div>
-         {loading ? (
+        {loading ? (
           <div
             role="status"
             className=" flex mt-20 justify-center items-center absolute top-[80px] left-[400px]"
@@ -63,69 +63,70 @@ const PersonalInfo = () => {
             </svg>
             <span className="sr-only">Loading...</span>
           </div>
-        ) :<div className="flex gap-[103px] mt-[58px] ml-[50px] ">
-          <div className="flex flex-col gap-[24px]">
-            <input
-              type="text"
-              className="border border-[#0252CC] rounded w-[300px] h-[60px] p-4 outline-none"
-              value={borrowerData.fullname}
-              placeholder="Mr. Karim  Tunde "
-              disabled={true}
-            />
-            <input
-              type="text"
-              className="border border-[#0252CC] rounded w-[300px] h-[60px] p-4 outline-none "
-              value={borrowerData.email}
-              placeholder="kartun@gmail.com"
-              disabled={true}
-            />
-            <input
-              type="text"
-              className="border border-[#0252CC] rounded w-[300px] h-[60px] p-4 outline-none"
-              value={borrowerData.address}
-              placeholder="45 cresent Ikeja"
-              disabled={true}
-            />
-            <input
-              type="text"
-              className="border border-[#0252CC] rounded w-[300px] h-[60px] p-4 outline-none"
-              value={borrowerData.employmentType}
-              placeholder="Unemployed"
-              disabled={true}
-            />
+        ) : (
+          <div className="flex gap-[103px] mt-[58px] ml-[50px] ">
+            <div className="flex flex-col gap-[24px]">
+              <input
+                type="text"
+                className="border border-[#0252CC] rounded w-[300px] h-[60px] p-4 outline-none"
+                value={borrowerData.fullname}
+                placeholder="Mr. Karim  Tunde "
+                disabled={true}
+              />
+              <input
+                type="text"
+                className="border border-[#0252CC] rounded w-[300px] h-[60px] p-4 outline-none "
+                value={borrowerData.email}
+                placeholder="kartun@gmail.com"
+                disabled={true}
+              />
+              <input
+                type="text"
+                className="border border-[#0252CC] rounded w-[300px] h-[60px] p-4 outline-none"
+                value={borrowerData.address}
+                placeholder="45 cresent Ikeja"
+                disabled={true}
+              />
+              <input
+                type="text"
+                className="border border-[#0252CC] rounded w-[300px] h-[60px] p-4 outline-none"
+                value={borrowerData.employmentType}
+                placeholder="Unemployed"
+                disabled={true}
+              />
+            </div>
+            <div className="flex flex-col gap-[24px]">
+              <input
+                type="text"
+                className="border border-[#0252CC] rounded w-[300px] h-[60px] p-4 outline-none"
+                value={borrowerData.phoneNumber}
+                placeholder="+234658767520"
+                disabled={true}
+              />
+              <input
+                type="text"
+                className="border border-[#0252CC] rounded w-[300px] h-[60px] p-4 outline-none"
+                value={borrowerData.age}
+                placeholder="13th August 1990"
+                disabled={true}
+              />
+              <input
+                type="text"
+                className="border border-[#0252CC] rounded w-[300px] h-[60px] p-4 outline-none"
+                value={borrowerData.nationalIdentityNumber}
+                placeholder="********"
+                disabled={true}
+              />
+              <input
+                type="text"
+                className="border border-[#0252CC] rounded w-[300px] h-[60px] p-4 outline-none"
+                value={borrowerData.incomePerMonth}
+                placeholder="10,000 Naira"
+                disabled={true}
+              />
+            </div>
           </div>
-          <div className="flex flex-col gap-[24px]">
-            <input
-              type="text"
-              className="border border-[#0252CC] rounded w-[300px] h-[60px] p-4 outline-none"
-              value={borrowerData.phoneNumber}
-              placeholder="+234658767520"
-              disabled={true}
-            />
-            <input
-              type="text"
-              className="border border-[#0252CC] rounded w-[300px] h-[60px] p-4 outline-none"
-              value={borrowerData.age}
-              placeholder="13th August 1990"
-              disabled={true}
-            />
-            <input
-              type="text"
-              className="border border-[#0252CC] rounded w-[300px] h-[60px] p-4 outline-none"
-              value={borrowerData.nationalIdentityNumber}
-              placeholder="********"
-              disabled={true}
-            />
-            <input
-              type="text"
-              className="border border-[#0252CC] rounded w-[300px] h-[60px] p-4 outline-none"
-              value={borrowerData.incomePerMonth}
-              placeholder="10,000 Naira"
-              disabled={true}
-            />
-          </div>
-        </div>}
-        
+        )}
       </div>
     </>
   );

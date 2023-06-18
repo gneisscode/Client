@@ -11,6 +11,18 @@ const Profile = () => {
   const param = useParams();
 
   const { user } = useContext(Context);
+  function padZerosWithCommas(number) {
+    if (typeof number !== "number") {
+      return "";
+    }
+
+    const formattedNumber = number.toLocaleString("en-US", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+
+    return formattedNumber;
+  }
 
   useEffect(() => {
     const getUserLoan = async () => {
@@ -108,7 +120,7 @@ const Profile = () => {
             <div className=" px-8 mt-[1em]">
               <div className="flex gap-5 mb-8">
                 <h3 className="w-32">Loan Amount:</h3>
-                <p>{currentUser?.loanAmount}</p>
+                <p>{padZerosWithCommas(currentUser?.loanAmount)}</p>
               </div>
               <div className="flex gap-5 mb-8">
                 <h3 className="w-32">Loan Status:</h3>
