@@ -5,6 +5,7 @@ import { TfiAngleDown } from "react-icons/tfi";
 import { Link } from "react-router-dom";
 import { Context } from "../../../../context/Context";
 import axios from "axios";
+import Button from '../../../../components/Button'
 
 const Generated = () => {
   const [loansSuccessful, setLoansSuccessful] = useState([]);
