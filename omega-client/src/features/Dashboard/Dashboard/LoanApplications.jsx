@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Context } from '../../../context/Context';
 
-
 const LoanApplications = () => {
   const { user } = useContext(Context);
   const [loans, setLoans] = useState([]);
