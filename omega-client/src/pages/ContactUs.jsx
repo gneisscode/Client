@@ -106,18 +106,18 @@ const ContactUs = () => {
             className="w-[55px] h-[55px] self-center mt-12 lg:mt-0"
           />
           <div className="flex  lg:gap-[233px] gap-12 justify-center items-center pt-[91px]">
-            <div className="flex flex-col justify-center items-center gap-[24px]">
+            <div className="flex flex-col justify-center gap-[24px]">
               <div className="cursor-pointer">Products</div>
               <div className="cursor-pointer">No Debt</div>
               <div className="cursor-pointer">Loan</div>
               <div className="cursor-pointer">Loan default</div>
             </div>
-            <div className="flex flex-col justify-center items-center gap-[24px] self-start">
+            <div className="flex flex-col justify-center gap-[24px] self-start">
               <div className="cursor-pointer">About</div>
               <div className="cursor-pointer">FAQS </div>
               <div className="cursor-pointer">Blog</div>
             </div>
-            <div className="flex flex-col justify-center items-center gap-[24px]">
+            <div className="flex flex-col justify-center gap-[24px]">
               <div className="cursor-pointer">Legal</div>
               <div className="cursor-pointer">Terms</div>
               <div className="cursor-pointer">Privacy</div>
