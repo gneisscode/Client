@@ -52,6 +52,42 @@ const LoanApplications = () => {
     fetchData();
   }, [user, user?.access_token]);
 
+  const [paginationData, setPaginationData] = useState({
+    loans: [],
+    totalPages: 0,
+    results: 0,
+  });
+  
+  const fetchPaginationData = async (pageNumber) => {
+    try {
+        const response = await axios.get(
+            `https://nodebt-application.onrender.com/api/loans/paginated-company-loans?page=${pageNumber}`,
+            {
+                headers: {
+                    Authorization:
+                        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbklkIjoiNjQ4MjRhYjQ2MmRhOTlmZTMwNjBkNTk5IiwiZW1haWwiOiJtaXRyb25hcnpvQGd1ZnVtLmNvbSIsImlhdCI6MTY4NjI2MDQxNywiZXhwIjoxNjg2MzQ2ODE3fQ.Z4kRnkACtjdt2T0DjpS_WZ5PHBmpgsXSPHPn72TCX4E',
+                },
+            }
+        );
+        setPaginationData({
+            loans: response.data.data.loans,
+            totalPages: response.data.totalPages,
+            results: response.data.results,
+        });
+    } catch (error) {
+        console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchPaginationData(1);
+  }, []);
+
+  const handlePageChange = (pageNumber) => {
+      fetchPaginationData(pageNumber);
+  };
+
+
   return (
     <div className="flex flex-col">
       <DashHeader />
@@ -95,7 +131,7 @@ const LoanApplications = () => {
               <span className="sr-only">Loading...</span>
             </div>
           ) : loanData.length > 0 ? (
-            loanData.map((dt) => {
+            paginationData.loans.loanData.map((dt) => {
               return (
                 <Link to={`/borrower-profile/${dt._id}`}>
                   <div className=" justify-center items-center mt-6 grid grid-cols-5 gap-10 bg-[#FAFCFF] px-12 text-[16px] w-[982px] h-[50px] text-[#666666] hover:text-[#0267FF]">
@@ -108,6 +144,19 @@ const LoanApplications = () => {
                     )}
                     <p>{dt.creditScore}</p>
                     <p>{padZerosWithCommas(dt.loanAmount)}</p>
+                  </div>
+                  <div>
+                    {Array.from({ length: paginationData.totalPages }, (_, i) => i + 1).map(
+                        (pageNumber) => (
+                            <button
+                                className="bg-white text-[#0267FF] border border-[#0267FF] hover:bg-[#0267FF] hover:text-white w-1/12  transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-100"
+                                key={pageNumber}
+                                onClick={() => handlePageChange(pageNumber)}
+                            >
+                                {pageNumber}
+                            </button>
+                        )
+                    )}
                   </div>
                 </Link>
               );

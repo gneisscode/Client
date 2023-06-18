@@ -50,6 +50,55 @@ const Generated = () => {
     getSuccessfulLoans();
   }, [user, user?.access_token]);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const resultsPerPage = 10;
+  const [totalPages, setTotalPages] = useState(4)
+
+  const fetchData = async (pageNumber) => {
+    const loans = axios.create({
+      baseURL: `https://nodebtdev.onrender.com/api`,
+    })
+    try {
+      const response = await axios.get(`/api/loans/success-loans/ascending?page=${pageNumber}&results=${resultsPerPage}`, {
+        headers: {
+          Authorization: `Bearer ${user.access_token}`
+        }, 
+        params: {
+          results: resultsPerPage
+        }
+      });
+      const data = response.data.data;
+      console.log(response.data)
+      console.log(response.data.data.loans)
+      const loansList = response.data.data.loans
+
+      const successfulLoans = loansList.filter(
+        (loan) => loan.eligibility === false
+      )
+      setLoansSuccessful(successfulLoans)
+      setTotalPages(data.totalPages);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, [currentPage, user, user?.access_token]);
+
+  function handleNextPageClick() {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  }
+
+  function handlePreviousPageClick() {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  }
+
+
   return (
     <div className="flex flex-col">
       <DashHeader />
@@ -158,6 +207,21 @@ const Generated = () => {
                   </table>
                 </div>
               </div>
+            </div>
+            <div>    
+              <Button
+                className="bg-white text-[#0267FF] border border-[#0267FF] hover:bg-[#0267FF] hover:text-white w-1/12  transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-100"
+                label="Previous"
+                onClick={handlePreviousPageClick}
+                disabled={currentPage === 1}
+              />
+              <span className="ml-[10px] mr-[10px]">Page {currentPage} of {totalPages}</span>
+              <Button
+                className="bg-white text-[#0267FF] border border-[#0267FF] hover:bg-[#0267FF] hover:text-white w-1/12  transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-100"
+                label="Next"
+                onClick={handleNextPageClick} 
+                disabled={currentPage === totalPages}
+              />
             </div>
           </div>
         ) : (
