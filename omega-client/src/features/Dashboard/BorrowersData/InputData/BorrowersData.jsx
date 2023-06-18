@@ -149,27 +149,6 @@ const BorrowersData = () => {
             </section>
           </Modal>
 
-          {/* <Modal isOpen={logOutModal} onClose={() => setLogOutModal(false)}>
-          <section className='w-[500px] bg-slate-200 p-12 flex flex-col items-center justify-center'>
-            <p className='text-black text-center mb-10 font-md text-xl'>
-              Are you sure you want to Log out?
-            </p>
-            <div className='flex flex-col-2 font-medium text-xl'>
-              <Button
-                className='text-[#FF2727] '
-                label='Yes'
-                onClick={() => {
-                  navigate('/login')
-                }}
-              />
-              <Button
-                className='text-[#0267FF] font-medium text-xl'
-                label='No'
-                onClick={() => setLogOutModal(false)}
-              />
-            </div>
-          </section>
-        </Modal> */}
 
           <section className="flex justify-center ml-[52px]  absolute top-[112px] left-[300px] my-[40px]">
             <div>

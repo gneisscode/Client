@@ -1,20 +1,23 @@
-import React, { useEffect, useState, useContext } from 'react'
-import { Link, useLocation } from 'react-router-dom'
-import { Context } from '../../context/Context'
+import React, { useEffect, useState, useContext } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { Context } from "../../context/Context";
+import Button from "../Button";
+import Modal from "../Modal/modal";
 
 const Sidebar = () => {
-  const location = useLocation()
-  const [active, setActive] = useState('')
-  const { dispatch, isFetching } = useContext(Context)
+  const location = useLocation();
+  const [active, setActive] = useState("");
+  const { dispatch, isFetching } = useContext(Context);
+  const [logOutModal, setLogOutModal] = useState(false);
 
   useEffect(() => {
-    setActive(location.pathname.split('/')[1])
-  }, [location.pathname])
+    setActive(location.pathname.split("/")[1]);
+  }, [location.pathname]);
 
   const handleLogout = () => {
-    dispatch({ type: 'LOGOUT' })
+    dispatch({ type: "LOGOUT" });
     localStorage.removeItem("visitedDashboard");
-  }
+  };
 
   return (
     <div className="lg:flex flex-col lg:min-h-[100%] hidden lg:min-w-[300px] bg-[#FAFCFF] fixed top-[112px] left-0">
@@ -292,7 +295,11 @@ const Sidebar = () => {
             </div>
           </div>
         </Link>
-        <div className="flex items-center gap-[10px] mt-[-10px] mb-16 cursor-pointer duration-500 transform hover:translate-x-2">
+        <div
+          className={`flex items-center gap-[10px] mt-[-10px] mb-16 cursor-pointer ${
+            logOutModal ? "" : "duration-500 transform hover:translate-x-2"
+          }  `}
+        >
           <svg
             width="20"
             height="18"
@@ -310,15 +317,32 @@ const Sidebar = () => {
           </svg>
 
           <div
-            className="text-[#999999] text-[20px] font-600 "
-            onClick={handleLogout}
+            className="text-[#999999] text-[20px] font-600"
+            onClick={() => setLogOutModal(true)}
           >
-            Log out
+            {logOutModal ? <p>Log out?</p> : <p>Log out</p>}
           </div>
+
+          {logOutModal && (
+            <section className="flex flex-col items-center justify-center w-[100px]">
+              <div className="flex flex-col-2 ">
+                <Button
+                  className="text-[#FF2727]  hover:underline"
+                  label="Yes"
+                  onClick={handleLogout}
+                />
+                <Button
+                  className="text-[#0267FF] hover:underline  ml-[-1em]"
+                  label="No"
+                  onClick={() => setLogOutModal(false)}
+                />
+              </div>
+            </section>
+          )}
         </div>
       </div>
     </div>
   );
-}
+};
 
-export default Sidebar
+export default Sidebar;
