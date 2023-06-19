@@ -19,6 +19,7 @@ const [addAdmin, setAddAdmin] = useState({
   phoneNumber: "",
   role: "",
   loginURL: "https://omega-prediction-app.netlify.app/login",
+  passwordLink: "https://omega-prediction-app.netlify.app/verify",
 });
 
 useEffect(()=>{
