@@ -88,13 +88,13 @@ const LoanApplications = () => {
       <DashHeader />
       <div className="flex relative">
         <Sidebar />
-        <div className="pl-[52px] py-[40px] w-[982px] font-semibold text-[#666666] absolute top-[112px] left-[300px]">
-          <div className="w-[982px]">
+        <div className="pl-[52px] py-[40px] w-[920px] font-semibold text-[#666666] absolute top-[112px] left-[300px]">
+          <div className="w-[920px]">
             <h4 className="text-[#0267FF] font-[600] text-[24px] w-[408px]">
               Loan Applications
             </h4>
           </div>
-          <div className=" justify-center items-center mt-8 grid grid-cols-5 p-2 gap-10 bg-[#E6F0FF] px-12 text-[16px] w-[982px]  h-[51px]">
+          <div className=" justify-center items-center mt-8 grid grid-cols-5 p-2 gap-10 bg-[#E6F0FF] px-12 text-[16px] w-[920px]  h-[51px]">
             <h6>Borrower</h6>
             <h6>Date</h6>
             <h6>Status</h6>
@@ -128,19 +128,19 @@ const LoanApplications = () => {
           ) : loanData.length > 0 ? (
             loanData.map((dt) => {
               return (
-                <Link to={`/borrower-profile/${dt._id}`}>
-                  <div className=" justify-center items-center mt-6 grid grid-cols-5 gap-10 bg-[#FAFCFF] px-12 text-[16px] w-[982px] h-[50px] text-[#666666] hover:text-[#0267FF]">
-                    <p>{dt.fullname}</p>
-                    <p>{new Date(dt.createdAt).toLocaleDateString()}</p>
-                    {dt.eligibility === true ? (
-                      <p className="text-[#4ED273]">Successful</p>
-                    ) : (
-                      <p className="text-[#FF2727]">Declined</p>
-                    )}
-                    <p>{dt.creditScore}</p>
-                    <p>{padZerosWithCommas(dt.loanAmount)}</p>
-                  </div>
-                </Link>
+                <div className=" justify-center items-center mt-6 grid grid-cols-5 gap-10 bg-[#FAFCFF] px-12 text-[16px] w-[920px] h-[50px] text-[#666666]">
+                  <Link to={`/borrower-profile/${dt._id}`}>
+                    <p className="hover:text-[#0267FF]">{dt.fullname}</p>
+                  </Link>
+                  <p>{new Date(dt.createdAt).toLocaleDateString()}</p>
+                  {dt.eligibility === true ? (
+                    <p className="text-[#4ED273]">Successful</p>
+                  ) : (
+                    <p className="text-[#FF2727]">Declined</p>
+                  )}
+                  <p>{dt.creditScore}</p>
+                  <p>{padZerosWithCommas(dt.loanAmount)}</p>
+                </div>
               );
             })
           ) : (
@@ -156,8 +156,8 @@ const LoanApplications = () => {
           )}
 
           {loanData.length > 0 && (
-            <div className=" flex flex-col mb-8 gap-4 justify-center items-center  w-[982px]">
-              <div className="flex justify-between items-center mt-8 w-[982px]">
+            <div className=" flex flex-col mb-8 gap-4 justify-center items-center  w-[920px]">
+              <div className="flex justify-between items-center mt-8 w-[920px]">
                 <Button
                   className={`${
                     currentPage === 1 ? "bg-gray-200" : "bg-blue-500"

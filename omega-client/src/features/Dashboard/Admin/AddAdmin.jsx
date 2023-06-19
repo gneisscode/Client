@@ -144,7 +144,7 @@ const handleSubmit = async (event) => {
             Add Admin
           </p>
           <p className="my-6 text-[24px] font-[500] ">Admin Information</p>
-          {/* {serverError && <p className="text-red-500 mb-4">{serverError}</p>} */}
+          {serverError && <p className="text-red-500 mt-4 mb-4">{serverError}</p>}
           <form onSubmit={handleSubmit}>
             <div className="grid grid-cols-2 gap-8 mb-16">
               <div className="flex flex-col">
