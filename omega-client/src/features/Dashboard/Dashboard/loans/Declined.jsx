@@ -143,7 +143,7 @@ const Declined = () => {
                   <p className='text-[#0252CC]'>Sort by</p>
                   {/* <TfiAngleDown /> */}
                   <select
-                    className='text-[#4D4D4D]'
+                    className='text-[#4D4D4D] outline-none'
                     onChange={handleDatesOrder}
                     value={datesOrder}
                   >
