@@ -3,7 +3,7 @@ import Select from 'react-select'
 
 // select dropdown custom styles
 export const selectCustomStyles = {
-  menu: (provided) => ({
+  menu: (provided, state) => ({
     ...provided,
     fontSize: '14px',
     textTransform: 'capitalize',
@@ -36,7 +36,6 @@ export const selectCustomStyles = {
   singleValue: (provided, state) => {
     const opacity = state.isDisabled ? 0.5 : 1
     const transition = 'opacity 300ms'
-
     return { ...provided, opacity, transition }
   },
 }
