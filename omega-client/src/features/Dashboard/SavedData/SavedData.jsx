@@ -74,9 +74,8 @@ const SavedData = () => {
                 to={`${activeIndex === 3 ? `/borrower-profile/${id}` : ""}`}
               >
                 <Button
-                  className={`text-white bg-[#0267FF]  ${
-                    activeIndex === 0 ? "w-4/12" : "w-4/12"
-                  }  transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-100`}
+                  className="text-white bg-[#0267FF]
+                  transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-100"
                   label={activeIndex === 3 ? "Ok" : "Next"}
                   onClick={() =>
                     activeIndex === 3 ? "" : setActiveIndex((prev) => prev + 1)

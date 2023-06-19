@@ -48,7 +48,7 @@ const LoanCard = (props) => {
             Last month
           </div>
         </div> */}
-        <div className="text-[10px] font-medium">View more</div>
+        <div className="text-[10px] font-medium hover:text-blue-500">View more</div>
       </div>
     </div>
   );

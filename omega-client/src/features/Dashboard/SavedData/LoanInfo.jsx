@@ -10,7 +10,7 @@ const LoanInfo = () => {
 
 
   function getLoanInfo(){
-    axios.get(`https://nodebtdev.onrender.com/api/loans?id=${id}`,
+    axios.get(`/loans?id=${id}`,
     {
       headers: {
         "Content-Type": "application/json",
