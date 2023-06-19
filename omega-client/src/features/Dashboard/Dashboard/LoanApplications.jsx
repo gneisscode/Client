@@ -1,17 +1,21 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useState, useContext } from "react";
 import DashHeader from "../../../components/Dashboard/DashHeader";
 import Sidebar from "../../../components/Dashboard/Sidebar";
-import { Link } from 'react-router-dom';
-import axios from 'axios';
-import { Context } from '../../../context/Context';
-
+import { Link, useNavigate} from "react-router-dom";
+import axios from "axios";
+import { Context } from "../../../context/Context";
+import Button from "../../../components/Button";
 
 const LoanApplications = () => {
   const { user } = useContext(Context);
   const [loans, setLoans] = useState([]);
   const [error, setError] = useState(false);
   const [loanData, setLoanData] = useState([]);
-  const [loading, setLoading] = useState(true); 
+  const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+  const [totalPages, setTotalPages] = useState(null)
+
   function padZerosWithCommas(number) {
     if (typeof number !== "number") {
       return "";
@@ -25,45 +29,72 @@ const LoanApplications = () => {
     return formattedNumber;
   }
 
+  const [url, setUrl] = useState( `/loans/paginated-company-loans?page=${currentPage}`)
+
   useEffect(() => {
     const fetchData = async () => {
       if (user && user.access_token) {
+
+        setLoading(true)
         try {
           const config = {
             headers: {
               Authorization: `Bearer ${user.access_token}`,
             },
           };
-          const response = await axios.get("/loans/company-loans", config);
+          const response = await axios.get(
+           url,
+            config
+          );
           const loansList = response.data.data.loans;
           setLoanData(loansList);
-           setLoading(false);
+          setLoading(false);
           console.log(response.data);
+          console.log(response.data.totalPages)
+          setTotalPages(response.data.totalPages)
+         
         } catch (error) {
           console.log(error);
-           setLoading(false);
+          setLoading(false);
         }
       } else {
         setError(true);
-         setLoading(false);
+        setLoading(false);
       }
     };
 
     fetchData();
-  }, [user, user?.access_token]);
+  }, [user, user?.access_token, currentPage]);
+
+ 
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage((prevPage) => prevPage - 1);
+     setUrl(`/loans/paginated-company-loans?page=${currentPage - 1}`);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage((prevPage) => prevPage + 1);
+      setUrl(`/loans/paginated-company-loans?page=${currentPage + 1}`);
+    }
+  };
+
 
   return (
     <div className="flex flex-col">
       <DashHeader />
       <div className="flex relative">
         <Sidebar />
-        <div className="pl-[52px] py-[40px] w-[982px] font-semibold text-[#666666] absolute top-[112px] left-[300px]">
-          <div className="w-[982px]">
+        <div className="pl-[52px] py-[40px] w-[920px] font-semibold text-[#666666] absolute top-[112px] left-[300px]">
+          <div className="w-[920px]">
             <h4 className="text-[#0267FF] font-[600] text-[24px] w-[408px]">
               Loan Applications
             </h4>
           </div>
-          <div className=" justify-center items-center mt-8 grid grid-cols-5 p-2 gap-10 bg-[#E6F0FF] px-12 text-[16px] w-[982px]  h-[51px]">
+          <div className=" justify-center items-center mt-8 grid grid-cols-5 p-2 gap-10 bg-[#E6F0FF] px-12 text-[16px] w-[920px]  h-[51px]">
             <h6>Borrower</h6>
             <h6>Date</h6>
             <h6>Status</h6>
@@ -97,19 +128,19 @@ const LoanApplications = () => {
           ) : loanData.length > 0 ? (
             loanData.map((dt) => {
               return (
-                <Link to={`/borrower-profile/${dt._id}`}>
-                  <div className=" justify-center items-center mt-6 grid grid-cols-5 gap-10 bg-[#FAFCFF] px-12 text-[16px] w-[982px] h-[50px] text-[#666666] hover:text-[#0267FF]">
-                    <p>{dt.fullname}</p>
-                    <p>{new Date(dt.createdAt).toLocaleDateString()}</p>
-                    {dt.eligibility === true ? (
-                      <p className="text-[#4ED273]">Successful</p>
-                    ) : (
-                      <p className="text-[#FF2727]">Declined</p>
-                    )}
-                    <p>{dt.creditScore}</p>
-                    <p>{padZerosWithCommas(dt.loanAmount)}</p>
-                  </div>
-                </Link>
+                <div className=" justify-center items-center mt-6 grid grid-cols-5 gap-10 bg-[#FAFCFF] px-12 text-[16px] w-[920px] h-[50px] text-[#666666]">
+                  <Link to={`/borrower-profile/${dt._id}`}>
+                    <p className="hover:text-[#0267FF]">{dt.fullname}</p>
+                  </Link>
+                  <p>{new Date(dt.createdAt).toLocaleDateString()}</p>
+                  {dt.eligibility === true ? (
+                    <p className="text-[#4ED273]">Successful</p>
+                  ) : (
+                    <p className="text-[#FF2727]">Declined</p>
+                  )}
+                  <p>{dt.creditScore}</p>
+                  <p>{padZerosWithCommas(dt.loanAmount)}</p>
+                </div>
               );
             })
           ) : (
@@ -123,10 +154,35 @@ const LoanApplications = () => {
               to create a new loan application
             </div>
           )}
+
+          {loanData.length > 0 && (
+            <div className=" flex flex-col mb-8 gap-4 justify-center items-center  w-[920px]">
+              <div className="flex justify-between items-center mt-8 w-[920px]">
+                <Button
+                  className={`${
+                    currentPage === 1 ? "bg-gray-200" : "bg-blue-500"
+                  } text-white px-4 py-2 mx-1 rounded`}
+                  onClick={handlePreviousPage}
+                  label="Previous"
+                  disabled={currentPage === 1}
+                />
+
+                <Button
+                  className={`${
+                    currentPage === totalPages ? "bg-gray-200" : "bg-blue-500"
+                  } text-white px-4 py-2 mx-1 rounded`}
+                  onClick={handleNextPage}
+                  label="Next"
+                  disabled={currentPage === totalPages}
+                />
+              </div>
+              <div>Page: {currentPage}</div>
+            </div>
+          )}
         </div>
       </div>
     </div>
   );
-}
+};
 
-export default LoanApplications
+export default LoanApplications;

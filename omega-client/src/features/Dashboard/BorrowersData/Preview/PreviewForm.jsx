@@ -554,9 +554,6 @@ const PreviewForm = ({ handleModal, handleModalTwo }) => {
             label="Upload Data"
             onClick={(e) => {
               handleSubmit(e);
-              // showUserFormData();
-              // handleModal(false);
-              // handleModalTwo(true);
             }}
             disabled={!!Object.keys(validationErrors).length}
             loading={loading}

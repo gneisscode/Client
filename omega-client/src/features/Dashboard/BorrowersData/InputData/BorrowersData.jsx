@@ -149,7 +149,6 @@ const BorrowersData = () => {
             </section>
           </Modal>
 
-
           <section className="flex justify-center ml-[52px]  absolute top-[112px] left-[300px] my-[40px]">
             <div>
               <div className="flex flex-col gap-[16px]">
@@ -161,7 +160,7 @@ const BorrowersData = () => {
                 </p>
 
                 <Link to="/upload">
-                  <div>Or upload pre-filled form</div>
+                  <div className="text-red-500">Or upload a pre-filled form</div>
                 </Link>
               </div>
 

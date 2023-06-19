@@ -19,6 +19,7 @@ const [addAdmin, setAddAdmin] = useState({
   phoneNumber: "",
   role: "",
   loginURL: "https://omega-prediction-app.netlify.app/login",
+  passwordLink: "https://omega-prediction-app.netlify.app/verify",
 });
 
 useEffect(()=>{
@@ -143,12 +144,12 @@ const handleSubmit = async (event) => {
             Add Admin
           </p>
           <p className="my-6 text-[24px] font-[500] ">Admin Information</p>
-          {/* {serverError && <p className="text-red-500 mb-4">{serverError}</p>} */}
+          {serverError && <p className="text-red-500 mt-4 mb-4">{serverError}</p>}
           <form onSubmit={handleSubmit}>
             <div className="grid grid-cols-2 gap-8 mb-16">
               <div className="flex flex-col">
                 <input
-                  className="border w-[462px] h-[60px] py-[18px] pl-[25px] rounded text-[20px] font-[400] text-black] bg-[#FAFCFF] border-[#a09b9b] outline-none"
+                  className="border w-[462px] h-[60px] py-[18px] pl-[25px] rounded font-[400] text-black] bg-[#FAFCFF] border-[#a09b9b] outline-none"
                   name="firstName"
                   value={addAdmin.firstName}
                   onChange={handleAdminInput}
@@ -161,7 +162,7 @@ const handleSubmit = async (event) => {
               </div>
               <div className="flex flex-col">
                 <input
-                  className="border w-[462px] h-[60px] py-[18px] pl-[25px] rounded text-[20px] font-[400] text-black] bg-[#FAFCFF] border-[#a09b9b] outline-none"
+                  className="border w-[462px] h-[60px] py-[18px] pl-[25px] rounded  font-[400] text-black] bg-[#FAFCFF] border-[#a09b9b] outline-none"
                   type="email"
                   name="email"
                   value={addAdmin.email}
@@ -174,7 +175,7 @@ const handleSubmit = async (event) => {
               </div>
               <div className="flex flex-col">
                 <input
-                  className="border w-[462px] h-[60px] py-[18px] pl-[25px] rounded text-[20px] font-[400] text-black] bg-[#FAFCFF] border-[#a09b9b] outline-none"
+                  className="border w-[462px] h-[60px] py-[18px] pl-[25px] rounded  font-[400] text-black] bg-[#FAFCFF] border-[#a09b9b] outline-none"
                   type="text"
                   name="lastName"
                   value={addAdmin.lastName}
@@ -188,7 +189,7 @@ const handleSubmit = async (event) => {
 
               <div className="flex flex-col">
                 <input
-                  className="border w-[462px] h-[60px] py-[18px] pl-[25px] rounded text-[20px] font-[400] text-black] bg-[#FAFCFF] border-[#a09b9b] outline-none"
+                  className="border w-[462px] h-[60px] py-[18px] pl-[25px] rounded  font-[400] text-black] bg-[#FAFCFF] border-[#a09b9b] outline-none"
                   type="tel"
                   name="phoneNumber"
                   value={addAdmin.phoneNumber}
@@ -203,7 +204,7 @@ const handleSubmit = async (event) => {
 
               <div className="flex flex-col">
                 <input
-                  className="border w-[462px] h-[60px] py-[18px] pl-[25px] rounded text-[20px] font-[400] text-black] bg-[#FAFCFF] border-[#a09b9b] outline-none"
+                  className="border w-[462px] h-[60px] py-[18px] pl-[25px] rounded  font-[400] text-black] bg-[#FAFCFF] border-[#a09b9b] outline-none"
                   type="text"
                   name="role"
                   value={addAdmin.role}
