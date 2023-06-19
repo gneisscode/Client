@@ -1,11 +1,46 @@
 import React, {useState} from 'react'
 import HomeNav from '../components/HomeNav'
 import Hamburger from '../components/Hamburger'
+import axios from "axios";
 import {useForm} from "react-hook-form"
 
 const ContactUs = () => {
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const [success, setSuccess] = useState("")
+
+  // const [contact, setContact] = useState({
+  //   contactName: "",
+  //   contactEmail: "",
+  //   message: "",
+  //   loginURL: "https://omega-prediction-app.netlify.app/login",
+  // });
+
+  // const handleContactInput = (e) => {
+  //   const { name, value } = e.target
+  //   setContact({ ...contact, [name]: value })
+  // }
+
+  // const submitForm = async (event) => {
+  //   event.preventDefault();
+  //   const contactData = {
+  //     contactName: contact.contactName,
+  //     contactEmail: contact.contactEmail,
+  //     message: contact.message,
+  //   }
+  //   try {
+  //     const response = await axios.post("localhost:5000/api/contact", contact, {
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Authorization: `Bearer ${localStorage.getItem("token")}`,
+  //       },
+  //     });
+  //     console.log(response.data)
+
+  //   } catch(error){
+  //       console.log(error)
+  //   }
+  // }
+  
   function submitForm(data) {
     setSuccess("Your message was sent successfully!")
     reset();
@@ -28,32 +63,42 @@ const ContactUs = () => {
           </div>
           
           <div className=" flex">
-            <div className=" flex flex-col justify-center items-center lg:justify-start lg:items-start w-[100%] lg:w-[654px] lg:h-[fit] bg-[#FAFCFF] border border-[#9AC2FF] pl-[24px] gap-[48px] pt-8">
-              <div className="text-[24px] text-[#4D4D4D] font-[600]">
+            <div className=" flex flex-col justify-center items-center lg:justify-start lg:items-start w-[100%] lg:w-[654px] lg:h-[fit] bg-[#FAFCFF] border border-[#9AC2FF] pl-[24px] pt-8 pb-[65px]">
+              <div className="text-[24px] text-[#4D4D4D] font-[600] mb-[48px]">
                 User Information
               </div>
               <input
                 {...register("name", {required: true})}
+                // value={contact.contactName}
                 name='name'
                 className="border border-[#0252CC] lg:w-[589px] h-[61px] p-6 rounded-[4px] outline-none"
                 placeholder="Name"
+                type='text'
+                // onChange={handleContactInput}
+                
               />
-              {errors.name?.type === "required" && <p className='text-[#ff4141] font-[500]'>Please input your name.</p>}
+              {errors.name?.type === "required" && <p className='text-[#ff4141] font-[500] mt-[5px]'>Please input your name.</p>}
               <input
                 {...register("email", {required: true, pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i})}
                 name='email'
-                className="border border-[#0252CC] lg:w-[589px] h-[61px] p-6 rounded-[4px] outline-none"
+                className="border border-[#0252CC] lg:w-[589px] h-[61px] p-6 rounded-[4px] outline-none mt-[48px]"
                 placeholder="Email"
+                type='email'
+                // onChange={handleContactInput}
+                // value={contact.contactEmail}
               />
-                {errors.email?.type === "required" && <p className='text-[#ff4141] font-[500]'>Please enter your email address.</p>}
-                {errors.email?.type === "pattern" && <p className='text-[#ff4141] font-[500]'>Please enter a valid email address.</p>}
+                {errors.email?.type === "required" && <p className='text-[#ff4141] font-[500] mt-[5px]'>Please enter your email address.</p>}
+                {errors.email?.type === "pattern" && <p className='text-[#ff4141] font-[500] mt-[5px]'>Please enter a valid email address.</p>}
               <input
                 {...register("message", {required: true})}
                 name='message'
-                className="border border-[#0252CC] lg:w-[589px] h-[195px] p-6 mb-8 rounded-[4px] outline-none bg-[#E6F0FF]"
+                className="border border-[#0252CC] lg:w-[589px] h-[195px] p-6 rounded-[4px] outline-none bg-[#E6F0FF] mt-[48px]"
                 placeholder="Message"
+                type='text'
+                // onChange={handleContactInput}
+                // value={contact.message}
               />
-              {errors.message?.type === "required" && <p className='text-[#ff4141] font-[500] mb-[2em]'>Please enter a message.</p>}
+              {errors.message?.type === "required" && <p className='text-[#ff4141] font-[500] mt-[5px]'>Please enter a message.</p>}
             </div>
           </div>
 
