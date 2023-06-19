@@ -3,6 +3,8 @@ import LockIcon from "../../../components/LockIcon";
 import Card from "../../../components/Card";
 import PasswordBtn from "../../../components/PasswordBtn";
 import { Link, useParams, useLocation } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -23,6 +25,10 @@ const ChangePassword = () => {
     password: "",
     confirmPassword: "",
   });
+
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
+
   const [serverError, setServerError] = useState("");
     const showToastError = () => {
       toast.error("Something went wrong!", {
@@ -36,6 +42,14 @@ const ChangePassword = () => {
     validateField(name, value);
     setServerError("");
     console.log(formData);
+  };
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+  };
+
+  const toggleConfirmPasswordVisibility = () => {
+    setConfirmPasswordVisible(!confirmPasswordVisible);
   };
   const validateField = (fieldName, value) => {
     let errorMessage = "";
@@ -106,33 +120,47 @@ const ChangePassword = () => {
         )}
         <form onSubmit={handleSubmit}>
           <Card className="p-14 flex flex-col items-center gap-10 ">
-            <input
-              className={`border ${
-                formErrors.password ? "border-red-700" : "border-blue-600"
-              } w-[589px] h-[61px] p-6  outline-none`}
-              placeholder="New Password:"
-              name="password"
-              value={formData.password}
-              onChange={handleInputChange}
-              type="password"
-            />
+          <div className="relative">
+              <input
+                className={`border ${
+                  formErrors.password ? "border-red-700" : "border-blue-600"
+                } w-[589px] h-[61px] p-6 pl-14 outline-none`}
+                placeholder="New Password:"
+                name="password"
+                value={formData.password}
+                onChange={handleInputChange}
+                type={passwordVisible ? "text" : "password"}
+              />
+              <FontAwesomeIcon
+                icon={passwordVisible ? faEyeSlash : faEye}
+                className="absolute top-1/2 left-4 transform -translate-y-1/2 text-lg text-gray-500 cursor-pointer"
+                onClick={togglePasswordVisibility}
+              />
+            </div>
             {formErrors.password && (
-              <p className="text-red-500  pl-16 self-start">
+              <p className="text-red-500 pl-16 self-start">
                 {formErrors.password}
               </p>
             )}
-            <input
-              className={`border ${
-                formErrors.confirmPassword
-                  ? "border-red-700"
-                  : "border-blue-600"
-              } w-[589px] h-[61px] p-6 mb-2 outline-none`}
-              placeholder="Confirm New Password:"
-              name="confirmPassword"
-              value={formData.confirmPassword}
-              onChange={handleInputChange}
-              type="password"
-            />
+           <div className="relative">
+              <input
+                className={`border ${
+                  formErrors.confirmPassword
+                    ? "border-red-700"
+                    : "border-blue-600"
+                } w-[589px] h-[61px] p-6 mb-2 pl-14 outline-none`}
+                placeholder="Confirm New Password:"
+                name="confirmPassword"
+                value={formData.confirmPassword}
+                onChange={handleInputChange}
+                type={confirmPasswordVisible ? "text" : "password"}
+              />
+              <FontAwesomeIcon
+                icon={confirmPasswordVisible ? faEyeSlash : faEye}
+                className="absolute top-1/2 left-4 transform -translate-y-1/2 text-lg text-gray-500 cursor-pointer"
+                onClick={toggleConfirmPasswordVisibility}
+              />
+            </div>
             {formErrors.confirmPassword && (
               <p className="text-red-500 pl-16 self-start">
                 {formErrors.confirmPassword}

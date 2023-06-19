@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import Modal from "../../../components/Modal/modal";
 import Button from "../../../components/Button";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Context } from "../../../context/Context";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
@@ -24,6 +25,21 @@ const Security = () => {
     confirmNewPassword: "",
   });
   const [serverError, setServerError] = useState("");
+  // const [showPassword, setShowPassword] = useState(false);
+
+  const [showOldPassword, setShowOldPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+ const togglePasswordVisibility = (fieldName) => {
+    if (fieldName === "oldPassword") {
+      setShowOldPassword((prevState) => !prevState);
+    } else if (fieldName === "newPassword") {
+      setShowNewPassword((prevState) => !prevState);
+    } else if (fieldName === "confirmNewPassword") {
+      setShowConfirmPassword((prevState) => !prevState);
+    }
+  };
 
     const handleInputChange = (e) => {
       const { name, value } = e.target;
@@ -156,7 +172,8 @@ const Security = () => {
 
       <form onSubmit={handleSubmit}>
         <div className="flex flex-col gap-[48px] mt-[43px] mb-[111px]">
-          <div>
+         <div>
+         <div  className="relative">
             <input
               className={`w-[462px] h-[60px] border ${
                 formErrors.oldPassword ? "border-red-700" : "border-[#666666]"
@@ -165,15 +182,26 @@ const Security = () => {
               name="oldPassword"
               value={formData.oldPassword}
               onChange={handleInputChange}
-              type="password"
+              type={showOldPassword ? "text" : "password"}
             />
             {formErrors.oldPassword && (
               <p className="text-red-500 self-start">
                 {formErrors.oldPassword}
               </p>
             )}
+              <div
+            className="absolute top-[50%] right-[13px] [transform-y-1/2] cursor-pointer"
+            onClick={() => togglePasswordVisibility("oldPassword")}
+          >
+            {showOldPassword ? (
+              <FaEyeSlash size={20} /> // Show the 'eye-slash' icon to hide the password
+            ) : (
+              <FaEye size={20} /> // Show the 'eye' icon to show the password
+            )}
           </div>
-          <div>
+          </div>
+         </div>
+          <div className="relative">
             {" "}
             <input
               className={`w-[462px] h-[60px] border ${
@@ -183,15 +211,25 @@ const Security = () => {
               name="newPassword"
               value={formData.newPassword}
               onChange={handleInputChange}
-              type="password"
+              type={showNewPassword ? "text" : "password"}
             />
             {formErrors.newPassword && (
               <p className="text-red-500  self-start">
                 {formErrors.newPassword}
               </p>
             )}
+             <div
+            className="absolute top-[13px] right-[13px] cursor-pointer"
+            onClick={() => togglePasswordVisibility("newPassword")}
+          >
+            {showNewPassword ? (
+              <FaEyeSlash size={20} /> // Show the 'eye-slash' icon to hide the password
+            ) : (
+              <FaEye size={20} /> // Show the 'eye' icon to show the password
+            )}
           </div>
-          <div>
+          </div>
+          <div className="relative">
             <input
               className={`w-[462px] h-[60px] border ${
                 formErrors.confirmNewPassword
@@ -202,13 +240,23 @@ const Security = () => {
               name="confirmNewPassword"
               value={formData.confirmNewPassword}
               onChange={handleInputChange}
-              type="password"
+              type={showConfirmPassword ? "text" : "password"}
             />
             {formErrors.confirmNewPassword && (
               <p className="text-red-500  self-start">
                 {formErrors.confirmNewPassword}
               </p>
             )}
+             <div
+            className="absolute top-[13px] right-[13px] cursor-pointer"
+            onClick={() => togglePasswordVisibility("confirmNewPassword")}
+          >
+            {showConfirmPassword ? (
+              <FaEyeSlash size={20} /> // Show the 'eye-slash' icon to hide the password
+            ) : (
+              <FaEye size={20} /> // Show the 'eye' icon to show the password
+            )}
+          </div>
           </div>
         </div>
         <button
