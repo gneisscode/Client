@@ -6,12 +6,14 @@ import { Context } from "../../../../context/Context";
 import axios from "axios";
 import DashHeader from "../../../../components/Dashboard/DashHeader";
 import Sidebar from "../../../../components/Dashboard/Sidebar";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Upload = () => {
   const { user } = useContext(Context);
   const [pdfFile, setPdfFile] = useState({});
-   const [eligibility, setEligibility] = useState("");
-   const [loading, setLoading] = useState(false);
+  const [eligibility, setEligibility] = useState("");
+  const [loading, setLoading] = useState(false);
   const [formFields, setFormFields] = useState({
     name: "",
     email: "",
@@ -81,7 +83,7 @@ const Upload = () => {
       collateralInformation: formFields.collateralInfo,
     });
     console.log(formData);
-    console.log(formFields)
+    console.log(formFields);
   }, [formFields]);
   const handleFileChange = async (event) => {
     const file = event.target.files[0];
@@ -110,7 +112,7 @@ const Upload = () => {
 
         setFormFields(extractedFields);
         console.log(extractedFields);
-        console.log(formFields)
+        console.log(formFields);
       };
 
       reader.readAsArrayBuffer(file);
@@ -127,6 +129,26 @@ const Upload = () => {
     }));
     console.log(formFields);
   };
+  const handleRemoveFile = () => {
+    setPdfFile({});
+    window.location.reload();
+  };
+
+  function handleDownload() {
+    const downloadUrl =
+      "https://github.com/gneisscode/Client/blob/9f19e96a6a90a61a2b012fa814214659a4f8f699/borrower-data-form.pdf?raw=true"; 
+    const link = document.createElement("a");
+    link.href = downloadUrl;
+    link.setAttribute("download", "borrower-data-form.pdf"); 
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+  const showToastError = () => {
+    toast.error("Something went wrong!", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
+  };
 
   const handleSubmit = async () => {
     setLoading(true);
@@ -138,24 +160,26 @@ const Upload = () => {
       };
       const response = await axios.post(`/loans/create`, formData, config);
       console.log(response.data);
-       const eligibility = response.data.data.loan.eligibility;
-       const loan_id = response.data.data.loan._id;
-       setEligibility(eligibility);
+      const eligibility = response.data.data.loan.eligibility;
+      const loan_id = response.data.data.loan._id;
+      setEligibility(eligibility);
 
-       if (eligibility === true) {
-         window.location.replace(`eligibility/successful/${loan_id}`);
-       } else if (eligibility === false) {
-         window.location.replace(`eligibility/declined/${loan_id}`);
-       }
-       setLoading(false);
+      if (eligibility === true) {
+        window.location.replace(`eligibility/successful/${loan_id}`);
+      } else if (eligibility === false) {
+        window.location.replace(`eligibility/declined/${loan_id}`);
+      }
+      setLoading(false);
     } catch (error) {
       console.log(error);
       setLoading(false);
+      showToastError();
     }
   };
 
   return (
     <div className="flex flex-col">
+      <ToastContainer />
       <DashHeader />
       <div className="flex relative">
         <Sidebar />
@@ -165,14 +189,31 @@ const Upload = () => {
               {/* Personal and contact Information */}
               <div className=" text-[24px] text-[#4D4D4D] font-[500] mb-4">
                 <h3 className="text-[#0267FF] text-[24px] font-[600] mb-3">
-                  Borrowers Data Preview
+                  Upload Borrower's Data
                 </h3>
-                <input
-                  type="file"
-                  accept="application/pdf"
-                  onChange={handleFileChange}
-                  className="text-[16px] mt-4"
-                />
+                <div className=" flex text-[16px] mt-6 gap-1">
+                  <div>Download unfilled borrower's data form</div>
+                  <button onClick={handleDownload} className="text-blue-500">
+                    here
+                  </button>
+                </div>
+
+                <div className="flex flex-col gap-4">
+                  <input
+                    type="file"
+                    accept="application/pdf"
+                    onChange={handleFileChange}
+                    className="text-[16px] mt-4"
+                  />
+                  {pdfFile && Object.keys(pdfFile).length > 0 && (
+                    <button
+                      onClick={handleRemoveFile}
+                      className="text-[16px] text-red-600 self-start"
+                    >
+                      Remove file
+                    </button>
+                  )}
+                </div>
               </div>
 
               <div className="flex flex-col border-b space-y-5  pb-16">
