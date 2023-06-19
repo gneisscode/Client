@@ -157,7 +157,7 @@ const Generated = () => {
                 Loans successful
               </div>
             </div>
-            <div className="lg:w-[938px] lg:h-[fit] bg-[#FAFCFF] border border-[#CCE1FF]  mt-[40px] mb-16">
+            <div className="lg:w-[920px] lg:h-[fit] bg-[#FAFCFF] border border-[#CCE1FF]  mt-[40px] mb-16">
               <div className="flex justify-between">
                 <div className="mt-5 p-5">
                   <p className="font-[600] text-[20px] text-[#013E99] ">
@@ -210,9 +210,11 @@ const Generated = () => {
                             index % 2 === 0 ? "bg-gray-50" : "bg-white"
                           }
                         >
-                          <td className="px-6 py-4 font-[600] text-[16px] text-[#666666]">
-                            {loan.fullname}
-                          </td>
+                          <Link to={`/borrower-profile/${loan._id}`}>
+                            <td className="px-6 py-4 font-[600] text-[16px] text-[#666666] hover:text-[#0267FF]">
+                              {loan.fullname}
+                            </td>
+                          </Link>
                           <td className="px-6 py-4 font-[600] text-[16px] text-[#666666]">
                             {new Date(loan.createdAt).toLocaleDateString()}
                           </td>
@@ -233,8 +235,8 @@ const Generated = () => {
               </div>
             </div>
             {loansSuccessful.length > 0 && (
-              <div className=" flex flex-col mb-8 gap-4 justify-center items-center  w-[982px]">
-                <div className="flex justify-between items-center mt-8 w-[982px]">
+              <div className=" flex flex-col mb-8 gap-4 justify-center items-center  w-[920px]">
+                <div className="flex justify-between items-center mt-8 w-[920px]">
                   <Button
                     className={`${
                       currentPage === 1 ? "bg-gray-200" : "bg-blue-500"

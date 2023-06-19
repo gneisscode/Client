@@ -68,7 +68,6 @@ const ForgotPassword = () => {
         const response = await axios.get(`/password-reset?email=${formData.email}`);
         console.log(response.data.data);
         const data = response.data.data;
-        setLoading(false)
         window.location.replace("/verification-email");
 
       } catch (error) {

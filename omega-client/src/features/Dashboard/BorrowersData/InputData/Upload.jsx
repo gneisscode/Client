@@ -159,7 +159,7 @@ const Upload = () => {
       <DashHeader />
       <div className="flex relative">
         <Sidebar />
-        <div className="flex justify-center  absolute top-[112px] left-[300px] my-[40px] ml-[52px] w-[982px]">
+        <div className="flex justify-center  absolute top-[112px] left-[300px] my-[40px] ml-[52px] w-[920px]">
           <div className="bg-white w-[100%]">
             <div className="flex flex-col">
               {/* Personal and contact Information */}
@@ -423,7 +423,7 @@ const Upload = () => {
               </div>
             </div>
 
-            <div className="flex items-center mb-6 px-8 w-64 ml-auto py-8">
+            <div className="flex items-center mb-6  w-64 ml-auto py-8 ">
               <Button
                 className="text-white bg-[#0267FF] rounded transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300"
                 label="Upload Data"

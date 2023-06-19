@@ -315,7 +315,7 @@ const Dashboard = () => {
                     <Graph monthlyData={monthlyData} />
                   </div>
                   <div className=" flex border border-[#E6F0FF] py-[40px] items-center justify-center w-[300px] h-[318px] bg-[#FAFCFF] relative hover:shadow-lg">
-                    <div className="flex flex-col items-center justify-center absolute top-[85px] left-[118px]">
+                    <div className="flex flex-col items-center justify-center absolute top-[85px] left-[115px]">
                       <div className="font-[600] text-[24px] text-[#0267FF]">
                         {`${parseInt(
                           (loansSuccessful / loanData.length) * 100
