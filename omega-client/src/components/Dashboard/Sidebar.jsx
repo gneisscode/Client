@@ -113,6 +113,7 @@ const Sidebar = () => {
                 active === "borrower-data" ||
                 active === "borrower-profile" ||
                 active === "borrower-eligibility" ||
+                active === "upload" ||
                 active === "send-status"
                   ? "#0267FF"
                   : "none"
@@ -125,6 +126,7 @@ const Sidebar = () => {
                   active === "borrower-data" ||
                   active === "borrower-profile" ||
                   active === "borrower-eligibility" ||
+                  active === "upload" ||
                   active === "send-status"
                     ? "#0267FF"
                     : "#999999"
@@ -136,6 +138,7 @@ const Sidebar = () => {
                 active === "borrower-data" ||
                 active === "borrower-profile" ||
                 active === "borrower-eligibility" ||
+                active === "upload" ||
                 active === "send-status"
                   ? "text-[#0267FF]"
                   : "text-[#999999]"
