@@ -1,25 +1,22 @@
-import React from 'react'
-import { Link, useLocation } from 'react-router-dom'
-import { useEffect, useContext } from 'react'
-import PrimaryButton from './PrimaryButton'
-import SecondaryButton from './SecondaryButton'
-import { Context } from '../context/Context'
+import React from "react";
+import { Link, useLocation } from "react-router-dom";
+import { useEffect, useContext } from "react";
+import PrimaryButton from "./PrimaryButton";
+import SecondaryButton from "./SecondaryButton";
+import { Context } from "../context/Context";
 
 const HomeNav = () => {
-  const location = useLocation()
-  const { dispatch, isFetching, user, userPhotoURL } = useContext(Context)
-  const handleLogout = () => {
-    dispatch({ type: 'LOGOUT' })
-  }
+  const location = useLocation();
+  const { user } = useContext(Context);
 
   useEffect(() => {
-    if (location.pathname === '/services') {
-      const servicesSection = document.getElementById('services')
+    if (location.pathname === "/services") {
+      const servicesSection = document.getElementById("services");
       if (servicesSection) {
-        servicesSection.scrollIntoView({ behavior: 'smooth' })
+        servicesSection.scrollIntoView({ behavior: "smooth" });
       }
     }
-  }, [location])
+  }, [location]);
 
   return (
     <div className="hidden lg:flex justify-between h-[112px] w-[100%] text-gray-400 border border-gray-100 items-end px-[60px] py-8 fixed z-30 bg-white">
@@ -53,9 +50,7 @@ const HomeNav = () => {
         <a
           href="/services"
           className={` link hover:text-blue-500 ${
-            location.pathname === "/services"
-              ? " text-blue-500"
-              : ""
+            location.pathname === "/services" ? " text-blue-500" : ""
           }`}
         >
           Services
@@ -77,7 +72,6 @@ const HomeNav = () => {
           <Link to="/dashboard" className="link">
             <PrimaryButton text="Dashboard" />
           </Link>
-          <SecondaryButton text="Log Out" onClick={handleLogout} />
         </div>
       ) : (
         <div className="flex gap-4 justify-center items-center">
@@ -91,6 +85,6 @@ const HomeNav = () => {
       )}
     </div>
   );
-}
+};
 
-export default HomeNav
+export default HomeNav;

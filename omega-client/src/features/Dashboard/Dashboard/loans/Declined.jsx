@@ -116,11 +116,11 @@ const Declined = () => {
             </svg>
             <span className='sr-only'>Loading...</span>
           </div>
-        ) : loansDeclined ? (
-          <div className='flex flex-col lg:w-[938px] lg:h-[fit] absolute top-[112px] left-[300px] ml-[52px] '>
-            <div className='flex gap-4 mt-[40px]'>
-              <Link to='/dashboard'>
-                <div className='text-[20px] font-[400] text-[#808080]'>
+        ) : loansDeclined.length>0 ? (
+          <div className="flex flex-col lg:w-[938px] lg:h-[fit] absolute top-[112px] left-[300px] ml-[52px] ">
+            <div className="flex gap-4 mt-[40px]">
+              <Link to="/dashboard">
+                <div className="text-[20px] font-[400] text-[#808080]">
                   Dashboard
                 </div>
               </Link>
@@ -203,12 +203,16 @@ const Declined = () => {
             </div>
           </div>
         ) : (
-          <Link className='text-blue-500' to='/borrower-data'>
-            <div className='flex justify-center items-center mt-24 font-normal'>
-              No loan applications to display, click here to create a new loan
-              application
+            <div className="flex w-[982px] justify-center items-center mt-24 font-normal relative top-[150px] left-[300px]">
+              No loan applications to display, click
+              <span>
+                <Link className="text-blue-500" to="/borrower-data">
+                  &nbsp;here&nbsp;
+                </Link>
+              </span>
+              to create a new loan application
             </div>
-          </Link>
+
         )}
       </div>
     </div>
