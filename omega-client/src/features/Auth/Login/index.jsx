@@ -1,107 +1,114 @@
-import React, { useState, useContext } from 'react'
-import AuthLayout from '../../../components/AuthLayout'
-import Button from '../../../components/Button'
-import TextField from '../../../components/TextField'
-import { Link } from 'react-router-dom'
-import axios from 'axios'
-import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
-import { Context } from '../../../context/Context'
+import React, { useState, useContext } from "react";
+import AuthLayout from "../../../components/AuthLayout";
+import Button from "../../../components/Button";
+import TextField from "../../../components/TextField";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Context } from "../../../context/Context";
 const Login = () => {
-  const [inputType, setInputType] = useState('password')
-  const { dispatch, isFetching } = useContext(Context)
-  const [isLoading, setIsLoading] = useState(false)
+  const [inputType, setInputType] = useState("password");
+  const { dispatch, isFetching } = useContext(Context);
+  const [isLoading, setIsLoading] = useState(false);
+  const redirectUri = encodeURIComponent(
+    "https://omega-prediction-app.netlify.app/dashboard"
+  );
+  const clientId =
+    "971442954116-mo6drlr37kt7c5tadolni39jiki7eire.apps.googleusercontent.com";
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-  })
+    email: "",
+    password: "",
+  });
 
   const [formErrors, setFormErrors] = useState({
-    email: '',
-    password: '',
-  })
-  const [serverError, setServerError] = useState('')
+    email: "",
+    password: "",
+  });
+  const [serverError, setServerError] = useState("");
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target
-    setFormData({ ...formData, [name]: value })
-    validateField(name, value)
-    setServerError('')
-  }
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+    validateField(name, value);
+    setServerError("");
+  };
 
   const validateField = (fieldName, value) => {
-    let errorMessage = ''
+    let errorMessage = "";
 
-    if (fieldName === 'email' && !value) {
-      errorMessage = 'Email is required'
-    } else if (fieldName === 'email' && !/\S+@\S+\.\S+/.test(value)) {
-      errorMessage = 'Email is invalid'
-    } else if (fieldName === 'password' && !value) {
-      errorMessage = 'Password is required'
+    if (fieldName === "email" && !value) {
+      errorMessage = "Email is required";
+    } else if (fieldName === "email" && !/\S+@\S+\.\S+/.test(value)) {
+      errorMessage = "Email is invalid";
+    } else if (fieldName === "password" && !value) {
+      errorMessage = "Password is required";
     }
 
     setFormErrors((prevErrors) => ({
       ...prevErrors,
       [fieldName]: errorMessage,
-    }))
-  }
+    }));
+  };
 
   const showToastSuccess = () => {
-    toast.success('Successfully logged in!', {
+    toast.success("Successfully logged in!", {
       position: toast.POSITION.TOP_RIGHT,
-    })
-  }
+    });
+  };
 
   const showToastError = () => {
-    toast.error('Something went wrong!', {
+    toast.error("Something went wrong!", {
       position: toast.POSITION.TOP_RIGHT,
-    })
-  }
+    });
+  };
 
   const handleSubmit = async (event) => {
-    event.preventDefault()
-    const errors = {}
-    setIsLoading(true)
+    event.preventDefault();
+    const errors = {};
+    setIsLoading(true);
 
     Object.keys(formData).forEach((fieldName) => {
-      validateField(fieldName, formData[fieldName])
+      validateField(fieldName, formData[fieldName]);
       if (formErrors[fieldName]) {
-        errors[fieldName] = formErrors[fieldName]
+        errors[fieldName] = formErrors[fieldName];
       }
-    })
+    });
 
     if (Object.keys(errors).length > 0) {
-      setFormErrors(errors)
-      setIsLoading(false)
+      setFormErrors(errors);
+      setIsLoading(false);
     } else {
       try {
-        const response = await axios.post('/admins/login', formData)
-        console.log(response.data.data)
-        const data = response.data.data
-        const token = data.access_token
-        localStorage.setItem('token', token)
-        dispatch({ type: 'LOGIN_SUCCESS', payload: data })
-        showToastSuccess()
-        setIsLoading(false)
+        const response = await axios.post("/admins/login", formData);
+        console.log(response.data.data);
+        const data = response.data.data;
+        const token = data.access_token;
+        localStorage.setItem("token", token);
+        dispatch({ type: "LOGIN_SUCCESS", payload: data });
+        showToastSuccess();
+        setIsLoading(false);
         // window.location.replace('/dashboard')
       } catch (error) {
-        console.log(error)
+        console.log(error);
         if (
           error.response &&
           error.response.data &&
           error.response.data.message
         ) {
-          const errorMessage = error.response.data.message
-          setServerError(errorMessage)
+          const errorMessage = error.response.data.message;
+          setServerError(errorMessage);
         } else {
-          setServerError('Network error: Please check your internet connection')
+          setServerError(
+            "Network error: Please check your internet connection"
+          );
         }
-        showToastError()
-        setIsLoading(false)
-        dispatch({ type: 'LOGIN_FAILURE' })
+        showToastError();
+        setIsLoading(false);
+        dispatch({ type: "LOGIN_FAILURE" });
       }
     }
-  }
+  };
 
   return (
     <AuthLayout>
@@ -205,13 +212,17 @@ const Login = () => {
 
           <div className="grid grid-cols-3 mt-7 items-center justify-items-center mb-8">
             <img src="/assets/auth/email.svg" alt="" />
-            <img src="/assets/auth/google.svg" alt="" />
+            <Link
+              to={`https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientId}&response_type=code&scope=email%20profile&redirect_uri=${redirectUri}`}
+            >
+              <img src="/assets/auth/google.svg" alt="" />
+            </Link>
             <img src="/assets/auth/apple-icon.svg" alt="" />
           </div>
         </div>
       </section>
     </AuthLayout>
   );
-}
+};
 
-export default Login
+export default Login;

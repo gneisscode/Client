@@ -15,6 +15,10 @@ const SignUp = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const openModal = () => setIsModalOpen(true)
   const closeModal = () => setIsModalOpen(false)
+  const redirectUri = encodeURIComponent(
+    "https://omega-prediction-app.netlify.app/dashboard"
+  );
+  const clientId = ""
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -305,7 +309,11 @@ const SignUp = () => {
 
           <div className="grid grid-cols-3 mt-7 items-center justify-items-center">
             <img src="/assets/auth/email.svg" alt="" />
-            <img src="/assets/auth/google.svg" alt="" />
+            <Link
+              to={`https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientId}-vlt2mcrl3ue3kj98mm3bvjbljnp5hcmt.apps.googleusercontent.com&response_type=code&scope=email%20profile&redirect_uri=${redirectUri}`}
+            >
+              <img src="/assets/auth/google.svg" alt="" />
+            </Link>
             <img src="/assets/auth/apple-icon.svg" alt="" />
           </div>
         </div>
