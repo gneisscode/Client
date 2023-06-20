@@ -7,7 +7,6 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
 const Security = () => {
   const { user } = useContext(Context);
   const [modal, setModal] = useState(false);
@@ -23,46 +22,50 @@ const Security = () => {
     newPassword: "",
     confirmNewPassword: "",
   });
+
+  const [oldType, setOldType] = useState("password");
+  const [inputType, setInputType] = useState("password");
+  const [confirmType, setConfirmType] = useState("password");
   const [serverError, setServerError] = useState("");
 
-    const handleInputChange = (e) => {
-      const { name, value } = e.target;
-      setFormData({ ...formData, [name]: value });
-      validateField(name, value);
-      setServerError("");
-      console.log(formData);
-    };
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+    validateField(name, value);
+    setServerError("");
+    console.log(formData);
+  };
 
+  const validateField = (fieldName, value) => {
+    let errorMessage = "";
 
+    if (fieldName === "oldPassword" && !value) {
+      errorMessage = "Old Password is required";
+    }
+    if (fieldName === "newPassword" && !value) {
+      errorMessage = "New Password is required";
+    }
+    if (fieldName === "confirmNewPassword" && value !== formData.newPassword) {
+      errorMessage = "Passwords do not match!";
+    }
 
-   const validateField = (fieldName, value) => {
-     let errorMessage = "";
+    setFormErrors((prevErrors) => ({
+      ...prevErrors,
+      [fieldName]: errorMessage,
+    }));
+  };
 
-     if (fieldName === "oldPassword" && !value) {
-       errorMessage = "Old Password is required";
-     } if (fieldName === "newPassword" && !value) {
-       errorMessage = "New Password is required";
-     }if (fieldName === "confirmNewPassword" && value !== formData.newPassword) {
-       errorMessage = "Passwords do not match!";
-     }
+  const showToastError = () => {
+    toast.error("Something went wrong!", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
+  };
 
-     setFormErrors((prevErrors) => ({
-       ...prevErrors,
-       [fieldName]: errorMessage,
-     }));
-   };
-
-     const showToastError = () => {
-       toast.error("Something went wrong!", {
-         position: toast.POSITION.TOP_RIGHT,
-       });
-     };
-
-     const showToastSuccess = () => {
-       toast.success("Password changed successfully!", {
-         position: toast.POSITION.TOP_RIGHT,
-       });
-     };
+  const showToastSuccess = () => {
+    toast.success("Password changed successfully!", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -80,32 +83,33 @@ const Security = () => {
     if (Object.keys(errors).length > 0) {
       setFormErrors(errors);
       setIsLoading(false);
-      showToastError()
+      showToastError();
     } else {
       try {
         setIsLoading(true);
 
-         const config = {
-           headers: {
-             Authorization: `Bearer ${user.access_token}`, 
-           },
-         };
+        const config = {
+          headers: {
+            Authorization: `Bearer ${user.access_token}`,
+          },
+        };
         const response = await axios.put(
           `/admins/${user.adminId}/change-password`,
-          formData, config
+          formData,
+          config
         );
         console.log(response.data);
-        showToastSuccess()
+        showToastSuccess();
         setFormData({
-           oldPassword: "",
-           newPassword: "",
-           confirmNewPassword: "",
-         });
-         setIsLoading(false)
+          oldPassword: "",
+          newPassword: "",
+          confirmNewPassword: "",
+        });
+        setIsLoading(false);
       } catch (error) {
         console.log(error);
         setIsLoading(false);
-        showToastError()
+        showToastError();
         if (
           error.response &&
           error.response.data &&
@@ -156,7 +160,7 @@ const Security = () => {
 
       <form onSubmit={handleSubmit}>
         <div className="flex flex-col gap-[48px] mt-[43px] mb-[111px]">
-          <div>
+          <div className="relative">
             <input
               className={`w-[462px] h-[60px] border ${
                 formErrors.oldPassword ? "border-red-700" : "border-[#666666]"
@@ -165,15 +169,27 @@ const Security = () => {
               name="oldPassword"
               value={formData.oldPassword}
               onChange={handleInputChange}
-              type="password"
+              type={oldType}
             />
+            {oldType === "text" ? (
+              <i
+                className="fa-regular fa-eye absolute top-[20px] left-[410px] text-[18px] cursor-pointer"
+                onClick={() => setOldType("password")}
+              ></i>
+            ) : (
+              <i
+                className="fa-regular fa-eye-slash absolute top-[20px] left-[410px] text-[18px] cursor-pointer"
+                onClick={() => setOldType("text")}
+              ></i>
+            )}
+
             {formErrors.oldPassword && (
               <p className="text-red-500 self-start">
                 {formErrors.oldPassword}
               </p>
             )}
           </div>
-          <div>
+          <div className="relative">
             {" "}
             <input
               className={`w-[462px] h-[60px] border ${
@@ -183,15 +199,26 @@ const Security = () => {
               name="newPassword"
               value={formData.newPassword}
               onChange={handleInputChange}
-              type="password"
+              type={inputType}
             />
+            {inputType === "text" ? (
+              <i
+                className="fa-regular fa-eye absolute top-[20px] left-[410px] text-[18px] cursor-pointer"
+                onClick={() => setInputType("password")}
+              ></i>
+            ) : (
+              <i
+                className="fa-regular fa-eye-slash absolute top-[20px] left-[410px] text-[18px] cursor-pointer"
+                onClick={() => setInputType("text")}
+              ></i>
+            )}
             {formErrors.newPassword && (
               <p className="text-red-500  self-start">
                 {formErrors.newPassword}
               </p>
             )}
           </div>
-          <div>
+          <div className="relative">
             <input
               className={`w-[462px] h-[60px] border ${
                 formErrors.confirmNewPassword
@@ -202,8 +229,20 @@ const Security = () => {
               name="confirmNewPassword"
               value={formData.confirmNewPassword}
               onChange={handleInputChange}
-              type="password"
+              type={confirmType}
             />
+
+            {confirmType === "text" ? (
+              <i
+                className="fa-regular fa-eye absolute top-[20px] left-[410px] text-[18px] cursor-pointer"
+                onClick={() => setConfirmType("password")}
+              ></i>
+            ) : (
+              <i
+                className="fa-regular fa-eye-slash absolute top-[20px] left-[410px] text-[18px] cursor-pointer"
+                onClick={() => setConfirmType("text")}
+              ></i>
+            )}
             {formErrors.confirmNewPassword && (
               <p className="text-red-500  self-start">
                 {formErrors.confirmNewPassword}
