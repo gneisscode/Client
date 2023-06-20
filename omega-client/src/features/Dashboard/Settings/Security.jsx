@@ -162,7 +162,7 @@ const Security = () => {
         <div className="flex flex-col gap-[48px] mt-[43px] mb-[111px]">
           <div className="relative">
             <input
-              className={`w-[462px] h-[60px] border ${
+              className={`w-[462px] h-[60px] border autofill:bg-none ${
                 formErrors.oldPassword ? "border-red-700" : "border-[#666666]"
               } p-4 bg-[#FAFCFF] rounded outline-none`}
               placeholder="Old Password"
@@ -173,12 +173,12 @@ const Security = () => {
             />
             {oldType === "text" ? (
               <i
-                className="fa-regular fa-eye absolute top-[20px] left-[410px] text-[18px] cursor-pointer"
+                className="fa-regular fa-eye-slash absolute top-[20px] left-[410px] text-[18px] cursor-pointer"
                 onClick={() => setOldType("password")}
               ></i>
             ) : (
               <i
-                className="fa-regular fa-eye-slash absolute top-[20px] left-[410px] text-[18px] cursor-pointer"
+                className="fa-regular fa-eye absolute top-[20px] left-[410px] text-[18px] cursor-pointer"
                 onClick={() => setOldType("text")}
               ></i>
             )}
@@ -192,7 +192,7 @@ const Security = () => {
           <div className="relative">
             {" "}
             <input
-              className={`w-[462px] h-[60px] border ${
+              className={`w-[462px] h-[60px] border autofill:bg-none ${
                 formErrors.newPassword ? "border-red-700" : "border-[#666666]"
               } p-4 bg-[#FAFCFF] rounded outline-none`}
               placeholder="New Password"
@@ -203,12 +203,12 @@ const Security = () => {
             />
             {inputType === "text" ? (
               <i
-                className="fa-regular fa-eye absolute top-[20px] left-[410px] text-[18px] cursor-pointer"
+                className="fa-regular fa-eye-slash absolute top-[20px] left-[410px] text-[18px] cursor-pointer"
                 onClick={() => setInputType("password")}
               ></i>
             ) : (
               <i
-                className="fa-regular fa-eye-slash absolute top-[20px] left-[410px] text-[18px] cursor-pointer"
+                className="fa-regular fa-eye absolute top-[20px] left-[410px] text-[18px] cursor-pointer"
                 onClick={() => setInputType("text")}
               ></i>
             )}
@@ -220,7 +220,7 @@ const Security = () => {
           </div>
           <div className="relative">
             <input
-              className={`w-[462px] h-[60px] border ${
+              className={`w-[462px] h-[60px] border autofill:bg-none ${
                 formErrors.confirmNewPassword
                   ? "border-red-700"
                   : "border-[#666666] "
@@ -234,12 +234,12 @@ const Security = () => {
 
             {confirmType === "text" ? (
               <i
-                className="fa-regular fa-eye absolute top-[20px] left-[410px] text-[18px] cursor-pointer"
+                className="fa-regular fa-eye-slash absolute top-[20px] left-[410px] text-[18px] cursor-pointer"
                 onClick={() => setConfirmType("password")}
               ></i>
             ) : (
               <i
-                className="fa-regular fa-eye-slash absolute top-[20px] left-[410px] text-[18px] cursor-pointer"
+                className="fa-regular fa-eye absolute top-[20px] left-[410px] text-[18px] cursor-pointer"
                 onClick={() => setConfirmType("text")}
               ></i>
             )}

@@ -110,7 +110,7 @@ const ChangePassword = () => {
           <Card className="p-14 flex flex-col items-center gap-10 ">
             <div className="mb-2 relative">
               <input
-                className={`border ${
+                className={`border autofill:bg-none ${
                   formErrors.password ? "border-red-700" : "border-blue-600"
                 } w-[589px] h-[61px] p-4  outline-none`}
                 placeholder="New Password:"
@@ -121,12 +121,12 @@ const ChangePassword = () => {
               />
               {inputType === "text" ? (
                 <i
-                  className="fa-regular fa-eye absolute top-[20px] right-[20px] text-[18px] cursor-pointer"
+                  className="fa-regular fa-eye-slash absolute top-[20px] right-[20px] text-[18px] cursor-pointer"
                   onClick={() => setInputType("password")}
                 ></i>
               ) : (
                 <i
-                  className="fa-regular fa-eye-slash absolute top-[20px] right-[20px] text-[18px] cursor-pointer"
+                  className="fa-regular fa-eye absolute top-[20px] right-[20px] text-[18px] cursor-pointer"
                   onClick={() => setInputType("text")}
                 ></i>
               )}
@@ -137,7 +137,7 @@ const ChangePassword = () => {
 
             <div className="mb-2 relative">
               <input
-                className={`border ${
+                className={`border autofill:bg-none ${
                   formErrors.confirmPassword
                     ? "border-red-700"
                     : "border-blue-600"
@@ -151,12 +151,12 @@ const ChangePassword = () => {
 
               {confirmType === "text" ? (
                 <i
-                  className="fa-regular fa-eye absolute top-[20px] right-[20px] text-[18px] cursor-pointer"
+                  className="fa-regular fa-eye-slash absolute top-[20px] right-[20px] text-[18px] cursor-pointer"
                   onClick={() => setConfirmType("password")}
                 ></i>
               ) : (
                 <i
-                  className="fa-regular fa-eye-slash absolute top-[20px] right-[20px] text-[18px] cursor-pointer"
+                  className="fa-regular fa-eye absolute top-[20px] right-[20px] text-[18px] cursor-pointer"
                   onClick={() => setConfirmType("text")}
                 ></i>
               )}
