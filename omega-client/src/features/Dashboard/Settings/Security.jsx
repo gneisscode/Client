@@ -173,11 +173,11 @@ const Security = () => {
       <form onSubmit={handleSubmit}>
         <div className="flex flex-col gap-[48px] mt-[43px] mb-[111px]">
          <div>
-         <div  className="relative">
-            <input
-              className={`w-[462px] h-[60px] border ${
+         <div  className={`relative w-[462px] h-[60px] p-4 bg-[#FAFCFF] rounded outline-none border ${
                 formErrors.oldPassword ? "border-red-700" : "border-[#666666]"
-              } p-4 bg-[#FAFCFF] rounded outline-none`}
+              }`}>
+            <input
+              className={` `}
               placeholder="Old Password"
               name="oldPassword"
               value={formData.oldPassword}
@@ -190,23 +190,22 @@ const Security = () => {
               </p>
             )}
               <div
-            className="absolute top-[50%] right-[13px] [transform-y-1/2] cursor-pointer"
+            className="absolute top-[35%] right-[13px] [transform-y-1/2] cursor-pointer"
             onClick={() => togglePasswordVisibility("oldPassword")}
           >
             {showOldPassword ? (
-              <FaEyeSlash size={20} /> // Show the 'eye-slash' icon to hide the password
+              <FaEyeSlash size={20} /> 
             ) : (
-              <FaEye size={20} /> // Show the 'eye' icon to show the password
+              <FaEye size={20} /> 
             )}
           </div>
           </div>
          </div>
-          <div className="relative">
+         <div  className={`relative w-[462px] h-[60px] p-4 bg-[#FAFCFF] rounded outline-none border ${
+                formErrors.oldPassword ? "border-red-700" : "border-[#666666]"
+              }`}>
             {" "}
             <input
-              className={`w-[462px] h-[60px] border ${
-                formErrors.newPassword ? "border-red-700" : "border-[#666666]"
-              } p-4 bg-[#FAFCFF] rounded outline-none`}
               placeholder="New Password"
               name="newPassword"
               value={formData.newPassword}
@@ -219,23 +218,20 @@ const Security = () => {
               </p>
             )}
              <div
-            className="absolute top-[13px] right-[13px] cursor-pointer"
+            className="absolute top-[35%] right-[13px] cursor-pointer"
             onClick={() => togglePasswordVisibility("newPassword")}
           >
             {showNewPassword ? (
-              <FaEyeSlash size={20} /> // Show the 'eye-slash' icon to hide the password
+              <FaEyeSlash size={20} /> 
             ) : (
-              <FaEye size={20} /> // Show the 'eye' icon to show the password
+              <FaEye size={20} /> 
             )}
           </div>
           </div>
-          <div className="relative">
+          <div  className={`relative w-[462px] h-[60px] p-4 bg-[#FAFCFF] rounded outline-none border ${
+                formErrors.oldPassword ? "border-red-700" : "border-[#666666]"
+              }`}>
             <input
-              className={`w-[462px] h-[60px] border ${
-                formErrors.confirmNewPassword
-                  ? "border-red-700"
-                  : "border-[#666666] "
-              } p-4 bg-[#FAFCFF] rounded outline-none`}
               placeholder="Confirm New Password"
               name="confirmNewPassword"
               value={formData.confirmNewPassword}
@@ -248,13 +244,13 @@ const Security = () => {
               </p>
             )}
              <div
-            className="absolute top-[13px] right-[13px] cursor-pointer"
+            className="absolute top-[35%] right-[13px] cursor-pointer"
             onClick={() => togglePasswordVisibility("confirmNewPassword")}
           >
             {showConfirmPassword ? (
-              <FaEyeSlash size={20} /> // Show the 'eye-slash' icon to hide the password
+              <FaEyeSlash size={20} /> 
             ) : (
-              <FaEye size={20} /> // Show the 'eye' icon to show the password
+              <FaEye size={20} /> 
             )}
           </div>
           </div>
