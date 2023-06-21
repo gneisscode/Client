@@ -7,15 +7,11 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Context } from "../../../context/Context";
+import { useGoogleLogin } from "@react-oauth/google";
 const Login = () => {
   const [inputType, setInputType] = useState("password");
   const { dispatch, isFetching } = useContext(Context);
   const [isLoading, setIsLoading] = useState(false);
-  const redirectUri = encodeURIComponent(
-    "https://omega-prediction-app.netlify.app/dashboard"
-  );
-  const clientId =
-    "971442954116-mo6drlr37kt7c5tadolni39jiki7eire.apps.googleusercontent.com";
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -84,11 +80,12 @@ const Login = () => {
         console.log(response.data.data);
         const data = response.data.data;
         const token = data.access_token;
+        const expirationTime = Date.now() + 24 * 60 * 60 * 1000;
         localStorage.setItem("token", token);
+        localStorage.setItem("tokenExpiration", expirationTime);
         dispatch({ type: "LOGIN_SUCCESS", payload: data });
         showToastSuccess();
         setIsLoading(false);
-        // window.location.replace('/dashboard')
       } catch (error) {
         console.log(error);
         if (
@@ -109,6 +106,20 @@ const Login = () => {
       }
     }
   };
+
+  const googleLogin = useGoogleLogin({
+    onSuccess: async (tokenResponse) => {
+      try {
+        const formData = {
+          token: tokenResponse.access_token,
+        };
+        const response = await axios.get("/admins/auth-token", formData);
+      } catch (error) {
+        console.log(error);
+      }
+      console.log(tokenResponse);
+    },
+  });
 
   return (
     <AuthLayout>
@@ -162,14 +173,14 @@ const Login = () => {
                 <img
                   src="/assets/auth/eye-hidden.png"
                   alt="Hide eye icon"
-                  className="absolute top-[12px] right-[12px]"
+                  className="absolute top-[12px] right-[12px] cursor-pointer"
                   onClick={() => setInputType("password")}
                 />
               ) : (
                 <img
                   src="/assets/auth/eye-shown.png"
                   alt="Show eye icon"
-                  className="absolute top-[12px] right-[12px]"
+                  className="absolute top-[12px] right-[12px] cursor-pointer"
                   onClick={() => setInputType("text")}
                 />
               )}
@@ -210,14 +221,23 @@ const Login = () => {
             <hr className="border-[#013E99]" />
           </div>
 
-          <div className="grid grid-cols-3 mt-7 items-center justify-items-center mb-8">
-            <img src="/assets/auth/email.svg" alt="" />
-            <Link
-              to={`https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientId}&response_type=code&scope=email%20profile&redirect_uri=${redirectUri}`}
-            >
-              <img src="/assets/auth/google.svg" alt="" />
-            </Link>
-            <img src="/assets/auth/apple-icon.svg" alt="" />
+          <div className="grid grid-cols-1 mt-7 items-center justify-items-center mb-8">
+            {/* <img
+              src="/assets/auth/email.svg"
+              alt=""
+              className="cursor-pointer"
+            /> */}
+            <img
+              src="/assets/auth/google.svg"
+              alt=""
+              className="cursor-pointer w-[50px] h-[50px] self-"
+              onClick={googleLogin}
+            />
+            {/* <img
+              src="/assets/auth/apple-icon.svg"
+              alt=""
+              className="cursor-pointer"
+            /> */}
           </div>
         </div>
       </section>

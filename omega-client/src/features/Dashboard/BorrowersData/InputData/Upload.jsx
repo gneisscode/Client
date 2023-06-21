@@ -4,6 +4,7 @@ import Button from "../../../../components/Button";
 import { PDFDocument } from "pdf-lib";
 import { Context } from "../../../../context/Context";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import DashHeader from "../../../../components/Dashboard/DashHeader";
 import Sidebar from "../../../../components/Dashboard/Sidebar";
 import { ToastContainer, toast } from "react-toastify";
@@ -186,14 +187,24 @@ const Upload = () => {
         <div className="flex justify-center  absolute top-[112px] left-[300px] my-[40px] ml-[52px] w-[920px]">
           <div className="bg-white w-[100%]">
             <div className="flex flex-col">
-              {/* Personal and contact Information */}
+              <div className="flex gap-4 mb-8">
+                <Link to="/borrower-data">
+                  <div className="text-[20px] font-[400] text-[#808080]">
+                   Input borrower's data
+                  </div>
+                </Link>
+                <i className="fa-solid fa-chevron-right mt-2"></i>
+                <div className="text-[20px] font-[400] text-[#0267FF]">
+                 Upload file
+                </div>
+              </div>
               <div className=" text-[24px] text-[#4D4D4D] font-[500] mb-4">
                 <h3 className="text-[#0267FF] text-[24px] font-[600] mb-3">
-                  Upload Borrower's Data
+                  Upload Borrower's Data Form
                 </h3>
                 <div className=" flex text-[16px] mt-6 gap-1">
                   <div>Download unfilled borrower's data form</div>
-                  <button onClick={handleDownload} className="text-blue-500">
+                  <button onClick={handleDownload} className="text-green-500">
                     here
                   </button>
                 </div>
@@ -269,7 +280,7 @@ const Upload = () => {
                     className="bg-white border-[#0252CC] w-96"
                     value={formFields.address}
                     disabled={true}
-                    placeholder="address"
+                    placeholder="Address"
                   />
                   <TextField
                     className="bg-white border-[#0252CC] w-96"

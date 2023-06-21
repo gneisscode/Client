@@ -288,7 +288,7 @@ const PersonalInfo = () => {
       />
       <TextField
         className="bg-white border-[#0252CC]"
-        placeholder="Income per month"
+        placeholder="Income per Month"
         value={value.personalInfo.income}
         onChange={(e) =>
           setValue({

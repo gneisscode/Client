@@ -24,7 +24,7 @@ const Settings = () => {
               onClick={() => handlePage(<Profile />)}
               className={`cursor-pointer text-[24px] font-[400] ${
                 currentPage.type === Profile
-                  ? "border-b-2 border-[#666666] text-[#4D4D4D] "
+                  ? "border-b-4 border-[#666666] text-[#4D4D4D] "
                   : " text-[#808080]"
               }`}
             >
@@ -44,7 +44,7 @@ const Settings = () => {
               onClick={() => handlePage(<Security />)}
               className={`cursor-pointer text-[24px] font-[400] ${
                 currentPage.type === Security
-                  ? "border-b-2 border-[#666666] text-[#4D4D4D] "
+                  ? "border-b-4 border-[#666666] text-[#4D4D4D] "
                   : " text-[#808080]"
               }`}
             >
