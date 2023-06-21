@@ -15,6 +15,8 @@ const Upload = () => {
   const [pdfFile, setPdfFile] = useState({});
   const [eligibility, setEligibility] = useState("");
   const [loading, setLoading] = useState(false);
+  const [serverError, setServerError] = useState("");
+
   const [formFields, setFormFields] = useState({
     name: "",
     email: "",
@@ -137,10 +139,10 @@ const Upload = () => {
 
   function handleDownload() {
     const downloadUrl =
-      "https://github.com/gneisscode/Client/blob/9f19e96a6a90a61a2b012fa814214659a4f8f699/borrower-data-form.pdf?raw=true"; 
+      "https://github.com/gneisscode/Client/blob/9f19e96a6a90a61a2b012fa814214659a4f8f699/borrower-data-form.pdf?raw=true";
     const link = document.createElement("a");
     link.href = downloadUrl;
-    link.setAttribute("download", "borrower-data-form.pdf"); 
+    link.setAttribute("download", "borrower-data-form.pdf");
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -172,6 +174,16 @@ const Upload = () => {
       }
       setLoading(false);
     } catch (error) {
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
+        const errorMessage = error.response.data.message;
+        setServerError(errorMessage);
+      } else {
+        setServerError("Network error: Please check your internet connection");
+      }
       console.log(error);
       setLoading(false);
       showToastError();
@@ -190,12 +202,12 @@ const Upload = () => {
               <div className="flex gap-4 mb-8">
                 <Link to="/borrower-data">
                   <div className="text-[20px] font-[400] text-[#808080]">
-                   Input borrower's data
+                    Input borrower's data
                   </div>
                 </Link>
                 <i className="fa-solid fa-chevron-right mt-2"></i>
                 <div className="text-[20px] font-[400] text-[#0267FF]">
-                 Upload file
+                  Upload file
                 </div>
               </div>
               <div className=" text-[24px] text-[#4D4D4D] font-[500] mb-4">
@@ -226,6 +238,8 @@ const Upload = () => {
                   )}
                 </div>
               </div>
+
+              {serverError && <p className="text-red-500">Error: {serverError}</p>}
 
               <div className="flex flex-col border-b space-y-5  pb-16">
                 <p className="text-[24px] font-[500] text-[#4D4D4D] my-12">
