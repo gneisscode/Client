@@ -17,6 +17,8 @@ const Sidebar = () => {
   const handleLogout = () => {
     dispatch({ type: "LOGOUT" });
     localStorage.removeItem("visitedDashboard");
+    localStorage.removeItem("token")
+    localStorage.removeItem("tokenExpiration");
   };
 
   return (
