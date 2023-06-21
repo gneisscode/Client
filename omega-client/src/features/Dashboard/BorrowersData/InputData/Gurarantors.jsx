@@ -25,6 +25,8 @@ const Gurarantors = () => {
     { id: 5, label: "Spouse", value: "Spouse" },
   ];
 
+
+
   const handleEmailChange = (event) => {
     const email = event.target.value;
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -38,6 +40,23 @@ const Gurarantors = () => {
       setValidationErrors((prevErrors) => ({
         ...prevErrors,
         email: "",
+      }));
+    }
+  };
+
+   const handleNameChange = (event) => {
+    const fullName = event.target.value;
+    const namePattern = /^[A-Za-z]+ [A-Za-z]+$/;
+
+    if (!namePattern.test(fullName)) {
+      setValidationErrors((prevErrors) => ({
+        ...prevErrors,
+        fullName: "Full name is required",
+      }));
+    } else {
+      setValidationErrors((prevErrors) => ({
+        ...prevErrors,
+       fullName: "",
       }));
     }
   };
@@ -82,15 +101,18 @@ const Gurarantors = () => {
         className="bg-white border-[#0252CC] "
         placeholder="Name"
         value={value.guarantorInfo.fullName}
-        onChange={(e) =>
+        onChange={(e) => {
           setValue({
             ...value,
             guarantorInfo: {
               ...value.guarantorInfo,
               fullName: e.target.value,
             },
-          })
-        }
+          });
+          handleNameChange(e);
+        }}
+        error={validationErrors?.fullName}
+        message={validationErrors?.fullName}
       />
       <TextField
         className="bg-white border-[#0252CC]"

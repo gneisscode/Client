@@ -13,6 +13,7 @@ const PreviewForm = ({ handleModal, handleModalTwo }) => {
   const [validationErrors, setValidationErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [eligibility, setEligibility] = useState("");
+  const [serverError, setServerError] = useState("");
 
   const showToastError = () => {
     toast.error("Something went wrong!", {
@@ -62,7 +63,10 @@ const PreviewForm = ({ handleModal, handleModalTwo }) => {
     const validateForm = () => {
       const errors = {};
 
-      if (!formData.fullname) {
+      if (
+        !formData.fullname ||
+        !/^[A-Za-z]+ [A-Za-z]+$/.test(formData.fullname)
+      ) {
         errors.fullname = "Full Name is required";
       }
       if (
@@ -152,7 +156,7 @@ const PreviewForm = ({ handleModal, handleModalTwo }) => {
       }
 
       const guarantorInfo = formData.guarantor;
-      if (!guarantorInfo.fullname) {
+      if (!guarantorInfo.fullname || !/^[A-Za-z]+ [A-Za-z]+$/.test(guarantorInfo.fullname)){
         errors.guarantorFullName = "Full Name is required";
       }
 
@@ -232,6 +236,16 @@ const PreviewForm = ({ handleModal, handleModalTwo }) => {
       }
       setLoading(false);
     } catch (error) {
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
+        const errorMessage = error.response.data.message;
+        setServerError(errorMessage);
+      } else {
+        setServerError("Network error: Please check your internet connection");
+      }
       console.log(error);
       setLoading(false);
       showToastError();
@@ -261,6 +275,11 @@ const PreviewForm = ({ handleModal, handleModalTwo }) => {
                 Please fill out all fields correctly
               </p>
             )}
+
+            {serverError && (
+              <p className="text-red-500 mt-4 text-[16px]">Error: {serverError}</p>
+            )}
+
             <p className="text-[24px] font-[500] text-[#4D4D4D] mt-8">
               Personal and contact Information
             </p>
