@@ -81,12 +81,12 @@ const DashHeader = () => {
           // onKeyDown={handleKeyDown}
         />
         {searchResults.length > 0 && (
-          <div className="flex flex-col relative top-0 lg:w-[520px] h-fit bg-[#FAFCFF]  gap-[10px] justify-center border-b border-r border-l border-[#E5E5E5] rounded-[8px]">
+          <div className="flex flex-col relative top-0 lg:w-[520px] h-fit bg-[#FAFCFF]  gap-[10px] justify-center border-r border-l border-[#E5E5E5] rounded-[8px]">
             {searchResults.map((loan) => (
               <Link to={`/borrower-profile/${loan._id}`}>
                 <div
                   key={loan._id}
-                  className="border-b border-[#E5E5E5] p-2 hover:text-blue-500"
+                  className="border-b border-[#E5E5E5] p-2 hover:text-blue-500 rounded"
                 >
                   {loan.fullname}
                 </div>

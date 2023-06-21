@@ -11,7 +11,9 @@ import axios from "axios";
 const ChangePassword = () => {
   const location = useLocation();
   const id = location.pathname.split("/")[2];
-   const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [inputType, setInputType] = useState("password");
+  const [confirmType, setConfirmType] = useState("password");
 
   const [formData, setFormData] = useState({
     secret_key: 12345,
@@ -24,11 +26,11 @@ const ChangePassword = () => {
     confirmPassword: "",
   });
   const [serverError, setServerError] = useState("");
-    const showToastError = () => {
-      toast.error("Something went wrong!", {
-        position: toast.POSITION.TOP_RIGHT,
-      });
-    };
+  const showToastError = () => {
+    toast.error("Something went wrong!", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -68,17 +70,17 @@ const ChangePassword = () => {
     if (Object.keys(errors).length > 0) {
       setFormErrors(errors);
       setLoading(false);
-      showToastError()
+      showToastError();
     } else {
       try {
         const response = await axios.put(`/password-reset/${id}`, formData);
         console.log(response.data);
         window.location.replace("/success");
-        setLoading(false)
+        setLoading(false);
       } catch (error) {
         console.log(error);
-        setLoading(false)
-        showToastError()
+        setLoading(false);
+        showToastError();
         if (
           error.response &&
           error.response.data &&
@@ -106,38 +108,64 @@ const ChangePassword = () => {
         )}
         <form onSubmit={handleSubmit}>
           <Card className="p-14 flex flex-col items-center gap-10 ">
-            <input
-              className={`border ${
-                formErrors.password ? "border-red-700" : "border-blue-600"
-              } w-[589px] h-[61px] p-6  outline-none`}
-              placeholder="New Password:"
-              name="password"
-              value={formData.password}
-              onChange={handleInputChange}
-              type="password"
-            />
-            {formErrors.password && (
-              <p className="text-red-500  pl-16 self-start">
-                {formErrors.password}
-              </p>
-            )}
-            <input
-              className={`border ${
-                formErrors.confirmPassword
-                  ? "border-red-700"
-                  : "border-blue-600"
-              } w-[589px] h-[61px] p-6 mb-2 outline-none`}
-              placeholder="Confirm New Password:"
-              name="confirmPassword"
-              value={formData.confirmPassword}
-              onChange={handleInputChange}
-              type="password"
-            />
-            {formErrors.confirmPassword && (
-              <p className="text-red-500 pl-16 self-start">
-                {formErrors.confirmPassword}
-              </p>
-            )}
+            <div className="mb-2 relative">
+              <input
+                className={`border autofill:bg-none ${
+                  formErrors.password ? "border-red-700" : "border-blue-600"
+                } w-[589px] h-[61px] p-4  outline-none`}
+                placeholder="New Password:"
+                name="password"
+                value={formData.password}
+                onChange={handleInputChange}
+                type={inputType}
+              />
+              {inputType === "text" ? (
+                <i
+                  className="fa-regular fa-eye-slash absolute top-[20px] right-[20px] text-[18px] cursor-pointer"
+                  onClick={() => setInputType("password")}
+                ></i>
+              ) : (
+                <i
+                  className="fa-regular fa-eye absolute top-[20px] right-[20px] text-[18px] cursor-pointer"
+                  onClick={() => setInputType("text")}
+                ></i>
+              )}
+              {formErrors.password && (
+                <p className="text-red-500 self-start">{formErrors.password}</p>
+              )}
+            </div>
+
+            <div className="mb-2 relative">
+              <input
+                className={`border autofill:bg-none ${
+                  formErrors.confirmPassword
+                    ? "border-red-700"
+                    : "border-blue-600"
+                } w-[589px] h-[61px] p-4 mb-2 outline-none`}
+                placeholder="Confirm New Password:"
+                name="confirmPassword"
+                value={formData.confirmPassword}
+                onChange={handleInputChange}
+                type={confirmType}
+              />
+
+              {confirmType === "text" ? (
+                <i
+                  className="fa-regular fa-eye-slash absolute top-[20px] right-[20px] text-[18px] cursor-pointer"
+                  onClick={() => setConfirmType("password")}
+                ></i>
+              ) : (
+                <i
+                  className="fa-regular fa-eye absolute top-[20px] right-[20px] text-[18px] cursor-pointer"
+                  onClick={() => setConfirmType("text")}
+                ></i>
+              )}
+              {formErrors.confirmPassword && (
+                <p className="text-red-500 self-start">
+                  {formErrors.confirmPassword}
+                </p>
+              )}
+            </div>
 
             <PasswordBtn text="Change Password" loading={loading} />
           </Card>

@@ -217,21 +217,7 @@ const Gurarantors = () => {
       />
       <TextField
         className="bg-white border-[#0252CC]"
-        placeholder="Other sources of Income"
-        value={value.guarantorInfo.incomeSource}
-        onChange={(e) =>
-          setValue({
-            ...value,
-            guarantorInfo: {
-              ...value.guarantorInfo,
-              incomeSource: e.target.value,
-            },
-          })
-        }
-      />
-      <TextField
-        className="bg-white border-[#0252CC]"
-        placeholder=" Income per month"
+        placeholder=" Income per Month"
         value={value.guarantorInfo.incomePerMonth}
         onChange={(e) =>
           setValue({
@@ -249,6 +235,20 @@ const Gurarantors = () => {
           }
         }}
         title="Please enter numbers only"
+      />
+      <TextField
+        className="bg-white border-[#0252CC]"
+        placeholder="Other Sources of Income"
+        value={value.guarantorInfo.incomeSource}
+        onChange={(e) =>
+          setValue({
+            ...value,
+            guarantorInfo: {
+              ...value.guarantorInfo,
+              incomeSource: e.target.value,
+            },
+          })
+        }
       />
     </div>
   );

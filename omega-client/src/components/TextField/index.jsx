@@ -48,7 +48,7 @@ const TextField = ({
             className={[
               inputClass,
               error ? "bg-[#fd3d3d0f]" : "bg-transparent",
-              "outline-none text-neutral-copy-black px-4 py-4 h-12 w-full focus:bg-[#F9F9FB]/25 focus:border-primary transition-all duration-200 ease-in-out",
+              "outline-none text-neutral-copy-black px-4 py-4 h-12 w-full focus:bg-[#F9F9FB]/25 focus:border-primary transition-all duration-200 ease-in-out autofill:bg-none ",
             ].join(" ")}
             placeholder={placeholder || "Enter a value"}
             value={value}

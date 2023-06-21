@@ -5,7 +5,7 @@ import TextField from '../../../components/TextField'
 import Modal from '../../../components/Modal/modal'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-// import { useEffect } from "react";
+import { useGoogleLogin } from "@react-oauth/google";
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -127,6 +127,12 @@ const SignUp = () => {
     }
   }
 
+    const googleLogin = useGoogleLogin({
+      onSuccess: async (tokenResponse) => {
+        console.log(tokenResponse);
+      },
+    });
+
   return (
     <AuthLayout>
       <ToastContainer />
@@ -224,14 +230,14 @@ const SignUp = () => {
                 <img
                   src="/assets/auth/eye-hidden.png"
                   alt="Hide eye icon"
-                  className="absolute top-[12px] right-[12px]"
+                  className="absolute top-[12px] right-[12px] cursor-pointer"
                   onClick={() => setInputTypeOne("password")}
                 />
               ) : (
                 <img
                   src="/assets/auth/eye-shown.png"
                   alt="Show eye icon"
-                  className="absolute top-[12px] right-[12px]"
+                  className="absolute top-[12px] right-[12px] cursor-pointer"
                   onClick={() => setInputTypeOne("text")}
                 />
               )}
@@ -254,14 +260,14 @@ const SignUp = () => {
                 <img
                   src="/assets/auth/eye-hidden.png"
                   alt="Hide eye icon"
-                  className="absolute top-[12px] right-[12px]"
+                  className="absolute top-[12px] right-[12px] cursor-pointer"
                   onClick={() => setInputTypeTwo("password")}
                 />
               ) : (
                 <img
                   src="/assets/auth/eye-shown.png"
                   alt="Show eye icon"
-                  className="absolute top-[12px] right-[12px]"
+                  className="absolute top-[12px] right-[12px] cursor-pointer"
                   onClick={() => setInputTypeTwo("text")}
                 />
               )}
@@ -303,10 +309,23 @@ const SignUp = () => {
             <hr className="border-[#013E99]" />
           </div>
 
-          <div className="grid grid-cols-3 mt-7 items-center justify-items-center">
-            <img src="/assets/auth/email.svg" alt="" />
-            <img src="/assets/auth/google.svg" alt="" />
-            <img src="/assets/auth/apple-icon.svg" alt="" />
+          <div className="grid grid-cols-1 mt-7 items-center justify-items-center mb-8">
+            {/* <img
+              src="/assets/auth/email.svg"
+              alt=""
+              className="cursor-pointer"
+            /> */}
+            <img
+              src="/assets/auth/google.svg"
+              alt=""
+              className="cursor-pointer w-[50px] h-[50px] self-"
+              onClick={googleLogin}
+            />
+            {/* <img
+              src="/assets/auth/apple-icon.svg"
+              alt=""
+              className="cursor-pointer"
+            /> */}
           </div>
         </div>
       </section>

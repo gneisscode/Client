@@ -9,7 +9,6 @@ import VerificationCodePage from './pages/VerificationCodePage'
 import Error404 from './pages/Error404'
 import ChangeSuccess from './features/Auth/ChangePassword/ChangeSuccess'
 import './App.css'
-import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import ContactUs from './pages/ContactUs'
 import About from './pages/About'
@@ -39,14 +38,45 @@ import Ineligibility from './features/Dashboard/BorrowersData/Eligibility/Inelig
 
 function App() {
   axios.defaults.baseURL = `https://nodebt-application.onrender.com/api`
-  const { user } = useContext(Context)
+  const { dispatch, isFetching } = useContext(Context);
   const location = useLocation()
+  const handleLogout = () => {
+    dispatch({ type: "LOGOUT" });
+    localStorage.removeItem("visitedDashboard");
+    localStorage.removeItem("token");
+    localStorage.removeItem("tokenExpiration");
+  };
 
   useEffect(() => {
     if (location.pathname !== '/services') {
       window.scrollTo(0, 0)
     }
   }, [location.pathname])
+
+    useEffect(() => {
+      const checkTokenExpiration = () => {
+        const token = localStorage.getItem("token");
+        const tokenExpiration = localStorage.getItem("tokenExpiration");
+
+        if (!token || !tokenExpiration) {
+          handleLogout();
+          return;
+        }
+
+        const currentTime = Date.now();
+        const expirationTime = parseInt(tokenExpiration, 10);
+
+        if (currentTime > expirationTime) {
+          handleLogout()
+        } 
+      };
+
+      const expirationTimer = setInterval(checkTokenExpiration, 1000); // Adjust the interval as needed
+
+      return () => {
+        clearInterval(expirationTimer);
+      };
+    }, []);
 
   const privateRoutes = [
     {
