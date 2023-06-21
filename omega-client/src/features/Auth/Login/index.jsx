@@ -80,7 +80,7 @@ const Login = () => {
         console.log(response.data.data);
         const data = response.data.data;
         const token = data.access_token;
-        const expirationTime = Date.now() + 24 * 60 * 60 * 1000; 
+        const expirationTime = Date.now() + 24 * 60 * 60 * 1000;
         localStorage.setItem("token", token);
         localStorage.setItem("tokenExpiration", expirationTime);
         dispatch({ type: "LOGIN_SUCCESS", payload: data });
@@ -109,8 +109,16 @@ const Login = () => {
 
   const googleLogin = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
+      try {
+        const formData = {
+          token: tokenResponse.access_token,
+        };
+        const response = await axios.get("/admins/auth-token", formData);
+      } catch (error) {
+        console.log(error);
+      }
       console.log(tokenResponse);
-    }
+    },
   });
 
   return (
@@ -213,23 +221,23 @@ const Login = () => {
             <hr className="border-[#013E99]" />
           </div>
 
-          <div className="grid grid-cols-3 mt-7 items-center justify-items-center mb-8">
-            <img
+          <div className="grid grid-cols-1 mt-7 items-center justify-items-center mb-8">
+            {/* <img
               src="/assets/auth/email.svg"
               alt=""
               className="cursor-pointer"
-            />
+            /> */}
             <img
               src="/assets/auth/google.svg"
               alt=""
-              className="cursor-pointer"
+              className="cursor-pointer w-[50px] h-[50px] self-"
               onClick={googleLogin}
             />
-            <img
+            {/* <img
               src="/assets/auth/apple-icon.svg"
               alt=""
               className="cursor-pointer"
-            />
+            /> */}
           </div>
         </div>
       </section>

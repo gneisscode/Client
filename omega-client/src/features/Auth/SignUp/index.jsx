@@ -309,23 +309,23 @@ const SignUp = () => {
             <hr className="border-[#013E99]" />
           </div>
 
-          <div className="grid grid-cols-3 mt-7 items-center justify-items-center">
-            <img
+          <div className="grid grid-cols-1 mt-7 items-center justify-items-center mb-8">
+            {/* <img
               src="/assets/auth/email.svg"
               alt=""
               className="cursor-pointer"
-            />
+            /> */}
             <img
               src="/assets/auth/google.svg"
               alt=""
-              className="cursor-pointer"
+              className="cursor-pointer w-[50px] h-[50px] self-"
               onClick={googleLogin}
             />
-            <img
+            {/* <img
               src="/assets/auth/apple-icon.svg"
               alt=""
               className="cursor-pointer"
-            />
+            /> */}
           </div>
         </div>
       </section>
