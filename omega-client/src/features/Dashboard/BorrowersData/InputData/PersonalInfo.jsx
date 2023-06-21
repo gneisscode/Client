@@ -83,6 +83,23 @@ const PersonalInfo = () => {
     }
   };
 
+    const handleNameChange = (event) => {
+      const fullName = event.target.value;
+      const namePattern = /^[A-Za-z]+ [A-Za-z]+$/;
+
+      if (!namePattern.test(fullName)) {
+        setValidationErrors((prevErrors) => ({
+          ...prevErrors,
+          fullName: "Full name is required",
+        }));
+      } else {
+        setValidationErrors((prevErrors) => ({
+          ...prevErrors,
+          fullName: "",
+        }));
+      }
+    };
+
   const handleNumber = (event) => {
     const enteredNumber = event.target.value;
     const maxLength = 11;
@@ -125,12 +142,15 @@ const PersonalInfo = () => {
           className="bg-white border-[#0252CC] "
           placeholder="Full Name"
           value={value.personalInfo.fullName}
-          onChange={(e) =>
+          onChange={(e) => {
             setValue({
               ...value,
               personalInfo: { ...value.personalInfo, fullName: e.target.value },
-            })
-          }
+            });
+            handleNameChange(e);
+          }}
+          error={validationErrors?.fullName}
+          message={validationErrors?.fullName}
         />
       </div>
       <div>

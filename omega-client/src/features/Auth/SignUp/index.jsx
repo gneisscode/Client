@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import AuthLayout from '../../../components/AuthLayout'
 import Button from '../../../components/Button'
 import TextField from '../../../components/TextField'
@@ -6,10 +6,12 @@ import Modal from '../../../components/Modal/modal'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { useGoogleLogin } from "@react-oauth/google";
+import { Context } from "../../../context/Context";
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 const SignUp = () => {
+  const { dispatch, isFetching } = useContext(Context);
   const [inputTypeOne, setInputTypeOne] = useState('password')
   const [inputTypeTwo, setInputTypeTwo] = useState('password')
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -129,6 +131,32 @@ const SignUp = () => {
 
     const googleLogin = useGoogleLogin({
       onSuccess: async (tokenResponse) => {
+        const userInfo = await axios
+          .get("https://www.googleapis.com/oauth2/v3/userinfo", {
+            headers: { Authorization: `Bearer ${tokenResponse.access_token}` },
+          })
+          .then((res) => res.data);
+
+        console.log(userInfo);
+
+        try {
+          const formData = {
+            provider: "google",
+            googleId: userInfo.sub,
+            access_token: tokenResponse.access_token,
+            email: userInfo.email,
+            firstName: userInfo.given_name,
+            lastName: userInfo.family_name,
+            imageUrl: userInfo.picture,
+            organisationName: "Emandsons"
+          };
+          const response = await axios.post("/admins/auth-token", formData);
+          const data = response.data.data.admin;
+          console.log(data)
+          dispatch({ type: "LOGIN_SUCCESS", payload: data });
+        } catch (error) {
+          console.log(error);
+        }
         console.log(tokenResponse);
       },
     });
@@ -305,27 +333,16 @@ const SignUp = () => {
 
           <div className="grid grid-cols-3 mt-7 items-center">
             <hr className="border-[#013E99]" />
-            <p className="text-center text-[#e5e5e5df]">Or continue with</p>
+            <p className="text-center text-[#e5e5e5df]">Or</p>
             <hr className="border-[#013E99]" />
           </div>
 
-          <div className="grid grid-cols-1 mt-7 items-center justify-items-center mb-8">
-            {/* <img
-              src="/assets/auth/email.svg"
-              alt=""
-              className="cursor-pointer"
-            /> */}
-            <img
-              src="/assets/auth/google.svg"
-              alt=""
-              className="cursor-pointer w-[50px] h-[50px] self-"
-              onClick={googleLogin}
-            />
-            {/* <img
-              src="/assets/auth/apple-icon.svg"
-              alt=""
-              className="cursor-pointer"
-            /> */}
+          <div
+            className="flex justify-center items-center gap-4  mt-7 text-[#012966] p-3 rounded bg-white hover:bg-blue-600 hover:text-white cursor-pointer transition-all duration-500 ease-linear"
+            onClick={googleLogin}
+          >
+            <div>Continue with Google</div>
+            <img src="/assets/auth/google.svg" alt="" />
           </div>
         </div>
       </section>
