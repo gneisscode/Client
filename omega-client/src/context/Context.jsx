@@ -20,7 +20,7 @@ export const ContextProvider = ({ children }) => {
     const getUserPhotoURL = async () => {
       try {
         const response = await axios.get(
-          `/admins/${state.user.adminId}/profile-picture`,
+          `/admins/${state.user?.adminId}/profile-picture`,
           {
             headers: {
               'Content-Type': 'application/x-www-form-urlencoded',

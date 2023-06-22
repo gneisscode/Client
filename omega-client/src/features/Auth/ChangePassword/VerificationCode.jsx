@@ -13,6 +13,7 @@ const VerificationCode = () => {
   const location = useLocation();
   const id = location.pathname.split("/")[2];
   const [loading, setLoading] = useState(false);
+  const [resend, setResend] = useState(false)
   const [serverError, setServerError] = useState("");
   const [otp, setOtp] = useState(["", "", "", "", ""]);
   const [formData, setFormData] = useState({
@@ -24,6 +25,12 @@ const VerificationCode = () => {
       position: toast.POSITION.TOP_RIGHT,
     });
   };
+
+    const showToastSuccess = () => {
+      toast.success("Verification code resent!", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    };
 
   const handleChange = (e, index) => {
     const newOtp = [...otp];
@@ -38,6 +45,22 @@ const VerificationCode = () => {
       nextInput.focus();
     }
   };
+
+  const handleResend = async (event) => {
+    setResend(true)
+    try {
+      const response = await axios.post(`/password-reset/reset/${id}`);
+      console.log(response.data)
+      showToastSuccess()
+      setResend(false)
+
+      
+    } catch (error) {
+      console.log(error)
+      showToastError()
+      setResend(false)
+    }
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -93,12 +116,12 @@ const VerificationCode = () => {
                 />
               ))}
             </div>
-            <p className="p-6 mb-10">
+            <div className="flex gap-1 p-6 mb-10">
               Didn't get the code?{" "}
-              <a href="#" className="text-blue-600">
+              <button className="text-blue-600 cursor-pointer" onClick={handleResend} disabled={resend} >
                 Resend
-              </a>
-            </p>
+              </button>
+            </div>
             <PasswordBtn text="Verify" loading={loading} />
           </Card>
         </form>
