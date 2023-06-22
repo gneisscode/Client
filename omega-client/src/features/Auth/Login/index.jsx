@@ -155,7 +155,7 @@ const Login = () => {
           </p>
           <p className="my-5 mb-10 text-center text-[#e5e5e5df] text-base font-normal">
             Don't have an account?
-            <span className="font-bold text-white ml-2">
+            <span className="font-bold text-white ml-2 hover:text-blue-300">
               <Link to="/signup">Sign up</Link>
             </span>
           </p>
@@ -207,7 +207,7 @@ const Login = () => {
             <div className="flex justify-between items-center">
               <div></div>
               <Link to="/forgot-password">
-                <div>Forgot Password</div>
+                <div className="hover:text-blue-300">Forgot Password</div>
               </Link>
             </div>
 
