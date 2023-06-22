@@ -139,7 +139,7 @@ const Upload = () => {
 
   function handleDownload() {
     const downloadUrl =
-      "https://github.com/gneisscode/Client/blob/9f19e96a6a90a61a2b012fa814214659a4f8f699/borrower-data-form.pdf?raw=true";
+      "https://drive.google.com/uc?export=download&id=1xdoX9mdIvdw_QZzMa2h2XhbwhfqNo8gO";
     const link = document.createElement("a");
     link.href = downloadUrl;
     link.setAttribute("download", "borrower-data-form.pdf");

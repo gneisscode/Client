@@ -1,165 +1,170 @@
-import React, { useState, useContext } from 'react'
-import AuthLayout from '../../../components/AuthLayout'
-import Button from '../../../components/Button'
-import TextField from '../../../components/TextField'
-import Modal from '../../../components/Modal/modal'
-import { Link } from 'react-router-dom'
-import axios from 'axios'
+import React, { useState, useContext } from "react";
+import AuthLayout from "../../../components/AuthLayout";
+import Button from "../../../components/Button";
+import TextField from "../../../components/TextField";
+import Modal from "../../../components/Modal/modal";
+import { Link } from "react-router-dom";
+import axios from "axios";
 import { useGoogleLogin } from "@react-oauth/google";
 import { Context } from "../../../context/Context";
-import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SignUp = () => {
   const { dispatch, isFetching } = useContext(Context);
-  const [inputTypeOne, setInputTypeOne] = useState('password')
-  const [inputTypeTwo, setInputTypeTwo] = useState('password')
-  const [isModalOpen, setIsModalOpen] = useState(false)
-  const openModal = () => setIsModalOpen(true)
-  const closeModal = () => setIsModalOpen(false)
+  const [inputTypeOne, setInputTypeOne] = useState("password");
+  const [inputTypeTwo, setInputTypeTwo] = useState("password");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    organisationName: '',
-    password: '',
-    confirmPassword: '',
-    passwordLink: 'https://omega-prediction-app.netlify.app/verify',
-  })
+    firstName: "",
+    lastName: "",
+    email: "",
+    organisationName: "",
+    password: "",
+    confirmPassword: "",
+    passwordLink: "https://omega-prediction-app.netlify.app/verify",
+  });
 
   const [formErrors, setFormErrors] = useState({
-    firstName: '',
-    lastName: '',
-    organisationName: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-  })
-  const [serverError, setServerError] = useState('')
+    firstName: "",
+    lastName: "",
+    organisationName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+  const [serverError, setServerError] = useState("");
 
-  const [formSubmitted, setFormSubmitted] = useState(false)
-  const [success, setSuccess] = useState(null)
-  const [isLoading, setIsLoading] = useState(false)
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [success, setSuccess] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target
-    setFormData({ ...formData, [name]: value })
-    validateField(name, value)
-    setServerError('')
-  }
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+    validateField(name, value);
+    setServerError("");
+  };
 
   const validateField = (fieldName, value) => {
-    let errorMessage = ''
+    let errorMessage = "";
 
-    if (fieldName === 'firstName' && !value) {
-      errorMessage = 'First Name is required'
-    } else if (fieldName === 'lastName' && !value) {
-      errorMessage = 'Last Name is required'
-    } else if (fieldName === 'email' && !value) {
-      errorMessage = 'Email is required'
-    } else if (fieldName === 'email' && !/\S+@\S+\.\S+/.test(value)) {
-      errorMessage = 'Email is invalid'
-    } else if (fieldName === 'password' && !value) {
-      errorMessage = 'Password is required'
-    } else if (fieldName === 'organisationName' && !value) {
-      errorMessage = 'Organisation Name is required'
+    if (fieldName === "firstName" && !value) {
+      errorMessage = "First Name is required";
+    } else if (fieldName === "lastName" && !value) {
+      errorMessage = "Last Name is required";
+    } else if (fieldName === "email" && !value) {
+      errorMessage = "Email is required";
+    } else if (fieldName === "email" && !/\S+@\S+\.\S+/.test(value)) {
+      errorMessage = "Email is invalid";
+    } else if (fieldName === "password" && !value) {
+      errorMessage = "Password is required";
+    } else if (fieldName === "organisationName" && !value) {
+      errorMessage = "Organisation Name is required";
     } else if (
-      fieldName === 'password' &&
+      fieldName === "password" &&
       !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(
         value
       )
     ) {
       errorMessage =
-        'Password must be at least eight characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character (@$!%*?&)!'
-    } else if (fieldName === 'confirmPassword' && value !== formData.password) {
-      errorMessage = 'Passwords do not match!'
+        "Password must be at least eight characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character (@$!%*?&)!";
+    } else if (fieldName === "confirmPassword" && value !== formData.password) {
+      errorMessage = "Passwords do not match!";
     }
 
     setFormErrors((prevErrors) => ({
       ...prevErrors,
       [fieldName]: errorMessage,
-    }))
-  }
+    }));
+  };
 
   const showToastError = () => {
-    toast.error('Something went wrong!', {
+    toast.error("Something went wrong!", {
       position: toast.POSITION.TOP_RIGHT,
-    })
-  }
+    });
+  };
 
   const handleSubmit = async (event) => {
-    event.preventDefault()
-    console.log(formData)
-    const errors = {}
-    setIsLoading(true)
+    event.preventDefault();
+    console.log(formData);
+    const errors = {};
+    setIsLoading(true);
 
     Object.keys(formData).forEach((fieldName) => {
-      validateField(fieldName, formData[fieldName])
+      validateField(fieldName, formData[fieldName]);
       if (formErrors[fieldName]) {
-        errors[fieldName] = formErrors[fieldName]
+        errors[fieldName] = formErrors[fieldName];
       }
-    })
+    });
 
     if (Object.keys(errors).length > 0) {
-      setFormErrors(errors)
-      setIsLoading(false)
+      setFormErrors(errors);
+      setIsLoading(false);
     } else {
       try {
-        const response = await axios.post('/admins/signup', formData)
-        console.log(response.data.data)
-        setSuccess(true)
-        setIsLoading(false)
-        openModal()
+        const response = await axios.post("/admins/signup", formData);
+        console.log(response.data.data);
+        setSuccess(true);
+        setIsLoading(false);
+        openModal();
       } catch (error) {
-        console.log(error)
-        setSuccess(false)
+        console.log(error);
+        setSuccess(false);
         if (
           error.response &&
           error.response.data &&
           error.response.data.message
         ) {
-          const errorMessage = error.response.data.message
-          setServerError(errorMessage)
+          const errorMessage = error.response.data.message;
+          setServerError(errorMessage);
         } else {
-          setServerError('Network error: Please check your internet connection')
+          setServerError(
+            "Network error: Please check your internet connection"
+          );
         }
-        showToastError()
-        setIsLoading(false)
+        showToastError();
+        setIsLoading(false);
       }
     }
-  }
+  };
 
-    const googleLogin = useGoogleLogin({
-      onSuccess: async (tokenResponse) => {
-        const userInfo = await axios
-          .get("https://www.googleapis.com/oauth2/v3/userinfo", {
-            headers: { Authorization: `Bearer ${tokenResponse.access_token}` },
-          })
-          .then((res) => res.data);
+  const googleLogin = useGoogleLogin({
+    onSuccess: async (tokenResponse) => {
+      const userInfo = await axios
+        .get("https://www.googleapis.com/oauth2/v3/userinfo", {
+          headers: { Authorization: `Bearer ${tokenResponse.access_token}` },
+        })
+        .then((res) => res.data);
 
-        console.log(userInfo);
+      console.log(userInfo);
 
-        try {
-          const formData = {
-            provider: "google",
-            googleId: userInfo.sub,
-            access_token: tokenResponse.access_token,
-            email: userInfo.email,
-            firstName: userInfo.given_name,
-            lastName: userInfo.family_name,
-            imageUrl: userInfo.picture,
-            organisationName: "Emandsons"
-          };
-          const response = await axios.post("/admins/auth-token", formData);
-          const data = response.data.data.admin;
-          console.log(data)
-          dispatch({ type: "LOGIN_SUCCESS", payload: data });
-        } catch (error) {
-          console.log(error);
-        }
-        console.log(tokenResponse);
-      },
-    });
+      try {
+        const formData = {
+          provider: "google",
+          googleId: userInfo.sub,
+          email: userInfo.email,
+          firstName: userInfo.given_name,
+          lastName: userInfo.family_name,
+          imageUrl: userInfo.picture,
+          organisationName: "Emandsons",
+        };
+        const response = await axios.post("/admins/auth-token", formData);
+        console.log(response.data.data)
+        const data = response.data.data.admin;
+        console.log(data);
+        const token = data.access_token;
+        const expirationTime = Date.now() + 24 * 60 * 60 * 1000;
+        localStorage.setItem("token", token);
+        localStorage.setItem("tokenExpiration", expirationTime);
+        dispatch({ type: "LOGIN_SUCCESS", payload: data });
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  });
 
   return (
     <AuthLayout>
@@ -179,7 +184,7 @@ const SignUp = () => {
           </p>
           <p className="my-5 mb-10 text-center text-[#e5e5e5df] text-base font-normal">
             Already have an account?
-            <span className="font-bold text-white ml-2">
+            <span className="font-bold text-white ml-2 hover:text-blue-300">
               <Link to="/login">Log in</Link>
             </span>
           </p>
@@ -348,6 +353,6 @@ const SignUp = () => {
       </section>
     </AuthLayout>
   );
-}
+};
 
-export default SignUp
+export default SignUp;
