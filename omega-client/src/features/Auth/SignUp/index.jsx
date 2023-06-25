@@ -153,7 +153,7 @@ const SignUp = () => {
         };
         const response = await axios.post("/admins/auth-token", formData);
         console.log(response.data.data)
-        const data = response.data.data.admin;
+        const data = response.data.data;
         console.log(data);
         const token = data.access_token;
         const expirationTime = Date.now() + 24 * 60 * 60 * 1000;

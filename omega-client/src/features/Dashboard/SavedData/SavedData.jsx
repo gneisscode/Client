@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import DashHeader from "../../../components/Dashboard/DashHeader";
 import Sidebar from "../../../components/Dashboard/Sidebar";
 import Card from "../../../components/Card";
@@ -16,9 +16,9 @@ const SavedData = () => {
   const slides = [0, 1, 2, 3];
   const [activeIndex, setActiveIndex] = useState(0);
 
-   useEffect(() => {
-     window.scrollTo(0, 0);
-   }, [activeIndex]);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [activeIndex]);
 
   const steps = {
     0: {
@@ -45,13 +45,30 @@ const SavedData = () => {
       <DashHeader />
       <div className="flex relative">
         <Sidebar />
-        <section>
+        <section className="mt-[30px] mb-16">
+          <div className=" absolute top-[162px] left-[352px] flex gap-4 mb-[40px]">
+            <Link to="/dashboard">
+              <div className="text-[20px] font-[400] text-[#808080]">
+                Dashboard
+              </div>
+            </Link>
+            <i className="fa-solid fa-chevron-right mt-2"></i>
+            <Link to={`/borrower-profile/${id}`}>
+              <div className="text-[20px] font-[400]  text-[#808080]">
+                Borrower's profile
+              </div>
+            </Link>
+            <i className="fa-solid fa-chevron-right mt-2"></i>
+            <div className="text-[20px] font-[400] text-[#0267FF]">
+              Borrower's saved data
+            </div>
+          </div>
           <div>
             <div className="flex w-full mt-16">
-              <Card className="min-h-[350px] absolute mt-[180px] ml-[350px] pb-[20px]">
+              <Card className="min-h-[350px] absolute mt-[260px] ml-[350px] pb-[20px]">
                 {step.form}
                 <div className="mt-8"></div>
-                <div className=" flex items-center justify-center w-full ">
+                <div className=" flex flex-col items-center justify-center w-full ">
                   <Circle
                     slides={slides}
                     activeIndex={activeIndex}
@@ -61,7 +78,7 @@ const SavedData = () => {
               </Card>
             </div>
             <div className="grid grid-cols-2 justify-between items-center gap-10 mt-[760px] ml-[840px] pb-[95px]">
-              {activeIndex !== 0 ? (
+              {/* {activeIndex !== 0 ? (
                 <Button
                   className="bg-white text-[#0267FF] border border-[#0267FF] hover:bg-[#0267FF] hover:text-white w-4/12  transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-100"
                   label="Previous"
@@ -81,7 +98,7 @@ const SavedData = () => {
                     activeIndex === 3 ? "" : setActiveIndex((prev) => prev + 1)
                   }
                 />
-              </Link>
+              </Link> */}
             </div>
           </div>
         </section>
