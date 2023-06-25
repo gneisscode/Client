@@ -96,11 +96,11 @@ const Admin = () => {
                       style={{ borderColor: getColour() }}
                       className=" p-4 border rounded-md bg-[#f4f7fc] w-[300px] h-[170px] hover:shadow-lg cursor-default"
                     >
-                      <div className="flex flex-row gap-5">
+                      <div className="flex flex-row gap-3">
                         <img
                           src={adm.imageUrl}
                           alt="admin-img"
-                          className="w-[67px] h-[67px]"
+                          className="w-[57px] h-[57px] rounded-full"
                         />
                         <div className="text-[#333333]">
                           <h4 className="text-[20px] font-[500]">
