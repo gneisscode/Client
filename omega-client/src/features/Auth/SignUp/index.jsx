@@ -12,11 +12,17 @@ import "react-toastify/dist/ReactToastify.css";
 
 const SignUp = () => {
   const { dispatch, isFetching } = useContext(Context);
+  const [googleLoading, setgoogleLoading] = useState(false);
   const [inputTypeOne, setInputTypeOne] = useState("password");
   const [inputTypeTwo, setInputTypeTwo] = useState("password");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+  const [organisationName, setOrganisationName] = useState("");
+
+  const [isModalTwoOpen, setIsModalTwoOpen] = useState(false);
+  const openModalTwo = () => setIsModalTwoOpen(true);
+  const closeModalTwo = () => setIsModalTwoOpen(false);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -46,6 +52,11 @@ const SignUp = () => {
     setFormData({ ...formData, [name]: value });
     validateField(name, value);
     setServerError("");
+  };
+
+  const handleOrganisationChange = (e) => {
+    const organisationName = e.target.value;
+    setOrganisationName(organisationName);
   };
 
   const validateField = (fieldName, value) => {
@@ -133,6 +144,7 @@ const SignUp = () => {
 
   const googleLogin = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
+      setgoogleLoading(true);
       const userInfo = await axios
         .get("https://www.googleapis.com/oauth2/v3/userinfo", {
           headers: { Authorization: `Bearer ${tokenResponse.access_token}` },
@@ -149,19 +161,35 @@ const SignUp = () => {
           firstName: userInfo.given_name,
           lastName: userInfo.family_name,
           imageUrl: userInfo.picture,
-          organisationName: "Emandsons",
+          organisationName: organisationName,
         };
         const response = await axios.post("/admins/auth-token", formData);
-        console.log(response.data.data)
-        const data = response.data.data.admin;
+        console.log(response.data.data);
+        const data = response.data.data;
         console.log(data);
         const token = data.access_token;
         const expirationTime = Date.now() + 24 * 60 * 60 * 1000;
         localStorage.setItem("token", token);
         localStorage.setItem("tokenExpiration", expirationTime);
         dispatch({ type: "LOGIN_SUCCESS", payload: data });
+        setgoogleLoading(false);
       } catch (error) {
+        setgoogleLoading(false);
+        showToastError()
         console.log(error);
+
+        if (
+          error.response &&
+          error.response.data &&
+          error.response.data.message
+        ) {
+          const errorMessage = error.response.data.message;
+          setServerError(errorMessage);
+        } else {
+          setServerError(
+            "Network error: Please check your internet connection"
+          );
+        }
       }
     },
   });
@@ -336,6 +364,34 @@ const SignUp = () => {
             </Modal>
           </div>
 
+          <div>
+            <Modal isOpen={isModalTwoOpen} onClose={closeModalTwo}>
+              <section className="w-[500px] bg-slate-200 p-16 flex flex-col items-center justify-center">
+                <div className="mb-5">
+                  <img src="/assets/auth/modalImage.svg" alt="" />
+                </div>
+                <p className="text-black text-center mb-5">
+                  Please enter the name of your organisation
+                </p>
+                <TextField
+                  placeholder="Organisation Name:"
+                  name="organisationName"
+                  value={organisationName}
+                  onChange={handleOrganisationChange}
+                  type="text"
+                  className="border border-blue-500 mb-6"
+                />
+                <Button
+                  className="text-white bg-[#0267FF] w-64"
+                  label="Sign Up"
+                  onClick={googleLogin}
+                  disabled={!organisationName}
+                  loading={googleLoading}
+                />
+              </section>
+            </Modal>
+          </div>
+
           <div className="grid grid-cols-3 mt-7 items-center">
             <hr className="border-[#013E99]" />
             <p className="text-center text-[#e5e5e5df]">Or</p>
@@ -344,7 +400,7 @@ const SignUp = () => {
 
           <div
             className="flex justify-center items-center gap-4  mt-7 text-[#012966] p-3 rounded bg-white hover:bg-blue-600 hover:text-white cursor-pointer transition-all duration-500 ease-linear"
-            onClick={googleLogin}
+            onClick={openModalTwo}
           >
             <div>Continue with Google</div>
             <img src="/assets/auth/google.svg" alt="" />

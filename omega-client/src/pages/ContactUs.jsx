@@ -3,11 +3,11 @@ import HomeNav from '../components/HomeNav'
 import Hamburger from '../components/Hamburger'
 import axios from "axios";
 import {useForm} from "react-hook-form"
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ContactUs = () => {
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
-  const [success, setSuccess] = useState("")
-  const [err, setErr] = useState("")
   const [loading, setLoading] = useState("")
 
   const [contact, setContact] = useState({
@@ -16,6 +16,18 @@ const ContactUs = () => {
     message: "",
     loginURL: "https://omega-prediction-app.netlify.app/login",
   });
+
+   const showToastSuccess = () => {
+     toast.success("Message sent successfully", {
+       position: toast.POSITION.TOP_RIGHT,
+     });
+   };
+
+   const showToastError = () => {
+     toast.error("Something went wrong!", {
+       position: toast.POSITION.TOP_RIGHT,
+     });
+   };
 
   const handleContactInput = (e) => {
     const { name, value } = e.target
@@ -34,16 +46,23 @@ const ContactUs = () => {
      
       console.log(response.data)
       setLoading(false)
-      setSuccess("Your message was sent successfully!")
+      showToastSuccess()
+      setContact({
+        contactName: "",
+        contactEmail: "",
+        message: "",
+        loginURL: "https://omega-prediction-app.netlify.app/login",
+      });
     } catch(error){
         console.log(error)
-        setErr("Your message was not sent successfully! Try again!")
+        showToastError()
     }
    reset();
   }
   
   return (
     <div className="flex flex-col">
+      <ToastContainer />
       <HomeNav />
       <Hamburger />
 
@@ -56,18 +75,9 @@ const ContactUs = () => {
             <div className="text-[32px] text-[#0267FF] font-[600]">
               Contact Us
             </div>
-            <div className="text-[24px] font-400 text-[#808080] italic">
+            <div className="text-[24px] font-400 text-[#808080] italic mt-2">
               Kindly reach out to us. we will get back to you as soon as we can
             </div>
-            {success ? (
-              <p className="text-[#37c237] text-[24px] font-[600] mt-2">
-                {success}
-              </p>
-            ) : (
-              <p className="text-[#f34040] text-[24px] font-[600] mt-2">
-                {err}
-              </p>
-            )}
           </div>
 
           <div className=" flex">

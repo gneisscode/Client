@@ -32,8 +32,8 @@ const Collateral = () => {
   }, [])
   return (
     <>
-      <div className="flex flex-col gap-[16px] absolute top-[-100px]">
-        <h3 className="text-[#0267FF] text-[24px] font-[600]">
+      <div className="flex flex-col gap-[16px] absolute top-[-120px]">
+        <h3 className="text-[#0267FF] text-[24px] font-[600] mb-2">
           Borrower's Saved Data
         </h3>
         <h4 className="text-[#4D4D4D] text-[20px] font-[600]">
