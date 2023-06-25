@@ -119,16 +119,15 @@ const Login = () => {
 
       try {
         const formData = {
-          provider: "google",
-          googleId: userInfo.sub,
-          access_token: tokenResponse.access_token,
           email: userInfo.email,
-          firstName: userInfo.given_name,
-          lastName: userInfo.family_name,
-          imageUrl: userInfo.picture,
         };
-        const response = await axios.post("/admins/auth-token", formData);
-        const data = response.data.admin;
+        const response = await axios.post("/admins/login-auth-token", formData);
+        console.log(response)
+        const data = response.data.data;
+        const token = data.access_token;
+        const expirationTime = Date.now() + 24 * 60 * 60 * 1000;
+        localStorage.setItem("token", token);
+        localStorage.setItem("tokenExpiration", expirationTime);
         dispatch({ type: "LOGIN_SUCCESS", payload: data });
       } catch (error) {
         console.log(error);
