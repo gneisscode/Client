@@ -373,6 +373,9 @@ const SignUp = () => {
                 <p className="text-black text-center mb-5">
                   Please enter the name of your organisation
                 </p>
+
+                {serverError && <p className="text-red-500 mb-2">{serverError}</p>}
+
                 <TextField
                   placeholder="Organisation Name:"
                   name="organisationName"
