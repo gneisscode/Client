@@ -49,8 +49,8 @@ const LoanApplications = () => {
           const loansList = response.data.data.loans;
           setLoanData(loansList);
           setLoading(false);
-          console.log(response.data);
-          console.log(response.data.totalPages)
+          // console.log(response.data);
+          // console.log(response.data.totalPages)
           setTotalPages(response.data.totalPages)
          
         } catch (error) {
