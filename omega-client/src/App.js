@@ -21,7 +21,6 @@ import BorrowersData from './features/Dashboard/BorrowersData/InputData/Borrower
 import BorrowerEligibility from './features/Dashboard/BorrowersData/Eligibility/BorrowerEligibility'
 import SendStatus from './features/Dashboard/BorrowersData/Eligibility/SendStatus'
 import LoanApplications from './features/Dashboard/Dashboard/LoanApplications'
-import History from './features/Dashboard/History'
 import Admin from './features/Dashboard/Admin/Admin'
 import AddAdmin from './features/Dashboard/Admin/AddAdmin'
 import Help from './features/Dashboard/HelpSupport/Help'
@@ -35,6 +34,8 @@ import PublicRoute from './components/Auth/PublicRoute'
 import PrivateRoutes from './components/Auth/PrivateRoutes'
 import Upload from './features/Dashboard/BorrowersData/InputData/Upload'
 import Ineligibility from './features/Dashboard/BorrowersData/Eligibility/Ineligibility'
+import ChatPage from './pages/ChatPage'
+import MessagesPage from './pages/MessagesPage'
 
 function App() {
   axios.defaults.baseURL = `https://nodebt-application.onrender.com/api`
@@ -139,10 +140,14 @@ function App() {
       path: "/loan-applications",
       component: <LoanApplications />,
     },
-    // {
-    //   path: "/history",
-    //   component: <History />,
-    // },
+    {
+      path: "/messages",
+      component: <MessagesPage />,
+    },
+    {
+      path: "/chat/:id",
+      component: <ChatPage />,
+    },
     {
       path: "/settings",
       component: <Settings />,

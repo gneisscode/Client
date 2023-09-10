@@ -285,11 +285,11 @@ const Profile = () => {
             </div>
 
             <div className="mt-[22px]">Change personal information</div>
-            <div className="flex flex-col gap-[48px]  border-b pb-[106px] mt-[51px] mb-[56px]">
+            <div className="flex flex-col gap-[48px]  border-b pb-[106px] mt-[51px] mb-[56px] w-[928px]">
               <div className="grid gap-[59px] grid-cols-2">
                 <input
                   type="text"
-                  className="w-[462px] h-[60px] border border-[#666666] bg-[#FAFCFF] p-4 rounded outline-none"
+                  className="w-[434.5px] h-[60px] border border-[#666666] bg-[#FAFCFF] p-4 rounded outline-none"
                   placeholder="First Name"
                   value={adminDetails.firstName}
                   onChange={(e) =>
@@ -302,7 +302,7 @@ const Profile = () => {
                 />
                 <input
                   type="text"
-                  className="w-[462px] h-[60px] border border-[#666666] bg-[#FAFCFF] p-4 rounded outline-none"
+                  className="w-[434.5px] h-[60px] border border-[#666666] bg-[#FAFCFF] p-4 rounded outline-none"
                   placeholder="Last Name"
                   value={adminDetails.lastName}
                   onChange={(e) =>
@@ -315,14 +315,14 @@ const Profile = () => {
                 />
                 <input
                   type="email"
-                  className="w-[462px] h-[60px] border border-[#666666] bg-[#FAFCFF] p-4 rounded outline-none"
+                  className="w-[434.5px] h-[60px] border border-[#666666] bg-[#FAFCFF] p-4 rounded outline-none"
                   placeholder="Email Address"
                   value={user.email}
                   disabled
                 />
                 <input
                   type="text"
-                  className="w-[462px] h-[60px] border border-[#666666] bg-[#FAFCFF] p-4 rounded outline-none"
+                  className="w-[434.5px] h-[60px] border border-[#666666] bg-[#FAFCFF] p-4 rounded outline-none"
                   placeholder="Position"
                   value={adminDetails.position}
                   onChange={(e) =>
@@ -334,7 +334,7 @@ const Profile = () => {
                 />
                 <input
                   type="text"
-                  className="w-[462px] h-[60px] border border-[#666666] bg-[#FAFCFF] p-4 rounded outline-none"
+                  className="w-[434.5px] h-[60px] border border-[#666666] bg-[#FAFCFF] p-4 rounded outline-none"
                   placeholder="Phone Number"
                   value={adminDetails.phoneNumber}
                   onChange={(e) =>

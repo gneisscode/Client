@@ -53,14 +53,10 @@ const DashHeader = () => {
       document.removeEventListener("click", handleClickOutside);
     };
   }, []);
-  // const handleKeyDown = (event) => {
-  //   if (event.key === "Enter") {
-  //     handleSearch();
-  //   }
-  // };
+
 
   return (
-    <div className="hidden lg:flex justify-between h-[112px] w-[100%] bg-[#FAFCFF] text-gray-400 border border-gray-100 items-end px-[60px] py-8 fixed top-0 left-0 z-[1000]">
+    <div className="hidden lg:flex justify-between h-[112px] w-[100%] bg-[#FAFCFF] text-gray-400 border border-gray-100 items-end px-[40px] py-8 fixed top-0 left-0 z-[1000]">
       <Link to="/">
         <div className="flex justify-center items-center">
           <img src="/assets/omega-logo.png" alt="" />
@@ -100,7 +96,7 @@ const DashHeader = () => {
         <div className="text-[18px]">
           Hello, {user?.firstName} {user?.lastName}
         </div>
-
+        
         <Link to="/settings">
           {userPhotoURL || user.imageUrl ? (
             <img
